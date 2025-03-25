@@ -1,0 +1,149 @@
+/* 
+ * Tic-tac-toe Game CSS for Abhijeet's Portfolio Website
+ * Custom styling for the tic-tac-toe game
+ */
+
+/* Game controls */
+.ttt-controls {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.ttt-difficulty, .ttt-symbols {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.ttt-difficulty label, .ttt-symbols label {
+    font-weight: 600;
+}
+
+.ttt-difficulty select, .ttt-symbols select {
+    padding: 0.5rem;
+    border-radius: var(--border-radius-sm);
+    border: 1px solid;
+    cursor: pointer;
+}
+
+.light-theme .ttt-difficulty select, .light-theme .ttt-symbols select {
+    border-color: var(--light-border);
+    background-color: var(--light-bg);
+    color: var(--light-text);
+}
+
+.dark-theme .ttt-difficulty select, .dark-theme .ttt-symbols select {
+    border-color: var(--dark-border);
+    background-color: var(--dark-bg);
+    color: var(--dark-text);
+}
+
+/* Game board */
+.tic-tac-toe-board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 10px;
+    max-width: 350px;
+    aspect-ratio: 1 / 1;
+    margin: 0 auto;
+}
+
+.tic-tac-toe-cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: var(--border-radius-sm);
+    position: relative;
+    user-select: none;
+}
+
+.light-theme .tic-tac-toe-cell {
+    background-color: var(--light-card-bg);
+    border: 2px solid var(--light-border);
+    color: var(--light-text);
+}
+
+.dark-theme .tic-tac-toe-cell {
+    background-color: var(--dark-card-bg);
+    border: 2px solid var(--dark-border);
+    color: var(--dark-text);
+}
+
+.light-theme .tic-tac-toe-cell:hover:not(.cell-x):not(.cell-o) {
+    background-color: var(--light-hover);
+}
+
+.dark-theme .tic-tac-toe-cell:hover:not(.cell-x):not(.cell-o) {
+    background-color: var(--dark-hover);
+}
+
+/* Cell content styling */
+.tic-tac-toe-cell.cell-x {
+    color: #DC3545;
+}
+
+.tic-tac-toe-cell.cell-o {
+    color: #0D6EFD;
+}
+
+/* Winning cells */
+.tic-tac-toe-cell.winning-cell {
+    animation: pulse 1s infinite;
+}
+
+.light-theme .tic-tac-toe-cell.winning-cell {
+    background-color: rgba(67, 97, 238, 0.2);
+    border-color: var(--light-accent);
+}
+
+.dark-theme .tic-tac-toe-cell.winning-cell {
+    background-color: rgba(108, 139, 255, 0.2);
+    border-color: var(--dark-accent);
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Status message */
+.ttt-status {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    min-height: 2rem;
+}
+
+.light-theme .ttt-status {
+    color: var(--light-title);
+}
+
+.dark-theme .ttt-status {
+    color: var(--dark-title);
+}
+
+/* Responsive adjustments */
+@media (max-width: 500px) {
+    .tic-tac-toe-board {
+        max-width: 280px;
+    }
+    
+    .tic-tac-toe-cell {
+        font-size: 2.5rem;
+    }
+    
+    .ttt-controls {
+        flex-direction: column;
+        align-items: center;
+    }
+}

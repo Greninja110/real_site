@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Understanding Neural Networks: A Beginner's Guide - Learn about the basics of neural networks and how they work.">
+    <title>Understanding Neural Networks: A Beginner's Guide | Abhijeet's Blog</title>
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../assets/favicon.ico" type="image/x-icon">
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/themes.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="../css/blog.css">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="dark-theme">
+    <!-- Main Container -->
+    <div class="container blog-layout">
+        <!-- Blog Post -->
+        <article class="blog-post">
+            <div class="blog-post-header">
+                <div class="blog-post-meta">
+                    <div class="blog-post-date">
+                        <i class="far fa-calendar-alt"></i> March 15, 2025
+                    </div>
+                    <div class="blog-post-author">
+                        <i class="far fa-user"></i> Abhijeet
+                    </div>
+                    <div class="blog-post-category">
+                        <i class="far fa-folder"></i> AI/ML
+                    </div>
+                    <div class="blog-post-time">
+                        <i class="far fa-time"></i> 5 min
+                    </div>
+                </div>
+                <h1 class="blog-post-title">A Practical Guide to Parameter Tuning for Random Forests Using the Iris Dataset</h1>
+            </div>
+            
+            <div class="blog-post-image">
+                <img src="/assets/images/blog/hyperparameter.png" alt="Neural Network Visualization">
+            </div>
+            
+            <div class="blog-post-content">
+                <p>Neural networks are at the heart of many breakthrough technologies today, from image recognition to language translation. But what exactly are they, and how do they work? In this beginner-friendly guide, I'll break down the core concepts of neural networks in simple terms.</p>
+                
+                <h2>What is Parameter Tuning?</h2>
+                <p>Parameter tuning (also known as hyperparameter tuning) is the process of systematically adjusting the settings (parameters) of machine learning algorithms to optimize their performance. These parameters are not learned directly from the data; rather, they are set manually or through automated methods before training the model.</p>
+                
+                <p>Think of parameters as "knobs" or "settings" you can adjust to make the algorithm perform better. Different combinations can significantly impact accuracy, efficiency, and the generalization of your model to new, unseen data.</p>
+                
+                <h3>Why is Parameter Tuning Important?</h3>
+                
+                <ol>
+                    <li><strong>Performance Improvement:</strong> Proper tuning often results in higher accuracy and better predictive performance.</li>
+                    <li><strong>Avoiding Overfitting: </strong> Helps models generalize better to unseen data by controlling complexity.</li>
+                    <li><strong>Efficiency:</strong> Finds the balance between accuracy and computational cost, making the model practical for real-world use.</li>
+                </ol>
+                
+                <h3>Common Methods of Parameter Tuning:</h3>
+                
+                <ol>
+                    <li><strong>Grid Search:</strong> Systematically explores a defined set of parameters.</li>
+                    <li><strong>Randomized Search:</strong>  Randomly samples parameter combinations within a specified range.</li>
+                    <li><strong>Bayesian Optimization:</strong> Iteratively refines parameter choices based on past evaluations.</li>
+                </ol>
+                
+                <h2>What is the Iris Dataset?</h2>
+                <p>The Iris dataset is one of the most popular and widely-used datasets in machine learning, originally introduced by Ronald A. Fisher in 1936. It contains measurements of 150 iris flowers from three different species:</p>
+                
+                <ol>
+                    <li>Iris Setosa</li>
+                    <li>Iris Versicolor</li>
+                    <li>Iris Virginica</li>
+                </ol>
+                
+                <h3>Dataset Features:</h3>
+                <p>The dataset includes four numerical features:</p>
+                <ul>
+                    <li><strong>Sepal Length</strong> (in centimeters).</li>
+                    <li><strong>Sepal Width</strong> (in centimeters).</li>
+                    <li><strong>Petal Length</strong> (in centimeters).</li>
+                    <li><strong>Petal Width</strong> (in centimeters)..</li>
+                </ul>
+                
+                <h2>Why is it Popular?</h2>
+                <p>The Iris dataset is commonly used for machine learning tutorials and benchmarking because:</p>
+                <ul>
+                    <li>It's small and manageable, ideal for beginners.</li>
+                    <li>Clearly demonstrates concepts of classification and parameter tuning.</li>
+                    <li>Helps evaluate the performance of different algorithms.</li>
+                    <li>Widely used for demonstrating machine learning algorithms.</li>
+                </ul>
+                
+                <h2>What is the K-Nearest Neighbors (KNN) Algorithm?</h2>
+                <p>K-Nearest Neighbors (KNN) is a simple yet effective supervised machine learning algorithm used for both classification and regression tasks. It classifies new data points based on the "nearest" existing data points in the feature space.</p>
+                <h3>How Does KNN Work?</h3>
+                <ul>
+                    <li><strong>Step 1:</strong> Select the number of neighbors (k).</li>
+                    <li><strong>Step 2:</strong> Calculate the distance (e.g., Euclidean, Manhattan) from the new data point to all other points in the dataset.</li>
+                    <li><strong>Step 3:</strong> Find the k nearest points (neighbors).</li>
+                    <li><strong>Step 4:</strong> Assign the new data point the class most common among these neighbors (for classification tasks) or average their values for regression.</li>
+                </ul>
+                <h3>Key Points:</h3>
+                <ul>
+                    <li><strong>Simple</strong> Easy to understand and implement.</li>
+                    <li><strong>Lazy learner:</strong> Does not explicitly learn a model; it stores training data and makes decisions based directly on it.</li>
+                    <li><strong>Distance-Based:</strong>  Sensitive to the scale of data (often requires feature scaling).</li>
+                    <li><strong>Parameter Tuning:</strong> Performance greatly depends on choosing an optimal value of k and appropriate distance metrics.
+                    </li>
+                </ul>
+                <h2>Parameter Tuning in KNN</h2>
+                
+                <h3>Conclusion</h3>
+                <p>Neural networks might seem complex at first, but the fundamental concepts are quite intuitive. They learn from examples, adjust their understanding, and make predictions – much like how we humans learn. As you delve deeper into the field of AI and machine learning, you'll discover the incredible potential of these systems to solve complex problems and create innovative solutions.</p>
+                
+                <p>Feel free to leave a comment if you have any questions or suggestions for future topics!</p>
+            </div>
+            
+            <div class="blog-post-tags">
+                <a href="#" class="blog-post-tag">Neural Networks</a>
+                <a href="#" class="blog-post-tag">AI</a>
+                <a href="#" class="blog-post-tag">Machine Learning</a>
+                <a href="#" class="blog-post-tag">Deep Learning</a>
+            </div>
+            
+            <div class="blog-post-navigation">
+                <div class="prev-post">
+                    <div class="prev-post-label"><i class="fas fa-arrow-left"></i> Previous Post</div>
+                    <a href="#" class="prev-post-title">Introduction to My Blog</a>
+                </div>
+                <div class="next-post">
+                    <div class="next-post-label">Next Post <i class="fas fa-arrow-right"></i></div>
+                    <a href="post2.html" class="next-post-title">5 Modern CSS Techniques Every Web Developer Should Know</a>
+                </div>
+            </div>
+        </article>
+        
+        <div class="blog-sidebar">
+            <div class="back-to-portfolio">
+                <a href="../index.html#blog" class="back-btn">
+                    <i class="fas fa-arrow-left"></i> Back to Portfolio
+                </a>
+            </div>
+            
+            <div class="blog-navigation">
+                <h3>Blog Navigation</h3>
+                <ul>
+                    <li><a href="index.html">All Posts</a></li>
+                    <li><a href="index.html#aiml">AI/ML</a></li>
+                    <li><a href="index.html#webdev">Web Development</a></li>
+                    <li><a href="index.html#tutorial">Tutorials</a></li>
+                </ul>
+            </div>
+            
+            <div class="recent-posts">
+                <h3>Recent Posts</h3>
+                <ul>
+                    <li><a href="post1.html">Understanding Neural Networks: A Beginner's Guide</a></li>
+                    <li><a href="post2.html">5 Modern CSS Techniques Every Web Developer Should Know</a></li>
+                    <li><a href="post3.html">How to Build a Developer Portfolio That Stands Out</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="blog-footer">
+        <div class="footer-content">
+            <p>&copy; 2023 Abhijeet. All Rights Reserved.</p>
+            <div class="footer-social">
+                <a href="https://github.com/" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://linkedin.com/in/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Theme script -->
+    <script>
+        // Check saved theme
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            document.body.className = savedTheme;
+        }
+    </script>
+</body>
+</html>

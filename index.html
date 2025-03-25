@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Abhijeet's Portfolio - Developer, Designer and Technology Enthusiast">
+    <meta name="keywords" content="portfolio, developer, AIML, web development, app development, cybersecurity, docker, blockchain">
+    <title>Abhijeet's Portfolio</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/themes.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/games.css">
+    <link rel="stylesheet" href="css/tic-tac-toe.css">
+    <link rel="stylesheet" href="css/blog.css">
+    <link rel="stylesheet" href="css/timeline.scss">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="dark-theme">
+    <!-- Preloader -->
+    <div id="preloader" class="preloader">
+        <div class="preloader-content">
+            <h1>Loading</h1>
+            <div class="typing-container">
+                <span id="preloader-text"></span>
+                <span class="cursor"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="profile-pic-container">
+                    <img src="assets/images/profile.jpg" alt="Abhijeet" class="profile-pic-small">
+                </div>
+                <h2 class="sidebar-title">Abhijeet</h2>
+                <button id="mobile-toggle" class="mobile-toggle" aria-label="Toggle Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="#home" class="nav-link active" data-section="home"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="#projects" class="nav-link" data-section="projects"><i class="fas fa-code-branch"></i> Projects</a></li>
+                    <li><a href="#blog" class="nav-link" data-section="blog"><i class="fas fa-blog"></i> Blog</a></li>
+                    <li><a href="#games" class="nav-link" data-section="games"><i class="fas fa-gamepad"></i> Games</a></li>
+                    <li><a href="#achievements" class="nav-link" data-section="achievements"><i class="fas fa-trophy"></i> Achievements</a></li>
+                    <li><a href="#stats" class="nav-link" data-section="stats"><i class="fas fa-chart-bar"></i> Stats</a></li>
+                    <li><a href="#resume" class="nav-link" data-section="resume"><i class="fas fa-file-alt"></i> Resume</a></li>
+                    <li><a href="#contact" class="nav-link" data-section="contact"><i class="fas fa-envelope"></i> Contact</a></li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="theme-toggle">
+                    <label class="switch">
+                        <input type="checkbox" id="theme-toggle">
+                        <span class="slider round"></span>
+                    </label>
+                    <span id="theme-label">Dark Mode</span>
+                </div>
+                <div class="social-links">
+                    <a href="https://instagram.com/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://linkedin.com/in/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://x.com/abhi__253__162" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="content">
+            <!-- Skip to content for accessibility -->
+            <!-- <a href="#content" class="skip-link">Skip to content</a> -->
+            
+            <!-- Home/About Section -->
+            <section id="home" class="section active">
+                <div class="about-container">
+                    <div class="profile-section">
+                        <div class="profile-image-container">
+                            <img src="assets/images/profile.jpg" alt="Abhijeet" class="profile-pic">
+                        </div>
+                        <div class="typing-animation">
+                            <h1>Abhijeet <span id="animated-text">
+                                <span id="text-content"></span>
+                                <span id="cursor">|</span>
+                            </span></h1>
+                        </div>
+                    </div>
+                    
+                    <div class="about-content">
+                        <div class="section-title">
+                            <h2>About Me</h2>
+                        </div>
+                        <p>Hello! I'm Abhijeet, a passionate developer with expertise in various technologies including AI/ML, Web Development, App Development, and more. I love creating innovative solutions and learning new technologies.</p>
+                        
+                        <div class="skills-container">
+                            <h3>My Skills</h3>
+                            <div class="skills-grid">
+                                <div class="skill-item">
+                                    <div class="skill-name">AIML</div>
+                                    <div class="skill-bar">
+                                        <div class="skill-progress" style="width: 70%"></div>
+                                    </div>
+                                </div>
+                                <div class="skill-item">
+                                    <div class="skill-name">Web Development</div>
+                                    <div class="skill-bar">
+                                        <div class="skill-progress" style="width: 60%"></div>
+                                    </div>
+                                </div>
+                                <div class="skill-item">
+                                    <div class="skill-name">App Development</div>
+                                    <div class="skill-bar">
+                                        <div class="skill-progress" style="width: 10%"></div>
+                                    </div>
+                                </div>
+                                <div class="skill-item">
+                                    <div class="skill-name">Cybersecurity</div>
+                                    <div class="skill-bar">
+                                        <div class="skill-progress" style="width: 25%"></div>
+                                    </div>
+                                </div>
+                                <div class="skill-item">
+                                    <div class="skill-name">Docker</div>
+                                    <div class="skill-bar">
+                                        <div class="skill-progress" style="width: 10%"></div>
+                                    </div>
+                                </div>
+                                <div class="skill-item">
+                                    <div class="skill-name">Blockchain</div>
+                                    <div class="skill-bar">
+                                        <div class="skill-progress" style="width: 10%"></div>
+                                    </div>
+                                </div>
+                                <div class="skill-item">
+                                    <div class="skill-name">Django</div>
+                                    <div class="skill-bar">
+                                        <div class="skill-progress" style="width: 50%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="personal-info">
+                            <h3>Personal Information</h3>
+                            <div class="info-grid">
+                                <div class="info-item">
+                                    <span class="info-label">Email:</span>
+                                    <span class="info-value">abhijeet@example.com</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Location:</span>
+                                    <span class="info-value">Anand, India</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Languages:</span>
+                                    <span class="info-value">English, Hindi</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Availability:</span>
+                                    <span class="info-value">Full-time</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects Section -->
+            <section id="projects" class="section">
+                <div class="section-title">
+                    <h2>My Projects</h2>
+                </div>
+                
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="aiml">AIML</button>
+                    <button class="filter-btn" data-filter="webdev">Web Dev</button>
+                    <button class="filter-btn" data-filter="appdev">App Dev</button>
+                    <button class="filter-btn" data-filter="cybersecurity">Cybersecurity</button>
+                    <!-- <button class="filter-btn" data-filter="docker">Docker</button> -->
+                    <!-- <button class="filter-btn" data-filter="blockchain">Blockchain</button> -->
+                </div>
+                
+                <div class="projects-grid">
+                    <!-- Project 1 - Completed -->
+                    <div class="project-card" data-category="aiml">
+                        <div class="project-image">
+                            <img src="assets/images/projects/project1.jpg" alt="AI Image Recognition">
+                            <div class="project-status completed">Completed</div>
+                        </div>
+                        <div class="project-info">
+                            <h3>Object Detection and Recognition</h3>
+                            <p>A machine learning model for image recognition with high accuracy.</p>
+                            <button class="view-details-btn">View Details</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 2 - Ongoing -->
+                    <div class="project-card" data-category="webdev">
+                        <div class="project-image">
+                            <img src="assets/images/projects/project2.jpg" alt="E-commerce Platform">
+                            <div class="project-status ongoing">Ongoing</div>
+                        </div>
+                        <div class="project-info">
+                            <h3>Attendance Management System For a College</h3>
+                            <p>A fully responsive e-commerce website with cart functionality.</p>
+                            <button class="view-details-btn">View Details</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 3 - Planned -->
+                    <div class="project-card" data-category="appdev">
+                        <div class="project-image">
+                            <img src="assets/images/projects/project3.jpg" alt="Fitness Tracker App">
+                            <div class="project-status ongoing">Ongoing</div>
+                        </div>
+                        <div class="project-info">
+                            <h3>ARCam</h3>
+                            <p>Mobile app for tracking fitness activities and health metrics.</p>
+                            <button class="view-details-btn">View Details</button>
+                        </div>
+                    </div>
+
+                    <!-- Project 4  - Planned -->
+                    <div class="project-card" data-category="cybersecurity">
+                        <div class="project-image">
+                            <img src="assets/images/projects/project3.jpg" alt="Fitness Tracker App">
+                            <div class="project-status ongoing">Ongoing</div>
+                        </div>
+                        <div class="project-info">
+                            <h3>AI-Powered Network Intrusion Detection</h3>
+                            <p>Mobile app for tracking fitness activities and health metrics.</p>
+                            <button class="view-details-btn">View Details</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project Details Modal -->
+                <div id="project-modal" class="modal">
+                    <div class="modal-content">
+                        <span class="close-modal">&times;</span>
+                        <div class="modal-body">
+                            <div class="project-detail-header">
+                                <h3 id="modal-project-title">Project Title</h3>
+                                <div id="modal-project-status" class="project-status">Status</div>
+                            </div>
+                            <div class="project-detail-content">
+                                <div class="project-detail-image">
+                                    <img id="modal-project-image" src="" alt="Project Image">
+                                </div>
+                                <div class="project-description">
+                                    <h4>Description</h4>
+                                    <p id="modal-project-description">Project description goes here.</p>
+                                </div>
+                                <div class="project-functionality">
+                                    <h4>Functionality</h4>
+                                    <p id="modal-project-functionality">Project functionality explanation goes here.</p>
+                                </div>
+                                <div class="project-links">
+                                    <a id="modal-project-github" href="#" target="_blank" class="github-link">GitHub Repository</a>
+                                    <a id="modal-project-demo" href="#" target="_blank" class="demo-link">Live Demo</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Blog Section -->
+            <section id="blog" class="section">
+                <div class="section-title">
+                    <h2>My Blog</h2>
+                </div>
+                
+                <div class="blog-description">
+                    <p>Welcome to my blog where I share my thoughts, insights, and learnings on various topics in technology and development.</p>
+                </div>
+                
+                <div class="blog-filters">
+                    <button class="blog-filter-btn active" data-filter="all">All Posts</button>
+                    <button class="blog-filter-btn" data-filter="aiml">AI/ML</button>
+                    <!-- <button class="blog-filter-btn" data-filter="webdev">Web Dev</button> -->
+                    <!-- <button class="blog-filter-btn" data-filter="tutorial">Tutorials</button> -->
+                </div>
+                
+                <div class="blog-posts">
+                    <!-- Blog Post 1 -->
+                    <div class="blog-card" data-category="aiml">
+                        <div class="blog-card-image">
+                            <img src="/assets/images/blog/knn.png" alt="Understanding Neural Networks">
+                        </div>
+                        <div class="blog-card-content">
+                            <div class="blog-card-date">March 15, 2023</div>
+                            <h3 class="blog-card-title">A Practical Guide to Parameter Tuning for KNN Using the Iris Dataset</h3>
+                            <p class="blog-card-excerpt">KNN is a fundamental algorithm in AI/ML, and in this post, I break down how to enhance its accuracy through parameter tuning.</p>
+                            <div class="blog-card-footer">
+                                <span class="blog-card-tag">AI/ML</span>
+                                <a href="blog/post1.html" class="read-more-btn">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Blog Post 2 -->
+                    <div class="blog-card" data-category="aiml">
+                        <div class="blog-card-image">
+                            <img src="/assets/images/blog/dt.png" alt="Modern CSS Techniques">
+                        </div>
+                        <div class="blog-card-content">
+                            <div class="blog-card-date">February 28, 2023</div>
+                            <h3 class="blog-card-title">A Practical Guide to Parameter Tuning for Decision Tree Using the Iris Dataset</h3>
+                            <p class="blog-card-excerpt">Decision Tree is a fundamental algorithm in AI/ML, and in this post, I break down how to enhance its accuracy through parameter tuning.</p>
+                            <div class="blog-card-footer">
+                                <span class="blog-card-tag">AI/ML</span>
+                                <a href="blog/post2.html" class="read-more-btn">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Blog Post 3 -->
+                    <div class="blog-card" data-category="aiml">
+                        <div class="blog-card-image">
+                            <img src="/assets/images/blog/rf.png" alt="Building a Portfolio">
+                        </div>
+                        <div class="blog-card-content">
+                            <div class="blog-card-date">January 10, 2023</div>
+                            <h3 class="blog-card-title">A Practical Guide to Parameter Tuning for Random Forests Using the Iris Dataset</h3>
+                            <p class="blog-card-excerpt">Random Forests is a fundamental algorithm in AI/ML, and in this post, I break down how to enhance its accuracy through parameter tuning.</p>
+                            <div class="blog-card-footer">
+                                <span class="blog-card-tag">AI/ML</span>
+                                <a href="blog/post3.html" class="read-more-btn">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="view-all-container">
+                    <a href="blog/index.html" class="view-all-btn">View All Posts</a>
+                </div>
+            </section>
+
+            <!-- Games Section -->
+            <section id="games" class="section">
+                <div class="section-title">
+                    <h2>Interactive Games</h2>
+                </div>
+                <div class="games-container">
+                    <div class="games-grid">
+                        <div class="game-card" data-game="tic-tac-toe">
+                            <div class="game-icon">
+                                <i class="fas fa-th-large"></i>
+                            </div>
+                            <h3>Tic-Tac-Toe</h3>
+                            <p>Classic game of X's and O's.</p>
+                            <button class="play-game-btn">Play</button>
+                        </div>
+                        
+                        <div class="game-card" data-game="tetris">
+                            <div class="game-icon">
+                                <i class="fas fa-th"></i>
+                            </div>
+                            <h3>Tetris</h3>
+                            <p>Stack and clear lines of blocks.</p>
+                            <button class="play-game-btn">Play</button>
+                        </div>
+                        
+                        <div class="game-card" data-game="snake">
+                            <div class="game-icon">
+                                <i class="fas fa-long-arrow-alt-right"></i>
+                            </div>
+                            <h3>Snake</h3>
+                            <p>Grow your snake by eating food.</p>
+                            <button class="play-game-btn">Play</button>
+                        </div>
+                        
+                        <div class="game-card" data-game="flappy-bird">
+                            <div class="game-icon">
+                                <i class="fas fa-dove"></i>
+                            </div>
+                            <h3>Flappy Bird</h3>
+                            <p>Navigate through pipes without crashing.</p>
+                            <button class="play-game-btn">Play</button>
+                        </div>
+                        
+                        <div class="game-card" data-game="tower-building">
+                            <div class="game-icon">
+                                <i class="fas fa-building"></i>
+                            </div>
+                            <h3>Tower Building</h3>
+                            <p>Stack blocks to build the tallest tower.</p>
+                            <button class="play-game-btn">Play</button>
+                        </div>
+                        
+                        <div class="game-card" data-game="puzzle">
+                            <div class="game-icon">
+                                <i class="fas fa-puzzle-piece"></i>
+                            </div>
+                            <h3>8-Puzzle</h3>
+                            <p>Slide tiles to solve the puzzle.</p>
+                            <button class="play-game-btn">Play</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Game Area -->
+                    <div id="game-area" class="game-area hidden">
+                        <div class="game-header">
+                            <h3 id="current-game-title">Game Title</h3>
+                            <button id="close-game" class="close-game">&times;</button>
+                        </div>
+                        <div id="game-container" class="game-container"></div>
+                        <div class="game-controls">
+                            <div id="game-score" class="game-score">Score: 0</div>
+                            <button id="restart-game" class="restart-game">Restart</button>
+                        </div>
+                        <div id="leaderboard" class="leaderboard">
+                            <h4>Leaderboard</h4>
+                            <ul id="leaderboard-list"></ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Timeline Section -->
+<section id="achievements" class="section">
+    <div class="timeline-wrapper">
+        <div class="section-title">
+            <h2>My Journey</h2>
+        </div>
+        
+        <div class="timeline">
+            <!-- Timeline Block 1 - Left -->
+            <div class="timeline-block timeline-block-left" data-icon="picture" data-date="Jan 2020">
+                <div class="timeline-content">
+                    <span class="timeline-date">January 2020</span>
+                    <h3 class="timeline-title">Started Learning Web Development</h3>
+                    <p class="timeline-description">Began my journey into web development by learning HTML, CSS, and JavaScript fundamentals. Created my first static website and discovered my passion for front-end development.</p>
+                    <a href="#0" class="timeline-btn">Read more</a>
+                </div>
+            </div>
+
+            <!-- Timeline Block 2 - Right -->
+            <div class="timeline-block timeline-block-right" data-icon="movie" data-date="Jul 2020">
+                <div class="timeline-content">
+                    <span class="timeline-date">July 2020</span>
+                    <h3 class="timeline-title">Advanced Certification</h3>
+                    <p class="timeline-description">Completed advanced certification in Cybersecurity and Ethical Hacking, learning about penetration testing, network security, and ethical hacking techniques.</p>
+                    <a href="#0" class="timeline-btn">View Certificate</a>
+                </div>
+            </div>
+
+            <!-- Timeline Block 3 - Left -->
+            <div class="timeline-block timeline-block-left" data-icon="location" data-date="Dec 2020">
+                <div class="timeline-content">
+                    <span class="timeline-date">December 2020</span>
+                    <h3 class="timeline-title">First Hackathon</h3>
+                    <p class="timeline-description">Participated in my first national level hackathon. Developed a solution for healthcare accessibility using a web-based platform with real-time communication features.</p>
+                    <a href="#0" class="timeline-btn">See Project</a>
+                </div>
+            </div>
+
+            <!-- Timeline Block 4 - Right -->
+            <div class="timeline-block timeline-block-right" data-icon="picture" data-date="Mar 2021">
+                <div class="timeline-content">
+                    <span class="timeline-date">March 2021</span>
+                    <h3 class="timeline-title">Research Publication</h3>
+                    <p class="timeline-description">Published a research paper on machine learning algorithms for improved data processing, focusing on optimization techniques for large datasets.</p>
+                    <a href="#0" class="timeline-btn">Read Paper</a>
+                </div>
+            </div>
+
+            <!-- Timeline Block 5 - Left -->
+            <div class="timeline-block timeline-block-left" data-icon="movie" data-date="Jul 2022">
+                <div class="timeline-content">
+                    <span class="timeline-date">July 2022</span>
+                    <h3 class="timeline-title">Started B.Tech Journey</h3>
+                    <p class="timeline-description">Began my undergraduate studies in Computer Science at XYZ College, setting the foundation for my technical career and future endeavors.</p>
+                    <a href="#0" class="timeline-btn">Learn More</a>
+                </div>
+            </div>
+
+            <!-- Timeline Block 6 - Right -->
+            <div class="timeline-block timeline-block-right" data-icon="location" data-date="Dec 2022">
+                <div class="timeline-content">
+                    <span class="timeline-date">December 2022</span>
+                    <h3 class="timeline-title">Hackathon Winner</h3>
+                    <p class="timeline-description">First place in the National Coding Hackathon with a blockchain-based voting system. Led a team of three to develop a secure and transparent solution.</p>
+                    <a href="#0" class="timeline-btn">View Project</a>
+                </div>
+            </div>
+
+            <!-- Timeline Block 7 - Left -->
+            <div class="timeline-block timeline-block-left" data-icon="picture" data-date="Apr 2023">
+                <div class="timeline-content">
+                    <span class="timeline-date">April 2023</span>
+                    <h3 class="timeline-title">Innovation Award</h3>
+                    <p class="timeline-description">Received the Innovation Award for developing an AI-based solution for healthcare. The project focused on early disease detection using machine learning algorithms.</p>
+                    <a href="#0" class="timeline-btn">View Project</a>
+                </div>
+            </div>
+
+            <!-- Timeline Block 8 - Right -->
+            <div class="timeline-block timeline-block-right" data-icon="movie" data-date="Jun 2026">
+                <div class="timeline-content">
+                    <span class="timeline-date">June 2026</span>
+                    <h3 class="timeline-title">Expected Graduation</h3>
+                    <p class="timeline-description">Anticipated completion of B.Tech in Computer Science with a specialization in Artificial Intelligence and Machine Learning.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+            <!-- Stats Section -->
+            <section id="stats" class="section">
+                <div class="section-title">
+                    <h2>Statistics</h2>
+                </div>
+                <div class="stats-container">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <h3>Page Views</h3>
+                            <div class="chart-container">
+                                <canvas id="pageViewsChart"></canvas>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <h3>Resume Downloads</h3>
+                            <div class="stats-number" id="resume-downloads">0</div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <h3>Game Statistics</h3>
+                            <div class="chart-container">
+                                <canvas id="gameStatsChart"></canvas>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <h3>Visitors</h3>
+                            <div class="chart-container">
+                                <canvas id="visitorsChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Resume Section -->
+            <section id="resume" class="section">
+                <div class="section-title">
+                    <h2>Resume</h2>
+                </div>
+                <div class="resume-container">
+                    <div class="resume-actions">
+                        <a href="assets/resume.pdf" target="_blank" class="view-resume-btn">
+                            <i class="fas fa-eye"></i> View Resume
+                        </a>
+                        <a href="assets/resume.pdf" download class="download-resume-btn">
+                            <i class="fas fa-download"></i> Download Resume
+                        </a>
+                    </div>
+                    <div class="resume-preview">
+                        <iframe id="resume-iframe" src="assets/resume.pdf" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section (Without Formspree) -->
+            <section id="contact" class="section">
+                <div class="section-title">
+                    <h2>Let's Collaborate</h2>
+                </div>
+                <div class="contact-container">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div class="contact-text">
+                                <h3>Email</h3>
+                                <p>abhijeet@example.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div class="contact-text">
+                                <h3>Location</h3>
+                                <p>Anand, India</p>
+                            </div>
+                        </div>
+                        <div class="social-media">
+                            <h3>Connect With Me</h3>
+                            <div class="social-icons">
+                                <a href="https://instagram.com/" target="_blank" aria-label="Instagram">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="https://linkedin.com/in/" target="_blank" aria-label="LinkedIn">
+                                    <i class="fab fa-linkedin"></i>
+                                </a>
+                                <a href="https://x.com/abhi__253__162" target="_blank" aria-label="Twitter">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-form">
+                        <div class="contact-direct">
+                            <h3>Send me a message</h3>
+                            <p>Feel free to reach out directly via email by clicking the button below:</p>
+                            <a href="mailto:abhijeet@example.com?subject=Portfolio%20Contact" class="email-direct-btn">
+                                <i class="fas fa-envelope"></i> Open Email Client
+                            </a>
+                            <div class="contact-note">
+                                <p>This will open your default email application with my email address pre-filled.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-alternative">
+                            <h3>Alternative Contact Methods</h3>
+                            <div class="alt-contact-grid">
+                                <a href="https://linkedin.com/in/" target="_blank" class="alt-contact-item">
+                                    <i class="fab fa-linkedin"></i>
+                                    <span>LinkedIn Message</span>
+                                </a>
+                                <a href="https://x.com/abhi__253__162" target="_blank" class="alt-contact-item">
+                                    <i class="fab fa-twitter"></i>
+                                    <span>Twitter DM</span>
+                                </a>
+                                <a href="https://github.com/Greninja110" target="_blank" class="alt-contact-item">
+                                    <i class="fab fa-github"></i>
+                                    <span>GitHub</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Chart.js for statistics -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script src="js/preloader.js"></script>
+    <script src="js/animation.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/analytics.js"></script>
+    <script src="js/blog.js"></script>
+    <script src="js/timeline.js"></script>
+    
+    <!-- Game Scripts -->
+    <script src="js/game-manager.js"></script>
+    <script src="js/tic-tac-toe.js"></script>
+</body>
+</html>

@@ -1,0 +1,507 @@
+/* 
+ * Theme CSS for Abhijeet's Portfolio Website
+ * Light and Dark Theme Implementations
+ */
+
+/* Default Theme Variables Defined in style.css */
+
+/* ---------- Light Theme Styles ---------- */
+body.light-theme {
+    background-color: var(--light-bg);
+    color: var(--light-text);
+}
+
+/* Light Theme - Sidebar */
+.light-theme .sidebar {
+    background-color: var(--light-sidebar-bg);
+    border-right: 1px solid var(--light-border);
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.light-theme .sidebar-title {
+    color: var(--light-title);
+}
+
+.light-theme .nav-link {
+    color: var(--light-text);
+}
+
+.light-theme .nav-link:hover {
+    background-color: var(--light-hover);
+}
+
+.light-theme .nav-link.active {
+    background-color: var(--light-accent);
+    color: white;
+}
+
+.light-theme .sidebar-footer {
+    border-color: var(--light-border);
+}
+
+.light-theme .mobile-toggle span {
+    background-color: var(--light-text);
+}
+
+/* Light Theme - Content Area */
+.light-theme .content {
+    background-color: var(--light-content-bg);
+}
+
+.light-theme .section-title h2 {
+    color: var(--light-title);
+}
+
+.light-theme .section-title::after {
+    background-color: var(--light-accent);
+}
+
+/* Light Theme - Cards & Elements */
+.light-theme .project-card, 
+.light-theme .game-card,
+.light-theme .contact-form,
+.light-theme .contact-info,
+.light-theme .stat-card,
+.light-theme .timeline-content {
+    background-color: var(--light-card-bg);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.light-theme .project-info h3,
+.light-theme .game-card h3,
+.light-theme .contact-text h3,
+.light-theme .social-media h3,
+.light-theme .timeline-content h3,
+.light-theme .stat-card h3,
+.light-theme .form-group label,
+.light-theme .skills-container h3, 
+.light-theme .personal-info h3 {
+    color: var(--light-title);
+}
+
+/* Light Theme - Buttons */
+.light-theme .filter-btn {
+    background-color: var(--light-hover);
+    color: var(--light-text);
+}
+
+.light-theme .filter-btn.active, 
+.light-theme .filter-btn:hover {
+    background-color: var(--light-accent);
+    color: white;
+}
+
+.light-theme .view-details-btn,
+.light-theme .play-game-btn,
+.light-theme .submit-btn,
+.light-theme .view-resume-btn {
+    background-color: var(--light-accent);
+    color: white;
+}
+
+.light-theme .download-resume-btn {
+    background-color: var(--light-hover);
+    color: var(--light-text);
+}
+
+.light-theme .view-details-btn:hover,
+.light-theme .play-game-btn:hover,
+.light-theme .submit-btn:hover,
+.light-theme .view-resume-btn:hover {
+    background-color: #3651ca;
+}
+
+.light-theme .download-resume-btn:hover {
+    background-color: var(--light-secondary);
+    color: white;
+}
+
+/* Light Theme - Form Elements */
+.light-theme .form-group input, 
+.light-theme .form-group textarea {
+    border-color: var(--light-border);
+    background-color: var(--light-bg);
+    color: var(--light-text);
+}
+
+.light-theme .form-group input:focus, 
+.light-theme .form-group textarea:focus {
+    outline: none;
+    border-color: var(--light-accent);
+}
+
+/* Light Theme - Skills */
+.light-theme .skill-bar {
+    background-color: var(--light-hover);
+}
+
+.light-theme .skill-progress {
+    background-color: var(--light-accent);
+}
+
+/* Light Theme - Timeline */
+.light-theme .timeline::before {
+    background-color: var(--light-border);
+}
+
+.light-theme .timeline-date {
+    background-color: var(--light-accent);
+    color: white;
+}
+
+/* Light Theme - Icon Backgrounds */
+.light-theme .contact-item i {
+    background-color: var(--light-hover);
+    color: var(--light-accent);
+}
+
+.light-theme .social-icons a {
+    background-color: var(--light-hover);
+    color: var(--light-text);
+}
+
+.light-theme .social-icons a:hover {
+    background-color: var(--light-accent);
+    color: white;
+}
+
+/* Light Theme - Theme Toggle */
+.light-theme .slider {
+    background-color: var(--light-secondary);
+}
+
+.light-theme input:checked + .slider {
+    background-color: var(--light-accent);
+}
+
+/* Light Theme - Stats Numbers */
+.light-theme .stats-number {
+    color: var(--light-accent);
+}
+
+/* Light Theme - Modal */
+.light-theme .modal-content {
+    background-color: var(--light-card-bg);
+}
+
+.light-theme .close-modal {
+    color: var(--light-secondary);
+}
+
+.light-theme .close-modal:hover {
+    color: var(--light-text);
+}
+
+.light-theme .project-detail-header h3,
+.light-theme .project-description h4, 
+.light-theme .project-functionality h4 {
+    color: var(--light-title);
+}
+
+/* Light Theme - Game Area */
+.light-theme .game-header {
+    background-color: var(--light-accent);
+    color: white;
+}
+
+.light-theme .game-container {
+    background-color: var(--light-bg);
+    border: 1px solid var(--light-border);
+}
+
+.light-theme .game-controls {
+    background-color: var(--light-card-bg);
+}
+
+.light-theme .restart-game {
+    background-color: var(--light-accent);
+    color: white;
+}
+
+.light-theme .leaderboard {
+    background-color: var(--light-card-bg);
+    border-top: 1px solid var(--light-border);
+}
+
+/* Light Theme - Preloader */
+.light-theme .preloader {
+    background-color: var(--light-bg);
+}
+
+.light-theme .preloader-content h1 {
+    color: var(--light-title);
+}
+
+.light-theme .typing-container {
+    color: var(--light-text);
+}
+
+/* ---------- Dark Theme Styles ---------- */
+body.dark-theme {
+    background-color: var(--dark-bg);
+    color: var(--dark-text);
+}
+
+/* Dark Theme - Sidebar */
+.dark-theme .sidebar {
+    background-color: var(--dark-sidebar-bg);
+    border-right: 1px solid var(--dark-border);
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.dark-theme .sidebar-title {
+    color: var(--dark-title);
+}
+
+.dark-theme .nav-link {
+    color: var(--dark-text);
+}
+
+.dark-theme .nav-link:hover {
+    background-color: var(--dark-hover);
+}
+
+.dark-theme .nav-link.active {
+    background-color: var(--dark-accent);
+    color: white;
+}
+
+.dark-theme .sidebar-footer {
+    border-color: var(--dark-border);
+}
+
+.dark-theme .mobile-toggle span {
+    background-color: var(--dark-text);
+}
+
+/* Dark Theme - Content Area */
+.dark-theme .content {
+    background-color: var(--dark-content-bg);
+}
+
+.dark-theme .section-title h2 {
+    color: var(--dark-title);
+}
+
+.dark-theme .section-title::after {
+    background-color: var(--dark-accent);
+}
+
+/* Dark Theme - Cards & Elements */
+.dark-theme .project-card, 
+.dark-theme .game-card,
+.dark-theme .contact-form,
+.dark-theme .contact-info,
+.dark-theme .stat-card,
+.dark-theme .timeline-content {
+    background-color: var(--dark-card-bg);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.dark-theme .project-info h3,
+.dark-theme .game-card h3,
+.dark-theme .contact-text h3,
+.dark-theme .social-media h3,
+.dark-theme .timeline-content h3,
+.dark-theme .stat-card h3,
+.dark-theme .form-group label,
+.dark-theme .skills-container h3, 
+.dark-theme .personal-info h3 {
+    color: var(--dark-title);
+}
+
+/* Dark Theme - Buttons */
+.dark-theme .filter-btn {
+    background-color: var(--dark-hover);
+    color: var(--dark-text);
+}
+
+.dark-theme .filter-btn.active, 
+.dark-theme .filter-btn:hover {
+    background-color: var(--dark-accent);
+    color: white;
+}
+
+.dark-theme .view-details-btn,
+.dark-theme .play-game-btn,
+.dark-theme .submit-btn,
+.dark-theme .view-resume-btn {
+    background-color: var(--dark-accent);
+    color: white;
+}
+
+.dark-theme .download-resume-btn {
+    background-color: var(--dark-hover);
+    color: var(--dark-text);
+}
+
+.dark-theme .view-details-btn:hover,
+.dark-theme .play-game-btn:hover,
+.dark-theme .submit-btn:hover,
+.dark-theme .view-resume-btn:hover {
+    background-color: #5a76dd;
+}
+
+.dark-theme .download-resume-btn:hover {
+    background-color: var(--dark-secondary);
+    color: white;
+}
+
+/* Dark Theme - Form Elements */
+.dark-theme .form-group input, 
+.dark-theme .form-group textarea {
+    border-color: var(--dark-border);
+    background-color: var(--dark-bg);
+    color: var(--dark-text);
+}
+
+.dark-theme .form-group input:focus, 
+.dark-theme .form-group textarea:focus {
+    outline: none;
+    border-color: var(--dark-accent);
+}
+
+/* Dark Theme - Skills */
+.dark-theme .skill-bar {
+    background-color: var(--dark-hover);
+}
+
+.dark-theme .skill-progress {
+    background-color: var(--dark-accent);
+}
+
+/* Dark Theme - Timeline */
+.dark-theme .timeline::before {
+    background-color: var(--dark-border);
+}
+
+.dark-theme .timeline-date {
+    background-color: var(--dark-accent);
+    color: white;
+}
+
+/* Dark Theme - Icon Backgrounds */
+.dark-theme .contact-item i {
+    background-color: var(--dark-hover);
+    color: var(--dark-accent);
+}
+
+.dark-theme .social-icons a {
+    background-color: var(--dark-hover);
+    color: var(--dark-text);
+}
+
+.dark-theme .social-icons a:hover {
+    background-color: var(--dark-accent);
+    color: white;
+}
+
+/* Dark Theme - Theme Toggle */
+.dark-theme .slider {
+    background-color: var(--dark-secondary);
+}
+
+.dark-theme input:checked + .slider {
+    background-color: var(--dark-accent);
+}
+
+/* Dark Theme - Stats Numbers */
+.dark-theme .stats-number {
+    color: var(--dark-accent);
+}
+
+/* Dark Theme - Modal */
+.dark-theme .modal-content {
+    background-color: var(--dark-card-bg);
+}
+
+.dark-theme .close-modal {
+    color: var(--dark-secondary);
+}
+
+.dark-theme .close-modal:hover {
+    color: var(--dark-text);
+}
+
+.dark-theme .project-detail-header h3,
+.dark-theme .project-description h4, 
+.dark-theme .project-functionality h4 {
+    color: var(--dark-title);
+}
+
+/* Dark Theme - Game Area */
+.dark-theme .game-header {
+    background-color: var(--dark-accent);
+    color: white;
+}
+
+.dark-theme .game-container {
+    background-color: var(--dark-bg);
+    border: 1px solid var(--dark-border);
+}
+
+.dark-theme .game-controls {
+    background-color: var(--dark-card-bg);
+}
+
+.dark-theme .restart-game {
+    background-color: var(--dark-accent);
+    color: white;
+}
+
+.dark-theme .leaderboard {
+    background-color: var(--dark-card-bg);
+    border-top: 1px solid var(--dark-border);
+}
+
+/* Dark Theme - Preloader */
+.dark-theme .preloader {
+    background-color: var(--dark-bg);
+}
+
+.dark-theme .preloader-content h1 {
+    color: var(--dark-title);
+}
+
+.dark-theme .typing-container {
+    color: var(--dark-text);
+}
+
+/* ---------- Theme Transition ---------- */
+/* Elements that should transition smoothly when theme changes */
+body, 
+.sidebar, 
+.content, 
+.nav-link, 
+.project-card, 
+.game-card, 
+.timeline-content,
+.stat-card,
+.contact-form,
+.contact-info,
+.form-group input,
+.form-group textarea,
+.filter-btn,
+.view-details-btn,
+.play-game-btn,
+.submit-btn,
+.download-resume-btn,
+.view-resume-btn,
+.modal-content,
+.skill-bar,
+.skill-progress,
+.contact-item i,
+.social-icons a,
+.section-title::after,
+.slider,
+.game-header,
+.game-container,
+.game-controls,
+.leaderboard,
+.preloader {
+    transition: 
+        background-color 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
