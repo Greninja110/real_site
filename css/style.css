@@ -1594,10 +1594,20 @@ input:checked + .slider:before {
         flex-direction: column;
     }
 }
-#animated-text, #text-content {
+#animated-text {
     display: inline-block;
+    position: relative;
 }
-#animated-text, #text-content, #cursor {
+#text-content {
     display: inline;
     white-space: nowrap;
+}
+#cursor {
+    display: inline-block;
+    width: 3px;
+    height: 1.2em;
+    background-color: currentColor;
+    margin-left: 2px;
+    animation: blink 1s infinite;
+    vertical-align: middle;
 }

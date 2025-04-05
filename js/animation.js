@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
 function initTypingAnimation() {
     const animatedText = document.getElementById('animated-text');
     const textContent = document.getElementById('text-content');
-    // const cursor = document.getElementById('cursor');
+    const cursor = document.getElementById('cursor');
     const messages = ["Welcomes You To The Website", "Says Hello"];
     
     let messageIndex = 0;
