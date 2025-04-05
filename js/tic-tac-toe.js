@@ -197,7 +197,7 @@ function updateTicTacToeBoard() {
         
         // Clear cell
         cell.textContent = '';
-        cell.classList.remove('cell-x', 'cell-o');
+        cell.classList.remove('cell-x', 'cell-o', 'winning-cell');
         
         // Set cell content and class
         if (value === 'X') {
