@@ -24,6 +24,9 @@ function initPortfolio() {
     // Resume functionality
     initResume();
     
+    // Skill tooltips
+    initSkillTooltips();
+    
     // Set animation order for elements
     setAnimationOrder();
 }
@@ -310,3 +313,38 @@ window.addEventListener('resize', function() {
         mobileToggle.classList.remove('open');
     }
 });
+/**
+ * Initialize skill tooltips
+ */
+function initSkillTooltips() {
+    const skillItems = document.querySelectorAll('.skill-item');
+    
+    skillItems.forEach(item => {
+        const skillBar = item.querySelector('.skill-bar');
+        const skillProgress = item.querySelector('.skill-progress');
+        
+        // Get percentage from width style
+        const progressStyle = skillProgress.style.width;
+        const progressPercentage = parseInt(progressStyle);
+        
+        // Determine skill level based on percentage
+        let skillLevel = '';
+        if (progressPercentage < 30) {
+            skillLevel = 'Beginner';
+        } else if (progressPercentage >= 30 && progressPercentage < 50) {
+            skillLevel = 'Intermediate';
+        } else if (progressPercentage >= 50 && progressPercentage < 70) {
+            skillLevel = 'Advanced';
+        } else {
+            skillLevel = 'Complete Knowledge';
+        }
+        
+        // Create tooltip element
+        const tooltip = document.createElement('div');
+        tooltip.className = 'skill-tooltip';
+        tooltip.textContent = `${progressPercentage}% - ${skillLevel}`;
+        
+        // Insert tooltip after the skill bar
+        skillBar.insertAdjacentElement('afterend', tooltip);
+    });
+}

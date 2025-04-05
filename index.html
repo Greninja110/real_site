@@ -56,8 +56,8 @@
                     <li><a href="#games" class="nav-link" data-section="games"><i class="fas fa-gamepad"></i> Games</a></li>
                     <li><a href="#achievements" class="nav-link" data-section="achievements"><i class="fas fa-trophy"></i> Achievements</a></li>
                     <li><a href="#stats" class="nav-link" data-section="stats"><i class="fas fa-chart-bar"></i> Stats</a></li>
-                    <li><a href="#resume" class="nav-link" data-section="resume"><i class="fas fa-file-alt"></i> Resume</a></li>
-                    <li><a href="#contact" class="nav-link" data-section="contact"><i class="fas fa-envelope"></i> Contact</a></li>
+                    <!-- <li><a href="#resume" class="nav-link" data-section="resume"><i class="fas fa-file-alt"></i> Resume</a></li> -->
+                    <li><a href="#contact" class="nav-link" data-section="contact"><i class="fas fa-envelope"></i> Resume & Contact</a></li>
                 </ul>
             </nav>
             
@@ -70,9 +70,9 @@
                     <span id="theme-label">Dark Mode</span>
                 </div>
                 <div class="social-links">
-                    <a href="https://instagram.com/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                     <a href="https://linkedin.com/in/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
                     <a href="https://x.com/abhi__253__162" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <!-- <a href="https://instagram.com/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a> -->
                 </div>
             </div>
         </aside>
@@ -101,7 +101,19 @@
                         <div class="section-title">
                             <h2>About Me</h2>
                         </div>
-                        <p>Hello! I'm Abhijeet, a passionate developer with expertise in various technologies including AI/ML, Web Development, App Development, and more. I love creating innovative solutions and learning new technologies.</p>
+                        <p>Hello! I'm Abhijeet , Python/AIML developer with a passion for problem-solving. Combines deep analytical thinking with Django expertise to create innovative web solutions. Flexible team player exploring cybersecurity and IoT frontiers. My calm, patient approach and technical curiosity drive me to transform complex challenges into elegant solutions. Computer enthusiast who brings quiet dedication and continuous learning to every project.</p>
+                        <!-- Resume actions -->
+            <div class="resume-section">
+                <h3><i class="fas fa-file-alt"></i> My Resume</h3>
+                <div class="resume-actions">
+                    <a href="assets/resume.pdf" target="_blank" class="view-resume-btn">
+                        <i class="fas fa-eye"></i> View Resume
+                    </a>
+                    <a href="assets/resume.pdf" download class="download-resume-btn">
+                        <i class="fas fa-download"></i> Download Resume
+                    </a>
+                </div>
+            </div>
                         
                         <div class="skills-container">
                             <h3>My Skills</h3>
@@ -196,7 +208,7 @@
                     <!-- Project 1 - Completed -->
                     <div class="project-card" data-category="aiml">
                         <div class="project-image">
-                            <img src="assets/images/projects/project1.jpg" alt="AI Image Recognition">
+                            <img src="assets/images/projects/object.png" alt="AI Image Recognition">
                             <div class="project-status completed">Completed</div>
                         </div>
                         <div class="project-info">
@@ -209,7 +221,7 @@
                     <!-- Project 2 - Ongoing -->
                     <div class="project-card" data-category="webdev">
                         <div class="project-image">
-                            <img src="assets/images/projects/project2.jpg" alt="E-commerce Platform">
+                            <img src="assets/images/projects/attend.png" alt="E-commerce Platform">
                             <div class="project-status ongoing">Ongoing</div>
                         </div>
                         <div class="project-info">
@@ -222,7 +234,7 @@
                     <!-- Project 3 - Planned -->
                     <div class="project-card" data-category="appdev">
                         <div class="project-image">
-                            <img src="assets/images/projects/project3.jpg" alt="Fitness Tracker App">
+                            <img src="assets/images/projects/ar.png" alt="Fitness Tracker App">
                             <div class="project-status ongoing">Ongoing</div>
                         </div>
                         <div class="project-info">
@@ -235,7 +247,7 @@
                     <!-- Project 4  - Planned -->
                     <div class="project-card" data-category="cybersecurity">
                         <div class="project-image">
-                            <img src="assets/images/projects/project3.jpg" alt="Fitness Tracker App">
+                            <img src="assets/images/projects/nids.png" alt="Fitness Tracker App">
                             <div class="project-status ongoing">Ongoing</div>
                         </div>
                         <div class="project-info">
@@ -556,95 +568,89 @@
                 </div>
             </section>
 
-            <!-- Resume Section -->
-            <section id="resume" class="section">
-                <div class="section-title">
-                    <h2>Resume</h2>
+            <!-- Contact and Resume Section -->
+<section id="contact" class="section">
+    <div class="section-title">
+        <h2>Resume & Contact</h2>
+    </div>
+    <div class="contact-container">
+        <div class="contact-info">
+            <!-- Resume actions -->
+            <div class="resume-section">
+                <h3><i class="fas fa-file-alt"></i> My Resume</h3>
+                <div class="resume-actions">
+                    <a href="assets/resume.pdf" target="_blank" class="view-resume-btn">
+                        <i class="fas fa-eye"></i> View Resume
+                    </a>
+                    <a href="assets/resume.pdf" download class="download-resume-btn">
+                        <i class="fas fa-download"></i> Download Resume
+                    </a>
                 </div>
-                <div class="resume-container">
-                    <div class="resume-actions">
-                        <a href="assets/resume.pdf" target="_blank" class="view-resume-btn">
-                            <i class="fas fa-eye"></i> View Resume
-                        </a>
-                        <a href="assets/resume.pdf" download class="download-resume-btn">
-                            <i class="fas fa-download"></i> Download Resume
-                        </a>
-                    </div>
-                    <div class="resume-preview">
-                        <iframe id="resume-iframe" src="assets/resume.pdf" frameborder="0" allowfullscreen></iframe>
-                    </div>
+            </div>
+            
+            <!-- Contact info -->
+            <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <div class="contact-text">
+                    <h3>Email</h3>
+                    <p>abhijeet@example.com</p>
                 </div>
-            </section>
-
-            <!-- Contact Section (Without Formspree) -->
-            <section id="contact" class="section">
-                <div class="section-title">
-                    <h2>Let's Collaborate</h2>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <div class="contact-text">
+                    <h3>Location</h3>
+                    <p>Anand, India</p>
                 </div>
-                <div class="contact-container">
-                    <div class="contact-info">
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <div class="contact-text">
-                                <h3>Email</h3>
-                                <p>abhijeet@example.com</p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <div class="contact-text">
-                                <h3>Location</h3>
-                                <p>Anand, India</p>
-                            </div>
-                        </div>
-                        <div class="social-media">
-                            <h3>Connect With Me</h3>
-                            <div class="social-icons">
-                                <a href="https://instagram.com/" target="_blank" aria-label="Instagram">
-                                    <i class="fab fa-instagram"></i>
-                                </a>
-                                <a href="https://linkedin.com/in/" target="_blank" aria-label="LinkedIn">
-                                    <i class="fab fa-linkedin"></i>
-                                </a>
-                                <a href="https://x.com/abhi__253__162" target="_blank" aria-label="Twitter">
-                                    <i class="fab fa-twitter"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-form">
-                        <div class="contact-direct">
-                            <h3>Send me a message</h3>
-                            <p>Feel free to reach out directly via email by clicking the button below:</p>
-                            <a href="mailto:abhijeet@example.com?subject=Portfolio%20Contact" class="email-direct-btn">
-                                <i class="fas fa-envelope"></i> Open Email Client
-                            </a>
-                            <div class="contact-note">
-                                <p>This will open your default email application with my email address pre-filled.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-alternative">
-                            <h3>Alternative Contact Methods</h3>
-                            <div class="alt-contact-grid">
-                                <a href="https://linkedin.com/in/" target="_blank" class="alt-contact-item">
-                                    <i class="fab fa-linkedin"></i>
-                                    <span>LinkedIn Message</span>
-                                </a>
-                                <a href="https://x.com/abhi__253__162" target="_blank" class="alt-contact-item">
-                                    <i class="fab fa-twitter"></i>
-                                    <span>Twitter DM</span>
-                                </a>
-                                <a href="https://github.com/Greninja110" target="_blank" class="alt-contact-item">
-                                    <i class="fab fa-github"></i>
-                                    <span>GitHub</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+            </div>
+            <div class="social-media">
+                <h3>Connect With Me</h3>
+                <div class="social-icons">
+                    <a href="https://instagram.com/" target="_blank" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/" target="_blank" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://x.com/abhi__253__162" target="_blank" aria-label="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
                 </div>
-            </section>
+            </div>
+        </div>
+        
+        <div class="contact-form">
+            <div class="contact-direct">
+                <h3>Send me a message</h3>
+                <p>Feel free to reach out directly via email by clicking the button below:</p>
+                <a href="mailto:abhijeet@example.com?subject=Portfolio%20Contact" class="email-direct-btn">
+                    <i class="fas fa-envelope"></i> Open Email Client
+                </a>
+                <div class="contact-note">
+                    <p>This will open your default email application with my email address pre-filled.</p>
+                </div>
+            </div>
+            
+            <div class="contact-alternative">
+                <h3>Alternative Contact Methods</h3>
+                <div class="alt-contact-grid">
+                    <a href="https://linkedin.com/in/" target="_blank" class="alt-contact-item">
+                        <i class="fab fa-linkedin"></i>
+                        <span>LinkedIn Message</span>
+                    </a>
+                    <a href="https://x.com/abhi__253__162" target="_blank" class="alt-contact-item">
+                        <i class="fab fa-twitter"></i>
+                        <span>Twitter DM</span>
+                    </a>
+                    <a href="https://github.com/Greninja110" target="_blank" class="alt-contact-item">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
         </main>
     </div>
 
