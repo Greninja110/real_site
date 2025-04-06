@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Abhijeet's Portfolio - Developer, Designer and Technology Enthusiast">
-    <meta name="keywords" content="portfolio, developer, AIML, web development, app development, cybersecurity, docker, blockchain">
+    <meta name="keywords"
+        content="portfolio, developer, AIML, web development, app development, cybersecurity, docker, blockchain">
     <title>Abhijeet's Portfolio</title>
     <!-- Favicon -->
     <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
@@ -16,10 +18,11 @@
     <link rel="stylesheet" href="css/games.css">
     <link rel="stylesheet" href="css/tic-tac-toe.css">
     <link rel="stylesheet" href="css/blog.css">
-    <link rel="stylesheet" href="css/timeline.scss">
+    <link rel="stylesheet" href="css/custom-timeline.css">
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
+
 <body class="dark-theme">
     <!-- Preloader -->
     <div id="preloader" class="preloader">
@@ -47,20 +50,26 @@
                     <span></span>
                 </button>
             </div>
-            
+
             <nav class="sidebar-nav">
                 <ul>
-                    <li><a href="#home" class="nav-link active" data-section="home"><i class="fas fa-home"></i> Home</a></li>
-                    <li><a href="#projects" class="nav-link" data-section="projects"><i class="fas fa-code-branch"></i> Projects</a></li>
+                    <li><a href="#home" class="nav-link active" data-section="home"><i class="fas fa-home"></i> Home</a>
+                    </li>
+                    <li><a href="#projects" class="nav-link" data-section="projects"><i class="fas fa-code-branch"></i>
+                            Projects</a></li>
                     <li><a href="#blog" class="nav-link" data-section="blog"><i class="fas fa-blog"></i> Blog</a></li>
-                    <li><a href="#games" class="nav-link" data-section="games"><i class="fas fa-gamepad"></i> Games</a></li>
-                    <li><a href="#achievements" class="nav-link" data-section="achievements"><i class="fas fa-trophy"></i> Achievements</a></li>
-                    <li><a href="#stats" class="nav-link" data-section="stats"><i class="fas fa-chart-bar"></i> Stats</a></li>
+                    <li><a href="#games" class="nav-link" data-section="games"><i class="fas fa-gamepad"></i> Games</a>
+                    </li>
+                    <li><a href="#Timeline" class="nav-link" data-section="Timeline"><i class="fas fa-trophy"></i>
+                            Timeline</a></li>
+                    <li><a href="#stats" class="nav-link" data-section="stats"><i class="fas fa-chart-bar"></i>
+                            Stats</a></li>
                     <!-- <li><a href="#resume" class="nav-link" data-section="resume"><i class="fas fa-file-alt"></i> Resume</a></li> -->
-                    <li><a href="#contact" class="nav-link" data-section="contact"><i class="fas fa-envelope"></i> Resume & Contact</a></li>
+                    <li><a href="#contact" class="nav-link" data-section="contact"><i class="fas fa-envelope"></i>
+                            Resume & Contact</a></li>
                 </ul>
             </nav>
-            
+
             <div class="sidebar-footer">
                 <div class="theme-toggle">
                     <label class="switch">
@@ -70,8 +79,10 @@
                     <span id="theme-label">Dark Mode</span>
                 </div>
                 <div class="social-links">
-                    <a href="https://linkedin.com/in/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://x.com/abhi__253__162" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://linkedin.com/in/" target="_blank" aria-label="LinkedIn"><i
+                            class="fab fa-linkedin"></i></a>
+                    <a href="https://x.com/abhi__253__162" target="_blank" aria-label="Twitter"><i
+                            class="fab fa-twitter"></i></a>
                     <!-- <a href="https://instagram.com/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a> -->
                 </div>
             </div>
@@ -81,33 +92,42 @@
         <main class="content">
             <!-- Skip to content for accessibility -->
             <!-- <a href="#content" class="skip-link">Skip to content</a> -->
-            
+
             <!-- Home/About Section -->
             <section id="home" class="section active">
                 <div class="about-container">
                     <div class="profile-section">
                         <div class="profile-image-container">
                             <img src="assets/images/profile.png" alt="Abhijeet" class="profile-pic">
-                        </div><div class="typing-animation"><h1>Abhijeet <span id="animated-text"><span id="text-content"></span><span id="cursor">|</span></span></h1></div></div>
-                    
+                        </div>
+                        <div class="typing-animation">
+                            <h1>Abhijeet <span id="animated-text"><span id="text-content"></span><span
+                                        id="cursor"></span></span></h1>
+                        </div>
+                    </div>
+
                     <div class="about-content">
                         <div class="section-title">
                             <h2>About Me</h2>
                         </div>
-                        <p>Hello! I'm Abhijeet , Python/AIML developer with a passion for problem-solving. Combines deep analytical thinking with Django expertise to create innovative web solutions. Flexible team player exploring cybersecurity and IoT frontiers. My calm, patient approach and technical curiosity drive me to transform complex challenges into elegant solutions. Computer enthusiast who brings quiet dedication and continuous learning to every project.</p>
-             <!-- Resume section -->
-<div class="resume-container">
-    <h3 class="resume-title"><i class="fas fa-file-alt"></i> My Resume</h3>
-    <div class="resume-buttons">
-        <a href="assets/resume.pdf" target="_blank" class="view-resume-btn">
-            <i class="fas fa-eye"></i> View Resume
-        </a>
-        <a href="assets/resume.pdf" download class="download-resume-btn">
-            <i class="fas fa-download"></i> Download Resume
-        </a>
-    </div>
-</div>
-                        
+                        <p>Hello! I'm Abhijeet , Python/AIML developer with a passion for problem-solving. Combines deep
+                            analytical thinking with Django expertise to create innovative web solutions. Flexible team
+                            player exploring cybersecurity and IoT frontiers. My calm, patient approach and technical
+                            curiosity drive me to transform complex challenges into elegant solutions. Computer
+                            enthusiast who brings quiet dedication and continuous learning to every project.</p>
+                        <!-- Resume section -->
+                        <div class="resume-container">
+                            <h3 class="resume-title"><i class="fas fa-file-alt"></i> My Resume</h3>
+                            <div class="resume-buttons">
+                                <a href="assets/resume.pdf" target="_blank" class="view-resume-btn">
+                                    <i class="fas fa-eye"></i> View Resume
+                                </a>
+                                <a href="assets/resume.pdf" download class="download-resume-btn">
+                                    <i class="fas fa-download"></i> Download Resume
+                                </a>
+                            </div>
+                        </div>
+
                         <div class="skills-container">
                             <h3>My Skills</h3>
                             <div class="skills-grid">
@@ -155,7 +175,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="personal-info">
                             <h3>Personal Information</h3>
                             <div class="info-grid">
@@ -186,7 +206,7 @@
                 <div class="section-title">
                     <h2>My Projects</h2>
                 </div>
-                
+
                 <div class="filter-buttons">
                     <button class="filter-btn active" data-filter="all">All</button>
                     <button class="filter-btn" data-filter="aiml">AIML</button>
@@ -196,7 +216,7 @@
                     <!-- <button class="filter-btn" data-filter="docker">Docker</button> -->
                     <!-- <button class="filter-btn" data-filter="blockchain">Blockchain</button> -->
                 </div>
-                
+
                 <div class="projects-grid">
                     <!-- Project 1 - Completed -->
                     <div class="project-card" data-category="aiml">
@@ -210,7 +230,7 @@
                             <button class="view-details-btn">View Details</button>
                         </div>
                     </div>
-                    
+
                     <!-- Project 2 - Ongoing -->
                     <div class="project-card" data-category="webdev">
                         <div class="project-image">
@@ -223,7 +243,7 @@
                             <button class="view-details-btn">View Details</button>
                         </div>
                     </div>
-                    
+
                     <!-- Project 3 - Planned -->
                     <div class="project-card" data-category="appdev">
                         <div class="project-image">
@@ -244,13 +264,13 @@
                             <div class="project-status ongoing">Ongoing</div>
                         </div>
                         <div class="project-info">
-                            <h3>AI-Powered Network Intrusion Detection</h3>
+                            <h3>AI-Powered Network Intrusion Detection System</h3>
                             <p>Mobile app for tracking fitness activities and health metrics.</p>
                             <button class="view-details-btn">View Details</button>
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Project Details Modal -->
                 <div id="project-modal" class="modal">
                     <div class="modal-content">
@@ -273,7 +293,8 @@
                                     <p id="modal-project-functionality">Project functionality explanation goes here.</p>
                                 </div>
                                 <div class="project-links">
-                                    <a id="modal-project-github" href="#" target="_blank" class="github-link">GitHub Repository</a>
+                                    <a id="modal-project-github" href="#" target="_blank" class="github-link">GitHub
+                                        Repository</a>
                                     <a id="modal-project-demo" href="#" target="_blank" class="demo-link">Live Demo</a>
                                 </div>
                             </div>
@@ -287,18 +308,19 @@
                 <div class="section-title">
                     <h2>My Blog</h2>
                 </div>
-                
+
                 <div class="blog-description">
-                    <p>Welcome to my blog where I share my thoughts, insights, and learnings on various topics in technology and development.</p>
+                    <p>Welcome to my blog where I share my thoughts, insights, and learnings on various topics in
+                        technology and development.</p>
                 </div>
-                
+
                 <div class="blog-filters">
                     <button class="blog-filter-btn active" data-filter="all">All Posts</button>
                     <button class="blog-filter-btn" data-filter="aiml">AI/ML</button>
                     <!-- <button class="blog-filter-btn" data-filter="webdev">Web Dev</button> -->
                     <!-- <button class="blog-filter-btn" data-filter="tutorial">Tutorials</button> -->
                 </div>
-                
+
                 <div class="blog-posts">
                     <!-- Blog Post 1 -->
                     <div class="blog-card" data-category="aiml">
@@ -307,15 +329,17 @@
                         </div>
                         <div class="blog-card-content">
                             <div class="blog-card-date">March 15, 2023</div>
-                            <h3 class="blog-card-title">A Practical Guide to Parameter Tuning for KNN Using the Iris Dataset</h3>
-                            <p class="blog-card-excerpt">KNN is a fundamental algorithm in AI/ML, and in this post, I break down how to enhance its accuracy through parameter tuning.</p>
+                            <h3 class="blog-card-title">A Practical Guide to Parameter Tuning for KNN Using the Iris
+                                Dataset</h3>
+                            <p class="blog-card-excerpt">KNN is a fundamental algorithm in AI/ML, and in this post, I
+                                break down how to enhance its accuracy through parameter tuning.</p>
                             <div class="blog-card-footer">
                                 <span class="blog-card-tag">AI/ML</span>
                                 <a href="blog/post1.html" class="read-more-btn">Read More</a>
                             </div>
                         </div>
                     </div>
-                    
+
                     <!-- Blog Post 2 -->
                     <div class="blog-card" data-category="aiml">
                         <div class="blog-card-image">
@@ -323,15 +347,17 @@
                         </div>
                         <div class="blog-card-content">
                             <div class="blog-card-date">February 28, 2023</div>
-                            <h3 class="blog-card-title">A Practical Guide to Parameter Tuning for Decision Tree Using the Iris Dataset</h3>
-                            <p class="blog-card-excerpt">Decision Tree is a fundamental algorithm in AI/ML, and in this post, I break down how to enhance its accuracy through parameter tuning.</p>
+                            <h3 class="blog-card-title">A Practical Guide to Parameter Tuning for Decision Tree Using
+                                the Iris Dataset</h3>
+                            <p class="blog-card-excerpt">Decision Tree is a fundamental algorithm in AI/ML, and in this
+                                post, I break down how to enhance its accuracy through parameter tuning.</p>
                             <div class="blog-card-footer">
                                 <span class="blog-card-tag">AI/ML</span>
                                 <a href="blog/post2.html" class="read-more-btn">Read More</a>
                             </div>
                         </div>
                     </div>
-                    
+
                     <!-- Blog Post 3 -->
                     <div class="blog-card" data-category="aiml">
                         <div class="blog-card-image">
@@ -339,8 +365,10 @@
                         </div>
                         <div class="blog-card-content">
                             <div class="blog-card-date">January 10, 2023</div>
-                            <h3 class="blog-card-title">A Practical Guide to Parameter Tuning for Random Forests Using the Iris Dataset</h3>
-                            <p class="blog-card-excerpt">Random Forests is a fundamental algorithm in AI/ML, and in this post, I break down how to enhance its accuracy through parameter tuning.</p>
+                            <h3 class="blog-card-title">A Practical Guide to Parameter Tuning for Random Forests Using
+                                the Iris Dataset</h3>
+                            <p class="blog-card-excerpt">Random Forests is a fundamental algorithm in AI/ML, and in this
+                                post, I break down how to enhance its accuracy through parameter tuning.</p>
                             <div class="blog-card-footer">
                                 <span class="blog-card-tag">AI/ML</span>
                                 <a href="blog/post3.html" class="read-more-btn">Read More</a>
@@ -348,7 +376,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="view-all-container">
                     <a href="blog/index.html" class="view-all-btn">View All Posts</a>
                 </div>
@@ -369,7 +397,7 @@
                             <p>Classic game of X's and O's.</p>
                             <button class="play-game-btn">Play</button>
                         </div>
-                        
+
                         <div class="game-card" data-game="tetris">
                             <div class="game-icon">
                                 <i class="fas fa-th"></i>
@@ -378,7 +406,7 @@
                             <p>Stack and clear lines of blocks.</p>
                             <button class="play-game-btn">Play</button>
                         </div>
-                        
+
                         <div class="game-card" data-game="snake">
                             <div class="game-icon">
                                 <i class="fas fa-long-arrow-alt-right"></i>
@@ -387,7 +415,7 @@
                             <p>Grow your snake by eating food.</p>
                             <button class="play-game-btn">Play</button>
                         </div>
-                        
+
                         <div class="game-card" data-game="flappy-bird">
                             <div class="game-icon">
                                 <i class="fas fa-dove"></i>
@@ -396,7 +424,7 @@
                             <p>Navigate through pipes without crashing.</p>
                             <button class="play-game-btn">Play</button>
                         </div>
-                        
+
                         <div class="game-card" data-game="tower-building">
                             <div class="game-icon">
                                 <i class="fas fa-building"></i>
@@ -405,7 +433,7 @@
                             <p>Stack blocks to build the tallest tower.</p>
                             <button class="play-game-btn">Play</button>
                         </div>
-                        
+
                         <div class="game-card" data-game="puzzle">
                             <div class="game-icon">
                                 <i class="fas fa-puzzle-piece"></i>
@@ -415,7 +443,7 @@
                             <button class="play-game-btn">Play</button>
                         </div>
                     </div>
-                    
+
                     <!-- Game Area -->
                     <div id="game-area" class="game-area hidden">
                         <div class="game-header">
@@ -435,96 +463,216 @@
                 </div>
             </section>
 
-            <!-- Timeline Section -->
-<section id="achievements" class="section">
-    <div class="timeline-wrapper">
-        <div class="section-title">
-            <h2>My Journey</h2>
-        </div>
-        
-        <div class="timeline">
-            <!-- Timeline Block 1 - Left -->
-            <div class="timeline-block timeline-block-left" data-icon="picture" data-date="Jan 2020">
-                <div class="timeline-content">
-                    <span class="timeline-date">January 2020</span>
-                    <h3 class="timeline-title">Started Learning Web Development</h3>
-                    <p class="timeline-description">Began my journey into web development by learning HTML, CSS, and JavaScript fundamentals. Created my first static website and discovered my passion for front-end development.</p>
-                    <a href="#0" class="timeline-btn">Read more</a>
+            <!-- Timeline Section with proper structure -->
+            <section id="Timeline" class="section">
+                <div class="section-title">
+                    <h2>My Journey</h2>
                 </div>
-            </div>
 
-            <!-- Timeline Block 2 - Right -->
-            <div class="timeline-block timeline-block-right" data-icon="movie" data-date="Jul 2020">
-                <div class="timeline-content">
-                    <span class="timeline-date">July 2020</span>
-                    <h3 class="timeline-title">Advanced Certification</h3>
-                    <p class="timeline-description">Completed advanced certification in Cybersecurity and Ethical Hacking, learning about penetration testing, network security, and ethical hacking techniques.</p>
-                    <a href="#0" class="timeline-btn">View Certificate</a>
+                <!-- Year navigation markers -->
+                <div class="timeline-year-markers">
+                    <div class="timeline-year-marker" data-year="2020">2020</div>
+                    <div class="timeline-year-marker" data-year="2022">2022</div>
+                    <div class="timeline-year-marker active" data-year="2025">2025</div>
+                    <div class="timeline-year-marker" data-year="2026">2026</div>
                 </div>
-            </div>
 
-            <!-- Timeline Block 3 - Left -->
-            <div class="timeline-block timeline-block-left" data-icon="location" data-date="Dec 2020">
-                <div class="timeline-content">
-                    <span class="timeline-date">December 2020</span>
-                    <h3 class="timeline-title">First Hackathon</h3>
-                    <p class="timeline-description">Participated in my first national level hackathon. Developed a solution for healthcare accessibility using a web-based platform with real-time communication features.</p>
-                    <a href="#0" class="timeline-btn">See Project</a>
+                <div class="timeline-wrapper">
+                    <div class="timeline">
+                        <!-- Year 2020 Section -->
+                        <div id="timeline-year-2020" class="timeline-year-section">
+                            <!-- March 2020 - 10th class -->
+                            <div class="timeline-block" data-icon="picture" data-month="Mar" data-year="2020">
+                                <div class="timeline-date-marker">
+                                    <span class="month">Mar</span>
+                                    <span class="year">2020</span>
+                                </div>
+                                <div class="timeline-content">
+                                    <h3 class="timeline-title">Passed Out 10th Class</h3>
+                                    <p class="timeline-description">Completed my Secondary Education from Bright Day
+                                        School, CBSE, Vadodara.</p>
+                                    <a href="#" class="timeline-btn">View Certificate</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Year 2022 Section -->
+                        <div id="timeline-year-2022" class="timeline-year-section">
+                            <!-- June 2022 - 12th class -->
+                            <div class="timeline-block" data-icon="picture" data-month="Jun" data-year="2022">
+                                <div class="timeline-date-marker">
+                                    <span class="month">Jun</span>
+                                    <span class="year">2022</span>
+                                </div>
+                                <div class="timeline-content">
+                                    <h3 class="timeline-title">Passed Out 12th Class</h3>
+                                    <p class="timeline-description">Completed my Higher Secondary Education from Green
+                                        Valley High School, CBSE, Vadodara.</p>
+                                    <a href="#" class="timeline-btn">View Certificate</a>
+                                </div>
+                            </div>
+
+                            <!-- September 2022 - Joined MBIT -->
+                            <div class="timeline-block" data-icon="picture" data-month="Sep" data-year="2022">
+                                <div class="timeline-date-marker">
+                                    <span class="month">Sep</span>
+                                    <span class="year">2022</span>
+                                </div>
+                                <div class="timeline-content">
+                                    <h3 class="timeline-title">Joined MBIT</h3>
+                                    <p class="timeline-description">Started my journey in Computer Science at MBIT.</p>
+                                    <a href="#" class="timeline-btn">Learn More</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Year 2025 Section -->
+                        <div id="timeline-year-2025" class="timeline-year-section">
+                            <!-- January 2025 - GATE CS Exam -->
+                            <!-- <div class="timeline-block" data-icon="picture" data-month="Jan" data-year="2025">
+                                <div class="timeline-date-marker">
+                                    <span class="month">Jan</span>
+                                    <span class="year">2025</span>
+                                </div>
+                                <div class="timeline-content">
+                                    <h3 class="timeline-title">GATE CS Exam</h3>
+                                    <p class="timeline-description">Appeared for the GATE Computer Science examination.
+                                    </p>
+                                    <a href="#" class="timeline-btn">View Results</a>
+                                </div>
+                            </div> -->
+
+                            <!-- February 2025 - GATE DSAI Exam -->
+                            <!-- <div class="timeline-block" data-icon="picture" data-month="Feb" data-year="2025">
+                                <div class="timeline-date-marker">
+                                    <span class="month">Feb</span>
+                                    <span class="year">2025</span>
+                                </div>
+                                <div class="timeline-content">
+                                    <h3 class="timeline-title">GATE DSAI Exam</h3>
+                                    <p class="timeline-description">Appeared for the GATE Data Science and Artificial
+                                        Intelligence examination.</p>
+                                    <a href="#" class="timeline-btn">View Results</a>
+                                </div>
+                            </div> -->
+
+                            <!-- February 2025 - Django Attendance System -->
+                            <div class="timeline-block" data-icon="movie" data-month="Feb" data-year="2025">
+                                <div class="timeline-date-marker">
+                                    <span class="month">Feb</span>
+                                    <span class="year">2025</span>
+                                </div>
+                                <div class="timeline-content">
+                                    <h3 class="timeline-title">Django Based College Attendance System</h3>
+                                    <p class="timeline-description">Developed a comprehensive attendance management
+                                        system using Django for college.</p>
+                                    <a href="#" class="timeline-btn">View Project</a>
+                                </div>
+                            </div>
+
+                            <!-- February 2025 - IEEE Ideathon Winner -->
+                            <div class="timeline-block" data-icon="location" data-month="Feb" data-year="2025">
+                                <div class="timeline-date-marker">
+                                    <span class="month">Feb</span>
+                                    <span class="year">2025</span>
+                                </div>
+                                <div class="timeline-content">
+                                    <h3 class="timeline-title">IEEE Ideathon Winner</h3>
+                                    <p class="timeline-description">Won the IEEE Ideathon competition with an innovative
+                                        technological solution.</p>
+                                    <a href="#" class="timeline-btn">View Project</a>
+                                </div>
+                            </div>
+
+                            <!-- February 2025 - Object Detection -->
+                            <div class="timeline-block" data-icon="picture" data-month="Feb" data-year="2025">
+                                <div class="timeline-date-marker">
+                                    <span class="month">Feb</span>
+                                    <span class="year">2025</span>
+                                </div>
+                                <div class="timeline-content">
+                                    <h3 class="timeline-title">Object Detection and Recognition</h3>
+                                    <p class="timeline-description">Completed a project on object detection and
+                                        recognition using deep learning techniques.</p>
+                                    <a href="#" class="timeline-btn">View Project</a>
+                                </div>
+                            </div>
+
+                            <!-- March 2025 - AI Based NIDS -->
+                            <div class="timeline-block" data-icon="movie" data-month="Mar" data-year="2025">
+                                <div class="timeline-date-marker">
+                                    <span class="month">Mar</span>
+                                    <span class="year">2025</span>
+                                </div>
+                                <div class="timeline-content">
+                                    <h3 class="timeline-title">AI Based NIDS</h3>
+                                    <p class="timeline-description">Developed a Network Intrusion Detection System using
+                                        AI and machine learning algorithms.</p>
+                                    <a href="#" class="timeline-btn">View Project</a>
+                                </div>
+                            </div>
+
+                            <!-- March 2025 - ARCam App -->
+                            <div class="timeline-block" data-icon="location" data-month="Mar" data-year="2025">
+                                <div class="timeline-date-marker">
+                                    <span class="month">Mar</span>
+                                    <span class="year">2025</span>
+                                </div>
+                                <div class="timeline-content">
+                                    <h3 class="timeline-title">ARCam</h3>
+                                    <p class="timeline-description">Developed a Kotlin-based app for object detection
+                                        with augmented reality capabilities.</p>
+                                    <a href="#" class="timeline-btn">View App</a>
+                                </div>
+                            </div>
+
+                            <!-- March 2025 - HackWithIndia -->
+                            <div class="timeline-block" data-icon="movie" data-month="Mar" data-year="2025">
+                                <div class="timeline-date-marker">
+                                    <span class="month">Mar</span>
+                                    <span class="year">2025</span>
+                                </div>
+                                <div class="timeline-content">
+                                    <h3 class="timeline-title">HackWithIndia Hackathon</h3>
+                                    <p class="timeline-description">Participated in the prestigious HackWithIndia
+                                        hackathon, showcasing innovative solutions.</p>
+                                    <a href="#" class="timeline-btn">View Project</a>
+                                </div>
+                            </div>
+
+                            <!-- April 2025 - Portfolio Launch -->
+                            <div class="timeline-block" data-icon="picture" data-month="Apr" data-year="2025">
+                                <div class="timeline-date-marker">
+                                    <span class="month">Apr</span>
+                                    <span class="year">2025</span>
+                                </div>
+                                <div class="timeline-content">
+                                    <h3 class="timeline-title">Portfolio Website Launch</h3>
+                                    <p class="timeline-description">Launched my personal portfolio website on April
+                                        10th, showcasing my projects and skills.</p>
+                                    <a href="#" class="timeline-btn">View Website</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Year 2026 Section -->
+                        <div id="timeline-year-2026" class="timeline-year-section">
+                            <!-- Expected future achievements -->
+                            <div class="timeline-block" data-icon="location" data-month="Jun" data-year="2026">
+                                <div class="timeline-date-marker">
+                                    <span class="month">Jun</span>
+                                    <span class="year">2026</span>
+                                </div>
+                                <div class="timeline-content">
+                                    <h3 class="timeline-title">Expected Graduation</h3>
+                                    <p class="timeline-description">Anticipated completion of B.Tech in Computer Science
+                                        from MBIT.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-
-            <!-- Timeline Block 4 - Right -->
-            <div class="timeline-block timeline-block-right" data-icon="picture" data-date="Mar 2021">
-                <div class="timeline-content">
-                    <span class="timeline-date">March 2021</span>
-                    <h3 class="timeline-title">Research Publication</h3>
-                    <p class="timeline-description">Published a research paper on machine learning algorithms for improved data processing, focusing on optimization techniques for large datasets.</p>
-                    <a href="#0" class="timeline-btn">Read Paper</a>
-                </div>
-            </div>
-
-            <!-- Timeline Block 5 - Left -->
-            <div class="timeline-block timeline-block-left" data-icon="movie" data-date="Jul 2022">
-                <div class="timeline-content">
-                    <span class="timeline-date">July 2022</span>
-                    <h3 class="timeline-title">Started B.Tech Journey</h3>
-                    <p class="timeline-description">Began my undergraduate studies in Computer Science at XYZ College, setting the foundation for my technical career and future endeavors.</p>
-                    <a href="#0" class="timeline-btn">Learn More</a>
-                </div>
-            </div>
-
-            <!-- Timeline Block 6 - Right -->
-            <div class="timeline-block timeline-block-right" data-icon="location" data-date="Dec 2022">
-                <div class="timeline-content">
-                    <span class="timeline-date">December 2022</span>
-                    <h3 class="timeline-title">Hackathon Winner</h3>
-                    <p class="timeline-description">First place in the National Coding Hackathon with a blockchain-based voting system. Led a team of three to develop a secure and transparent solution.</p>
-                    <a href="#0" class="timeline-btn">View Project</a>
-                </div>
-            </div>
-
-            <!-- Timeline Block 7 - Left -->
-            <div class="timeline-block timeline-block-left" data-icon="picture" data-date="Apr 2023">
-                <div class="timeline-content">
-                    <span class="timeline-date">April 2023</span>
-                    <h3 class="timeline-title">Innovation Award</h3>
-                    <p class="timeline-description">Received the Innovation Award for developing an AI-based solution for healthcare. The project focused on early disease detection using machine learning algorithms.</p>
-                    <a href="#0" class="timeline-btn">View Project</a>
-                </div>
-            </div>
-
-            <!-- Timeline Block 8 - Right -->
-            <div class="timeline-block timeline-block-right" data-icon="movie" data-date="Jun 2026">
-                <div class="timeline-content">
-                    <span class="timeline-date">June 2026</span>
-                    <h3 class="timeline-title">Expected Graduation</h3>
-                    <p class="timeline-description">Anticipated completion of B.Tech in Computer Science with a specialization in Artificial Intelligence and Machine Learning.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
+            </section>
             <!-- Stats Section -->
             <section id="stats" class="section">
                 <div class="section-title">
@@ -538,19 +686,19 @@
                                 <canvas id="pageViewsChart"></canvas>
                             </div>
                         </div>
-                        
+
                         <div class="stat-card">
                             <h3>Resume Downloads</h3>
                             <div class="stats-number" id="resume-downloads">0</div>
                         </div>
-                        
+
                         <div class="stat-card">
                             <h3>Game Statistics</h3>
                             <div class="chart-container">
                                 <canvas id="gameStatsChart"></canvas>
                             </div>
                         </div>
-                        
+
                         <div class="stat-card">
                             <h3>Visitors</h3>
                             <div class="chart-container">
@@ -562,94 +710,94 @@
             </section>
 
             <!-- Contact and Resume Section -->
-<section id="contact" class="section">
-    <div class="section-title">
-        <h2>Resume & Contact</h2>
-    </div>
-    <div class="contact-container">
-        <div class="contact-info">
-            <!-- Resume actions -->
-            <div class="resume-section">
-                <h3><i class="fas fa-file-alt"></i> My Resume</h3>
-                <div class="resume-actions">
-                    <a href="assets/resume.pdf" target="_blank" class="view-resume-btn">
-                        <i class="fas fa-eye"></i> View Resume
-                    </a>
-                    <a href="assets/resume.pdf" download class="download-resume-btn">
-                        <i class="fas fa-download"></i> Download Resume
-                    </a>
+            <section id="contact" class="section">
+                <div class="section-title">
+                    <h2>Resume & Contact</h2>
                 </div>
-            </div>
-            
-            <!-- Contact info -->
-            <div class="contact-item">
-                <i class="fas fa-envelope"></i>
-                <div class="contact-text">
-                    <h3>Email</h3>
-                    <p>abhijeet@example.com</p>
+                <div class="contact-container">
+                    <div class="contact-info">
+                        <!-- Resume actions -->
+                        <div class="resume-section">
+                            <h3><i class="fas fa-file-alt"></i> My Resume</h3>
+                            <div class="resume-actions">
+                                <a href="assets/resume.pdf" target="_blank" class="view-resume-btn">
+                                    <i class="fas fa-eye"></i> View Resume
+                                </a>
+                                <a href="assets/resume.pdf" download class="download-resume-btn">
+                                    <i class="fas fa-download"></i> Download Resume
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Contact info -->
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div class="contact-text">
+                                <h3>Email</h3>
+                                <p>abhijeet@example.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div class="contact-text">
+                                <h3>Location</h3>
+                                <p>Anand, India</p>
+                            </div>
+                        </div>
+                        <div class="social-media">
+                            <h3>Connect With Me</h3>
+                            <div class="social-icons">
+                                <!-- <a href="https://instagram.com/" target="_blank" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i> -->
+                                </a>
+                                <a href="https://linkedin.com/in/" target="_blank" aria-label="LinkedIn">
+                                    <i class="fab fa-linkedin"></i>
+                                </a>
+                                <a href="https://x.com/abhi__253__162" target="_blank" aria-label="Twitter">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-form">
+                        <div class="contact-direct">
+                            <h3>Send me a message</h3>
+                            <p>Feel free to reach out directly via email by clicking the button below:</p>
+                            <a href="mailto:abhijeet@example.com?subject=Portfolio%20Contact" class="email-direct-btn">
+                                <i class="fas fa-envelope"></i> Open Email Client
+                            </a>
+                            <div class="contact-note">
+                                <p>This will open your default email application with my email address pre-filled.</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-alternative">
+                            <h3>Alternative Contact Methods</h3>
+                            <div class="alt-contact-grid">
+                                <a href="https://linkedin.com/in/" target="_blank" class="alt-contact-item">
+                                    <i class="fab fa-linkedin"></i>
+                                    <span>LinkedIn Message</span>
+                                </a>
+                                <a href="https://x.com/abhi__253__162" target="_blank" class="alt-contact-item">
+                                    <i class="fab fa-twitter"></i>
+                                    <span>Twitter DM</span>
+                                </a>
+                                <a href="https://github.com/Greninja110" target="_blank" class="alt-contact-item">
+                                    <i class="fab fa-github"></i>
+                                    <span>GitHub</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="contact-item">
-                <i class="fas fa-map-marker-alt"></i>
-                <div class="contact-text">
-                    <h3>Location</h3>
-                    <p>Anand, India</p>
-                </div>
-            </div>
-            <div class="social-media">
-                <h3>Connect With Me</h3>
-                <div class="social-icons">
-                    <a href="https://instagram.com/" target="_blank" aria-label="Instagram">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a href="https://linkedin.com/in/" target="_blank" aria-label="LinkedIn">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="https://x.com/abhi__253__162" target="_blank" aria-label="Twitter">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-        
-        <div class="contact-form">
-            <div class="contact-direct">
-                <h3>Send me a message</h3>
-                <p>Feel free to reach out directly via email by clicking the button below:</p>
-                <a href="mailto:abhijeet@example.com?subject=Portfolio%20Contact" class="email-direct-btn">
-                    <i class="fas fa-envelope"></i> Open Email Client
-                </a>
-                <div class="contact-note">
-                    <p>This will open your default email application with my email address pre-filled.</p>
-                </div>
-            </div>
-            
-            <div class="contact-alternative">
-                <h3>Alternative Contact Methods</h3>
-                <div class="alt-contact-grid">
-                    <a href="https://linkedin.com/in/" target="_blank" class="alt-contact-item">
-                        <i class="fab fa-linkedin"></i>
-                        <span>LinkedIn Message</span>
-                    </a>
-                    <a href="https://x.com/abhi__253__162" target="_blank" class="alt-contact-item">
-                        <i class="fab fa-twitter"></i>
-                        <span>Twitter DM</span>
-                    </a>
-                    <a href="https://github.com/Greninja110" target="_blank" class="alt-contact-item">
-                        <i class="fab fa-github"></i>
-                        <span>GitHub</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+            </section>
         </main>
     </div>
 
     <!-- Chart.js for statistics -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
-    
+
     <!-- Custom JavaScript -->
     <script src="js/preloader.js"></script>
     <script src="js/animation.js"></script>
@@ -658,9 +806,11 @@
     <script src="js/analytics.js"></script>
     <script src="js/blog.js"></script>
     <script src="js/timeline.js"></script>
-    
+    <script src="js/custom-timeline.js"></script>
+
     <!-- Game Scripts -->
     <script src="js/game-manager.js"></script>
     <script src="js/tic-tac-toe.js"></script>
 </body>
+
 </html>

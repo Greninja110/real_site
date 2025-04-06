@@ -1611,3 +1611,7 @@ input:checked + .slider:before {
     animation: blink 1s infinite;
     vertical-align: middle;
 }
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}

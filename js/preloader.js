@@ -120,6 +120,7 @@ function showSectionPreloader(message, duration = 1000) {
                 // Hide preloader after fade out animation completes
                 setTimeout(() => {
                     preloader.style.display = 'none';
+                    preloader.style.visibility = 'hidden'; // Add this line
                     resolve();
                 }, 500); // Matches the fade-out animation duration
                 

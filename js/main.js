@@ -329,11 +329,13 @@ function initSkillTooltips() {
         
         // Determine skill level based on percentage
         let skillLevel = '';
-        if (progressPercentage < 30) {
+        if (progressPercentage < 20) {
+            skillLevel = 'Basic Knowledge';
+        } else if (progressPercentage >= 20 && progressPercentage < 40) {
             skillLevel = 'Beginner';
-        } else if (progressPercentage >= 30 && progressPercentage < 50) {
+        } else if (progressPercentage >= 40 && progressPercentage < 60) {
             skillLevel = 'Intermediate';
-        } else if (progressPercentage >= 50 && progressPercentage < 70) {
+        } else if (progressPercentage >= 60 && progressPercentage < 80) {
             skillLevel = 'Advanced';
         } else {
             skillLevel = 'Complete Knowledge';
