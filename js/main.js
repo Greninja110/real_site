@@ -130,7 +130,8 @@ function initProjects() {
             
             // Filter projects
             projectCards.forEach(card => {
-                if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                const categories = card.getAttribute('data-category').split(' ');
+                if (filter === 'all' || categories.includes(filter)) {
                     card.style.display = 'block';
                 } else {
                     card.style.display = 'none';

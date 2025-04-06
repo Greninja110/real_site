@@ -35,21 +35,63 @@ function initStatsVisualization() {
  * Load statistics data and create charts
  */
 function loadStatsData() {
-    // For this demo, we'll use dummy data
-    // In a real implementation, you would fetch data from Firebase or another source
+    // Fetch page views data
+    fetchPageViewsData().then(data => {
+      createPageViewsChart(data);
+    });
     
-    // Create page views chart
-    createPageViewsChart(generateDummyPageViewsData());
+    // Fetch game stats
+    fetchGameStatsData().then(data => {
+      createGameStatsChart(data);
+    });
     
-    // Create game stats chart
-    createGameStatsChart(generateDummyGameStatsData());
-    
-    // Create visitors chart
-    createVisitorsChart(generateDummyVisitorsData());
+    // Fetch visitors data
+    fetchVisitorsData().then(data => {
+      createVisitorsChart(data);
+    });
     
     // Update resume downloads count
-    updateResumeDownloadsCount();
-}
+    fetchResumeDownloadsCount().then(count => {
+      updateResumeDownloadsCount(count);
+    });
+  }
+
+  // Example of fetching page views data
+async function fetchPageViewsData() {
+    const last7Days = getLast7Days();
+    const pageViewsData = {
+      labels: last7Days.map(formatDate),
+      datasets: []
+    };
+    
+    // Create datasets for each page
+    const pages = ['home', 'projects', 'blog', 'games', 'Timeline', 'stats', 'resume', 'contact'];
+    
+    // Fetch data for each day
+    const snapshots = await Promise.all(
+      last7Days.map(day => db.collection('pageViews').doc(day).get())
+    );
+    
+    // Process data
+    pages.forEach((page, index) => {
+      const color = getColorForPage(page);
+      const data = last7Days.map((day, dayIndex) => {
+        const doc = snapshots[dayIndex];
+        return doc.exists ? (doc.data()[page] || 0) : 0;
+      });
+      
+      pageViewsData.datasets.push({
+        label: page,
+        data: data,
+        backgroundColor: color,
+        borderColor: color,
+        borderWidth: 2,
+        tension: 0.4
+      });
+    });
+    
+    return pageViewsData;
+  }
 
 /**
  * Create page views chart
@@ -439,3 +481,64 @@ function getThemeColors() {
         border: isDarkTheme ? '#333333' : '#dee2e6'
     };
 }
+// Track page view
+function trackPageView(sectionId) {
+    const today = new Date().toISOString().split('T')[0];
+    
+    // Update page view counter in Firestore
+    db.collection('pageViews').doc(today).get()
+      .then((doc) => {
+        if (doc.exists) {
+          // Update existing document
+          let views = doc.data();
+          views[sectionId] = (views[sectionId] || 0) + 1;
+          db.collection('pageViews').doc(today).update(views);
+        } else {
+          // Create new document for today
+          let views = { [sectionId]: 1 };
+          db.collection('pageViews').doc(today).set(views);
+        }
+      });
+      
+    // Also update total visitors
+    updateVisitorCount();
+  }
+  
+  // Track resume view/download
+  function trackResumeView(type) {
+    db.collection('resumeStats').doc('counts').get()
+      .then((doc) => {
+        if (doc.exists) {
+          let data = doc.data();
+          data[type] = (data[type] || 0) + 1;
+          db.collection('resumeStats').doc('counts').update(data);
+        } else {
+          let data = { [type]: 1 };
+          db.collection('resumeStats').doc('counts').set(data);
+        }
+      });
+  }
+  
+  // Update visitor count
+  function updateVisitorCount() {
+    const today = new Date().toISOString().split('T')[0];
+    const visitorId = localStorage.getItem('visitorId');
+    
+    if (!visitorId) {
+      // New visitor
+      const newVisitorId = Date.now().toString();
+      localStorage.setItem('visitorId', newVisitorId);
+      
+      // Update visitor count
+      db.collection('visitors').doc(today).get()
+        .then((doc) => {
+          if (doc.exists) {
+            db.collection('visitors').doc(today).update({
+              count: firebase.firestore.FieldValue.increment(1)
+            });
+          } else {
+            db.collection('visitors').doc(today).set({ count: 1 });
+          }
+        });
+    }
+  }
