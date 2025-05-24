@@ -1418,3 +1418,269 @@ input:checked + .slider:before {
     transform: translateY(-5px);
     box-shadow: 0 8px 15px rgba(99, 102, 241, 0.2);
 }
+
+/* Achievements section styling */
+.achievements-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.achievement-card {
+    display: flex;
+    padding: 1.5rem;
+    border-radius: 16px;
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.light-theme .achievement-card {
+    background-color: var(--light-card-bg);
+    box-shadow: var(--light-shadow-md);
+}
+
+.dark-theme .achievement-card {
+    background-color: var(--dark-card-bg);
+    box-shadow: var(--dark-shadow-md);
+}
+
+.achievement-card:hover {
+    transform: translateY(-5px);
+}
+
+.light-theme .achievement-card:hover {
+    box-shadow: var(--light-shadow-lg);
+}
+
+.dark-theme .achievement-card:hover {
+    box-shadow: var(--dark-shadow-lg);
+}
+
+.achievement-icon {
+    flex: 0 0 60px;
+    height: 60px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-right: 1.5rem;
+}
+
+.light-theme .achievement-icon {
+    background: rgba(67, 97, 238, 0.1);
+    color: var(--light-accent);
+}
+
+.dark-theme .achievement-icon {
+    background: rgba(99, 102, 241, 0.1);
+    color: var(--dark-accent);
+}
+
+.achievement-content h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.75rem;
+}
+
+.achievement-content p {
+    margin-bottom: 1rem;
+    opacity: 0.8;
+}
+
+.achievement-link {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.light-theme .achievement-link {
+    background: var(--light-accent-gradient);
+    color: white;
+    box-shadow: 0 4px 12px rgba(67, 97, 238, 0.2);
+}
+
+.dark-theme .achievement-link {
+    background: var(--dark-accent-gradient);
+    color: white;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
+}
+
+.light-theme .achievement-link:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(67, 97, 238, 0.3);
+}
+
+.dark-theme .achievement-link:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(99, 102, 241, 0.3);
+}
+
+/* Resume tabs styling */
+.resume-tabs {
+    display: flex;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid;
+    padding-bottom: 1px;
+    gap: 0.5rem;
+}
+
+.light-theme .resume-tabs {
+    border-color: var(--light-border);
+}
+
+.dark-theme .resume-tabs {
+    border-color: var(--dark-border);
+}
+
+.resume-tab {
+    padding: 0.75rem 1.5rem;
+    background: none;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.light-theme .resume-tab {
+    color: var(--light-text);
+}
+
+.dark-theme .resume-tab {
+    color: var(--dark-text);
+}
+
+.resume-tab::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 3px;
+    transition: width 0.3s ease;
+    border-radius: 3px 3px 0 0;
+}
+
+.light-theme .resume-tab::after {
+    background: var(--light-accent-gradient);
+}
+
+.dark-theme .resume-tab::after {
+    background: var(--dark-accent-gradient);
+}
+
+.resume-tab.active::after,
+.resume-tab:hover::after {
+    width: 100%;
+}
+
+.resume-content {
+    display: none;
+    margin-top: 2rem;
+}
+
+.resume-content.active {
+    display: block;
+    animation: fadeIn 0.5s ease;
+}
+
+.resume-preview {
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+    box-shadow: var(--dark-shadow-md);
+}
+
+.resume-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/* Skills category styling */
+.skills-category {
+    margin-bottom: 3rem;
+}
+
+.skills-category h4 {
+    font-size: 1.3rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid;
+}
+
+.light-theme .skills-category h4 {
+    color: var(--light-title);
+    border-color: var(--light-border);
+}
+
+.dark-theme .skills-category h4 {
+    color: var(--dark-title);
+    border-color: var(--dark-border);
+}
+
+/* Social media links styling */
+.social-media-links {
+    margin-top: 3rem;
+}
+
+.social-media-links h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.social-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1.5rem;
+}
+
+.social-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    border-radius: 16px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.light-theme .social-link {
+    background-color: rgba(67, 97, 238, 0.05);
+    color: var(--light-text);
+}
+
+.dark-theme .social-link {
+    background-color: rgba(99, 102, 241, 0.08);
+    color: var(--dark-text);
+}
+
+.social-link i {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+}
+
+.social-link span {
+    font-weight: 500;
+}
+
+.light-theme .social-link:hover {
+    background: var(--light-accent-gradient);
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(67, 97, 238, 0.2);
+}
+
+.dark-theme .social-link:hover {
+    background: var(--dark-accent-gradient);
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(99, 102, 241, 0.2);
+}
