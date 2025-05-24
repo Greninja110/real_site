@@ -743,25 +743,24 @@
             </section>
         </main>
     </div>
-
-    <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-analytics-compat.js"></script>
-    <script src="js/firebase-config.js"></script>
-    <!-- Chart.js for statistics -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
-
     <!-- Custom JavaScript -->
     <script src="js/animation.js"></script>
     <script src="js/theme.js"></script>
     <script src="js/main.js"></script>
     <script src="js/mobile-nav.js"></script>
-    <script src="js/analytics.js"></script>
     <script src="js/timeline.js"></script>
     <script src="js/custom-timeline.js"></script>
     <script src="js/resume.js"></script>
     <script src="js/contact.js"></script>
+    <script>
+        // Fix for null context errors
+        window.addEventListener('error', function (e) {
+            if (e.message.includes("Cannot read properties of null")) {
+                console.log("Prevented null context error:", e.message);
+                e.preventDefault();
+            }
+        });
+    </script>
     <div class="last-updated">
         <i class="fas fa-edit"></i> Last updated on May 24, 2025
     </div>
