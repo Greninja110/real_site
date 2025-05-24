@@ -33,9 +33,6 @@ function initPortfolio() {
     
     // Set animation order for elements
     setAnimationOrder();
-    
-    // Log performance stats
-    logPerformanceStats();
 }
 
 /**
@@ -433,31 +430,14 @@ function setAnimationOrder() {
     visibleProjects.forEach((project, index) => {
         project.style.setProperty('--animation-order', index);
     });
-    
-    // Game cards
-    const gameCards = document.querySelectorAll('.game-card');
-    gameCards.forEach((card, index) => {
-        card.style.setProperty('--animation-order', index);
-    });
+
     
     // Timeline items
     const timelineItems = document.querySelectorAll('.timeline-item');
     timelineItems.forEach((item, index) => {
         item.style.setProperty('--animation-order', index);
     });
-    
-    // Stat cards
-    const statCards = document.querySelectorAll('.stat-card');
-    statCards.forEach((card, index) => {
-        card.style.setProperty('--animation-order', index);
-    });
-    
-    // Blog cards
-    const blogCards = document.querySelectorAll('.blog-card');
-    blogCards.forEach((card, index) => {
-        card.style.setProperty('--animation-order', index);
-    });
-    
+       
     logMainEvent('Animation order set for all elements');
 }
 
@@ -543,67 +523,6 @@ function initResumeTabs() {
     logMainEvent('Resume tabs initialized');
 }
 
-/**
- * Log performance statistics
- */
-function logPerformanceStats() {
-    // GPU info detection
-    try {
-        const canvas = document.createElement('canvas');
-        const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-        
-        if (gl) {
-            const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
-            
-            if (debugInfo) {
-                const renderer = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
-                logMainEvent(`GPU detected: ${renderer}`);
-                
-                // Check if RTX 3050 is detected
-                if (renderer.includes('RTX') && renderer.includes('3050')) {
-                    logMainEvent('RTX 3050 GPU detected - Will use GPU acceleration when available');
-                }
-            }
-        }
-    } catch (e) {
-        logMainEvent(`Error detecting GPU: ${e.message}`);
-    }
-    
-    // Log navigation timing
-    if (window.performance && window.performance.timing) {
-        const timing = window.performance.timing;
-        const navigationStart = timing.navigationStart;
-        
-        const loadTime = timing.loadEventEnd - navigationStart;
-        logMainEvent(`Page load time: ${loadTime}ms`);
-        
-        // Log DOMContentLoaded time
-        const domContentLoadedTime = timing.domContentLoadedEventEnd - navigationStart;
-        logMainEvent(`DOM Content Loaded time: ${domContentLoadedTime}ms`);
-    }
-    
-    // Log hardware concurrency (CPU cores)
-    if (navigator.hardwareConcurrency) {
-        logMainEvent(`CPU cores available: ${navigator.hardwareConcurrency}`);
-        
-        // Check if i7-12650H is likely being used
-        if (navigator.hardwareConcurrency >= 10) {
-            logMainEvent('High core count detected - likely i7-12650H or similar - Will use multi-threading when available');
-        }
-    }
-    
-    // Log memory info if available
-    if (navigator.deviceMemory) {
-        logMainEvent(`Device memory: ${navigator.deviceMemory}GB`);
-        
-        // Check if high memory is available
-        if (navigator.deviceMemory >= 8) {
-            logMainEvent('High memory detected - Will optimize for memory usage');
-        }
-    }
-}
-
 // Make functions globally accessible
 window.initPortfolio = initPortfolio;
 window.setAnimationOrder = setAnimationOrder;
-window.logPerformanceStats = logPerformanceStats;
