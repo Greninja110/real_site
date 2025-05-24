@@ -92,10 +92,34 @@ function initNavigation() {
 function initMobileMenu() {
     const mobileToggle = document.getElementById('mobile-toggle');
     const sidebar = document.querySelector('.sidebar');
+    const content = document.querySelector('.content');
+    const body = document.body;
     
     mobileToggle.addEventListener('click', function() {
         sidebar.classList.toggle('open');
         this.classList.toggle('open');
+
+        // Toggle single page mode for mobile
+        if (window.innerWidth <= 767) {
+            body.classList.toggle('single-page-mode');
+            
+            if (body.classList.contains('single-page-mode')) {
+                // Show all sections for scrolling
+                document.querySelectorAll('.section').forEach(section => {
+                    if (section.id !== 'stats' && section.id !== 'blog' && section.id !== 'games') {
+                        section.style.display = 'block';
+                        section.style.opacity = '1';
+                    }
+                });
+            } else {
+                // Reset to normal navigation
+                document.querySelectorAll('.section').forEach(section => {
+                    if (!section.classList.contains('active')) {
+                        section.style.display = 'none';
+                    }
+                });
+            }
+        }
     });
     
     // Close sidebar when clicking outside of it on mobile
