@@ -21,20 +21,19 @@
 @media (max-width: 767px) {
   .sidebar {
     width: 100%;
-    height: auto;
+    height: 60px;
     position: fixed;
-    top: -100%;
+    top: 0;
     left: 0;
     z-index: 100;
     transform: translateY(0);
-    transition: top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: height 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
   
   .sidebar.open {
-    top: 0;
     height: 100vh;
     overflow-y: auto;
-    transition: top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: height 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
   
   /* Improved hamburger animation */
@@ -70,8 +69,8 @@
   .single-page-mode .section {
     display: block !important;
     opacity: 1;
-    min-height: 100vh;
-    padding-top: 60px; /* Space for the fixed top nav */
+    min-height: auto;
+    padding-top: 70px; /* Space for the fixed top nav */
   }
   
   .single-page-mode .content {
@@ -104,6 +103,37 @@
   
   .single-page-mode .sidebar-footer {
     display: none;
+  }
+}
+
+/* Desktop single page mode transitions */
+@media (min-width: 768px) {
+  /* Transition for sidebar when switching to single page mode */
+  .sidebar {
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  
+  /* Content transitions when switching modes */
+  .content {
+    transition: margin-left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                padding-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                width 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  
+  /* Single page mode transitions */
+  .single-page-mode .sidebar {
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  
+  .single-page-mode .content {
+    transition: margin-left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                max-width 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  
+  /* Transition for content centering in single page mode */
+  .centered-content {
+    transition: max-width 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                margin 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 }
 
@@ -321,4 +351,59 @@ button:focus, a:focus, input:focus, textarea:focus {
 .timeline-block:hover .timeline-date-marker {
   transform: scale(1.05);
   box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1), inset 0 2px 0 rgba(0, 0, 0, 0.08), 0 3px 0 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Transition for sidebar collapse/expand */
+.mobile-toggle {
+  transition: all 0.3s ease;
+}
+
+/* Desktop single page mode nav menu animation */
+@media (min-width: 768px) {
+  .single-page-mode .sidebar.open .sidebar-nav {
+    animation: slideDown 0.3s forwards;
+  }
+  
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .single-page-mode .sidebar:not(.open) .sidebar-nav {
+    animation: slideUp 0.3s forwards;
+  }
+  
+  @keyframes slideUp {
+    from {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+  }
+}
+
+/* Ripple effect for navigation links */
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.4);
+  transform: scale(0);
+  animation: ripple 0.6s linear;
+  pointer-events: none;
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
 }

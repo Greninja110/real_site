@@ -1618,3 +1618,241 @@ input:checked + .slider:before {
 p {
     text-align: justify;
 }
+/* Add these styles to the mobile-toggle section in style.css */
+
+/* Mobile toggle button - visible on all devices */
+.mobile-toggle {
+    display: block;
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    z-index: 101;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+
+.light-theme .mobile-toggle {
+    background-color: rgba(67, 97, 238, 0.1);
+}
+
+.dark-theme .mobile-toggle {
+    background-color: rgba(108, 139, 255, 0.15);
+}
+
+.mobile-toggle:hover {
+    background-color: rgba(108, 139, 255, 0.3);
+}
+
+.mobile-toggle span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    margin: 4px 0;
+    transition: all 0.3s ease;
+}
+
+.light-theme .mobile-toggle span {
+    background-color: var(--light-accent);
+}
+
+.dark-theme .mobile-toggle span {
+    background-color: var(--dark-accent);
+}
+
+/* Mobile toggle animation */
+.mobile-toggle.open span:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.mobile-toggle.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-toggle.open span:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+
+/* Centered content class for single page mode */
+.centered-content {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+
+/* Single page mode specific styles */
+.single-page-mode .section {
+    min-height: auto;
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+    margin-bottom: 2rem;
+    display: block !important;
+    opacity: 1 !important;
+}
+
+/* Ensure smooth scrolling in single page mode */
+.single-page-mode .content {
+    scroll-behavior: smooth;
+}
+
+/* Add these important fixes to style.css */
+
+/* Fix for section display in multi-page mode */
+.section {
+    display: none;
+    padding: var(--section-padding);
+    min-height: 100vh;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.section.active {
+    display: block !important;
+    opacity: 1 !important;
+    animation: fadeIn 0.5s;
+}
+
+/* Ensure single page mode sections are always visible */
+.single-page-mode .section {
+    display: block !important;
+    opacity: 1 !important;
+    min-height: auto;
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+    margin-bottom: 2rem;
+}
+
+/* Fix for mobile toggle display */
+.mobile-toggle {
+    display: block !important;
+}
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+.form-group input,
+.form-group textarea {
+    padding: 0.75rem 1rem;
+    border-radius: var(--border-radius-sm);
+    border: 1px solid;
+    font-family: var(--primary-font);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.light-theme .form-group input,
+.light-theme .form-group textarea {
+    border-color: var(--light-border);
+    background-color: var(--light-bg);
+    color: var(--light-text);
+}
+
+.dark-theme .form-group input,
+.dark-theme .form-group textarea {
+    border-color: var(--dark-border);
+    background-color: var(--dark-bg);
+    color: var(--dark-text);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+}
+
+.light-theme .form-group input:focus,
+.light-theme .form-group textarea:focus {
+    border-color: var(--light-accent);
+    box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.2);
+}
+
+.dark-theme .form-group input:focus,
+.dark-theme .form-group textarea:focus {
+    border-color: var(--dark-accent);
+    box-shadow: 0 0 0 2px rgba(108, 139, 255, 0.2);
+}
+
+.submit-btn {
+    padding: 0.9rem 1.5rem;
+    border: none;
+    border-radius: var(--border-radius-sm);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+}
+
+.light-theme .submit-btn {
+    background: var(--light-accent-gradient, var(--light-accent));
+    color: white;
+    box-shadow: 0 4px 12px rgba(67, 97, 238, 0.2);
+}
+
+.dark-theme .submit-btn {
+    background: var(--dark-accent-gradient, var(--dark-accent));
+    color: white;
+    box-shadow: 0 4px 12px rgba(108, 139, 255, 0.2);
+}
+
+.light-theme .submit-btn:hover {
+    box-shadow: 0 6px 15px rgba(67, 97, 238, 0.3);
+    transform: translateY(-2px);
+}
+
+.dark-theme .submit-btn:hover {
+    box-shadow: 0 6px 15px rgba(108, 139, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.form-status {
+    font-size: 0.9rem;
+    padding: 0.5rem 0;
+    min-height: 24px;
+}
+
+.form-status.success {
+    color: #28a745;
+}
+
+.form-status.error {
+    color: #dc3545;
+}
+
+.submit-loader {
+    display: none;
+}
+
+.submit-btn.loading .submit-text {
+    display: none;
+}
+
+.submit-btn.loading .submit-loader {
+    display: inline-block;
+}

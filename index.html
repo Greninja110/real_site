@@ -596,102 +596,68 @@
                 </div>
             </section>
 
-            <!-- Stats Section (Hidden from regular users) -->
-            <section id="stats" class="section">
-                <div class="section-title">
-                    <h2>Statistics</h2>
-                </div>
-                <div class="stats-container">
-                    <div class="stats-grid">
-                        <div class="stat-card">
-                            <h3>Page Views</h3>
-                            <div class="chart-container">
-                                <canvas id="pageViewsChart"></canvas>
-                            </div>
-                        </div>
+            <!-- Resume Section -->
+            <div class="resume-tabs">
+                <button class="resume-tab active" data-resume="aiml">AI/ML</button>
+                <button class="resume-tab" data-resume="cybersecurity">Cybersecurity</button>
+                <button class="resume-tab" data-resume="webdev">Web Development</button>
+            </div>
 
-                        <div class="stat-card">
-                            <h3>Resume Downloads</h3>
-                            <div class="stats-number" id="resume-downloads">0</div>
-                        </div>
-
-                        <div class="stat-card">
-                            <h3>Visitors</h3>
-                            <div class="chart-container">
-                                <canvas id="visitorsChart"></canvas>
-                            </div>
-                        </div>
+            <div class="resume-content-container">
+                <!-- AIML Resume -->
+                <div class="resume-content active" id="aiml-resume">
+                    <div class="resume-preview">
+                        <iframe src="https://drive.google.com/file/d/1v1ufKIbYrmDD5AKqc0I2xe_tgbvkGAY4/preview"
+                            width="100%" height="500px"></iframe>
+                    </div>
+                    <div class="resume-actions">
+                        <a href="https://drive.google.com/file/d/1v1ufKIbYrmDD5AKqc0I2xe_tgbvkGAY4/view" target="_blank"
+                            class="view-resume-btn">
+                            <i class="fas fa-eye"></i> View Resume
+                        </a>
+                        <a href="https://drive.google.com/uc?export=download&id=1v1ufKIbYrmDD5AKqc0I2xe_tgbvkGAY4"
+                            class="download-resume-btn">
+                            <i class="fas fa-download"></i> Download Resume
+                        </a>
                     </div>
                 </div>
-            </section>
 
-            <!-- Resume Section (Updated with tabs) -->
-            <section id="resume" class="section">
-                <div class="section-title">
-                    <h2>My Resumes</h2>
-                </div>
-
-                <div class="resume-tabs">
-                    <button class="resume-tab active" data-resume="aiml">AI/ML</button>
-                    <button class="resume-tab" data-resume="cybersecurity">Cybersecurity</button>
-                    <button class="resume-tab" data-resume="webdev">Web Development</button>
-                </div>
-
-                <div class="resume-content-container">
-                    <!-- AIML Resume -->
-                    <div class="resume-content active" id="aiml-resume">
-                        <div class="resume-preview">
-                            <iframe src="https://drive.google.com/file/d/1v1ufKIbYrmDD5AKqc0I2xe_tgbvkGAY4/preview"
-                                width="100%" height="500px"></iframe>
-                        </div>
-                        <div class="resume-actions">
-                            <a href="https://drive.google.com/file/d/1v1ufKIbYrmDD5AKqc0I2xe_tgbvkGAY4/view"
-                                target="_blank" class="view-resume-btn">
-                                <i class="fas fa-eye"></i> View Resume
-                            </a>
-                            <a href="https://drive.google.com/uc?export=download&id=1v1ufKIbYrmDD5AKqc0I2xe_tgbvkGAY4"
-                                class="download-resume-btn">
-                                <i class="fas fa-download"></i> Download Resume
-                            </a>
-                        </div>
+                <!-- Cybersecurity Resume -->
+                <div class="resume-content" id="cybersecurity-resume">
+                    <div class="resume-preview">
+                        <iframe src="https://drive.google.com/file/d/1fGKRbdPGASITAVuZmxvRLsbHx6nrC3N-/preview"
+                            width="100%" height="500px"></iframe>
                     </div>
-
-                    <!-- Cybersecurity Resume -->
-                    <div class="resume-content" id="cybersecurity-resume">
-                        <div class="resume-preview">
-                            <iframe src="https://drive.google.com/file/d/1fGKRbdPGASITAVuZmxvRLsbHx6nrC3N-/preview"
-                                width="100%" height="500px"></iframe>
-                        </div>
-                        <div class="resume-actions">
-                            <a href="https://drive.google.com/file/d/1fGKRbdPGASITAVuZmxvRLsbHx6nrC3N-/view"
-                                target="_blank" class="view-resume-btn">
-                                <i class="fas fa-eye"></i> View Resume
-                            </a>
-                            <a href="https://drive.google.com/uc?export=download&id=1fGKRbdPGASITAVuZmxvRLsbHx6nrC3N-"
-                                class="download-resume-btn">
-                                <i class="fas fa-download"></i> Download Resume
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Web Dev Resume -->
-                    <div class="resume-content" id="webdev-resume">
-                        <div class="resume-preview">
-                            <iframe src="https://drive.google.com/file/d/1D_27JzwtoLxy8qrcCFrhrlvpTt9y64G-/preview"
-                                width="100%" height="500px"></iframe>
-                        </div>
-                        <div class="resume-actions">
-                            <a href="https://drive.google.com/file/d/1D_27JzwtoLxy8qrcCFrhrlvpTt9y64G-/view"
-                                target="_blank" class="view-resume-btn">
-                                <i class="fas fa-eye"></i> View Resume
-                            </a>
-                            <a href="https://drive.google.com/uc?export=download&id=1D_27JzwtoLxy8qrcCFrhrlvpTt9y64G-"
-                                class="download-resume-btn">
-                                <i class="fas fa-download"></i> Download Resume
-                            </a>
-                        </div>
+                    <div class="resume-actions">
+                        <a href="https://drive.google.com/file/d/1fGKRbdPGASITAVuZmxvRLsbHx6nrC3N-/view" target="_blank"
+                            class="view-resume-btn">
+                            <i class="fas fa-eye"></i> View Resume
+                        </a>
+                        <a href="https://drive.google.com/uc?export=download&id=1fGKRbdPGASITAVuZmxvRLsbHx6nrC3N-"
+                            class="download-resume-btn">
+                            <i class="fas fa-download"></i> Download Resume
+                        </a>
                     </div>
                 </div>
+
+                <!-- Web Dev Resume -->
+                <div class="resume-content" id="webdev-resume">
+                    <div class="resume-preview">
+                        <iframe src="https://drive.google.com/file/d/1D_27JzwtoLxy8qrcCFrhrlvpTt9y64G-/preview"
+                            width="100%" height="500px"></iframe>
+                    </div>
+                    <div class="resume-actions">
+                        <a href="https://drive.google.com/file/d/1D_27JzwtoLxy8qrcCFrhrlvpTt9y64G-/view" target="_blank"
+                            class="view-resume-btn">
+                            <i class="fas fa-eye"></i> View Resume
+                        </a>
+                        <a href="https://drive.google.com/uc?export=download&id=1D_27JzwtoLxy8qrcCFrhrlvpTt9y64G-"
+                            class="download-resume-btn">
+                            <i class="fas fa-download"></i> Download Resume
+                        </a>
+                    </div>
+                </div>
+            </div>
             </section>
 
             <!-- Contact Section -->
@@ -733,43 +699,44 @@
                                     <i class="fab fa-github"></i>
                                     <span>GitHub</span>
                                 </a>
-                                <a href="mailto:abhijeetsahoo245@gmail.com" class="social-link">
-                                    <i class="fas fa-envelope"></i>
-                                    <span>Email</span>
-                                </a>
                             </div>
                         </div>
                     </div>
 
                     <div class="contact-form">
-                        <div class="contact-direct">
+                        <div class="contact-form">
                             <h3>Send me a message</h3>
-                            <p>Feel free to reach out directly via email by clicking the button below:</p>
-                            <a href="mailto:abhijeet@example.com?subject=Portfolio%20Contact" class="email-direct-btn">
-                                <i class="fas fa-envelope"></i> Open Email Client
-                            </a>
-                            <div class="contact-note">
-                                <p>This will open your default email application with my email address pre-filled.</p>
-                            </div>
+                            <p>Feel free to reach out with any questions or inquiries:</p>
+                            <form id="contact-form" class="form-container">
+                                <div class="form-group">
+                                    <label for="name">Name</label>
+                                    <input type="text" id="name" name="name" placeholder="Your name" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" id="email" name="email" placeholder="Your email address"
+                                        required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="message">Message</label>
+                                    <textarea id="message" name="message" rows="5" placeholder="Your message"
+                                        required></textarea>
+                                </div>
+
+                                <div class="form-status" id="form-status"></div>
+
+                                <button type="submit" class="submit-btn">
+                                    <span class="submit-text">Send Message</span>
+                                    <span class="submit-loader" style="display: none;">
+                                        <i class="fas fa-spinner fa-spin"></i>
+                                    </span>
+                                </button>
+                            </form>
                         </div>
 
-                        <div class="contact-alternative">
-                            <h3>Alternative Contact Methods</h3>
-                            <div class="alt-contact-grid">
-                                <a href="https://linkedin.com/in/" target="_blank" class="alt-contact-item">
-                                    <i class="fab fa-linkedin"></i>
-                                    <span>LinkedIn Message</span>
-                                </a>
-                                <a href="https://x.com/abhi__253__162" target="_blank" class="alt-contact-item">
-                                    <i class="fab fa-twitter"></i>
-                                    <span>Twitter DM</span>
-                                </a>
-                                <a href="https://github.com/Greninja110" target="_blank" class="alt-contact-item">
-                                    <i class="fab fa-github"></i>
-                                    <span>GitHub</span>
-                                </a>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
             </section>
@@ -794,8 +761,8 @@
     <script src="js/timeline.js"></script>
     <script src="js/custom-timeline.js"></script>
     <div class="last-updated">
-    <i class="fas fa-edit"></i> Last updated on May 24, 2025 
-</div>
+        <i class="fas fa-edit"></i> Last updated on May 24, 2025
+    </div>
 </body>
 
 </html>

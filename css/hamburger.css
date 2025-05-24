@@ -1,0 +1,69 @@
+/* 
+ * Updated hamburger menu styles 
+ * Add this to your CSS or include in an existing CSS file
+ */
+
+/* Mobile toggle button */
+.mobile-toggle {
+    display: block;
+    position: relative;
+    z-index: 101;
+    border-radius: 8px;
+    padding: 0.5rem;
+    background: transparent;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* The three lines */
+.mobile-toggle span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 3px 0;
+    border-radius: 1.5px;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Color based on theme */
+.light-theme .mobile-toggle span {
+    background-color: var(--light-accent);
+}
+
+.dark-theme .mobile-toggle span {
+    background-color: var(--dark-accent);
+}
+
+/* No transformation when open - keeping the three lines */
+.mobile-toggle.open span {
+    /* No transformation applied */
+}
+
+/* Optional: add a subtle indication that the menu is open */
+.mobile-toggle.open {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.dark-theme .mobile-toggle.open {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Mobile specific styles */
+@media (max-width: 767px) {
+    .mobile-toggle {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .mobile-toggle span {
+        width: 22px;
+        height: 2px;
+    }
+}

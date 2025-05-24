@@ -6,6 +6,19 @@
 document.addEventListener('DOMContentLoaded', function () {
     // Initialize mobile navigation
     initMobileNav();
+    
+    // Add window resize listener to handle device size changes
+    window.addEventListener('resize', function() {
+        handleDeviceLayout();
+    });
+    
+    // Listen for theme toggle to maintain navigation state
+    document.getElementById('theme-toggle').addEventListener('change', function() {
+        // Small delay to ensure theme has changed before rechecking layout
+        setTimeout(() => {
+            maintainNavState();
+        }, 50);
+    });
 });
 
 /**
@@ -18,144 +31,36 @@ function initMobileNav() {
     const body = document.body;
     const sections = document.querySelectorAll('.section');
     
-    // Check if we should enable single page mode by default based on screen size
-    function checkDeviceAndSetMode() {
-        if (window.innerWidth <= 767) {
-            // Enable single page mode by default on mobile
-            body.classList.add('single-page-mode');
-            
-            // Show all sections for mobile (except stats which is admin-only)
-            sections.forEach(section => {
-                if (section.id !== 'stats') {
-                    section.style.display = 'block';
-                    section.style.opacity = '1';
-                }
-            });
-            
-            // Add smooth scroll behavior
-            content.style.scrollBehavior = 'smooth';
-            
-            // Setup intersection observer for mobile
-            setupIntersectionObserver();
-            
-            // Make sure sidebar is in collapsed state initially on mobile
-            sidebar.classList.remove('open');
-            if (mobileToggle) mobileToggle.classList.remove('open');
-            
-        } else {
-            // Desktop/tablet: normal mode by default (not single page)
-            body.classList.remove('single-page-mode');
-            
-            // Only show active section initially
-            sections.forEach(section => {
-                if (!section.classList.contains('active')) {
-                    section.style.display = 'none';
-                }
-            });
-            
-            // Remove intersection observer for desktop
-            removeIntersectionObserver();
-        }
-    }
-    
-    // Run on page load
-    checkDeviceAndSetMode();
-    
-    // Run on window resize
-    window.addEventListener('resize', function() {
-        checkDeviceAndSetMode();
-    });
+    // Initial setup based on device size
+    handleDeviceLayout();
     
     // Toggle functionality for mobile menu and single page mode
     if (mobileToggle) {
         mobileToggle.addEventListener('click', function () {
             // Toggle sidebar open state
             sidebar.classList.toggle('open');
-            this.classList.toggle('open');
             
-            // For desktop/tablet, toggle single page mode
-            if (window.innerWidth > 767) {
-                if (!body.classList.contains('single-page-mode')) {
+            // Handle different behavior based on screen size
+            if (window.innerWidth <= 767) {
+                // Mobile: Just toggle the menu visibility
+                // Single page mode is always active on mobile
+            } else {
+                // Desktop/Tablet: Toggle between sidebar and top navigation
+                body.classList.toggle('single-page-mode');
+                
+                if (body.classList.contains('single-page-mode')) {
                     // Enable single page mode
-                    body.classList.add('single-page-mode');
-                    
-                    // Show all sections
-                    sections.forEach(section => {
-                        if (section.id !== 'stats') {
-                            section.style.display = 'block';
-                            section.style.opacity = '1';
-                        }
-                    });
-                    
+                    showAllSections();
+                    setupIntersectionObserver();
                     // Add smooth scroll behavior
                     content.style.scrollBehavior = 'smooth';
-                    
-                    // Setup intersection observer
-                    setupIntersectionObserver();
                 } else {
                     // Disable single page mode
-                    body.classList.remove('single-page-mode');
-                    
-                    // Reset sections display
-                    sections.forEach(section => {
-                        if (!section.classList.contains('active')) {
-                            section.style.display = 'none';
-                        }
-                    });
-                    
-                    // Remove intersection observer
+                    hideNonActiveSections();
                     removeIntersectionObserver();
                 }
             }
         });
-    }
-    
-    // IntersectionObserver for highlighting active section in single page mode
-    let observer;
-    
-    function setupIntersectionObserver() {
-        observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
-                    const sectionId = entry.target.id;
-                    
-                    // Skip stats section (admin-only)
-                    if (sectionId === 'stats') return;
-                    
-                    // Update active nav link
-                    document.querySelectorAll('.nav-link').forEach(link => {
-                        link.classList.remove('active');
-                        if (link.getAttribute('data-section') === sectionId) {
-                            link.classList.add('active');
-                        }
-                    });
-                    
-                    // Update URL hash without scrolling
-                    const scrollPosition = window.scrollY;
-                    window.location.hash = sectionId;
-                    window.scrollTo(0, scrollPosition);
-                }
-            });
-        }, {
-            threshold: 0.5,
-            rootMargin: '-20% 0px -20% 0px'
-        });
-        
-        // Observe all sections except stats
-        sections.forEach(section => {
-            if (section.id !== 'stats') {
-                observer.observe(section);
-            }
-        });
-    }
-    
-    function removeIntersectionObserver() {
-        if (observer) {
-            sections.forEach(section => {
-                observer.unobserve(section);
-            });
-            observer = null;
-        }
     }
     
     // Add smooth scrolling for nav links in single page mode
@@ -180,7 +85,6 @@ function initMobileNav() {
                     // Close mobile menu in single page mode on mobile
                     if (window.innerWidth <= 767) {
                         sidebar.classList.remove('open');
-                        mobileToggle.classList.remove('open');
                     }
                 }
             } else {
@@ -191,7 +95,150 @@ function initMobileNav() {
     });
     
     // Add ripple effect to buttons
+    addRippleEffect();
+}
+
+/**
+ * Maintain the current navigation state after theme change
+ */
+function maintainNavState() {
+    const body = document.body;
+    
+    // If we're in single-page mode, ensure it stays that way
+    if (body.classList.contains('single-page-mode')) {
+        const sidebar = document.querySelector('.sidebar');
+        const content = document.querySelector('.content');
+        
+        // Re-apply necessary styles
+        showAllSections();
+        setupIntersectionObserver();
+        content.style.scrollBehavior = 'smooth';
+    }
+}
+
+/**
+ * Handle layout based on device size
+ */
+function handleDeviceLayout() {
+    const body = document.body;
+    const sidebar = document.querySelector('.sidebar');
+    const mobileToggle = document.getElementById('mobile-toggle');
+    const sections = document.querySelectorAll('.section');
+    
+    if (window.innerWidth <= 767) {
+        // Mobile: Always single page mode with collapsed navigation
+        body.classList.add('single-page-mode');
+        sidebar.classList.remove('open');
+        
+        // Show all sections for mobile scrolling
+        showAllSections();
+        
+        // Setup intersection observer for active section highlighting
+        setupIntersectionObserver();
+    } else {
+        // Desktop/Tablet: Check if we're already in single page mode
+        if (!body.classList.contains('single-page-mode')) {
+            // Normal mode (not single page)
+            hideNonActiveSections();
+            removeIntersectionObserver();
+        } else {
+            // We are in single page mode
+            showAllSections();
+            setupIntersectionObserver();
+        }
+    }
+}
+
+/**
+ * Show all sections for single page mode
+ */
+function showAllSections() {
+    const sections = document.querySelectorAll('.section');
+    sections.forEach(section => {
+        if (section.id !== 'stats') { // Skip stats which is admin-only
+            section.style.display = 'block';
+            section.style.opacity = '1';
+        }
+    });
+}
+
+/**
+ * Hide non-active sections for multi-page mode
+ */
+function hideNonActiveSections() {
+    const sections = document.querySelectorAll('.section');
+    sections.forEach(section => {
+        if (!section.classList.contains('active')) {
+            section.style.display = 'none';
+        }
+    });
+}
+
+// IntersectionObserver variables
+let observer;
+
+/**
+ * Setup intersection observer for highlighting active section in single page mode
+ */
+function setupIntersectionObserver() {
+    // Remove existing observer first
+    if (observer) {
+        removeIntersectionObserver();
+    }
+    
+    observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
+                const sectionId = entry.target.id;
+                
+                // Skip stats section (admin-only)
+                if (sectionId === 'stats') return;
+                
+                // Update active nav link
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('data-section') === sectionId) {
+                        link.classList.add('active');
+                    }
+                });
+                
+                // Update URL hash without scrolling
+                const scrollPosition = window.scrollY;
+                window.location.hash = sectionId;
+                window.scrollTo(0, scrollPosition);
+            }
+        });
+    }, {
+        threshold: 0.5,
+        rootMargin: '-20% 0px -20% 0px'
+    });
+    
+    // Observe all sections except stats
+    document.querySelectorAll('.section').forEach(section => {
+        if (section.id !== 'stats') {
+            observer.observe(section);
+        }
+    });
+}
+
+/**
+ * Remove intersection observer
+ */
+function removeIntersectionObserver() {
+    if (observer) {
+        document.querySelectorAll('.section').forEach(section => {
+            observer.unobserve(section);
+        });
+        observer = null;
+    }
+}
+
+/**
+ * Add ripple effect to buttons
+ */
+function addRippleEffect() {
     const buttons = document.querySelectorAll('.filter-btn, .view-details-btn, .view-resume-btn, .download-resume-btn, .email-direct-btn, .timeline-btn');
+    
     buttons.forEach(button => {
         button.classList.add('btn-ripple');
         
@@ -216,3 +263,5 @@ function initMobileNav() {
 
 // Export functions for use in other modules
 window.initMobileNav = initMobileNav;
+window.handleDeviceLayout = handleDeviceLayout;
+window.maintainNavState = maintainNavState;

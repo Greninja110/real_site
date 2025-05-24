@@ -6,22 +6,23 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize the portfolio site
     initPortfolio();
+    console.log('[Main] Portfolio initialized');
 });
 
 /**
  * Initialize all portfolio functionality
  */
 function initPortfolio() {
-    // Navigation
+    // Setup logging
+    setupMainLogger();
+    
+    // Navigation - This must run first to set up sections correctly
     initNavigation();
     
     // Projects filtering and modal
     initProjects();
     
-    // Mobile menu toggle
-    initMobileMenu();
-
-    // Initialize resume tabs
+    // Resume tabs
     initResumeTabs();
     
     // Resume functionality
@@ -32,6 +33,57 @@ function initPortfolio() {
     
     // Set animation order for elements
     setAnimationOrder();
+    
+    // Log performance stats
+    logPerformanceStats();
+}
+
+/**
+ * Setup main logger
+ */
+function setupMainLogger() {
+    // Create a log array if not exists
+    if (!window.mainLogs) {
+        window.mainLogs = [];
+    }
+    
+    // Create log function if not exists
+    if (!window.logMainEvent) {
+        window.logMainEvent = function(message) {
+            const timestamp = new Date().toISOString();
+            const logEntry = `${timestamp} - ${message}`;
+            
+            // Add to log array
+            window.mainLogs.push(logEntry);
+            
+            // Log to console for development
+            console.log(`[Main] ${message}`);
+            
+            // If log array gets too long, trim it
+            if (window.mainLogs.length > 1000) {
+                window.mainLogs = window.mainLogs.slice(-500);
+            }
+        };
+    }
+    
+    // Add function to download logs
+    if (!window.downloadMainLogs) {
+        window.downloadMainLogs = function() {
+            const logText = window.mainLogs.join('\n');
+            const blob = new Blob([logText], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'main_logs.txt';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        };
+    }
+    
+    logMainEvent('Main logger initialized');
 }
 
 /**
@@ -39,30 +91,134 @@ function initPortfolio() {
  */
 function initNavigation() {
     const navLinks = document.querySelectorAll('.nav-link');
-    // Show the first section by default
-if (!window.location.hash) {
-    document.getElementById('home').classList.add('active');
-}
-    navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
+    const body = document.body;
+    const sections = document.querySelectorAll('.section');
+    
+    // Debugging - Check what sections exist
+    logMainEvent(`Found ${sections.length} sections on the page`);
+    sections.forEach(section => {
+        logMainEvent(`Section found: ${section.id}`);
+    });
+    
+    // Check if we should be in single page mode based on device width
+    const isMobile = window.innerWidth <= 767;
+    const isInSinglePageMode = body.classList.contains('single-page-mode');
+    
+    // If mobile but not in single page mode, add the class
+    if (isMobile && !isInSinglePageMode) {
+        body.classList.add('single-page-mode');
+        logMainEvent('Mobile device detected - Setting single page mode');
+    }
+    
+    // Show the first section by default if no hash in URL
+    if (!window.location.hash) {
+        // First hide all sections to ensure clean state
+        sections.forEach(section => {
+            section.classList.remove('active');
+        });
+        
+        // Then activate home section
+        const homeSection = document.getElementById('home');
+        if (homeSection) {
+            homeSection.classList.add('active');
+            logMainEvent('Home section activated by default');
             
-            // Get the section id from the data attribute
-            const sectionId = this.getAttribute('data-section');
-            
-            // Remove active class from all links
-            navLinks.forEach(link => link.classList.remove('active'));
-            
-            // Add active class to clicked link
-            this.classList.add('active');
-            
-            // Hide all sections
-            document.querySelectorAll('.section').forEach(section => {
+            // Also make home nav link active
+            navLinks.forEach(link => {
+                if (link.getAttribute('data-section') === 'home') {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+        } else {
+            logMainEvent('WARNING: Home section not found!');
+        }
+    }
+    
+    // Process URL hash if present
+    if (window.location.hash) {
+        const hash = window.location.hash.substring(1);
+        logMainEvent(`URL has hash: ${hash}, processing...`);
+        
+        // Find the section with this ID
+        const targetSection = document.getElementById(hash);
+        if (targetSection) {
+            // First hide all sections
+            sections.forEach(section => {
                 section.classList.remove('active');
             });
             
-            // Show the selected section
-            document.getElementById(sectionId).classList.add('active');
+            // Then activate target section
+            targetSection.classList.add('active');
+            logMainEvent(`Activated section from hash: ${hash}`);
+            
+            // Update nav link active status
+            navLinks.forEach(link => {
+                if (link.getAttribute('data-section') === hash) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+        } else {
+            logMainEvent(`WARNING: Section with ID ${hash} not found!`);
+        }
+    }
+    
+    // Add click event listeners to navigation links
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            const sectionId = this.getAttribute('data-section');
+            logMainEvent(`Nav link clicked for section: ${sectionId}`);
+            
+            // Check if section exists
+            const targetSection = document.getElementById(sectionId);
+            if (!targetSection) {
+                logMainEvent(`ERROR: Section with ID ${sectionId} does not exist!`);
+                return;
+            }
+            
+            // Check if we're in single page mode
+            if (body.classList.contains('single-page-mode')) {
+                // In single page mode, scroll to the section
+                e.preventDefault();
+                
+                targetSection.scrollIntoView({ behavior: 'smooth' });
+                
+                // Update nav link active status
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                });
+                this.classList.add('active');
+                
+                logMainEvent(`Scrolled to section ${sectionId} in single page mode`);
+            } else {
+                // In multi-page mode, traditional navigation
+                e.preventDefault();
+                
+                // Update nav link active status
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                });
+                this.classList.add('active');
+                
+                // Hide all sections
+                sections.forEach(section => {
+                    section.classList.remove('active');
+                });
+                
+                // Show the target section
+                targetSection.classList.add('active');
+                
+                // Update URL hash
+                window.location.hash = sectionId;
+                
+                // Set animation order for elements
+                setAnimationOrder();
+                
+                logMainEvent(`Section ${sectionId} activated in multi-page mode`);
+            }
             
             // Close mobile menu if open
             const sidebar = document.querySelector('.sidebar');
@@ -70,73 +226,30 @@ if (!window.location.hash) {
             if (sidebar.classList.contains('open')) {
                 sidebar.classList.remove('open');
                 mobileToggle.classList.remove('open');
+                logMainEvent('Mobile menu closed after navigation');
             }
             
             // Track page view for analytics
             if (typeof trackPageView === 'function') {
                 trackPageView(sectionId);
+                logMainEvent(`Page view tracked for section: ${sectionId}`);
             }
-            
-            // Set animation order for elements
-            setAnimationOrder();
         });
     });
     
-    // Check if there's a hash in the URL and navigate to that section
-    if (window.location.hash) {
-        const hash = window.location.hash.substring(1);
-        const navLink = document.querySelector(`.nav-link[data-section="${hash}"]`);
-        if (navLink) {
-            navLink.click();
-        }
-    }
-}
-
-/**
- * Initialize mobile menu toggle
- */
-function initMobileMenu() {
-    const mobileToggle = document.getElementById('mobile-toggle');
-    const sidebar = document.querySelector('.sidebar');
-    const content = document.querySelector('.content');
-    const body = document.body;
-    
-    mobileToggle.addEventListener('click', function() {
-        sidebar.classList.toggle('open');
-        this.classList.toggle('open');
-
-        // Toggle single page mode for mobile
-        if (window.innerWidth <= 767) {
-            body.classList.toggle('single-page-mode');
-            
-            if (body.classList.contains('single-page-mode')) {
-                // Show all sections for scrolling
-                document.querySelectorAll('.section').forEach(section => {
-                    if (section.id !== 'stats' && section.id !== 'blog' && section.id !== 'games') {
-                        section.style.display = 'block';
-                        section.style.opacity = '1';
-                    }
-                });
-            } else {
-                // Reset to normal navigation
-                document.querySelectorAll('.section').forEach(section => {
-                    if (!section.classList.contains('active')) {
-                        section.style.display = 'none';
-                    }
-                });
-            }
+    // Listen for screen size changes
+    window.addEventListener('resize', function() {
+        const newIsMobile = window.innerWidth <= 767;
+        const currentIsInSinglePageMode = body.classList.contains('single-page-mode');
+        
+        // If mobile but not in single page mode, add the class
+        if (newIsMobile && !currentIsInSinglePageMode) {
+            body.classList.add('single-page-mode');
+            logMainEvent('Switched to single page mode on resize (mobile detected)');
         }
     });
     
-    // Close sidebar when clicking outside of it on mobile
-    document.addEventListener('click', function(e) {
-        if (window.innerWidth <= 767) {
-            if (!sidebar.contains(e.target) && !mobileToggle.contains(e.target) && sidebar.classList.contains('open')) {
-                sidebar.classList.remove('open');
-                mobileToggle.classList.remove('open');
-            }
-        }
-    });
+    logMainEvent('Navigation initialized');
 }
 
 /**
@@ -149,24 +262,28 @@ function initProjects() {
     
     filterButtons.forEach(button => {
         button.addEventListener('click', function() {
+            const filter = this.getAttribute('data-filter');
+            logMainEvent(`Project filter applied: ${filter}`);
+            
             // Remove active class from all buttons
             filterButtons.forEach(btn => btn.classList.remove('active'));
             
             // Add active class to clicked button
             this.classList.add('active');
             
-            // Get the filter value
-            const filter = this.getAttribute('data-filter');
-            
             // Filter projects
+            let visibleCount = 0;
             projectCards.forEach(card => {
                 const categories = card.getAttribute('data-category').split(' ');
                 if (filter === 'all' || categories.includes(filter)) {
                     card.style.display = 'block';
+                    visibleCount++;
                 } else {
                     card.style.display = 'none';
                 }
             });
+            
+            logMainEvent(`${visibleCount} projects visible after filtering`);
             
             // Reset animation order
             setAnimationOrder();
@@ -221,6 +338,8 @@ function initProjects() {
     viewDetailsButtons.forEach(button => {
         button.addEventListener('click', function() {
             const projectTitle = this.parentElement.querySelector('h3').textContent;
+            logMainEvent(`Project details opened for: ${projectTitle}`);
+            
             const project = projectData[projectTitle];
             
             if (project) {
@@ -251,6 +370,7 @@ function initProjects() {
     closeModal.addEventListener('click', function() {
         modal.style.display = 'none';
         document.body.style.overflow = 'auto'; // Re-enable scrolling
+        logMainEvent('Project modal closed');
     });
     
     // Close modal when clicking outside of it
@@ -258,8 +378,11 @@ function initProjects() {
         if (e.target === modal) {
             modal.style.display = 'none';
             document.body.style.overflow = 'auto'; // Re-enable scrolling
+            logMainEvent('Project modal closed (clicked outside)');
         }
     });
+    
+    logMainEvent('Projects functionality initialized');
 }
 
 /**
@@ -277,11 +400,13 @@ function initResume() {
             if (resumeIframe.src === '') {
                 e.preventDefault();
                 resumeIframe.src = this.href;
+                logMainEvent(`Resume iframe loaded: ${this.href}`);
             }
             
             // Track resume view for analytics
             if (typeof trackResumeView === 'function') {
                 trackResumeView('view');
+                logMainEvent('Resume view tracked');
             }
         });
     }
@@ -291,9 +416,12 @@ function initResume() {
         downloadResumeBtn.addEventListener('click', function() {
             if (typeof trackResumeView === 'function') {
                 trackResumeView('download');
+                logMainEvent('Resume download tracked');
             }
         });
     }
+    
+    logMainEvent('Resume functionality initialized');
 }
 
 /**
@@ -329,21 +457,10 @@ function setAnimationOrder() {
     blogCards.forEach((card, index) => {
         card.style.setProperty('--animation-order', index);
     });
+    
+    logMainEvent('Animation order set for all elements');
 }
 
-/**
- * Handle window resize events
- */
-window.addEventListener('resize', function() {
-    // Check if we're switching between mobile and desktop view
-    const sidebar = document.querySelector('.sidebar');
-    const mobileToggle = document.getElementById('mobile-toggle');
-    
-    if (window.innerWidth > 767 && sidebar.classList.contains('open')) {
-        sidebar.classList.remove('open');
-        mobileToggle.classList.remove('open');
-    }
-});
 /**
  * Initialize skill tooltips
  */
@@ -354,8 +471,12 @@ function initSkillTooltips() {
         const skillBar = item.querySelector('.skill-bar');
         const skillProgress = item.querySelector('.skill-progress');
         
+        if (!skillBar || !skillProgress) return;
+        
         // Get percentage from width style
         const progressStyle = skillProgress.style.width;
+        if (!progressStyle) return;
+        
         const progressPercentage = parseInt(progressStyle);
         
         // Determine skill level based on percentage
@@ -380,6 +501,8 @@ function initSkillTooltips() {
         // Insert tooltip after the skill bar
         skillBar.insertAdjacentElement('afterend', tooltip);
     });
+    
+    logMainEvent('Skill tooltips initialized');
 }
 
 /**
@@ -392,14 +515,14 @@ function initResumeTabs() {
     if (resumeTabs.length > 0) {
         resumeTabs.forEach(tab => {
             tab.addEventListener('click', function() {
+                const resumeType = this.getAttribute('data-resume');
+                logMainEvent(`Resume tab selected: ${resumeType}`);
+                
                 // Remove active class from all tabs
                 resumeTabs.forEach(t => t.classList.remove('active'));
                 
                 // Add active class to clicked tab
                 this.classList.add('active');
-                
-                // Get resume type
-                const resumeType = this.getAttribute('data-resume');
                 
                 // Hide all resume contents
                 resumeContents.forEach(content => {
@@ -407,8 +530,80 @@ function initResumeTabs() {
                 });
                 
                 // Show selected resume content
-                document.getElementById(`${resumeType}-resume`).classList.add('active');
+                const targetContent = document.getElementById(`${resumeType}-resume`);
+                if (targetContent) {
+                    targetContent.classList.add('active');
+                } else {
+                    logMainEvent(`ERROR: Resume content with ID ${resumeType}-resume not found!`);
+                }
             });
         });
     }
+    
+    logMainEvent('Resume tabs initialized');
 }
+
+/**
+ * Log performance statistics
+ */
+function logPerformanceStats() {
+    // GPU info detection
+    try {
+        const canvas = document.createElement('canvas');
+        const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+        
+        if (gl) {
+            const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
+            
+            if (debugInfo) {
+                const renderer = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
+                logMainEvent(`GPU detected: ${renderer}`);
+                
+                // Check if RTX 3050 is detected
+                if (renderer.includes('RTX') && renderer.includes('3050')) {
+                    logMainEvent('RTX 3050 GPU detected - Will use GPU acceleration when available');
+                }
+            }
+        }
+    } catch (e) {
+        logMainEvent(`Error detecting GPU: ${e.message}`);
+    }
+    
+    // Log navigation timing
+    if (window.performance && window.performance.timing) {
+        const timing = window.performance.timing;
+        const navigationStart = timing.navigationStart;
+        
+        const loadTime = timing.loadEventEnd - navigationStart;
+        logMainEvent(`Page load time: ${loadTime}ms`);
+        
+        // Log DOMContentLoaded time
+        const domContentLoadedTime = timing.domContentLoadedEventEnd - navigationStart;
+        logMainEvent(`DOM Content Loaded time: ${domContentLoadedTime}ms`);
+    }
+    
+    // Log hardware concurrency (CPU cores)
+    if (navigator.hardwareConcurrency) {
+        logMainEvent(`CPU cores available: ${navigator.hardwareConcurrency}`);
+        
+        // Check if i7-12650H is likely being used
+        if (navigator.hardwareConcurrency >= 10) {
+            logMainEvent('High core count detected - likely i7-12650H or similar - Will use multi-threading when available');
+        }
+    }
+    
+    // Log memory info if available
+    if (navigator.deviceMemory) {
+        logMainEvent(`Device memory: ${navigator.deviceMemory}GB`);
+        
+        // Check if high memory is available
+        if (navigator.deviceMemory >= 8) {
+            logMainEvent('High memory detected - Will optimize for memory usage');
+        }
+    }
+}
+
+// Make functions globally accessible
+window.initPortfolio = initPortfolio;
+window.setAnimationOrder = setAnimationOrder;
+window.logPerformanceStats = logPerformanceStats;

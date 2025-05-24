@@ -1,0 +1,182 @@
+/* 
+ * Smooth Transitions CSS for Abhijeet's Portfolio Website
+ * Enhanced animations and smooth transitions
+ */
+
+/* Base transitions for all elements */
+.transition-element {
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Improved sidebar transitions */
+.sidebar {
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+              width 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              height 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              background-color 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Smooth transitions for content area */
+.content {
+  transition: margin-left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              width 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              padding-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Smooth transitions for sections */
+.section {
+  transition: opacity 0.5s ease, 
+              transform 0.5s ease,
+              padding 0.3s ease,
+              display 0.3s ease;
+}
+
+/* Enhanced hamburger animation */
+.mobile-toggle span {
+  transition: transform 0.3s ease, 
+              opacity 0.3s ease,
+              background-color 0.3s ease;
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px 0;
+}
+
+.mobile-toggle.open span:nth-child(1) {
+  transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.mobile-toggle.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-toggle.open span:nth-child(3) {
+  transform: rotate(45deg) translate(-5px, -6px);
+}
+
+/* Single page transitions */
+.single-page-mode .sidebar {
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.single-page-mode .sidebar-header,
+.single-page-mode .sidebar-nav,
+.single-page-mode .sidebar-nav ul,
+.single-page-mode .sidebar-footer {
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Smooth transitions for nav links */
+.nav-link {
+  transition: all 0.3s ease;
+}
+
+/* Profile container transitions */
+.profile-pic-container {
+  transition: width 0.4s ease,
+              height 0.4s ease,
+              margin 0.4s ease,
+              border-width 0.4s ease;
+}
+
+/* Section animations */
+.section.active {
+  animation: fadeInUp 0.5s forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Enhanced fade in for single page mode sections */
+.single-page-mode .section {
+  animation: none;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Smooth scrolling for the whole page */
+html {
+  scroll-behavior: smooth;
+}
+
+.single-page-mode .content {
+  scroll-behavior: smooth;
+}
+
+/* Enhanced focus effects for accessibility */
+button:focus, a:focus, input:focus, textarea:focus {
+  transition: box-shadow 0.3s ease;
+}
+
+/* Mobile-specific transitions */
+@media (max-width: 767px) {
+  .sidebar.open {
+    transition: height 0.4s ease, 
+                backdrop-filter 0.4s ease,
+                background-color 0.4s ease;
+  }
+  
+  .sidebar-nav {
+    transition: opacity 0.3s ease, 
+                display 0.1s ease;
+  }
+  
+  .sidebar.open .sidebar-nav {
+    animation: fadeIn 0.4s forwards;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+}
+
+/* Enhanced transition for single page mode on larger screens */
+@media (min-width: 768px) {
+  .single-page-mode .sidebar {
+    transition: width 0.5s ease,
+                height 0.5s ease,
+                position 0.5s ease,
+                flex-direction 0.5s ease;
+  }
+  
+  .single-page-mode .sidebar-header {
+    transition: flex-direction 0.4s ease,
+                width 0.4s ease,
+                margin 0.4s ease;
+  }
+  
+  .single-page-mode .sidebar-nav {
+    transition: display 0.4s ease,
+                flex 0.4s ease,
+                padding 0.4s ease;
+  }
+  
+  .single-page-mode .nav-link {
+    transition: padding 0.3s ease,
+                margin 0.3s ease;
+  }
+  
+  .single-page-mode .content {
+    transition: margin-left 0.5s ease,
+                padding-top 0.5s ease;
+  }
+}
+
+/* Smooth entrance for theme toggle */
+.theme-toggle {
+  transition: margin 0.3s ease,
+              position 0.4s ease,
+              right 0.4s ease,
+              top 0.4s ease;
+}
