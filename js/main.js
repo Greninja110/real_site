@@ -39,7 +39,10 @@ function initPortfolio() {
  */
 function initNavigation() {
     const navLinks = document.querySelectorAll('.nav-link');
-    
+    // Show the first section by default
+if (!window.location.hash) {
+    document.getElementById('home').classList.add('active');
+}
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();

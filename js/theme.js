@@ -3,7 +3,7 @@
  * Handles theme toggling between light and dark modes
  */
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Initialize theme functionality
     initTheme();
 });
@@ -14,14 +14,14 @@ document.addEventListener('DOMContentLoaded', function() {
 function initTheme() {
     const themeToggle = document.getElementById('theme-toggle');
     const themeLabel = document.getElementById('theme-label');
-    
+
     // Check if user has previously selected a theme
     const savedTheme = localStorage.getItem('theme');
-    
+
     if (savedTheme) {
         // Apply saved theme
         document.body.className = savedTheme;
-        
+
         // Update toggle button state
         if (savedTheme === 'light-theme') {
             themeToggle.checked = true;
@@ -31,9 +31,16 @@ function initTheme() {
             themeLabel.textContent = 'Dark Mode';
         }
     }
-    
+    else {
+        // Set dark theme as default
+        document.body.className = 'dark-theme';
+        themeToggle.checked = false;
+        themeLabel.textContent = 'Dark Mode';
+        localStorage.setItem('theme', 'dark-theme');
+    }
+
     // Add event listener to toggle button
-    themeToggle.addEventListener('change', function() {
+    themeToggle.addEventListener('change', function () {
         toggleTheme();
     });
 }
@@ -44,7 +51,7 @@ function initTheme() {
 function toggleTheme() {
     const themeToggle = document.getElementById('theme-toggle');
     const themeLabel = document.getElementById('theme-label');
-    
+
     if (themeToggle.checked) {
         // Switch to light theme
         document.body.className = 'light-theme';
@@ -56,7 +63,7 @@ function toggleTheme() {
         themeLabel.textContent = 'Dark Mode';
         localStorage.setItem('theme', 'dark-theme');
     }
-    
+
     // Update chart colors if charts exist
     updateChartColors();
 }
@@ -68,18 +75,18 @@ function updateChartColors() {
     // Check if Chart.js is loaded and charts exist
     if (typeof Chart !== 'undefined') {
         const isDarkTheme = document.body.classList.contains('dark-theme');
-        
+
         // Define colors based on theme
         const textColor = isDarkTheme ? '#e0e0e0' : '#333333';
         const gridColor = isDarkTheme ? '#333333' : '#ddd';
-        
+
         // Update global chart options
         Chart.defaults.color = textColor;
         Chart.defaults.scale.grid.color = gridColor;
-        
+
         // Get all charts
         const charts = Object.values(Chart.instances);
-        
+
         // Update each chart
         charts.forEach(chart => {
             // Update chart scales
@@ -89,12 +96,12 @@ function updateChartColors() {
                     scale.ticks.color = textColor;
                 });
             }
-            
+
             // Update chart legend
             if (chart.options.plugins && chart.options.plugins.legend) {
                 chart.options.plugins.legend.labels.color = textColor;
             }
-            
+
             // Update the chart
             chart.update();
         });
@@ -115,7 +122,7 @@ function getCurrentTheme() {
  */
 function getThemeColors() {
     const isDarkTheme = document.body.classList.contains('dark-theme');
-    
+
     return {
         primary: isDarkTheme ? '#6c8bff' : '#4361ee',
         secondary: isDarkTheme ? '#a0a0a0' : '#6c757d',
