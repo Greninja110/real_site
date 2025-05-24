@@ -20,6 +20,9 @@ function initPortfolio() {
     
     // Mobile menu toggle
     initMobileMenu();
+
+    // Initialize resume tabs
+    initResumeTabs();
     
     // Resume functionality
     initResume();
@@ -374,4 +377,35 @@ function initSkillTooltips() {
         // Insert tooltip after the skill bar
         skillBar.insertAdjacentElement('afterend', tooltip);
     });
+}
+
+/**
+ * Initialize resume tabs functionality
+ */
+function initResumeTabs() {
+    const resumeTabs = document.querySelectorAll('.resume-tab');
+    const resumeContents = document.querySelectorAll('.resume-content');
+    
+    if (resumeTabs.length > 0) {
+        resumeTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                // Remove active class from all tabs
+                resumeTabs.forEach(t => t.classList.remove('active'));
+                
+                // Add active class to clicked tab
+                this.classList.add('active');
+                
+                // Get resume type
+                const resumeType = this.getAttribute('data-resume');
+                
+                // Hide all resume contents
+                resumeContents.forEach(content => {
+                    content.classList.remove('active');
+                });
+                
+                // Show selected resume content
+                document.getElementById(`${resumeType}-resume`).classList.add('active');
+            });
+        });
+    }
 }

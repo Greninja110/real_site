@@ -15,9 +15,6 @@
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="css/themes.css">
     <link rel="stylesheet" href="css/responsive.css">
-    <link rel="stylesheet" href="css/games.css">
-    <link rel="stylesheet" href="css/tic-tac-toe.css">
-    <link rel="stylesheet" href="css/blog.css">
     <link rel="stylesheet" href="css/custom-timeline.css">
     <link rel="stylesheet" href="css/modern-style.css">
     <link rel="stylesheet" href="css/smooth-transitions.css">
@@ -59,16 +56,14 @@
                     </li>
                     <li><a href="#projects" class="nav-link" data-section="projects"><i class="fas fa-code-branch"></i>
                             Projects</a></li>
-                    <!-- <li><a href="#blog" class="nav-link" data-section="blog"><i class="fas fa-blog"></i> Blog</a></li>
-                    <li><a href="#games" class="nav-link" data-section="games"><i class="fas fa-gamepad"></i> Games</a>
-                    </li> -->
                     <li><a href="#Timeline" class="nav-link" data-section="Timeline"><i class="fas fa-trophy"></i>
                             Timeline</a></li>
-                    <!-- <li><a href="#stats" class="nav-link" data-section="stats"><i class="fas fa-chart-bar"></i>
-                            Stats</a></li> -->
-                    <!-- <li><a href="#resume" class="nav-link" data-section="resume"><i class="fas fa-file-alt"></i> Resume</a></li> -->
+                    <li><a href="#achievements" class="nav-link" data-section="achievements"><i
+                                class="fas fa-award"></i> Achievements</a></li>
+                    <li><a href="#resume" class="nav-link" data-section="resume"><i class="fas fa-file-alt"></i>
+                            Resume</a></li>
                     <li><a href="#contact" class="nav-link" data-section="contact"><i class="fas fa-envelope"></i>
-                            Resume & Contact</a></li>
+                            Contact</a></li>
                 </ul>
             </nav>
 
@@ -80,21 +75,11 @@
                     </label>
                     <span id="theme-label">Dark Mode</span>
                 </div>
-                <div class="social-links">
-                    <a href="https://linkedin.com/in/" target="_blank" aria-label="LinkedIn"><i
-                            class="fab fa-linkedin"></i></a>
-                    <a href="https://x.com/abhi__253__162" target="_blank" aria-label="Twitter"><i
-                            class="fab fa-twitter"></i></a>
-                    <!-- <a href="https://instagram.com/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a> -->
-                </div>
             </div>
         </aside>
 
         <!-- Main Content Area -->
         <main class="content">
-            <!-- Skip to content for accessibility -->
-            <!-- <a href="#content" class="skip-link">Skip to content</a> -->
-
             <!-- Home/About Section -->
             <section id="home" class="section active">
                 <div class="about-container">
@@ -112,67 +97,159 @@
                         <div class="section-title">
                             <h2>About Me</h2>
                         </div>
-                        <p>Hello! I'm Abhijeet , Python/AIML developer with a passion for problem-solving. Combines deep
-                            analytical thinking with Django expertise to create innovative web solutions. Flexible team
+                        <p>Hello! I'm Abhijeet, Python/AIML developer with a passion for problem-solving. I combine deep
+                            analytical thinking with Django expertise to create innovative web solutions. I'm a flexible team
                             player exploring cybersecurity and IoT frontiers. My calm, patient approach and technical
-                            curiosity drive me to transform complex challenges into elegant solutions. Computer
+                            curiosity drive me to transform complex challenges into elegant solutions. I'm a computer
                             enthusiast who brings quiet dedication and continuous learning to every project.</p>
-                        <!-- Resume section -->
-                        <div class="resume-container">
-                            <h3 class="resume-title"><i class="fas fa-file-alt"></i> My Resume</h3>
-                            <div class="resume-buttons">
-                                <a href="assets/resume.pdf" target="_blank" class="view-resume-btn">
-                                    <i class="fas fa-eye"></i> View Resume
-                                </a>
-                                <a href="assets/resume.pdf" download class="download-resume-btn">
-                                    <i class="fas fa-download"></i> Download Resume
-                                </a>
-                            </div>
-                        </div>
 
+                        <!-- Skills container with categories -->
                         <div class="skills-container">
                             <h3>My Skills</h3>
-                            <div class="skills-grid">
-                                <div class="skill-item">
-                                    <div class="skill-name">AIML</div>
-                                    <div class="skill-bar">
-                                        <div class="skill-progress" style="width: 40%"></div>
+
+                            <!-- AIML Skills -->
+                            <div class="skills-category">
+                                <h4>AI/ML Skills</h4>
+                                <div class="skills-grid">
+                                    <div class="skill-item">
+                                        <div class="skill-name">Python</div>
+                                        <div class="skill-bar">
+                                            <div class="skill-progress" style="width: 80%"></div>
+                                        </div>
+                                        <div class="skill-tooltip">80% - Advanced</div>
+                                    </div>
+                                    <div class="skill-item">
+                                        <div class="skill-name">Machine Learning</div>
+                                        <div class="skill-bar">
+                                            <div class="skill-progress" style="width: 70%"></div>
+                                        </div>
+                                        <div class="skill-tooltip">70% - Advanced</div>
+                                    </div>
+                                    <div class="skill-item">
+                                        <div class="skill-name">Deep Learning</div>
+                                        <div class="skill-bar">
+                                            <div class="skill-progress" style="width: 60%"></div>
+                                        </div>
+                                        <div class="skill-tooltip">60% - Intermediate</div>
+                                    </div>
+                                    <div class="skill-item">
+                                        <div class="skill-name">NLP</div>
+                                        <div class="skill-bar">
+                                            <div class="skill-progress" style="width: 50%"></div>
+                                        </div>
+                                        <div class="skill-tooltip">50% - Intermediate</div>
+                                    </div>
+                                    <div class="skill-item">
+                                        <div class="skill-name">Computer Vision</div>
+                                        <div class="skill-bar">
+                                            <div class="skill-progress" style="width: 65%"></div>
+                                        </div>
+                                        <div class="skill-tooltip">65% - Advanced</div>
                                     </div>
                                 </div>
-                                <div class="skill-item">
-                                    <div class="skill-name">Web Development</div>
-                                    <div class="skill-bar">
-                                        <div class="skill-progress" style="width: 40%"></div>
+                            </div>
+
+                            <!-- Cybersecurity Skills -->
+                            <div class="skills-category">
+                                <h4>Cybersecurity Skills</h4>
+                                <div class="skills-grid">
+                                    <div class="skill-item">
+                                        <div class="skill-name">Network Security</div>
+                                        <div class="skill-bar">
+                                            <div class="skill-progress" style="width: 65%"></div>
+                                        </div>
+                                        <div class="skill-tooltip">65% - Advanced</div>
+                                    </div>
+                                    <div class="skill-item">
+                                        <div class="skill-name">Penetration Testing</div>
+                                        <div class="skill-bar">
+                                            <div class="skill-progress" style="width: 40%"></div>
+                                        </div>
+                                        <div class="skill-tooltip">40% - Intermediate</div>
+                                    </div>
+                                    <div class="skill-item">
+                                        <div class="skill-name">Security Tools</div>
+                                        <div class="skill-bar">
+                                            <div class="skill-progress" style="width: 55%"></div>
+                                        </div>
+                                        <div class="skill-tooltip">55% - Intermediate</div>
+                                    </div>
+                                    <div class="skill-item">
+                                        <div class="skill-name">OWASP Top 10</div>
+                                        <div class="skill-bar">
+                                            <div class="skill-progress" style="width: 60%"></div>
+                                        </div>
+                                        <div class="skill-tooltip">60% - Intermediate</div>
                                     </div>
                                 </div>
-                                <div class="skill-item">
-                                    <div class="skill-name">App Development</div>
-                                    <div class="skill-bar">
-                                        <div class="skill-progress" style="width: 5%"></div>
+                            </div>
+
+                            <!-- Web Dev Skills -->
+                            <div class="skills-category">
+                                <h4>Web Development Skills</h4>
+                                <div class="skills-grid">
+                                    <div class="skill-item">
+                                        <div class="skill-name">HTML/CSS</div>
+                                        <div class="skill-bar">
+                                            <div class="skill-progress" style="width: 85%"></div>
+                                        </div>
+                                        <div class="skill-tooltip">85% - Advanced</div>
+                                    </div>
+                                    <div class="skill-item">
+                                        <div class="skill-name">JavaScript</div>
+                                        <div class="skill-bar">
+                                            <div class="skill-progress" style="width: 70%"></div>
+                                        </div>
+                                        <div class="skill-tooltip">70% - Advanced</div>
+                                    </div>
+                                    <div class="skill-item">
+                                        <div class="skill-name">Django</div>
+                                        <div class="skill-bar">
+                                            <div class="skill-progress" style="width: 75%"></div>
+                                        </div>
+                                        <div class="skill-tooltip">75% - Advanced</div>
+                                    </div>
+                                    <div class="skill-item">
+                                        <div class="skill-name">Flask</div>
+                                        <div class="skill-bar">
+                                            <div class="skill-progress" style="width: 65%"></div>
+                                        </div>
+                                        <div class="skill-tooltip">65% - Advanced</div>
+                                    </div>
+                                    <div class="skill-item">
+                                        <div class="skill-name">MongoDB</div>
+                                        <div class="skill-bar">
+                                            <div class="skill-progress" style="width: 60%"></div>
+                                        </div>
+                                        <div class="skill-tooltip">60% - Intermediate</div>
                                     </div>
                                 </div>
-                                <div class="skill-item">
-                                    <div class="skill-name">Cybersecurity</div>
-                                    <div class="skill-bar">
-                                        <div class="skill-progress" style="width: 15%"></div>
+                            </div>
+
+                            <!-- Soft Skills -->
+                            <div class="skills-category">
+                                <h4>Soft Skills</h4>
+                                <div class="skills-grid">
+                                    <div class="skill-item">
+                                        <div class="skill-name">Problem Solving</div>
+                                        <div class="skill-bar">
+                                            <div class="skill-progress" style="width: 90%"></div>
+                                        </div>
+                                        <div class="skill-tooltip">90% - Advanced</div>
                                     </div>
-                                </div>
-                                <div class="skill-item">
-                                    <div class="skill-name">Docker</div>
-                                    <div class="skill-bar">
-                                        <div class="skill-progress" style="width: 5%"></div>
+                                    <div class="skill-item">
+                                        <div class="skill-name">Analytical Thinking</div>
+                                        <div class="skill-bar">
+                                            <div class="skill-progress" style="width: 85%"></div>
+                                        </div>
+                                        <div class="skill-tooltip">85% - Advanced</div>
                                     </div>
-                                </div>
-                                <div class="skill-item">
-                                    <div class="skill-name">Blockchain</div>
-                                    <div class="skill-bar">
-                                        <div class="skill-progress" style="width: 5%"></div>
-                                    </div>
-                                </div>
-                                <div class="skill-item">
-                                    <div class="skill-name">Django</div>
-                                    <div class="skill-bar">
-                                        <div class="skill-progress" style="width: 25%"></div>
+                                    <div class="skill-item">
+                                        <div class="skill-name">Team Player</div>
+                                        <div class="skill-bar">
+                                            <div class="skill-progress" style="width: 80%"></div>
+                                        </div>
+                                        <div class="skill-tooltip">80% - Advanced</div>
                                     </div>
                                 </div>
                             </div>
@@ -215,8 +292,6 @@
                     <button class="filter-btn" data-filter="webdev">Web Dev</button>
                     <button class="filter-btn" data-filter="appdev">App Dev</button>
                     <button class="filter-btn" data-filter="cybersecurity">Cybersecurity</button>
-                    <!-- <button class="filter-btn" data-filter="docker">Docker</button> -->
-                    <!-- <button class="filter-btn" data-filter="blockchain">Blockchain</button> -->
                 </div>
 
                 <div class="projects-grid">
@@ -305,166 +380,6 @@
                 </div>
             </section>
 
-            <!-- Blog Section -->
-            <section id="blog" class="section">
-                <div class="section-title">
-                    <h2>My Blog</h2>
-                </div>
-
-                <div class="blog-description">
-                    <p>Welcome to my blog where I share my thoughts, insights, and learnings on various topics in
-                        technology and development.</p>
-                </div>
-
-                <div class="blog-filters">
-                    <button class="blog-filter-btn active" data-filter="all">All Posts</button>
-                    <button class="blog-filter-btn" data-filter="aiml">AI/ML</button>
-                    <!-- <button class="blog-filter-btn" data-filter="webdev">Web Dev</button> -->
-                    <!-- <button class="blog-filter-btn" data-filter="tutorial">Tutorials</button> -->
-                </div>
-
-                <div class="blog-posts">
-                    <!-- Blog Post 1 -->
-                    <div class="blog-card" data-category="aiml">
-                        <div class="blog-card-image">
-                            <img src="/assets/images/blog/knn.png" alt="Understanding Neural Networks">
-                        </div>
-                        <div class="blog-card-content">
-                            <div class="blog-card-date">March 15, 2023</div>
-                            <h3 class="blog-card-title">A Practical Guide to Parameter Tuning for KNN Using the Iris
-                                Dataset</h3>
-                            <p class="blog-card-excerpt">KNN is a fundamental algorithm in AI/ML, and in this post, I
-                                break down how to enhance its accuracy through parameter tuning.</p>
-                            <div class="blog-card-footer">
-                                <span class="blog-card-tag">AI/ML</span>
-                                <a href="blog/post1.html" class="read-more-btn">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Blog Post 2 -->
-                    <div class="blog-card" data-category="aiml">
-                        <div class="blog-card-image">
-                            <img src="/assets/images/blog/dt.png" alt="Modern CSS Techniques">
-                        </div>
-                        <div class="blog-card-content">
-                            <div class="blog-card-date">February 28, 2023</div>
-                            <h3 class="blog-card-title">A Practical Guide to Parameter Tuning for Decision Tree Using
-                                the Iris Dataset</h3>
-                            <p class="blog-card-excerpt">Decision Tree is a fundamental algorithm in AI/ML, and in this
-                                post, I break down how to enhance its accuracy through parameter tuning.</p>
-                            <div class="blog-card-footer">
-                                <span class="blog-card-tag">AI/ML</span>
-                                <a href="blog/post2.html" class="read-more-btn">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Blog Post 3 -->
-                    <div class="blog-card" data-category="aiml">
-                        <div class="blog-card-image">
-                            <img src="/assets/images/blog/rf.png" alt="Building a Portfolio">
-                        </div>
-                        <div class="blog-card-content">
-                            <div class="blog-card-date">January 10, 2023</div>
-                            <h3 class="blog-card-title">A Practical Guide to Parameter Tuning for Random Forests Using
-                                the Iris Dataset</h3>
-                            <p class="blog-card-excerpt">Random Forests is a fundamental algorithm in AI/ML, and in this
-                                post, I break down how to enhance its accuracy through parameter tuning.</p>
-                            <div class="blog-card-footer">
-                                <span class="blog-card-tag">AI/ML</span>
-                                <a href="blog/post3.html" class="read-more-btn">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="view-all-container">
-                    <a href="blog/index.html" class="view-all-btn">View All Posts</a>
-                </div>
-            </section>
-
-            <!-- Games Section -->
-            <section id="games" class="section">
-                <div class="section-title">
-                    <h2>Interactive Games</h2>
-                </div>
-                <div class="games-container">
-                    <div class="games-grid">
-                        <div class="game-card" data-game="tic-tac-toe">
-                            <div class="game-icon">
-                                <i class="fas fa-th-large"></i>
-                            </div>
-                            <h3>Tic-Tac-Toe</h3>
-                            <p>Classic game of X's and O's.</p>
-                            <button class="play-game-btn">Play</button>
-                        </div>
-
-                        <div class="game-card" data-game="tetris">
-                            <div class="game-icon">
-                                <i class="fas fa-th"></i>
-                            </div>
-                            <h3>Tetris</h3>
-                            <p>Stack and clear lines of blocks.</p>
-                            <button class="play-game-btn">Play</button>
-                        </div>
-
-                        <div class="game-card" data-game="snake">
-                            <div class="game-icon">
-                                <i class="fas fa-long-arrow-alt-right"></i>
-                            </div>
-                            <h3>Snake</h3>
-                            <p>Grow your snake by eating food.</p>
-                            <button class="play-game-btn">Play</button>
-                        </div>
-
-                        <div class="game-card" data-game="flappy-bird">
-                            <div class="game-icon">
-                                <i class="fas fa-dove"></i>
-                            </div>
-                            <h3>Flappy Bird</h3>
-                            <p>Navigate through pipes without crashing.</p>
-                            <button class="play-game-btn">Play</button>
-                        </div>
-
-                        <div class="game-card" data-game="tower-building">
-                            <div class="game-icon">
-                                <i class="fas fa-building"></i>
-                            </div>
-                            <h3>Tower Building</h3>
-                            <p>Stack blocks to build the tallest tower.</p>
-                            <button class="play-game-btn">Play</button>
-                        </div>
-
-                        <div class="game-card" data-game="puzzle">
-                            <div class="game-icon">
-                                <i class="fas fa-puzzle-piece"></i>
-                            </div>
-                            <h3>8-Puzzle</h3>
-                            <p>Slide tiles to solve the puzzle.</p>
-                            <button class="play-game-btn">Play</button>
-                        </div>
-                    </div>
-
-                    <!-- Game Area -->
-                    <div id="game-area" class="game-area hidden">
-                        <div class="game-header">
-                            <h3 id="current-game-title">Game Title</h3>
-                            <button id="close-game" class="close-game">&times;</button>
-                        </div>
-                        <div id="game-container" class="game-container"></div>
-                        <div class="game-controls">
-                            <div id="game-score" class="game-score">Score: 0</div>
-                            <button id="restart-game" class="restart-game">Restart</button>
-                        </div>
-                        <div id="leaderboard" class="leaderboard">
-                            <h4>Leaderboard</h4>
-                            <ul id="leaderboard-list"></ul>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
             <!-- Timeline Section with proper structure -->
             <section id="Timeline" class="section">
                 <div class="section-title">
@@ -493,7 +408,6 @@
                                     <h3 class="timeline-title">Passed Out 10th Class</h3>
                                     <p class="timeline-description">Completed my Secondary Education from Bright Day
                                         School, CBSE, Vadodara.</p>
-                                    <!-- <a href="https://drive.google.com/file/d/1PqHFF_MclgEN8ZIPF77jhedDTtbwL4rb/view?usp=drive_link" target="_blank" class="timeline-btn">View Certificate</a> -->
                                 </div>
                             </div>
                         </div>
@@ -510,7 +424,6 @@
                                     <h3 class="timeline-title">Passed Out 12th Class</h3>
                                     <p class="timeline-description">Completed my Higher Secondary Education from Green
                                         Valley High School, CBSE, Vadodara.</p>
-                                    <!-- <a href="https://drive.google.com/file/d/16eQ7IpUtel-2KYdRNAW-oh79r_jaasGz/view?usp=drive_link" target="_blank" class="timeline-btn">View Certificate</a>-->
                                 </div>
                             </div>
 
@@ -523,41 +436,12 @@
                                 <div class="timeline-content">
                                     <h3 class="timeline-title">Joined MBIT</h3>
                                     <p class="timeline-description">Started my journey in Computer Science at MBIT.</p>
-                                    <!-- <a href="#" class="timeline-btn">Learn More</a> -->
                                 </div>
                             </div>
                         </div>
 
                         <!-- Year 2025 Section -->
                         <div id="timeline-year-2025" class="timeline-year-section">
-                            <!-- January 2025 - GATE CS Exam -->
-                            <!-- <div class="timeline-block" data-icon="picture" data-month="Jan" data-year="2025">
-                                <div class="timeline-date-marker">
-                                    <span class="month">Jan</span>
-                                    <span class="year">2025</span>
-                                </div>
-                                <div class="timeline-content">
-                                    <h3 class="timeline-title">GATE CS Exam</h3>
-                                    <p class="timeline-description">Appeared for the GATE Computer Science examination.
-                                    </p>
-                                    <a href="#" class="timeline-btn">View Results</a>
-                                </div>
-                            </div> -->
-
-                            <!-- February 2025 - GATE DSAI Exam -->
-                            <!-- <div class="timeline-block" data-icon="picture" data-month="Feb" data-year="2025">
-                                <div class="timeline-date-marker">
-                                    <span class="month">Feb</span>
-                                    <span class="year">2025</span>
-                                </div>
-                                <div class="timeline-content">
-                                    <h3 class="timeline-title">GATE DSAI Exam</h3>
-                                    <p class="timeline-description">Appeared for the GATE Data Science and Artificial
-                                        Intelligence examination.</p>
-                                    <a href="#" class="timeline-btn">View Results</a>
-                                </div>
-                            </div> -->
-
                             <!-- February 2025 - Django Attendance System -->
                             <div class="timeline-block" data-icon="movie" data-month="Feb" data-year="2025">
                                 <div class="timeline-date-marker">
@@ -677,7 +561,40 @@
                     </div>
                 </div>
             </section>
-            <!-- Stats Section -->
+
+            <!-- Achievements Section -->
+            <section id="achievements" class="section">
+                <div class="section-title">
+                    <h2>Achievements</h2>
+                </div>
+                <div class="achievements-container">
+                    <div class="achievement-card">
+                        <div class="achievement-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="achievement-content">
+                            <h3>IEEE Ideathon Winner 2025</h3>
+                            <p>Recognized for innovative solution development</p>
+                            <a href="https://drive.google.com/file/d/1BmrIX761PlFf_DfQPqQARqE5hmuvk-pm/view?usp=drive_link"
+                                target="_blank" class="achievement-link">View Certificate</a>
+                        </div>
+                    </div>
+
+                    <div class="achievement-card">
+                        <div class="achievement-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div class="achievement-content">
+                            <h3>HackWithIndia Hackathon</h3>
+                            <p>Certificate of Participation</p>
+                            <a href="https://drive.google.com/file/d/1DsB1CKtlzOIPeaY4YKXQzpEvhFvaNAV4/view?usp=drive_link"
+                                target="_blank" class="achievement-link">View Certificate</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Stats Section (Hidden from regular users) -->
             <section id="stats" class="section">
                 <div class="section-title">
                     <h2>Statistics</h2>
@@ -697,13 +614,6 @@
                         </div>
 
                         <div class="stat-card">
-                            <h3>Game Statistics</h3>
-                            <div class="chart-container">
-                                <canvas id="gameStatsChart"></canvas>
-                            </div>
-                        </div>
-
-                        <div class="stat-card">
                             <h3>Visitors</h3>
                             <div class="chart-container">
                                 <canvas id="visitorsChart"></canvas>
@@ -713,26 +623,82 @@
                 </div>
             </section>
 
-            <!-- Contact and Resume Section -->
+            <!-- Resume Section -->
+            <section id="resume" class="section">
+                <div class="section-title">
+                    <h2>My Resumes</h2>
+                </div>
+
+                <div class="resume-tabs">
+                    <button class="resume-tab active" data-resume="aiml">AI/ML</button>
+                    <button class="resume-tab" data-resume="cybersecurity">Cybersecurity</button>
+                    <button class="resume-tab" data-resume="webdev">Web Development</button>
+                </div>
+
+                <div class="resume-content-container">
+                    <!-- AIML Resume -->
+                    <div class="resume-content active" id="aiml-resume">
+                        <div class="resume-preview">
+                            <iframe src="https://drive.google.com/file/d/1v1ufKIbYrmDD5AKqc0I2xe_tgbvkGAY4/preview"
+                                width="100%" height="500px"></iframe>
+                        </div>
+                        <div class="resume-actions">
+                            <a href="https://drive.google.com/file/d/1v1ufKIbYrmDD5AKqc0I2xe_tgbvkGAY4/view"
+                                target="_blank" class="view-resume-btn">
+                                <i class="fas fa-eye"></i> View Resume
+                            </a>
+                            <a href="https://drive.google.com/uc?export=download&id=1v1ufKIbYrmDD5AKqc0I2xe_tgbvkGAY4"
+                                class="download-resume-btn">
+                                <i class="fas fa-download"></i> Download Resume
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Cybersecurity Resume -->
+                    <div class="resume-content" id="cybersecurity-resume">
+                        <div class="resume-preview">
+                            <iframe src="https://drive.google.com/file/d/1fGKRbdPGASITAVuZmxvRLsbHx6nrC3N-/preview"
+                                width="100%" height="500px"></iframe>
+                        </div>
+                        <div class="resume-actions">
+                            <a href="https://drive.google.com/file/d/1fGKRbdPGASITAVuZmxvRLsbHx6nrC3N-/view"
+                                target="_blank" class="view-resume-btn">
+                                <i class="fas fa-eye"></i> View Resume
+                            </a>
+                            <a href="https://drive.google.com/uc?export=download&id=1fGKRbdPGASITAVuZmxvRLsbHx6nrC3N-"
+                                class="download-resume-btn">
+                                <i class="fas fa-download"></i> Download Resume
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Web Dev Resume -->
+                    <div class="resume-content" id="webdev-resume">
+                        <div class="resume-preview">
+                            <iframe src="https://drive.google.com/file/d/1D_27JzwtoLxy8qrcCFrhrlvpTt9y64G-/preview"
+                                width="100%" height="500px"></iframe>
+                        </div>
+                        <div class="resume-actions">
+                            <a href="https://drive.google.com/file/d/1D_27JzwtoLxy8qrcCFrhrlvpTt9y64G-/view"
+                                target="_blank" class="view-resume-btn">
+                                <i class="fas fa-eye"></i> View Resume
+                            </a>
+                            <a href="https://drive.google.com/uc?export=download&id=1D_27JzwtoLxy8qrcCFrhrlvpTt9y64G-"
+                                class="download-resume-btn">
+                                <i class="fas fa-download"></i> Download Resume
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
             <section id="contact" class="section">
                 <div class="section-title">
-                    <h2>Resume & Contact</h2>
+                    <h2>Contact</h2>
                 </div>
                 <div class="contact-container">
                     <div class="contact-info">
-                        <!-- Resume actions -->
-                        <div class="resume-section">
-                            <h3><i class="fas fa-file-alt"></i> My Resume</h3>
-                            <div class="resume-actions">
-                                <a href="assets/resume.pdf" target="_blank" class="view-resume-btn">
-                                    <i class="fas fa-eye"></i> View Resume
-                                </a>
-                                <a href="assets/resume.pdf" download class="download-resume-btn">
-                                    <i class="fas fa-download"></i> Download Resume
-                                </a>
-                            </div>
-                        </div>
-
                         <!-- Contact info -->
                         <div class="contact-item">
                             <i class="fas fa-envelope"></i>
@@ -748,17 +714,26 @@
                                 <p>Anand, India</p>
                             </div>
                         </div>
-                        <div class="social-media">
+                        
+                        <!-- Social Media Links -->
+                        <div class="social-media-links">
                             <h3>Connect With Me</h3>
-                            <div class="social-icons">
-                                <!-- <a href="https://instagram.com/" target="_blank" aria-label="Instagram">
-                        <i class="fab fa-instagram"></i> -->
-                                </a>
-                                <a href="https://linkedin.com/in/" target="_blank" aria-label="LinkedIn">
+                            <div class="social-grid">
+                                <a href="https://linkedin.com/in/" target="_blank" class="social-link">
                                     <i class="fab fa-linkedin"></i>
+                                    <span>LinkedIn</span>
                                 </a>
-                                <a href="https://x.com/abhi__253__162" target="_blank" aria-label="Twitter">
+                                <a href="https://x.com/abhi__253__162" target="_blank" class="social-link">
                                     <i class="fab fa-twitter"></i>
+                                    <span>Twitter</span>
+                                </a>
+                                <a href="https://github.com/Greninja110" target="_blank" class="social-link">
+                                    <i class="fab fa-github"></i>
+                                    <span>GitHub</span>
+                                </a>
+                                <a href="mailto:abhijeetsahoo245@gmail.com" class="social-link">
+                                    <i class="fas fa-envelope"></i>
+                                    <span>Email</span>
                                 </a>
                             </div>
                         </div>
@@ -798,6 +773,7 @@
             </section>
         </main>
     </div>
+
     <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
@@ -806,20 +782,15 @@
     <!-- Chart.js for statistics -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
 
-    <script src="js/mobile-nav.js"></script>
     <!-- Custom JavaScript -->
     <script src="js/preloader.js"></script>
     <script src="js/animation.js"></script>
     <script src="js/theme.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/mobile-nav.js"></script>
     <script src="js/analytics.js"></script>
-    <script src="js/blog.js"></script>
     <script src="js/timeline.js"></script>
     <script src="js/custom-timeline.js"></script>
-
-    <!-- Game Scripts -->
-    <script src="js/game-manager.js"></script>
-    <script src="js/tic-tac-toe.js"></script>
 </body>
 
 </html>
