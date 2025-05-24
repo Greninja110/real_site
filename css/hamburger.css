@@ -1,6 +1,6 @@
 /* 
- * Updated hamburger menu styles 
- * Add this to your CSS or include in an existing CSS file
+ * Hamburger menu styles for Abhijeet's Portfolio Website
+ * Maintains 3-line design even when clicked
  */
 
 /* Mobile toggle button */
@@ -20,6 +20,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    transition: background-color 0.3s ease;
 }
 
 /* The three lines */
@@ -41,18 +42,31 @@
     background-color: var(--dark-accent);
 }
 
-/* No transformation when open - keeping the three lines */
-.mobile-toggle.open span {
-    /* No transformation applied */
+/* Subtle animation when open - slight movement but keeping 3 lines */
+.mobile-toggle.open span:nth-child(1) {
+    transform: translateY(1px);
 }
 
-/* Optional: add a subtle indication that the menu is open */
-.mobile-toggle.open {
-    background-color: rgba(0, 0, 0, 0.05);
+.mobile-toggle.open span:nth-child(3) {
+    transform: translateY(-1px);
+}
+
+/* Background change when open */
+.light-theme .mobile-toggle.open {
+    background-color: rgba(67, 97, 238, 0.1);
 }
 
 .dark-theme .mobile-toggle.open {
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: rgba(108, 139, 255, 0.15);
+}
+
+/* Hover effect */
+.light-theme .mobile-toggle:hover {
+    background-color: rgba(67, 97, 238, 0.1);
+}
+
+.dark-theme .mobile-toggle:hover {
+    background-color: rgba(108, 139, 255, 0.15);
 }
 
 /* Mobile specific styles */

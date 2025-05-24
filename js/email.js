@@ -1,98 +1,31 @@
+/**
+ * Contact Form Handler for Abhijeet's Portfolio Website
+ * Handles form submission and provides logging capabilities
+ */
+
 document.addEventListener('DOMContentLoaded', function() {
-    const contactForm = document.getElementById('contact-form');
-    const formStatus = document.getElementById('form-status');
+    // Initialize form functionality
+    initContactForm();
     
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form data
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
-            
-            // Show loading state
-            const submitBtn = contactForm.querySelector('.submit-btn');
-            submitBtn.classList.add('loading');
-            formStatus.textContent = '';
-            formStatus.className = 'form-status';
-            
-            // Prepare form data
-            const formData = {
-                name: name,
-                email: email,
-                message: message
-            };
-            
-            // Send data using Email.js (you need to include Email.js script and configure it)
-            // For this example, we'll simulate a successful submission
-            
-            // Simulating server request with timeout
-            setTimeout(() => {
-                // Email.js would be implemented here with your specific configuration
-                // emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', formData)
-                //     .then(() => {
-                //         // Success
-                //     })
-                //     .catch((error) => {
-                //         // Error handling
-                //     });
-                
-                // For demo purposes, show success message
-                formStatus.textContent = 'Your message has been sent successfully!';
-                formStatus.className = 'form-status success';
-                
-                // Reset form
-                contactForm.reset();
-                
-                // Hide loading state
-                submitBtn.classList.remove('loading');
-            }, 1500);
-            
-            // Real implementation with Email.js
-            /*
-            emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', formData)
-                .then(function() {
-                    formStatus.textContent = 'Your message has been sent successfully!';
-                    formStatus.className = 'form-status success';
-                    contactForm.reset();
-                    submitBtn.classList.remove('loading');
-                }, function(error) {
-                    formStatus.textContent = 'Failed to send message. Please try again later.';
-                    formStatus.className = 'form-status error';
-                    console.error('Email.js error:', error);
-                    submitBtn.classList.remove('loading');
-                });
-            */
-        });
-    }
+    // Setup logger for debugging
+    setupLogger();
+    
+    console.log("Contact form handler initialized");
 });
 
 /**
- * Contact Form Handler using EmailJS
- * Add this to a new file js/contact-form.js
+ * Initialize contact form functionality
  */
-
-// Email.js configuration
-const EMAILJS_USER_ID = "YOUR_USER_ID"; // Replace with your actual User ID
-const EMAILJS_SERVICE_ID = "YOUR_SERVICE_ID"; // Replace with your actual Service ID
-const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID"; // Replace with your actual Template ID
-
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize EmailJS
-    if (typeof emailjs !== 'undefined') {
-        emailjs.init(EMAILJS_USER_ID);
-    } else {
-        console.error("EmailJS not loaded!");
-    }
-    
-    // Contact form submission handling
+function initContactForm() {
     const contactForm = document.getElementById('contact-form');
     const formStatus = document.getElementById('form-status');
     
     if (contactForm) {
+        console.log("Found contact form, setting up event listeners");
+        
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
+            console.log("Form submission initiated");
             
             // Get form data
             const name = document.getElementById('name').value;
@@ -103,6 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!name || !email || !message) {
                 formStatus.textContent = 'Please fill in all fields';
                 formStatus.className = 'form-status error';
+                console.error("Form validation failed: Missing fields");
                 return;
             }
             
@@ -111,12 +45,21 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!emailRegex.test(email)) {
                 formStatus.textContent = 'Please enter a valid email address';
                 formStatus.className = 'form-status error';
+                console.error("Form validation failed: Invalid email format");
                 return;
             }
             
             // Show loading state
             const submitBtn = contactForm.querySelector('.submit-btn');
             submitBtn.classList.add('loading');
+            const submitText = submitBtn.querySelector('.submit-text');
+            const submitLoader = submitBtn.querySelector('.submit-loader');
+            
+            if (submitText && submitLoader) {
+                submitText.style.display = 'none';
+                submitLoader.style.display = 'inline-block';
+            }
+            
             formStatus.textContent = '';
             formStatus.className = 'form-status';
             
@@ -127,133 +70,244 @@ document.addEventListener('DOMContentLoaded', function() {
                 message: message
             };
             
-            // Log to console for debugging
-            console.log('Sending form data:', formData);
+            console.log("Form data prepared:", formData);
             
-            // Check if EmailJS is available
-            if (typeof emailjs !== 'undefined') {
-                // Send using EmailJS
-                emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, formData)
-                    .then(function(response) {
-                        console.log('SUCCESS!', response.status, response.text);
-                        formStatus.textContent = 'Your message has been sent successfully!';
-                        formStatus.className = 'form-status success';
-                        contactForm.reset();
-                    }, function(error) {
-                        console.error('FAILED...', error);
-                        formStatus.textContent = 'Failed to send message. Please try again later.';
-                        formStatus.className = 'form-status error';
-                    })
-                    .finally(function() {
-                        submitBtn.classList.remove('loading');
-                    });
+            // Determine if we should use EmailJS or simulate a submission
+            if (typeof emailjs !== 'undefined' && emailjs.init && emailjs.send) {
+                // Use EmailJS for real submission
+                sendWithEmailJS(formData, submitBtn, formStatus);
             } else {
-                // Fallback for development/testing
-                console.log('EmailJS not available, simulating success');
-                
-                // Simulate server request with timeout
-                setTimeout(() => {
-                    formStatus.textContent = 'Your message has been sent successfully! (Simulated)';
-                    formStatus.className = 'form-status success';
-                    contactForm.reset();
-                    submitBtn.classList.remove('loading');
-                }, 1500);
+                // Simulate submission for testing/development
+                simulateFormSubmission(formData, submitBtn, formStatus);
             }
         });
+    } else {
+        console.warn("Contact form not found in the document");
     }
+}
+
+/**
+ * Send form data using EmailJS
+ * @param {Object} formData - The form data to send
+ * @param {HTMLElement} submitBtn - The submit button element
+ * @param {HTMLElement} formStatus - The form status element
+ */
+function sendWithEmailJS(formData, submitBtn, formStatus) {
+    // EmailJS configuration - replace with your actual IDs
+    const serviceID = "service_portfolio";
+    const templateID = "template_contact";
+    const userID = "user_your_emailjs_user_id";
     
-    // Add log file creation
-    function setupLogger() {
-        // Create a custom console logger that saves to a log file
-        const originalConsoleLog = console.log;
-        const originalConsoleError = console.error;
-        const originalConsoleWarn = console.warn;
-        const originalConsoleInfo = console.info;
-        
-        const logEntries = [];
-        
-        // Override console methods
-        console.log = function() {
-            const args = Array.from(arguments);
-            const message = args.map(arg => typeof arg === 'object' ? JSON.stringify(arg) : arg).join(' ');
-            logEntries.push(`[LOG] [${new Date().toISOString()}] ${message}`);
-            originalConsoleLog.apply(console, arguments);
-        };
-        
-        console.error = function() {
-            const args = Array.from(arguments);
-            const message = args.map(arg => typeof arg === 'object' ? JSON.stringify(arg) : arg).join(' ');
-            logEntries.push(`[ERROR] [${new Date().toISOString()}] ${message}`);
-            originalConsoleError.apply(console, arguments);
-        };
-        
-        console.warn = function() {
-            const args = Array.from(arguments);
-            const message = args.map(arg => typeof arg === 'object' ? JSON.stringify(arg) : arg).join(' ');
-            logEntries.push(`[WARN] [${new Date().toISOString()}] ${message}`);
-            originalConsoleWarn.apply(console, arguments);
-        };
-        
-        console.info = function() {
-            const args = Array.from(arguments);
-            const message = args.map(arg => typeof arg === 'object' ? JSON.stringify(arg) : arg).join(' ');
-            logEntries.push(`[INFO] [${new Date().toISOString()}] ${message}`);
-            originalConsoleInfo.apply(console, arguments);
-        };
-        
-        // Add download log function to window
-        window.downloadLog = function() {
-            const logContent = logEntries.join('\n');
-            const blob = new Blob([logContent], { type: 'text/plain' });
-            const url = URL.createObjectURL(blob);
-            
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `contact-form-log-${new Date().toISOString().split('T')[0]}.txt`;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-        };
-        
-        // Add a small download log button
-        const logBtn = document.createElement('button');
-        logBtn.textContent = 'Download Log';
-        logBtn.style.position = 'fixed';
-        logBtn.style.bottom = '10px';
-        logBtn.style.right = '10px';
-        logBtn.style.fontSize = '12px';
-        logBtn.style.padding = '5px 10px';
-        logBtn.style.background = '#333';
-        logBtn.style.color = '#fff';
-        logBtn.style.border = 'none';
-        logBtn.style.borderRadius = '3px';
-        logBtn.style.cursor = 'pointer';
-        logBtn.style.zIndex = '9999';
-        logBtn.style.opacity = '0.5';
-        logBtn.style.transition = 'opacity 0.3s';
-        
-        logBtn.addEventListener('mouseenter', () => {
-            logBtn.style.opacity = '1';
-        });
-        
-        logBtn.addEventListener('mouseleave', () => {
-            logBtn.style.opacity = '0.5';
-        });
-        
-        logBtn.addEventListener('click', window.downloadLog);
-        
-        // Only add in development mode or with a special flag
-        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.enableLogs) {
-            document.body.appendChild(logBtn);
+    console.log("Sending form data using EmailJS");
+    
+    // First check if EmailJS is initialized
+    if (!window.emailjsInitialized) {
+        try {
+            emailjs.init(userID);
+            window.emailjsInitialized = true;
+            console.log("EmailJS initialized");
+        } catch (error) {
+            console.error("Failed to initialize EmailJS:", error);
+            showError(submitBtn, formStatus, "Failed to initialize email service. Please try again later.");
+            return;
         }
     }
     
-    // Setup logger
-    setupLogger();
+    // Send the email
+    emailjs.send(serviceID, templateID, formData)
+        .then(function(response) {
+            console.log("SUCCESS!", response.status, response.text);
+            formStatus.textContent = 'Your message has been sent successfully!';
+            formStatus.className = 'form-status success';
+            document.getElementById('contact-form').reset();
+            resetSubmitButton(submitBtn);
+        })
+        .catch(function(error) {
+            console.error("FAILED...", error);
+            showError(submitBtn, formStatus, "Failed to send message. Please try again later.");
+        });
+}
+
+/**
+ * Simulate form submission for development/testing
+ * @param {Object} formData - The form data to send
+ * @param {HTMLElement} submitBtn - The submit button element
+ * @param {HTMLElement} formStatus - The form status element
+ */
+function simulateFormSubmission(formData, submitBtn, formStatus) {
+    console.log("Simulating form submission...");
     
-    // Log initial information
-    console.log('Contact form handler initialized');
-    console.log('Browser information:', navigator.userAgent);
-    console.log('Screen resolution:', window.innerWidth, 'x', window.innerHeight);
-});
+    // Simulate server request with timeout
+    setTimeout(() => {
+        // Log the data that would be sent
+        console.log("Form would be submitted with data:", JSON.stringify(formData, null, 2));
+        
+        // Simulate success
+        formStatus.textContent = 'Your message has been sent successfully! (Simulated)';
+        formStatus.className = 'form-status success';
+        
+        // Reset form
+        document.getElementById('contact-form').reset();
+        
+        // Reset submit button
+        resetSubmitButton(submitBtn);
+        
+        console.log("Form submission simulation completed successfully");
+    }, 1500); // 1.5 seconds delay to simulate server processing
+}
+
+/**
+ * Reset submit button to normal state
+ * @param {HTMLElement} submitBtn - The submit button to reset
+ */
+function resetSubmitButton(submitBtn) {
+    submitBtn.classList.remove('loading');
+    
+    const submitText = submitBtn.querySelector('.submit-text');
+    const submitLoader = submitBtn.querySelector('.submit-loader');
+    
+    if (submitText && submitLoader) {
+        submitText.style.display = 'inline-block';
+        submitLoader.style.display = 'none';
+    }
+}
+
+/**
+ * Show error message and reset button
+ * @param {HTMLElement} submitBtn - The submit button
+ * @param {HTMLElement} formStatus - The form status element
+ * @param {string} message - The error message to display
+ */
+function showError(submitBtn, formStatus, message) {
+    formStatus.textContent = message;
+    formStatus.className = 'form-status error';
+    resetSubmitButton(submitBtn);
+}
+
+/**
+ * Setup logger for debugging
+ */
+function setupLogger() {
+    // Create a log array for contact form events
+    const contactFormLogs = [];
+    
+    // Store original console methods if not already overridden
+    if (!window.originalConsoleLog) {
+        window.originalConsoleLog = console.log;
+        window.originalConsoleError = console.error;
+        window.originalConsoleWarn = console.warn;
+    }
+    
+    // Override console.log to also save to our log array
+    console.log = function() {
+        const args = Array.from(arguments);
+        let message;
+        
+        // Try to format objects as JSON
+        try {
+            message = args.map(arg => {
+                if (typeof arg === 'object' && arg !== null) {
+                    return JSON.stringify(arg);
+                }
+                return String(arg);
+            }).join(' ');
+        } catch (e) {
+            message = args.join(' ');
+        }
+        
+        const timestamp = new Date().toISOString();
+        
+        // Add to contact form logs with timestamp
+        contactFormLogs.push(`[${timestamp}] [LOG] ${message}`);
+        
+        // Trim logs if too long
+        if (contactFormLogs.length > 1000) {
+            contactFormLogs.splice(0, contactFormLogs.length - 500);
+        }
+        
+        // Call original console.log
+        window.originalConsoleLog.apply(console, arguments);
+    };
+    
+    // Override console.error
+    console.error = function() {
+        const args = Array.from(arguments);
+        const message = args.join(' ');
+        const timestamp = new Date().toISOString();
+        
+        // Add to contact form logs with timestamp
+        contactFormLogs.push(`[${timestamp}] [ERROR] ${message}`);
+        
+        // Call original console.error
+        window.originalConsoleError.apply(console, arguments);
+    };
+    
+    // Override console.warn
+    console.warn = function() {
+        const args = Array.from(arguments);
+        const message = args.join(' ');
+        const timestamp = new Date().toISOString();
+        
+        // Add to contact form logs with timestamp
+        contactFormLogs.push(`[${timestamp}] [WARN] ${message}`);
+        
+        // Call original console.warn
+        window.originalConsoleWarn.apply(console, arguments);
+    };
+    
+    // Add function to download logs
+    window.downloadContactFormLogs = function() {
+        const logText = contactFormLogs.join('\n');
+        const blob = new Blob([logText], { type: 'text/plain' });
+        const url = URL.createObjectURL(blob);
+        
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'contact-form-logs.txt';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        
+        console.log("Contact form logs downloaded");
+    };
+    
+    // Add debug button if in development environment
+    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+        const debugBtn = document.createElement('button');
+        debugBtn.textContent = 'Download Form Logs';
+        debugBtn.style.position = 'fixed';
+        debugBtn.style.bottom = '10px';
+        debugBtn.style.left = '10px';
+        debugBtn.style.zIndex = '9999';
+        debugBtn.style.fontSize = '12px';
+        debugBtn.style.padding = '5px 10px';
+        debugBtn.style.background = '#333';
+        debugBtn.style.color = '#fff';
+        debugBtn.style.border = 'none';
+        debugBtn.style.borderRadius = '4px';
+        debugBtn.style.cursor = 'pointer';
+        debugBtn.style.opacity = '0.6';
+        
+        debugBtn.addEventListener('mouseenter', () => {
+            debugBtn.style.opacity = '1';
+        });
+        
+        debugBtn.addEventListener('mouseleave', () => {
+            debugBtn.style.opacity = '0.6';
+        });
+        
+        debugBtn.addEventListener('click', window.downloadContactFormLogs);
+        
+        // Append to body after a short delay to ensure DOM is ready
+        setTimeout(() => {
+            document.body.appendChild(debugBtn);
+        }, 1000);
+    }
+    
+    console.log("Contact form logger initialized");
+}
+
+// Make functions globally accessible
+window.initContactForm = initContactForm;
+window.downloadContactFormLogs = window.downloadContactFormLogs || function() {};

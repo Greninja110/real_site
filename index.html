@@ -18,8 +18,10 @@
     <link rel="stylesheet" href="css/custom-timeline.css">
     <link rel="stylesheet" href="css/modern-style.css">
     <link rel="stylesheet" href="css/smooth-transitions.css">
+    <link rel="stylesheet" href="css/hamburger.css">
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 </head>
 
 <body class="dark-theme">
@@ -39,16 +41,17 @@
         <!-- Sidebar Navigation -->
         <aside class="sidebar">
             <div class="sidebar-header">
-                <div class="profile-pic-container">
-                    <img src="assets/images/profile.png" alt="Abhijeet" class="profile-pic-small">
-                </div>
-                <h2 class="sidebar-title">Abhijeet</h2>
                 <button id="mobile-toggle" class="mobile-toggle" aria-label="Toggle Menu">
                     <span></span>
                     <span></span>
                     <span></span>
                 </button>
+                <div class="profile-pic-container">
+                    <img src="assets/images/profile.png" alt="Abhijeet" class="profile-pic-small">
+                </div>
+                <h2 class="sidebar-title">Abhijeet</h2>
             </div>
+
 
             <!-- Navigation section update -->
             <nav class="sidebar-nav">
@@ -597,6 +600,9 @@
             </section>
 
             <!-- Resume Section -->
+            <div class="section-title">
+                <h2>Resume</h2>
+            </div>
             <div class="resume-tabs">
                 <button class="resume-tab active" data-resume="aiml">AI/ML</button>
                 <button class="resume-tab" data-resume="cybersecurity">Cybersecurity</button>
@@ -704,39 +710,34 @@
                     </div>
 
                     <div class="contact-form">
-                        <div class="contact-form">
-                            <h3>Send me a message</h3>
-                            <p>Feel free to reach out with any questions or inquiries:</p>
-                            <form id="contact-form" class="form-container">
-                                <div class="form-group">
-                                    <label for="name">Name</label>
-                                    <input type="text" id="name" name="name" placeholder="Your name" required>
-                                </div>
+                        <h3>Send me a message</h3>
+                        <p>Feel free to reach out with any questions or inquiries:</p>
+                        <form id="contact-form" class="form-container">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" name="name" placeholder="Your name" required>
+                            </div>
 
-                                <div class="form-group">
-                                    <label for="email">Email</label>
-                                    <input type="email" id="email" name="email" placeholder="Your email address"
-                                        required>
-                                </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" placeholder="Your email address" required>
+                            </div>
 
-                                <div class="form-group">
-                                    <label for="message">Message</label>
-                                    <textarea id="message" name="message" rows="5" placeholder="Your message"
-                                        required></textarea>
-                                </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" name="message" rows="5" placeholder="Your message"
+                                    required></textarea>
+                            </div>
 
-                                <div class="form-status" id="form-status"></div>
+                            <div class="form-status" id="form-status"></div>
 
-                                <button type="submit" class="submit-btn">
-                                    <span class="submit-text">Send Message</span>
-                                    <span class="submit-loader" style="display: none;">
-                                        <i class="fas fa-spinner fa-spin"></i>
-                                    </span>
-                                </button>
-                            </form>
-                        </div>
-
-                        
+                            <button type="submit" class="submit-btn">
+                                <span class="submit-text">Send Message</span>
+                                <span class="submit-loader" style="display: none;">
+                                    <i class="fas fa-spinner fa-spin"></i>
+                                </span>
+                            </button>
+                        </form>
                     </div>
                 </div>
             </section>
@@ -752,7 +753,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
 
     <!-- Custom JavaScript -->
-    <script src="js/preloader.js"></script>
     <script src="js/animation.js"></script>
     <script src="js/theme.js"></script>
     <script src="js/main.js"></script>
@@ -760,6 +760,8 @@
     <script src="js/analytics.js"></script>
     <script src="js/timeline.js"></script>
     <script src="js/custom-timeline.js"></script>
+    <script src="js/resume.js"></script>
+    <script src="js/contact.js"></script>
     <div class="last-updated">
         <i class="fas fa-edit"></i> Last updated on May 24, 2025
     </div>

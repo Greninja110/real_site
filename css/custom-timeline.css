@@ -1,9 +1,9 @@
 /* 
  * Custom Timeline CSS for Abhijeet's Portfolio
- * Based on vertical-timeline-master but customized for your color scheme
+ * Centered timeline design with responsive adjustments
  */
 
- .timeline-wrapper {
+.timeline-wrapper {
   position: relative;
   width: 100%;
   max-width: 1200px;
@@ -11,12 +11,13 @@
   padding: 2rem 0;
 }
 
-/* Timeline vertical line */
+/* Timeline vertical line - CENTERED */
 .timeline::before {
   content: '';
   position: absolute;
   top: 0;
-  left: 18px;
+  left: 50%; /* Centered */
+  transform: translateX(-50%); /* Ensure perfect centering */
   height: 100%;
   width: 4px;
   background-color: var(--dark-border);
@@ -24,19 +25,22 @@
 }
 
 .dark-theme .timeline::before {
-  background-color: #333; /* Dark theme line color */
+  background: linear-gradient(to bottom, var(--dark-accent), var(--dark-secondary));
 }
 
 .light-theme .timeline::before {
-  background-color: #dee2e6; /* Light theme line color */
+  background: linear-gradient(to bottom, var(--light-accent), var(--light-secondary));
 }
 
 /* Timeline block */
 .timeline-block {
   position: relative;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
   opacity: 0; /* Start with opacity 0 for animation */
   transition: all 0.5s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .timeline-block.visible {
@@ -44,12 +48,13 @@
   transform: translateX(0);
 }
 
-/* Timeline date circle */
+/* Timeline date circle - CENTERED */
 .timeline-date-marker {
   position: absolute;
   width: 60px;
   height: 60px;
-  left: -10px;
+  left: 50%; /* Centered */
+  transform: translateX(-50%); /* Ensure perfect centering */
   top: 0;
   border-radius: 50%;
   font-size: 0.85rem;
@@ -59,7 +64,7 @@
   justify-content: center;
   align-items: center;
   z-index: 1;
-  box-shadow: 0 0 0 4px var(--color-white), inset 0 2px 0 rgba(0,0,0,0.08), 0 3px 0 4px rgba(0,0,0,0.05);
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1), inset 0 2px 0 rgba(0,0,0,0.08), 0 3px 0 4px rgba(0,0,0,0.05);
 }
 
 .timeline-date-marker .month {
@@ -72,15 +77,15 @@
 }
 
 .dark-theme .timeline-date-marker {
-  background-color: var(--dark-accent);
+  background: var(--dark-accent-gradient, var(--dark-accent));
   color: white;
-  border: 3px solid #333;
+  border: 3px solid rgba(51, 51, 51, 0.5);
 }
 
 .light-theme .timeline-date-marker {
-  background-color: var(--light-accent);
+  background: var(--light-accent-gradient, var(--light-accent));
   color: white;
-  border: 3px solid #dee2e6;
+  border: 3px solid rgba(222, 226, 230, 0.5);
 }
 
 /* Special date circles based on icon type */
@@ -108,17 +113,26 @@
   background-size: 30px;
 }
 
-/* Timeline content */
+/* Timeline content - Alternate sides */
 .timeline-content {
   position: relative;
-  margin-left: 80px;
+  width: 45%;
   background-color: var(--dark-card-bg);
   border-radius: var(--border-radius-md);
   padding: 1.5rem;
-  margin-bottom: 1.5rem;
+  margin-top: 40px; /* Space for date marker */
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-  transform: translateX(100px);
   transition: all 0.5s ease;
+}
+
+.timeline-block:nth-child(odd) .timeline-content {
+  margin-left: 55%;
+  align-self: flex-start;
+}
+
+.timeline-block:nth-child(even) .timeline-content {
+  margin-right: 55%;
+  align-self: flex-end;
 }
 
 .timeline-block.visible .timeline-content {
@@ -135,8 +149,8 @@
   border-left: 4px solid var(--light-accent);
 }
 
-/* Arrow pointing to timeline */
-.timeline-content::before {
+/* Arrow pointing to timeline - will be on left or right depending on position */
+.timeline-block:nth-child(odd) .timeline-content::before {
   content: '';
   position: absolute;
   top: 16px;
@@ -147,12 +161,31 @@
   border-right-color: var(--dark-card-bg);
 }
 
-.dark-theme .timeline-content::before {
+.timeline-block:nth-child(even) .timeline-content::before {
+  content: '';
+  position: absolute;
+  top: 16px;
+  right: -16px;
+  width: 0;
+  height: 0;
+  border: 8px solid transparent;
+  border-left-color: var(--dark-card-bg);
+}
+
+.dark-theme .timeline-block:nth-child(odd) .timeline-content::before {
   border-right-color: var(--dark-card-bg);
 }
 
-.light-theme .timeline-content::before {
+.dark-theme .timeline-block:nth-child(even) .timeline-content::before {
+  border-left-color: var(--dark-card-bg);
+}
+
+.light-theme .timeline-block:nth-child(odd) .timeline-content::before {
   border-right-color: var(--light-card-bg);
+}
+
+.light-theme .timeline-block:nth-child(even) .timeline-content::before {
+  border-left-color: var(--light-card-bg);
 }
 
 /* Timeline title */
@@ -197,16 +230,25 @@
 }
 
 .timeline-btn:hover {
-  background-color: #5a76dd;
   transform: translateY(-3px);
 }
 
 .dark-theme .timeline-btn {
-  background-color: var(--dark-accent);
+  background: var(--dark-accent-gradient, var(--dark-accent));
+  box-shadow: 0 4px 10px rgba(99, 102, 241, 0.2);
+}
+
+.dark-theme .timeline-btn:hover {
+  box-shadow: 0 6px 15px rgba(99, 102, 241, 0.3);
 }
 
 .light-theme .timeline-btn {
-  background-color: var(--light-accent);
+  background: var(--light-accent-gradient, var(--light-accent));
+  box-shadow: 0 4px 10px rgba(67, 97, 238, 0.2);
+}
+
+.light-theme .timeline-btn:hover {
+  box-shadow: 0 6px 15px rgba(67, 97, 238, 0.3);
 }
 
 /* Year markers for grouping timeline items */
@@ -215,13 +257,15 @@
   justify-content: center;
   margin-bottom: 2rem;
   gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .timeline-year-marker {
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 1.25rem;
   border-radius: var(--border-radius-md);
   cursor: pointer;
   transition: all 0.3s ease;
+  font-weight: 500;
 }
 
 .dark-theme .timeline-year-marker {
@@ -233,6 +277,8 @@
 .dark-theme .timeline-year-marker:hover {
   background-color: var(--dark-accent);
   color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(99, 102, 241, 0.2);
 }
 
 .light-theme .timeline-year-marker {
@@ -244,6 +290,8 @@
 .light-theme .timeline-year-marker:hover {
   background-color: var(--light-accent);
   color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(67, 97, 238, 0.2);
 }
 
 /* Year sections */
@@ -265,70 +313,60 @@
   color: var(--light-title);
 }
 
-/* Desktop/tablet styles */
-@media (min-width: 768px) {
-  .timeline::before {
-    left: 50%;
-    margin-left: -2px;
-  }
-
-  .timeline-block {
-    display: flex;
-    align-items: flex-start;
-  }
-
-  .timeline-block:nth-child(even) {
-    flex-direction: row-reverse;
-  }
-
-  .timeline-date-marker {
-    left: 50%;
-    margin-left: -30px;
-  }
-
+/* Responsive timeline - Single column on mobile */
+@media (max-width: 767px) {
   .timeline-content {
-    width: 45%;
-    margin-left: 0;
-  }
-
-  .timeline-block:nth-child(odd) .timeline-content {
-    margin-right: 80px;
+    width: 80%;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-top: 70px; /* Extra space for the date marker */
   }
   
+  .timeline-block:nth-child(odd) .timeline-content,
   .timeline-block:nth-child(even) .timeline-content {
-    margin-left: 80px;
+    align-self: center;
   }
-
-  .timeline-block:nth-child(odd) .timeline-content::before {
-    left: auto;
-    right: -16px;
+  
+  /* Adjust arrows to always point upward to the date marker */
+  .timeline-block:nth-child(odd) .timeline-content::before,
+  .timeline-block:nth-child(even) .timeline-content::before {
+    left: 50%;
+    top: -16px;
+    transform: translateX(-50%);
+    border: 8px solid transparent;
+    border-bottom-color: var(--dark-card-bg);
+    right: auto;
+  }
+  
+  .dark-theme .timeline-block:nth-child(odd) .timeline-content::before,
+  .dark-theme .timeline-block:nth-child(even) .timeline-content::before {
+    border-bottom-color: var(--dark-card-bg);
     border-right-color: transparent;
-    border-left-color: var(--dark-card-bg);
+    border-left-color: transparent;
   }
-
-  .dark-theme .timeline-block:nth-child(odd) .timeline-content::before {
-    border-left-color: var(--dark-card-bg);
+  
+  .light-theme .timeline-block:nth-child(odd) .timeline-content::before,
+  .light-theme .timeline-block:nth-child(even) .timeline-content::before {
+    border-bottom-color: var(--light-card-bg);
+    border-right-color: transparent;
+    border-left-color: transparent;
   }
-
-  .light-theme .timeline-block:nth-child(odd) .timeline-content::before {
-    border-left-color: var(--light-card-bg);
+  
+  /* Year markers scrollable on mobile */
+  .timeline-year-markers {
+    overflow-x: auto;
+    justify-content: flex-start;
+    padding-bottom: 0.5rem;
+    flex-wrap: nowrap;
   }
-
-  /* Animation styles */
-  .timeline-block {
-    transform: translateX(-100px);
-  }
-
-  .timeline-block:nth-child(even) {
-    transform: translateX(100px);
-  }
-
-  .timeline-block.visible {
-    transform: translateX(0);
+  
+  .timeline-year-marker {
+    flex: 0 0 auto;
+    padding: 0.5rem 1rem;
   }
 }
 
-/* Animation for timeline items */
+/* Animations for timeline elements */
 @keyframes fadeIn {
   from { 
     opacity: 0; 
@@ -346,6 +384,26 @@
   100% { transform: scale(1); }
 }
 
-.timeline-block.visible::after {
+.timeline-block.visible .timeline-date-marker {
   animation: pulse 2s infinite;
+}
+
+/* Timeline image styles */
+.timeline-image {
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+  border-radius: var(--border-radius-sm);
+  margin-bottom: 1rem;
+}
+
+.timeline-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.timeline-content:hover .timeline-image img {
+  transform: scale(1.05);
 }
