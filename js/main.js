@@ -3,10 +3,19 @@
  * Handles navigation, content switching, projects filtering, and general interactions
  */
 
+// Update in js/main.js
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize the portfolio site
-    initPortfolio();
-    console.log('[Main] Portfolio initialized');
+    console.log("[Main] DOM content loaded, initializing portfolio");
+    
+    // Add a small delay to ensure all elements are ready
+    setTimeout(function() {
+        try {
+            initPortfolio();
+            console.log('[Main] Portfolio successfully initialized');
+        } catch (error) {
+            console.error('[Main] Error during portfolio initialization:', error);
+        }
+    }, 100);
 });
 
 /**

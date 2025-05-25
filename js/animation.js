@@ -11,10 +11,19 @@ document.addEventListener('DOMContentLoaded', function() {
 /**
  * Initialize typing animation in the About/Home section
  */
+// Update in js/animation.js - Fix the initTypingAnimation function
+// Update in js/animation.js - Fix the initTypingAnimation function
 function initTypingAnimation() {
     const animatedText = document.getElementById('animated-text');
     const textContent = document.getElementById('text-content');
     const cursor = document.getElementById('cursor');
+    
+    // Check if all elements exist before proceeding
+    if (!animatedText || !textContent || !cursor) {
+        console.log("Animation elements not found, skipping animation");
+        return; // Exit the function if elements don't exist
+    }
+    
     const messages = ["Welcomes You To The Website", "Says Hello"];
     
     let messageIndex = 0;
@@ -53,10 +62,8 @@ function initTypingAnimation() {
         setTimeout(type, typingSpeed);
     }
     
-    // Start the typing animation
-    if (animatedText && textContent && cursor) {
-        setTimeout(type, 1000); // Delay before starting
-    }
+    // Start the typing animation with a delay
+    setTimeout(type, 1000); // Delay before starting
 }
 
 /**

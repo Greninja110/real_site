@@ -11,65 +11,75 @@ document.addEventListener('DOMContentLoaded', function() {
 /**
  * Initialize preloader functionality
  */
+// Update in js/preloader.js
 function initPreloader() {
     const preloader = document.getElementById('preloader');
     const preloaderText = document.getElementById('preloader-text');
     
+    if (!preloader) {
+        console.error("Preloader element not found!");
+        return; // Exit if preloader element doesn't exist
+    }
+    
     // Check if this is the first time the user visits the site in this session
     const isFirstVisit = !sessionStorage.getItem('visited');
     
-    if (isFirstVisit && preloader) {
+    if (isFirstVisit) {
         // Show preloader
         preloader.style.display = 'flex';
         
-        // Start typing animation
-        const messages = [
-            "Welcome to Abhijeet's Portfolio",
-            "Loading awesome content",
-            "Preparing something special for you",
-            "Almost ready..."
-        ];
-        
-        let messageIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-        let typingSpeed = 100; // Base typing speed in ms
-        
-        function type() {
-            const currentMessage = messages[messageIndex];
-            
-            if (isDeleting) {
-                // Removing characters
-                preloaderText.textContent = currentMessage.substring(0, charIndex - 1);
-                charIndex--;
-                typingSpeed = 50; // Faster when deleting
-            } else {
-                // Adding characters
-                preloaderText.textContent = currentMessage.substring(0, charIndex + 1);
-                charIndex++;
-                typingSpeed = 100; // Normal speed when typing
-            }
-            
-            // If we finished typing the message
-            if (!isDeleting && charIndex === currentMessage.length) {
-                isDeleting = true;
-                typingSpeed = 1000; // Pause at the end of typing
-            } 
-            // If we deleted the entire message
-            else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                messageIndex = (messageIndex + 1) % messages.length; // Move to next message
-                typingSpeed = 500; // Pause before starting to type new message
-            }
-            
-            // Continue the typing animation if preloader is still visible
-            if (preloader.style.display !== 'none') {
-                setTimeout(type, typingSpeed);
-            }
-        }
-        
-        // Start the typing animation
+        // Only proceed with animation if text element exists
         if (preloaderText) {
+            // Start typing animation
+            const messages = [
+                "Welcome to Abhijeet's Portfolio",
+                "Loading awesome content",
+                "Preparing something special for you",
+                "Almost ready..."
+            ];
+            
+            let messageIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+            let typingSpeed = 100; // Base typing speed in ms
+            
+            function type() {
+                const currentMessage = messages[messageIndex];
+                
+                // Only proceed if preloader is still visible
+                if (preloader.style.display === 'none') return;
+                
+                if (isDeleting) {
+                    // Removing characters
+                    preloaderText.textContent = currentMessage.substring(0, charIndex - 1);
+                    charIndex--;
+                    typingSpeed = 50; // Faster when deleting
+                } else {
+                    // Adding characters
+                    preloaderText.textContent = currentMessage.substring(0, charIndex + 1);
+                    charIndex++;
+                    typingSpeed = 100; // Normal speed when typing
+                }
+                
+                // If we finished typing the message
+                if (!isDeleting && charIndex === currentMessage.length) {
+                    isDeleting = true;
+                    typingSpeed = 1000; // Pause at the end of typing
+                } 
+                // If we deleted the entire message
+                else if (isDeleting && charIndex === 0) {
+                    isDeleting = false;
+                    messageIndex = (messageIndex + 1) % messages.length; // Move to next message
+                    typingSpeed = 500; // Pause before starting to type new message
+                }
+                
+                // Continue the typing animation if preloader is still visible
+                if (preloader.style.display !== 'none') {
+                    setTimeout(type, typingSpeed);
+                }
+            }
+            
+            // Start the typing animation
             type();
         }
         
@@ -81,13 +91,12 @@ function initPreloader() {
             // Hide preloader after fade out animation completes
             setTimeout(() => {
                 preloader.style.display = 'none';
+                
+                // Set session storage to indicate that the user has visited the site
+                sessionStorage.setItem('visited', 'true');
             }, 500); // Matches the fade-out animation duration
-            
-            // Set session storage to indicate that the user has visited the site
-            sessionStorage.setItem('visited', 'true');
         }, 3000); // 3 seconds minimum display time
-        
-    } else if (preloader) {
+    } else {
         // Hide preloader immediately if not first visit
         preloader.style.display = 'none';
     }
