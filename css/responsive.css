@@ -274,6 +274,13 @@
 
 /* Tablet Styles */
 @media (min-width: 768px) and (max-width: 1023px) {
+    /* Default sidebar mode for tablet */
+    :root {
+        --sidebar-width: 280px;
+        --header-height: 60px;
+    }
+    
+    /* Projects grid for tablet */
     .projects-grid {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -290,10 +297,10 @@
         grid-template-columns: repeat(2, 1fr);
     }
     
-    /* Single page mode for tablet */
+    /* Single page mode styles for tablet */
     .single-page-mode .sidebar {
         width: 100%;
-        height: var(--header-height, 60px);
+        height: var(--header-height);
         position: fixed;
         top: 0;
         left: 0;
@@ -350,7 +357,7 @@
     .single-page-mode .content {
         margin-left: 0;
         width: 100%;
-        padding-top: calc(var(--header-height, 60px) + 20px);
+        padding-top: calc(var(--header-height) + 20px);
     }
     
     .single-page-mode .section {
@@ -365,7 +372,34 @@
         display: none;
     }
     
-    /* Timeline centered for tablet */
+    /* Regular sidebar mode */
+    body:not(.single-page-mode) .sidebar {
+        width: var(--sidebar-width);
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        flex-direction: column;
+    }
+    
+    body:not(.single-page-mode) .sidebar-header {
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem 1rem;
+    }
+    
+    body:not(.single-page-mode) .profile-pic-container {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 1rem;
+    }
+    
+    body:not(.single-page-mode) .content {
+        margin-left: var(--sidebar-width);
+        width: calc(100% - var(--sidebar-width));
+    }
+    
+    /* Timeline centered for tablet in single page mode */
     .single-page-mode .timeline::before {
         left: 50%;
         transform: translateX(-50%);
@@ -374,13 +408,6 @@
     .single-page-mode .timeline-date-marker {
         left: 50%;
         transform: translateX(-50%);
-    }
-    
-    .single-page-mode .timeline-content {
-        width: 80%;
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: 70px;
     }
     
     /* Resume preview adjustment */
@@ -391,134 +418,11 @@
     }
 }
 
-/* Small Desktop Styles */
-@media (min-width: 1024px) and (max-width: 1365px) {
-    .projects-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-    
-    /* Single page mode for desktop */
-    .single-page-mode .sidebar {
-        width: 100%;
-        height: var(--header-height, 60px);
-        position: fixed;
-        top: 0;
-        left: 0;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        padding: 0 1rem;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        z-index: 100;
-    }
-    
-    .single-page-mode .sidebar-header {
-        flex-direction: row;
-        align-items: center;
-        justify-content: flex-start;
-        padding: 0;
-        width: auto;
-        height: 100%;
-        margin-bottom: 0;
-    }
-    
-    .single-page-mode .profile-pic-container {
-        width: 40px;
-        height: 40px;
-        margin: 0 0.5rem 0 0;
-    }
-    
-    .single-page-mode .sidebar-title {
-        margin-bottom: 0;
-        margin-right: 2rem;
-    }
-    
-    .single-page-mode .sidebar-nav {
-        display: flex;
-        flex: 1;
-        padding: 0;
-        height: 100%;
-        overflow: visible;
-    }
-    
-    .single-page-mode .sidebar-nav ul {
-        display: flex;
-        align-items: center;
-        padding: 0;
-        margin: 0;
-    }
-    
-    .single-page-mode .nav-link {
-        padding: 0.5rem 0.75rem;
-        margin-bottom: 0;
-        margin-right: 0.5rem;
-    }
-    
-    .single-page-mode .content {
-        margin-left: 0;
-        width: 100%;
-        padding-top: calc(var(--header-height, 60px) + 20px);
-    }
-    
-    .single-page-mode .section {
-        min-height: auto;
-        padding-top: 4rem;
-        padding-bottom: 5rem;
-        display: block !important;
-        opacity: 1 !important;
-    }
-    
-    .single-page-mode .sidebar-footer {
-        position: absolute;
-        right: 1rem;
-        top: 0;
-        height: 100%;
-        border: none;
-        padding: 0;
-        display: flex;
-        align-items: center;
-    }
-    
-    .single-page-mode .theme-toggle {
-        margin-bottom: 0;
-    }
-    
-    /* Timeline centered in single page mode */
-    .single-page-mode .timeline::before {
-        left: 50%;
-        transform: translateX(-50%);
-    }
-    
-    .single-page-mode .timeline-date-marker {
-        left: 50%;
-        transform: translateX(-50%);
-    }
-    
-    .single-page-mode .timeline-content {
-        width: 80%;
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: 70px;
-    }
-    
-    /* Resume preview adjustment */
-    .resume-preview {
-        width: 100%;
-        max-width: 700px;
-        margin: 0 auto;
-    }
-    
-    /* Center content in single page mode */
-    .single-page-mode .centered-content {
-        max-width: 1000px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-}
-
-/* Large Desktop Styles */
-@media (min-width: 1366px) {
+/* Desktop Styles */
+@media (min-width: 1024px) {
     :root {
+        --sidebar-width: 280px;
+        --header-height: 60px;
         --section-padding: 3rem;
     }
     
@@ -526,10 +430,10 @@
         grid-template-columns: repeat(3, 1fr);
     }
     
-    /* Single page mode for large desktop */
+    /* Single page mode for desktop */
     .single-page-mode .sidebar {
         width: 100%;
-        height: var(--header-height, 60px);
+        height: var(--header-height);
         position: fixed;
         top: 0;
         left: 0;
@@ -586,7 +490,7 @@
     .single-page-mode .content {
         margin-left: 0;
         width: 100%;
-        padding-top: calc(var(--header-height, 60px) + 20px);
+        padding-top: calc(var(--header-height) + 20px);
     }
     
     .single-page-mode .section {
@@ -595,6 +499,9 @@
         padding-bottom: 6rem;
         display: block !important;
         opacity: 1 !important;
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
     }
     
     .single-page-mode .sidebar-footer {
@@ -612,29 +519,45 @@
         margin-bottom: 0;
     }
     
+    /* Regular desktop mode - left sidebar */
+    body:not(.single-page-mode) .sidebar {
+        width: var(--sidebar-width);
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        flex-direction: column;
+    }
+    
+    body:not(.single-page-mode) .sidebar-header {
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem 1rem;
+    }
+    
+    body:not(.single-page-mode) .profile-pic-container {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 1rem;
+    }
+    
+    body:not(.single-page-mode) .mobile-toggle {
+        display: block;
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+    }
+    
+    body:not(.single-page-mode) .content {
+        margin-left: var(--sidebar-width);
+        width: calc(100% - var(--sidebar-width));
+    }
+    
     /* Center content in single page mode */
     .single-page-mode .section {
         max-width: 1200px;
         margin-left: auto;
         margin-right: auto;
-    }
-    
-    /* Timeline centered in single page mode */
-    .single-page-mode .timeline::before {
-        left: 50%;
-        transform: translateX(-50%);
-    }
-    
-    .single-page-mode .timeline-date-marker {
-        left: 50%;
-        transform: translateX(-50%);
-    }
-    
-    .single-page-mode .timeline-content {
-        width: 80%;
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: 70px;
     }
     
     /* Resume preview adjustment */
@@ -645,404 +568,18 @@
     }
 }
 
-/* Accessibility Focus Styles */
-button:focus,
-a:focus,
-input:focus,
-textarea:focus {
-    outline: 2px solid;
-    outline-offset: 2px;
-}
-
-.light-theme button:focus,
-.light-theme a:focus,
-.light-theme input:focus,
-.light-theme textarea:focus {
-    outline-color: var(--light-accent);
-}
-
-.dark-theme button:focus,
-.dark-theme a:focus,
-.dark-theme input:focus,
-.dark-theme textarea:focus {
-    outline-color: var(--dark-accent);
-}
-
-/* Ripple effect for buttons */
-.btn-ripple {
-    position: relative;
-    overflow: hidden;
-}
-
-.ripple {
-    position: absolute;
-    border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.6);
-    transform: scale(0);
-    animation: ripple-effect 0.6s linear;
-    pointer-events: none;
-    width: 100px;
-    height: 100px;
-    margin-top: -50px;
-    margin-left: -50px;
-}
-
-@keyframes ripple-effect {
-    0% {
-        transform: scale(0);
-        opacity: 0.5;
-    }
-    100% {
-        transform: scale(2);
-        opacity: 0;
-    }
-}
-
-/* Timeline centered styles */
-.timeline::before {
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.timeline-block {
-    position: relative;
-    margin-bottom: 2rem;
-    opacity: 0;
-    transition: all 0.5s ease;
-}
-
-.timeline-block.visible {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-.timeline-date-marker {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 60px;
-    top: 0;
-    border-radius: 50%;
-    z-index: 5;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.timeline-content {
-    width: 45%;
+/* Centered content class for single page mode */
+.centered-content {
+    max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
-    position: relative;
-    margin-top: 40px;
-}
-
-.timeline-block:nth-child(odd) .timeline-content {
-    margin-right: 55%;
-}
-
-.timeline-block:nth-child(even) .timeline-content {
-    margin-left: 55%;
-}
-
-/* Make timeline responsive */
-@media (max-width: 767px) {
-    .timeline-content {
-        width: 80%;
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: 70px;
-    }
-    
-    .timeline-block:nth-child(odd) .timeline-content,
-    .timeline-block:nth-child(even) .timeline-content {
-        margin-left: auto;
-        margin-right: auto;
-    }
-}
-/* 
- * Add these fixes to css/responsive.css
- * Ensures proper responsive behavior across all device sizes
- */
-
-/* Base Mobile Styles (default) */
-@media (max-width: 767px) {
-    /* Force single page mode on mobile */
-    body {
-        overflow-x: hidden;
-    }
-    
-    body:not(.single-page-mode) {
-        overflow-y: auto;
-    }
-    
-    /* Mobile sticky header */
-    .sidebar {
-        width: 100% !important;
-        height: var(--header-height, 60px) !important;
-        position: fixed !important;
-        top: 0 !important;
-        left: 0 !important;
-        z-index: 100 !important;
-        display: flex !important;
-        align-items: center !important;
-        transition: all 0.3s ease !important;
-    }
-    
-    /* Sidebar open state for mobile menu */
-    .sidebar.open {
-        height: 100vh !important;
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        overflow-y: auto;
-    }
-    
-    /* Hide theme label on mobile */
-    #theme-label {
-        display: none;
-    }
-    
-    /* Mobile toggle comes first */
-    .mobile-toggle {
-        display: block;
-        order: 1;
-        margin-right: 10px;
-    }
-    
-    /* Profile pic container second */
-    .profile-pic-container {
-        width: 40px;
-        height: 40px;
-        margin: 0 10px 0 0;
-        display: block;
-        order: 2;
-    }
-    
-    /* Sidebar title third */
-    .sidebar-title {
-        margin-bottom: 0;
-        font-size: 1.2rem;
-        order: 3;
-    }
-    
-    /* Main content area */
-    .content {
-        margin-left: 0 !important;
-        width: 100% !important;
-        padding-top: calc(var(--header-height, 60px) + 10px) !important; /* Space for fixed header */
-    }
-    
-    /* Make sections always visible on mobile */
-    .section {
-        display: block !important;
-        min-height: auto !important;
-        padding-top: 2rem !important;
-        padding-bottom: 3rem !important;
-        opacity: 1 !important;
-    }
-    
-    /* Nav menu for mobile */
-    .sidebar-nav {
-        display: none; /* Hidden by default */
-        padding: 1rem;
-        height: calc(100vh - var(--header-height, 60px));
-        overflow-y: auto;
-    }
-    
-    .sidebar.open .sidebar-nav {
-        display: block; /* Shown when open */
-    }
-    
-    /* Timeline centered on mobile */
-    .timeline::before {
-        left: 50% !important;
-        transform: translateX(-50%) !important;
-    }
-    
-    .timeline-date-marker {
-        left: 50% !important;
-        transform: translateX(-50%) !important;
-    }
-    
-    .timeline-content {
-        width: 80% !important;
-        margin-left: auto !important;
-        margin-right: auto !important;
-        margin-top: 70px !important; /* Extra space for date marker */
-    }
-}
-
-/* Tablet Styles */
-@media (min-width: 768px) and (max-width: 1023px) {
-    /* Single page mode styles for tablet when activated */
-    .single-page-mode .sidebar {
-        width: 100% !important;
-        height: var(--header-height, 60px) !important;
-        position: fixed !important;
-        top: 0 !important;
-        left: 0 !important;
-        display: flex !important;
-        flex-direction: row !important;
-        align-items: center !important;
-        z-index: 100 !important;
-    }
-    
-    .single-page-mode .sidebar-header {
-        flex-direction: row !important;
-        align-items: center !important;
-        justify-content: flex-start !important;
-        padding: 0 1rem !important;
-        width: auto !important;
-        margin-bottom: 0 !important;
-    }
-    
-    .single-page-mode .profile-pic-container {
-        width: 40px !important;
-        height: 40px !important;
-        margin: 0 0.75rem 0 0 !important;
-    }
-    
-    .single-page-mode .sidebar-title {
-        margin-bottom: 0 !important;
-        margin-right: 2rem !important;
-    }
-    
-    .single-page-mode .content {
-        margin-left: 0 !important;
-        width: 100% !important;
-        padding-top: calc(var(--header-height, 60px) + 20px) !important;
-    }
-    
-    .single-page-mode .section {
-        display: block !important;
-        min-height: auto !important;
-        padding-top: 3rem !important;
-        padding-bottom: 4rem !important;
-        opacity: 1 !important;
-    }
-    
-    /* Default sidebar mode for tablet */
-    body:not(.single-page-mode) .sidebar {
-        width: var(--sidebar-width, 280px) !important;
-        height: 100vh !important;
-    }
-    
-    body:not(.single-page-mode) .content {
-        margin-left: var(--sidebar-width, 280px) !important;
-        width: calc(100% - var(--sidebar-width, 280px)) !important;
-    }
-}
-
-/* Desktop styles */
-@media (min-width: 1024px) {
-    /* Single page mode for desktop */
-    .single-page-mode .sidebar {
-        width: 100% !important;
-        height: var(--header-height, 60px) !important;
-        position: fixed !important;
-        top: 0 !important;
-        left: 0 !important;
-        display: flex !important;
-        flex-direction: row !important;
-        align-items: center !important;
-        z-index: 100 !important;
-        transition: all 0.3s ease !important;
-    }
-    
-    .single-page-mode .sidebar-header {
-        flex-direction: row !important;
-        align-items: center !important;
-        justify-content: flex-start !important;
-        padding: 0 2rem !important;
-        width: auto !important;
-        margin-bottom: 0 !important;
-    }
-    
-    .single-page-mode .profile-pic-container {
-        width: 40px !important;
-        height: 40px !important;
-        margin: 0 0.75rem 0 0 !important;
-    }
-    
-    .single-page-mode .sidebar-title {
-        margin-bottom: 0 !important;
-        margin-right: 3rem !important;
-    }
-    
-    .single-page-mode .sidebar-nav {
-        display: flex !important;
-        flex: 1 !important;
-        padding: 0 !important;
-        height: 100% !important;
-    }
-    
-    .single-page-mode .sidebar-nav ul {
-        display: flex !important;
-        align-items: center !important;
-        padding: 0 !important;
-        margin: 0 !important;
-    }
-    
-    .single-page-mode .nav-link {
-        padding: 0.5rem 1rem !important;
-        margin-bottom: 0 !important;
-        margin-right: 0.75rem !important;
-    }
-    
-    .single-page-mode .content {
-        margin-left: 0 !important;
-        width: 100% !important;
-        padding-top: calc(var(--header-height, 60px) + 20px) !important;
-        max-width: 1200px !important;
-        margin-right: auto !important;
-    }
-    
-    .single-page-mode .section {
-        display: block !important;
-        min-height: auto !important;
-        padding-top: 4rem !important;
-        padding-bottom: 5rem !important;
-        opacity: 1 !important;
-        max-width: 1200px !important;
-        margin-left: auto !important;
-        margin-right: auto !important;
-    }
-    
-    /* Ensure the theme toggle appears on the right side in single page mode */
-    .single-page-mode .theme-toggle {
-        position: absolute !important;
-        right: 2rem !important;
-        top: 50% !important;
-        transform: translateY(-50%) !important;
-        margin: 0 !important;
-    }
-}
-
-/* General section appearance improvements */
-.section {
-    opacity: 1;
-    transition: opacity 0.5s ease, transform 0.5s ease;
-}
-
-.section.active {
-    opacity: 1;
-    transform: translateY(0);
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
 }
 
 /* Improved transitions */
 .content, .sidebar, .section, .profile-pic-container, .nav-link, .mobile-toggle {
     transition: all 0.3s ease !important;
-}
-
-/* Add smooth scrolling to make transitions better */
-html {
-    scroll-behavior: smooth;
-}
-
-.single-page-mode .content {
-    scroll-behavior: smooth !important;
 }
 
 /* Makes content centered in single page mode */
@@ -1052,4 +589,13 @@ html {
     margin-right: auto !important;
     padding-left: 1.5rem;
     padding-right: 1.5rem;
+}
+
+/* Add smooth scrolling to make transitions better */
+html {
+    scroll-behavior: smooth;
+}
+
+.single-page-mode .content {
+    scroll-behavior: smooth !important;
 }

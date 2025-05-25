@@ -1,6 +1,5 @@
 /* 
- * Replace the entire contents of css/hamburger.css with this code 
- * This fixes the hamburger menu to maintain 3-line appearance
+ * Hamburger Menu CSS for Abhijeet's Portfolio Website
  */
 
 /* Mobile toggle button */
@@ -30,7 +29,7 @@
     height: 3px;
     margin: 3px 0;
     border-radius: 1.5px;
-    transition: background-color 0.3s ease;
+    transition: transform 0.3s ease, opacity 0.3s ease, background-color 0.3s ease;
 }
 
 /* Color based on theme */
@@ -42,7 +41,20 @@
     background-color: var(--dark-accent);
 }
 
-/* Subtle background change when open but keep 3 lines */
+/* Animation for mobile toggle when open */
+.mobile-toggle.open span:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.mobile-toggle.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-toggle.open span:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+
+/* Subtle background change when open */
 .light-theme .mobile-toggle.open {
     background-color: rgba(67, 97, 238, 0.1);
 }
@@ -60,41 +72,19 @@
     margin: 0;
 }
 
-/* Mobile specific styles */
-@media (max-width: 767px) {
-    /* Reorder sidebar header items */
-    .sidebar-header {
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        padding: 0 1rem;
-        width: 100%;
-        height: var(--header-height, 60px);
-    }
-    
+/* Desktop styles - show hamburger button */
+@media (min-width: 768px) {
     .mobile-toggle {
-        order: 1;
-        margin-right: 12px;
-        width: 36px;
-        height: 36px;
+        display: block;
+        position: absolute;
+        right: 1rem;
+        top: 1rem;
     }
     
-    .profile-pic-container {
-        order: 2;
-        width: 40px;
-        height: 40px;
-        margin: 0;
-        margin-right: 12px;
-        border-width: 2px;
-    }
-    
-    .sidebar-title {
-        order: 3;
-        margin-bottom: 0;
-        font-size: 1.2rem;
-    }
-    
-    #theme-label {
-        display: none; /* Hide theme label on mobile */
+    body:not(.single-page-mode) .mobile-toggle {
+        display: block;
+        position: absolute;
+        right: 1rem;
+        top: 1rem;
     }
 }

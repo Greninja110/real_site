@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
  */
 function initTheme() {
     const themeToggle = document.getElementById('theme-toggle');
+    const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
     const themeLabel = document.getElementById('theme-label');
     
     if (!themeToggle) {
@@ -36,9 +37,11 @@ function initTheme() {
         // Update toggle button state
         if (savedTheme === 'light-theme') {
             themeToggle.checked = true;
+            if (mobileThemeToggle) mobileThemeToggle.checked = true;
             if (themeLabel) themeLabel.textContent = 'Light Mode';
         } else {
             themeToggle.checked = false;
+            if (mobileThemeToggle) mobileThemeToggle.checked = false;
             if (themeLabel) themeLabel.textContent = 'Dark Mode';
         }
     }
@@ -46,12 +49,13 @@ function initTheme() {
         // Set dark theme as default
         document.body.className = 'dark-theme';
         themeToggle.checked = false;
+        if (mobileThemeToggle) mobileThemeToggle.checked = false;
         if (themeLabel) themeLabel.textContent = 'Dark Mode';
         localStorage.setItem('theme', 'dark-theme');
         console.log("Set dark theme as default");
     }
 
-    // Add event listener to toggle button
+    // Add event listener to main toggle button
     themeToggle.addEventListener('change', function () {
         console.log("Theme toggle clicked");
         
@@ -67,6 +71,11 @@ function initTheme() {
         // Toggle theme
         toggleTheme();
         
+        // Sync mobile toggle if it exists
+        if (mobileThemeToggle) {
+            mobileThemeToggle.checked = themeToggle.checked;
+        }
+        
         // Restore navigation state
         setTimeout(() => {
             if (typeof window.maintainNavState === 'function') {
@@ -74,6 +83,33 @@ function initTheme() {
             }
         }, 50);
     });
+    
+    // Add event listener to mobile toggle button if it exists
+    if (mobileThemeToggle) {
+        mobileThemeToggle.addEventListener('change', function () {
+            console.log("Mobile theme toggle clicked");
+            
+            // Store the current navigation state before theme change
+            const navigationState = {
+                isSinglePageMode: document.body.classList.contains('single-page-mode'),
+                sidebarOpen: document.querySelector('.sidebar')?.classList.contains('open'),
+                activeSection: document.querySelector('.section.active')?.id
+            };
+            
+            // Sync with main toggle
+            themeToggle.checked = mobileThemeToggle.checked;
+            
+            // Toggle theme
+            toggleTheme();
+            
+            // Restore navigation state
+            setTimeout(() => {
+                if (typeof window.maintainNavState === 'function') {
+                    window.maintainNavState(navigationState);
+                }
+            }, 50);
+        });
+    }
     
     console.log("Theme initialization complete");
 }
@@ -105,6 +141,11 @@ function toggleTheme() {
         if (themeLabel) themeLabel.textContent = 'Dark Mode';
         localStorage.setItem('theme', 'dark-theme');
         console.log("Switched to dark theme");
+    }
+    
+    // Preserve single-page mode class if present
+    if (document.body.classList.contains('single-page-mode')) {
+        document.body.classList.add('single-page-mode');
     }
 }
 

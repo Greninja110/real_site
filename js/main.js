@@ -3,7 +3,6 @@
  * Handles navigation, content switching, projects filtering, and general interactions
  */
 
-// Update in js/main.js
 document.addEventListener('DOMContentLoaded', function() {
     console.log("[Main] DOM content loaded, initializing portfolio");
     
@@ -22,9 +21,6 @@ document.addEventListener('DOMContentLoaded', function() {
  * Initialize all portfolio functionality
  */
 function initPortfolio() {
-    // Setup logging
-    setupMainLogger();
-    
     // Navigation - This must run first to set up sections correctly
     initNavigation();
     
@@ -45,54 +41,6 @@ function initPortfolio() {
 }
 
 /**
- * Setup main logger
- */
-function setupMainLogger() {
-    // Create a log array if not exists
-    if (!window.mainLogs) {
-        window.mainLogs = [];
-    }
-    
-    // Create log function if not exists
-    if (!window.logMainEvent) {
-        window.logMainEvent = function(message) {
-            const timestamp = new Date().toISOString();
-            const logEntry = `${timestamp} - ${message}`;
-            
-            // Add to log array
-            window.mainLogs.push(logEntry);
-            
-            // Log to console for development
-            console.log(`[Main] ${message}`);
-            
-            // If log array gets too long, trim it
-            if (window.mainLogs.length > 1000) {
-                window.mainLogs = window.mainLogs.slice(-500);
-            }
-        };
-    }
-    
-    // Add function to download logs
-    if (!window.downloadMainLogs) {
-        window.downloadMainLogs = function() {
-            const logText = window.mainLogs.join('\n');
-            const blob = new Blob([logText], { type: 'text/plain' });
-            const url = URL.createObjectURL(blob);
-            
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'main_logs.txt';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-        };
-    }
-    
-    logMainEvent('Main logger initialized');
-}
-
-/**
  * Initialize navigation functionality
  */
 function initNavigation() {
@@ -101,9 +49,9 @@ function initNavigation() {
     const sections = document.querySelectorAll('.section');
     
     // Debugging - Check what sections exist
-    logMainEvent(`Found ${sections.length} sections on the page`);
+    console.log(`Found ${sections.length} sections on the page`);
     sections.forEach(section => {
-        logMainEvent(`Section found: ${section.id}`);
+        console.log(`Section found: ${section.id}`);
     });
     
     // Check if we should be in single page mode based on device width
@@ -113,7 +61,7 @@ function initNavigation() {
     // If mobile but not in single page mode, add the class
     if (isMobile && !isInSinglePageMode) {
         body.classList.add('single-page-mode');
-        logMainEvent('Mobile device detected - Setting single page mode');
+        console.log('Mobile device detected - Setting single page mode');
     }
     
     // Show the first section by default if no hash in URL
@@ -127,7 +75,7 @@ function initNavigation() {
         const homeSection = document.getElementById('home');
         if (homeSection) {
             homeSection.classList.add('active');
-            logMainEvent('Home section activated by default');
+            console.log('Home section activated by default');
             
             // Also make home nav link active
             navLinks.forEach(link => {
@@ -138,14 +86,14 @@ function initNavigation() {
                 }
             });
         } else {
-            logMainEvent('WARNING: Home section not found!');
+            console.log('WARNING: Home section not found!');
         }
     }
     
     // Process URL hash if present
     if (window.location.hash) {
         const hash = window.location.hash.substring(1);
-        logMainEvent(`URL has hash: ${hash}, processing...`);
+        console.log(`URL has hash: ${hash}, processing...`);
         
         // Find the section with this ID
         const targetSection = document.getElementById(hash);
@@ -157,7 +105,7 @@ function initNavigation() {
             
             // Then activate target section
             targetSection.classList.add('active');
-            logMainEvent(`Activated section from hash: ${hash}`);
+            console.log(`Activated section from hash: ${hash}`);
             
             // Update nav link active status
             navLinks.forEach(link => {
@@ -168,20 +116,23 @@ function initNavigation() {
                 }
             });
         } else {
-            logMainEvent(`WARNING: Section with ID ${hash} not found!`);
+            console.log(`WARNING: Section with ID ${hash} not found!`);
         }
     }
     
     // Add click event listeners to navigation links
-    navLinks.forEach(link => {
+    navLinks.forEach((link, index) => {
+        // Add nav index for staggered animation
+        link.style.setProperty('--nav-index', index);
+        
         link.addEventListener('click', function(e) {
             const sectionId = this.getAttribute('data-section');
-            logMainEvent(`Nav link clicked for section: ${sectionId}`);
+            console.log(`Nav link clicked for section: ${sectionId}`);
             
             // Check if section exists
             const targetSection = document.getElementById(sectionId);
             if (!targetSection) {
-                logMainEvent(`ERROR: Section with ID ${sectionId} does not exist!`);
+                console.log(`ERROR: Section with ID ${sectionId} does not exist!`);
                 return;
             }
             
@@ -198,7 +149,7 @@ function initNavigation() {
                 });
                 this.classList.add('active');
                 
-                logMainEvent(`Scrolled to section ${sectionId} in single page mode`);
+                console.log(`Scrolled to section ${sectionId} in single page mode`);
             } else {
                 // In multi-page mode, traditional navigation
                 e.preventDefault();
@@ -223,7 +174,7 @@ function initNavigation() {
                 // Set animation order for elements
                 setAnimationOrder();
                 
-                logMainEvent(`Section ${sectionId} activated in multi-page mode`);
+                console.log(`Section ${sectionId} activated in multi-page mode`);
             }
             
             // Close mobile menu if open
@@ -232,13 +183,7 @@ function initNavigation() {
             if (sidebar.classList.contains('open')) {
                 sidebar.classList.remove('open');
                 mobileToggle.classList.remove('open');
-                logMainEvent('Mobile menu closed after navigation');
-            }
-            
-            // Track page view for analytics
-            if (typeof trackPageView === 'function') {
-                trackPageView(sectionId);
-                logMainEvent(`Page view tracked for section: ${sectionId}`);
+                console.log('Mobile menu closed after navigation');
             }
         });
     });
@@ -251,11 +196,15 @@ function initNavigation() {
         // If mobile but not in single page mode, add the class
         if (newIsMobile && !currentIsInSinglePageMode) {
             body.classList.add('single-page-mode');
-            logMainEvent('Switched to single page mode on resize (mobile detected)');
+            console.log('Switched to single page mode on resize (mobile detected)');
+            // Call handleDeviceLayout to properly set up mobile view
+            if (typeof handleDeviceLayout === 'function') {
+                handleDeviceLayout();
+            }
         }
     });
     
-    logMainEvent('Navigation initialized');
+    console.log('Navigation initialized');
 }
 
 /**
@@ -269,7 +218,7 @@ function initProjects() {
     filterButtons.forEach(button => {
         button.addEventListener('click', function() {
             const filter = this.getAttribute('data-filter');
-            logMainEvent(`Project filter applied: ${filter}`);
+            console.log(`Project filter applied: ${filter}`);
             
             // Remove active class from all buttons
             filterButtons.forEach(btn => btn.classList.remove('active'));
@@ -289,7 +238,7 @@ function initProjects() {
                 }
             });
             
-            logMainEvent(`${visibleCount} projects visible after filtering`);
+            console.log(`${visibleCount} projects visible after filtering`);
             
             // Reset animation order
             setAnimationOrder();
@@ -309,32 +258,41 @@ function initProjects() {
     
     // Project data
     const projectData = {
-        'AI Image Recognition': {
-            title: 'AI Image Recognition',
-            description: 'An advanced machine learning model that can recognize and classify objects in images with high accuracy. Built using TensorFlow and Keras, this project demonstrates deep learning techniques including convolutional neural networks (CNNs).',
+        'Object Detection and Recognition': {
+            title: 'Object Detection and Recognition',
+            description: 'A machine learning model that can recognize and classify objects in images with high accuracy. Built using TensorFlow and Keras, this project demonstrates deep learning techniques including convolutional neural networks (CNNs).',
             functionality: 'The system can identify over 1,000 different object categories with 95% accuracy. It includes a user-friendly web interface for uploading images and receiving real-time classification results. The model was trained on a dataset of over 100,000 images and fine-tuned for optimal performance.',
-            image: 'assets/images/projects/project1.jpg',
-            github: 'https://github.com/abhijeet/ai-image-recognition',
+            image: 'assets/images/projects/object.png',
+            github: 'https://github.com/Greninja110/object-detection',
             demo: '#',
             status: 'completed'
         },
-        'E-commerce Platform': {
-            title: 'E-commerce Platform',
-            description: 'A fully-featured e-commerce platform built with a modern tech stack including React, Node.js, and MongoDB. This project includes user authentication, product catalog, shopping cart, and payment processing functionality.',
-            functionality: 'Users can browse products, add items to cart, manage their account, and complete purchases using secure payment processing. Admin users have access to a dashboard for managing products, orders, and customer data. The platform is fully responsive and optimized for all devices.',
-            image: 'assets/images/projects/project2.jpg',
-            github: 'https://github.com/abhijeet/ecommerce-platform',
+        'Attendance Management System For a College': {
+            title: 'Attendance Management System For a College',
+            description: 'A fully-featured attendance management system built with Django, JavaScript, and MySQL. This project includes user authentication, student and faculty management, attendance tracking, and reporting.',
+            functionality: 'Faculty can mark attendance, generate reports, and track student performance. Students can view their attendance records and get notifications for low attendance. Administrators can manage courses, faculty, and student data through a dashboard.',
+            image: 'assets/images/projects/attend.png',
+            github: 'https://github.com/Greninja110/attendance-system',
             demo: '#',
             status: 'ongoing'
         },
-        'Fitness Tracker App': {
-            title: 'Fitness Tracker App',
-            description: 'A mobile application for tracking fitness activities and health metrics. Built using React Native, this app works on both iOS and Android devices and syncs data to a cloud database.',
-            functionality: 'The app allows users to log workouts, track progress over time, set goals, and monitor health metrics like weight, heart rate, and sleep quality. It integrates with popular fitness devices and services through their APIs to provide a comprehensive health dashboard.',
-            image: 'assets/images/projects/project3.jpg',
-            github: 'https://github.com/abhijeet/fitness-tracker',
+        'ARCam': {
+            title: 'ARCam',
+            description: 'A mobile application for augmented reality camera experiences. Built using Kotlin and ARCore, this app overlays digital information onto the real world through the camera view.',
+            functionality: 'The app allows users to identify objects in real-time, place virtual objects in the real world, and interact with AR elements. It uses machine learning for object recognition and ARCore for spatial tracking and rendering.',
+            image: 'assets/images/projects/ar.png',
+            github: 'https://github.com/Greninja110/arcam',
             demo: '#',
-            status: 'planned'
+            status: 'ongoing'
+        },
+        'AI-Powered Network Intrusion Detection System': {
+            title: 'AI-Powered Network Intrusion Detection System',
+            description: 'A network security system that uses machine learning to detect and prevent intrusions. Built with Python, TensorFlow, and network monitoring tools.',
+            functionality: 'The system analyzes network traffic in real-time to identify suspicious patterns and potential attacks. It uses a combination of rule-based detection and machine learning models trained on network traffic datasets to identify and flag anomalies.',
+            image: 'assets/images/projects/nids.png',
+            github: 'https://github.com/Greninja110/ai-nids',
+            demo: '#',
+            status: 'ongoing'
         }
     };
     
@@ -344,7 +302,7 @@ function initProjects() {
     viewDetailsButtons.forEach(button => {
         button.addEventListener('click', function() {
             const projectTitle = this.parentElement.querySelector('h3').textContent;
-            logMainEvent(`Project details opened for: ${projectTitle}`);
+            console.log(`Project details opened for: ${projectTitle}`);
             
             const project = projectData[projectTitle];
             
@@ -373,22 +331,24 @@ function initProjects() {
     });
     
     // Close modal when clicking the X button
-    closeModal.addEventListener('click', function() {
-        modal.style.display = 'none';
-        document.body.style.overflow = 'auto'; // Re-enable scrolling
-        logMainEvent('Project modal closed');
-    });
+    if (closeModal) {
+        closeModal.addEventListener('click', function() {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Re-enable scrolling
+            console.log('Project modal closed');
+        });
+    }
     
     // Close modal when clicking outside of it
     window.addEventListener('click', function(e) {
         if (e.target === modal) {
             modal.style.display = 'none';
             document.body.style.overflow = 'auto'; // Re-enable scrolling
-            logMainEvent('Project modal closed (clicked outside)');
+            console.log('Project modal closed (clicked outside)');
         }
     });
     
-    logMainEvent('Projects functionality initialized');
+    console.log('Projects functionality initialized');
 }
 
 /**
@@ -406,28 +366,12 @@ function initResume() {
             if (resumeIframe.src === '') {
                 e.preventDefault();
                 resumeIframe.src = this.href;
-                logMainEvent(`Resume iframe loaded: ${this.href}`);
-            }
-            
-            // Track resume view for analytics
-            if (typeof trackResumeView === 'function') {
-                trackResumeView('view');
-                logMainEvent('Resume view tracked');
+                console.log(`Resume iframe loaded: ${this.href}`);
             }
         });
     }
     
-    if (downloadResumeBtn) {
-        // Track resume download for analytics
-        downloadResumeBtn.addEventListener('click', function() {
-            if (typeof trackResumeView === 'function') {
-                trackResumeView('download');
-                logMainEvent('Resume download tracked');
-            }
-        });
-    }
-    
-    logMainEvent('Resume functionality initialized');
+    console.log('Resume functionality initialized');
 }
 
 /**
@@ -446,8 +390,8 @@ function setAnimationOrder() {
     timelineItems.forEach((item, index) => {
         item.style.setProperty('--animation-order', index);
     });
-       
-    logMainEvent('Animation order set for all elements');
+    
+    console.log('Animation order set for all elements');
 }
 
 /**
@@ -481,17 +425,9 @@ function initSkillTooltips() {
         } else {
             skillLevel = 'Complete Knowledge';
         }
-        
-        // Create tooltip element
-        const tooltip = document.createElement('div');
-        tooltip.className = 'skill-tooltip';
-        tooltip.textContent = `${progressPercentage}% - ${skillLevel}`;
-        
-        // Insert tooltip after the skill bar
-        skillBar.insertAdjacentElement('afterend', tooltip);
     });
     
-    logMainEvent('Skill tooltips initialized');
+    console.log('Skill tooltips initialized');
 }
 
 /**
@@ -505,7 +441,7 @@ function initResumeTabs() {
         resumeTabs.forEach(tab => {
             tab.addEventListener('click', function() {
                 const resumeType = this.getAttribute('data-resume');
-                logMainEvent(`Resume tab selected: ${resumeType}`);
+                console.log(`Resume tab selected: ${resumeType}`);
                 
                 // Remove active class from all tabs
                 resumeTabs.forEach(t => t.classList.remove('active'));
@@ -523,13 +459,13 @@ function initResumeTabs() {
                 if (targetContent) {
                     targetContent.classList.add('active');
                 } else {
-                    logMainEvent(`ERROR: Resume content with ID ${resumeType}-resume not found!`);
+                    console.log(`ERROR: Resume content with ID ${resumeType}-resume not found!`);
                 }
             });
         });
     }
     
-    logMainEvent('Resume tabs initialized');
+    console.log('Resume tabs initialized');
 }
 
 // Make functions globally accessible

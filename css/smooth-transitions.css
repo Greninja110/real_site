@@ -29,8 +29,7 @@
 .section {
   transition: opacity 0.5s ease, 
               transform 0.5s ease,
-              padding 0.3s ease,
-              display 0.3s ease;
+              padding 0.3s ease;
 }
 
 /* Enhanced hamburger animation */
@@ -38,10 +37,6 @@
   transition: transform 0.3s ease, 
               opacity 0.3s ease,
               background-color 0.3s ease;
-  display: block;
-  width: 25px;
-  height: 3px;
-  margin: 5px 0;
 }
 
 .mobile-toggle.open span:nth-child(1) {
@@ -113,11 +108,6 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Enhanced focus effects for accessibility */
-button:focus, a:focus, input:focus, textarea:focus {
-  transition: box-shadow 0.3s ease;
-}
-
 /* Mobile-specific transitions */
 @media (max-width: 767px) {
   .sidebar.open {
@@ -128,7 +118,7 @@ button:focus, a:focus, input:focus, textarea:focus {
   
   .sidebar-nav {
     transition: opacity 0.3s ease, 
-                display 0.1s ease;
+                visibility 0.3s ease;
   }
   
   .sidebar.open .sidebar-nav {
@@ -171,6 +161,22 @@ button:focus, a:focus, input:focus, textarea:focus {
     transition: margin-left 0.5s ease,
                 padding-top 0.5s ease;
   }
+  
+  /* When toggling between modes */
+  body.single-page-mode .sidebar,
+  body:not(.single-page-mode) .sidebar {
+    transition: width 0.5s ease,
+                height 0.5s ease,
+                position 0.5s ease,
+                flex-direction 0.5s ease;
+  }
+  
+  body.single-page-mode .content,
+  body:not(.single-page-mode) .content {
+    transition: margin-left 0.5s ease,
+                padding-top 0.5s ease,
+                width 0.5s ease;
+  }
 }
 
 /* Smooth entrance for theme toggle */
@@ -179,4 +185,22 @@ button:focus, a:focus, input:focus, textarea:focus {
               position 0.4s ease,
               right 0.4s ease,
               top 0.4s ease;
+}
+
+/* Transitions for nav links appearance when toggling sidebar */
+.sidebar.open .nav-link {
+  animation: slideInRight 0.3s forwards;
+  animation-delay: calc(var(--nav-index, 0) * 0.05s);
+  opacity: 0;
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
