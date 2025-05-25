@@ -1,6 +1,6 @@
 /* 
- * Hamburger menu styles for Abhijeet's Portfolio Website
- * Maintains 3-line design even when clicked
+ * Replace the entire contents of css/hamburger.css with this code 
+ * This fixes the hamburger menu to maintain 3-line appearance
  */
 
 /* Mobile toggle button */
@@ -9,8 +9,6 @@
     position: relative;
     z-index: 101;
     border-radius: 8px;
-    padding: 0.5rem;
-    background: transparent;
     cursor: pointer;
     border: none;
     outline: none;
@@ -21,16 +19,18 @@
     justify-content: center;
     align-items: center;
     transition: background-color 0.3s ease;
+    margin-right: 10px;
+    background: transparent;
 }
 
 /* The three lines */
 .mobile-toggle span {
     display: block;
-    width: 25px;
+    width: 24px;
     height: 3px;
     margin: 3px 0;
     border-radius: 1.5px;
-    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: background-color 0.3s ease;
 }
 
 /* Color based on theme */
@@ -42,16 +42,7 @@
     background-color: var(--dark-accent);
 }
 
-/* Subtle animation when open - slight movement but keeping 3 lines */
-.mobile-toggle.open span:nth-child(1) {
-    transform: translateY(1px);
-}
-
-.mobile-toggle.open span:nth-child(3) {
-    transform: translateY(-1px);
-}
-
-/* Background change when open */
+/* Subtle background change when open but keep 3 lines */
 .light-theme .mobile-toggle.open {
     background-color: rgba(67, 97, 238, 0.1);
 }
@@ -60,24 +51,50 @@
     background-color: rgba(108, 139, 255, 0.15);
 }
 
-/* Hover effect */
-.light-theme .mobile-toggle:hover {
-    background-color: rgba(67, 97, 238, 0.1);
-}
-
-.dark-theme .mobile-toggle:hover {
-    background-color: rgba(108, 139, 255, 0.15);
+/* Mobile theme toggle position */
+.mobile-theme-toggle {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0;
 }
 
 /* Mobile specific styles */
 @media (max-width: 767px) {
+    /* Reorder sidebar header items */
+    .sidebar-header {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 0 1rem;
+        width: 100%;
+        height: var(--header-height, 60px);
+    }
+    
     .mobile-toggle {
+        order: 1;
+        margin-right: 12px;
         width: 36px;
         height: 36px;
     }
     
-    .mobile-toggle span {
-        width: 22px;
-        height: 2px;
+    .profile-pic-container {
+        order: 2;
+        width: 40px;
+        height: 40px;
+        margin: 0;
+        margin-right: 12px;
+        border-width: 2px;
+    }
+    
+    .sidebar-title {
+        order: 3;
+        margin-bottom: 0;
+        font-size: 1.2rem;
+    }
+    
+    #theme-label {
+        display: none; /* Hide theme label on mobile */
     }
 }

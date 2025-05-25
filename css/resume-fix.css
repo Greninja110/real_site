@@ -1,0 +1,102 @@
+/* 
+ * Add this to css/style.css or create a new file called resume-fix.css
+ * These styles fix the resume sizing issues
+ */
+
+/* Resume container sizing fixes */
+.resume-content-container {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.resume-content {
+    display: none;
+    margin-top: 2rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.resume-content.active {
+    display: block;
+    animation: fadeIn 0.5s ease;
+}
+
+/* Resume preview iframe container */
+.resume-preview {
+    width: 100%;
+    max-width: 800px;
+    height: 600px;
+    margin: 0 auto 2rem;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid;
+}
+
+.light-theme .resume-preview {
+    border-color: var(--light-border);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.dark-theme .resume-preview {
+    border-color: var(--dark-border);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Resume iframe */
+.resume-preview iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* Resume tabs improvement */
+.resume-tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid;
+    padding-bottom: 1px;
+    gap: 0.5rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Resume action buttons */
+.resume-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+    .resume-preview {
+        height: 500px;
+    }
+    
+    .resume-actions {
+        flex-direction: column;
+    }
+    
+    .view-resume-btn,
+    .download-resume-btn {
+        width: 100%;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .resume-preview {
+        height: 550px;
+    }
+}
+
+/* Prevent iframe overflow */
+iframe {
+    max-width: 100%;
+}

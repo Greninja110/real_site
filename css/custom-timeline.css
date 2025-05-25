@@ -3,6 +3,104 @@
  * Centered timeline design with responsive adjustments
  */
 
+ /* 
+ * Add this to the top of custom-timeline.css to ensure the timeline is centered
+ * This overrides any other timeline position settings
+ */
+
+/* Timeline vertical line - ALWAYS CENTERED */
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50% !important; /* Force center position with !important */
+  transform: translateX(-50%) !important; /* Force perfect centering with !important */
+  height: 100%;
+  width: 4px;
+  background-color: var(--dark-border);
+  border-radius: 2px;
+}
+
+.dark-theme .timeline::before {
+  background: linear-gradient(to bottom, var(--dark-accent), var(--dark-secondary));
+}
+
+.light-theme .timeline::before {
+  background: linear-gradient(to bottom, var(--light-accent), var(--light-secondary));
+}
+
+/* Timeline date circle - ALWAYS CENTERED */
+.timeline-date-marker {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  left: 50% !important; /* Force center position with !important */
+  transform: translateX(-50%) !important; /* Force perfect centering with !important */
+  top: 0;
+  border-radius: 50%;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Timeline content positioning */
+.timeline-content {
+  position: relative;
+  width: 45%;
+  margin-top: 40px;
+}
+
+.timeline-block:nth-child(odd) .timeline-content {
+  margin-left: 55%;
+  align-self: flex-start;
+}
+
+.timeline-block:nth-child(even) .timeline-content {
+  margin-right: 55%;
+  align-self: flex-end;
+}
+
+/* Mobile responsive layout */
+@media (max-width: 767px) {
+  .timeline-content {
+    width: 80%;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-top: 70px; /* Extra space for the date marker */
+  }
+  
+  .timeline-block:nth-child(odd) .timeline-content,
+  .timeline-block:nth-child(even) .timeline-content {
+    align-self: center;
+  }
+  
+  /* Adjust arrows to always point upward to the date marker */
+  .timeline-block:nth-child(odd) .timeline-content::before,
+  .timeline-block:nth-child(even) .timeline-content::before {
+    left: 50%;
+    top: -16px;
+    transform: translateX(-50%);
+    border: 8px solid transparent;
+    border-bottom-color: var(--dark-card-bg);
+    right: auto;
+  }
+  
+  .dark-theme .timeline-block:nth-child(odd) .timeline-content::before,
+  .dark-theme .timeline-block:nth-child(even) .timeline-content::before {
+    border-bottom-color: var(--dark-card-bg);
+    border-right-color: transparent;
+    border-left-color: transparent;
+  }
+  
+  .light-theme .timeline-block:nth-child(odd) .timeline-content::before,
+  .light-theme .timeline-block:nth-child(even) .timeline-content::before {
+    border-bottom-color: var(--light-card-bg);
+    border-right-color: transparent;
+    border-left-color: transparent;
+  }
+}
 .timeline-wrapper {
   position: relative;
   width: 100%;

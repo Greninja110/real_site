@@ -1923,3 +1923,145 @@ p {
         padding: 0 2rem;
     }
 }
+/* 
+ * Add these styles to css/style.css to improve contact form styling
+ */
+
+.contact-form {
+    padding: 2rem;
+    border-radius: 16px;
+    height: 100%;
+}
+
+.light-theme .contact-form {
+    background-color: var(--light-card-bg);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.dark-theme .contact-form {
+    background-color: var(--dark-card-bg);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.form-group label {
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+.form-group input,
+.form-group textarea {
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    border: 1px solid;
+    font-family: var(--primary-font);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.light-theme .form-group input,
+.light-theme .form-group textarea {
+    border-color: var(--light-border);
+    background-color: var(--light-bg);
+    color: var(--light-text);
+}
+
+.dark-theme .form-group input,
+.dark-theme .form-group textarea {
+    border-color: var(--dark-border);
+    background-color: var(--dark-bg);
+    color: var(--dark-text);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+}
+
+.light-theme .form-group input:focus,
+.light-theme .form-group textarea:focus {
+    border-color: var(--light-accent);
+    box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.2);
+}
+
+.dark-theme .form-group input:focus,
+.dark-theme .form-group textarea:focus {
+    border-color: var(--dark-accent);
+    box-shadow: 0 0 0 2px rgba(108, 139, 255, 0.2);
+}
+
+.submit-btn {
+    padding: 0.9rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+}
+
+.light-theme .submit-btn {
+    background: var(--light-accent-gradient, var(--light-accent));
+    color: white;
+    box-shadow: 0 4px 12px rgba(67, 97, 238, 0.2);
+}
+
+.dark-theme .submit-btn {
+    background: var(--dark-accent-gradient, var(--dark-accent));
+    color: white;
+    box-shadow: 0 4px 12px rgba(108, 139, 255, 0.2);
+}
+
+.light-theme .submit-btn:hover {
+    box-shadow: 0 6px 15px rgba(67, 97, 238, 0.3);
+    transform: translateY(-2px);
+}
+
+.dark-theme .submit-btn:hover {
+    box-shadow: 0 6px 15px rgba(108, 139, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.form-status {
+    font-size: 0.9rem;
+    padding: 0.5rem 0;
+    min-height: 24px;
+}
+
+.form-status.success {
+    color: #28a745;
+}
+
+.form-status.error {
+    color: #dc3545;
+}
+
+.submit-loader {
+    display: none;
+}
+
+.submit-btn.loading .submit-text {
+    display: none;
+}
+
+.submit-btn.loading .submit-loader {
+    display: inline-block;
+}
