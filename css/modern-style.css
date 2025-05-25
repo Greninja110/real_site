@@ -1441,3 +1441,34 @@ input:checked + .slider:before {
   font-size: 0.9rem; /* Smaller font */
   line-height: 1.5;
 }
+/* Update this section */
+.profile-image-container {
+    width: 220px;
+    height: 220px;
+    position: relative;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+}
+
+.light-theme .profile-image-container {
+    border: 4px solid transparent;
+    background: var(--light-accent-gradient);
+}
+
+.dark-theme .profile-image-container {
+    border: 4px solid transparent;
+    background: var(--dark-accent-gradient);
+}
+
+/* Add this if not already present */
+.profile-image-container::before {
+    content: '';
+    position: absolute;
+    top: -2px; left: -2px; right: -2px; bottom: -2px;
+    z-index: -1;
+    border-radius: inherit;
+}
+
+.light-theme .profile-image-container::before { background: var(--light-accent-gradient); }
+.dark-theme .profile-image-container::before { background: var(--dark-accent-gradient); }
