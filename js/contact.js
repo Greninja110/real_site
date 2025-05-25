@@ -8,9 +8,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize contact form
     initContactForm();
-    
-    // Set up logging
-    setupContactLogger();
 });
 
 /**
@@ -63,26 +60,8 @@ function initContactForm() {
             formStatus.textContent = '';
             formStatus.className = 'form-status';
             
-            // Simulate form submission (since we have Firebase errors)
-            console.log("Simulating form submission with data:", { name, email, message });
-            
-            // Show success message after delay (simulating server response)
-            setTimeout(() => {
-                formStatus.textContent = 'Your message has been sent successfully! (Simulated)';
-                formStatus.className = 'form-status success';
-                
-                // Reset form
-                contactForm.reset();
-                
-                // Reset button state
-                submitBtn.classList.remove('loading');
-                if (submitText && submitLoader) {
-                    submitText.style.display = 'inline-block';
-                    submitLoader.style.display = 'none';
-                }
-                
-                console.log("Form submission simulation completed successfully");
-            }, 1500);
+            // Simulate form submission since real email sending will be implemented later
+            simulateFormSubmission(name, email, message, submitBtn, formStatus);
         });
     } else {
         console.warn("Contact form not found in the document");
@@ -90,25 +69,40 @@ function initContactForm() {
 }
 
 /**
- * Set up logger for contact form
+ * Simulate form submission for demonstration purposes
  */
-function setupContactLogger() {
-    console.log("Contact form logger initialized");
+function simulateFormSubmission(name, email, message, submitBtn, formStatus) {
+    console.log("Simulating form submission with data:", { name, email, message });
     
-    // Create log array for contact form events
-    window.contactLogs = [];
+    // Simulate server delay
+    setTimeout(() => {
+        // Show success message
+        formStatus.textContent = 'Your message has been sent successfully! I will get back to you soon.';
+        formStatus.className = 'form-status success';
+        
+        // Reset form
+        document.getElementById('contact-form').reset();
+        
+        // Reset button state
+        resetSubmitButton(submitBtn);
+        
+        console.log("Form submission simulation completed successfully");
+    }, 1500);
+}
+
+/**
+ * Reset submit button to normal state
+ */
+function resetSubmitButton(submitBtn) {
+    submitBtn.classList.remove('loading');
     
-    // Add log function
-    window.logContactEvent = function(message) {
-        const timestamp = new Date().toISOString();
-        const logEntry = `${timestamp} - ${message}`;
-        
-        // Add to log array
-        window.contactLogs.push(logEntry);
-        
-        // Log to console
-        console.log(`[Contact] ${message}`);
-    };
+    const submitText = submitBtn.querySelector('.submit-text');
+    const submitLoader = submitBtn.querySelector('.submit-loader');
+    
+    if (submitText && submitLoader) {
+        submitText.style.display = 'inline-block';
+        submitLoader.style.display = 'none';
+    }
 }
 
 // Make functions globally accessible

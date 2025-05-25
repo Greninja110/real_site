@@ -40,6 +40,7 @@
     <div class="container">
         <!-- Sidebar Navigation -->
         <aside class="sidebar">
+            <!-- Update the sidebar-header section in index.html -->
             <div class="sidebar-header">
                 <button id="mobile-toggle" class="mobile-toggle" aria-label="Toggle Menu">
                     <span></span>
@@ -50,6 +51,14 @@
                     <img src="assets/images/profile.png" alt="Abhijeet" class="profile-pic-small">
                 </div>
                 <h2 class="sidebar-title">Abhijeet</h2>
+
+                <!-- Theme toggle for mobile -->
+                <div class="theme-toggle mobile-theme-toggle">
+                    <label class="switch">
+                        <input type="checkbox" id="theme-toggle">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
             </div>
 
 
@@ -78,6 +87,10 @@
                         <span class="slider round"></span>
                     </label>
                     <span id="theme-label">Dark Mode</span>
+                </div>
+
+                <div class="last-updated">
+                    <i class="fas fa-edit"></i> Last updated on May 24, 2025
                 </div>
             </div>
         </aside>
@@ -386,7 +399,7 @@
             </section>
 
             <!-- Timeline Section with proper structure -->
-            <section id="Timeline" class="section">
+            <section id="timeline" class="section">
                 <div class="section-title">
                     <h2>My Journey</h2>
                 </div>
@@ -599,73 +612,77 @@
                 </div>
             </section>
 
-            <!-- Resume Section -->
-            <div class="section-title">
-                <h2>Resume</h2>
-            </div>
-            <div class="resume-tabs">
-                <button class="resume-tab active" data-resume="aiml">AI/ML</button>
-                <button class="resume-tab" data-resume="cybersecurity">Cybersecurity</button>
-                <button class="resume-tab" data-resume="webdev">Web Development</button>
-            </div>
-
-            <div class="resume-content-container">
-                <!-- AIML Resume -->
-                <div class="resume-content active" id="aiml-resume">
-                    <div class="resume-preview">
-                        <iframe src="https://drive.google.com/file/d/1v1ufKIbYrmDD5AKqc0I2xe_tgbvkGAY4/preview"
-                            width="100%" height="500px"></iframe>
-                    </div>
-                    <div class="resume-actions">
-                        <a href="https://drive.google.com/file/d/1v1ufKIbYrmDD5AKqc0I2xe_tgbvkGAY4/view" target="_blank"
-                            class="view-resume-btn">
-                            <i class="fas fa-eye"></i> View Resume
-                        </a>
-                        <a href="https://drive.google.com/uc?export=download&id=1v1ufKIbYrmDD5AKqc0I2xe_tgbvkGAY4"
-                            class="download-resume-btn">
-                            <i class="fas fa-download"></i> Download Resume
-                        </a>
-                    </div>
+            <!-- Resume section update in index.html -->
+            <section id="resume" class="section">
+                <div class="section-title">
+                    <h2>Resume</h2>
+                </div>
+                <div class="resume-tabs">
+                    <button class="resume-tab active" data-resume="aiml">AI/ML</button>
+                    <button class="resume-tab" data-resume="cybersecurity">Cybersecurity</button>
+                    <button class="resume-tab" data-resume="webdev">Web Development</button>
                 </div>
 
-                <!-- Cybersecurity Resume -->
-                <div class="resume-content" id="cybersecurity-resume">
-                    <div class="resume-preview">
-                        <iframe src="https://drive.google.com/file/d/1fGKRbdPGASITAVuZmxvRLsbHx6nrC3N-/preview"
-                            width="100%" height="500px"></iframe>
+                <div class="resume-content-container">
+                    <!-- AIML Resume -->
+                    <div class="resume-content active" id="aiml-resume">
+                        <div class="resume-preview">
+                            <iframe src="https://drive.google.com/file/d/1v1ufKIbYrmDD5AKqc0I2xe_tgbvkGAY4/preview"
+                                width="100%" height="600px"
+                                style="max-width: 800px; margin: 0 auto; display: block;"></iframe>
+                        </div>
+                        <div class="resume-actions">
+                            <a href="https://drive.google.com/file/d/1v1ufKIbYrmDD5AKqc0I2xe_tgbvkGAY4/view"
+                                target="_blank" class="view-resume-btn">
+                                <i class="fas fa-eye"></i> View Resume
+                            </a>
+                            <a href="https://drive.google.com/uc?export=download&id=1v1ufKIbYrmDD5AKqc0I2xe_tgbvkGAY4"
+                                class="download-resume-btn">
+                                <i class="fas fa-download"></i> Download Resume
+                            </a>
+                        </div>
                     </div>
-                    <div class="resume-actions">
-                        <a href="https://drive.google.com/file/d/1fGKRbdPGASITAVuZmxvRLsbHx6nrC3N-/view" target="_blank"
-                            class="view-resume-btn">
-                            <i class="fas fa-eye"></i> View Resume
-                        </a>
-                        <a href="https://drive.google.com/uc?export=download&id=1fGKRbdPGASITAVuZmxvRLsbHx6nrC3N-"
-                            class="download-resume-btn">
-                            <i class="fas fa-download"></i> Download Resume
-                        </a>
-                    </div>
-                </div>
 
-                <!-- Web Dev Resume -->
-                <div class="resume-content" id="webdev-resume">
-                    <div class="resume-preview">
-                        <iframe src="https://drive.google.com/file/d/1D_27JzwtoLxy8qrcCFrhrlvpTt9y64G-/preview?embedded=true" width="100%" height="500px" frameborder="0" allow="autoplay"
-                            width="100%" height="500px"></iframe>
+                    <!-- Cybersecurity Resume -->
+                    <div class="resume-content" id="cybersecurity-resume">
+                        <div class="resume-preview">
+                            <iframe src="https://drive.google.com/file/d/1fGKRbdPGASITAVuZmxvRLsbHx6nrC3N-/preview"
+                                width="100%" height="600px"
+                                style="max-width: 800px; margin: 0 auto; display: block;"></iframe>
+                        </div>
+                        <div class="resume-actions">
+                            <a href="https://drive.google.com/file/d/1fGKRbdPGASITAVuZmxvRLsbHx6nrC3N-/view"
+                                target="_blank" class="view-resume-btn">
+                                <i class="fas fa-eye"></i> View Resume
+                            </a>
+                            <a href="https://drive.google.com/uc?export=download&id=1fGKRbdPGASITAVuZmxvRLsbHx6nrC3N-"
+                                class="download-resume-btn">
+                                <i class="fas fa-download"></i> Download Resume
+                            </a>
+                        </div>
                     </div>
-                    <div class="resume-actions">
-                        <a href="https://drive.google.com/file/d/1D_27JzwtoLxy8qrcCFrhrlvpTt9y64G-/view" target="_blank"
-                            class="view-resume-btn">
-                            <i class="fas fa-eye"></i> View Resume
-                        </a>
-                        <a href="https://drive.google.com/uc?export=download&id=1D_27JzwtoLxy8qrcCFrhrlvpTt9y64G-"
-                            class="download-resume-btn">
-                            <i class="fas fa-download"></i> Download Resume
-                        </a>
+
+                    <!-- Web Dev Resume -->
+                    <div class="resume-content" id="webdev-resume">
+                        <div class="resume-preview">
+                            <iframe
+                                src="https://drive.google.com/file/d/1D_27JzwtoLxy8qrcCFrhrlvpTt9y64G-/preview?embedded=true"
+                                width="100%" height="600px" style="max-width: 800px; margin: 0 auto; display: block;"
+                                frameborder="0" allow="autoplay"></iframe>
+                        </div>
+                        <div class="resume-actions">
+                            <a href="https://drive.google.com/file/d/1D_27JzwtoLxy8qrcCFrhrlvpTt9y64G-/view"
+                                target="_blank" class="view-resume-btn">
+                                <i class="fas fa-eye"></i> View Resume
+                            </a>
+                            <a href="https://drive.google.com/uc?export=download&id=1D_27JzwtoLxy8qrcCFrhrlvpTt9y64G-"
+                                class="download-resume-btn">
+                                <i class="fas fa-download"></i> Download Resume
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
             </section>
-
             <!-- Contact Section -->
             <section id="contact" class="section">
                 <div class="section-title">
@@ -744,7 +761,7 @@
         </main>
     </div>
     <!-- Custom JavaScript -->
-     <script src="js/preloader.js"></script>
+    <script src="js/preloader.js"></script>
     <script src="js/animation.js"></script>
     <script src="js/theme.js"></script>
     <script src="js/main.js"></script>
@@ -753,19 +770,7 @@
     <script src="js/custom-timeline.js"></script>
     <script src="js/resume.js"></script>
     <script src="js/contact.js"></script>
-    
-    <div class="last-updated">
-        <i class="fas fa-edit"></i> Last updated on May 24, 2025
-    </div>
-    <script>
-        // Fix for null context errors
-        window.addEventListener('error', function (e) {
-            if (e.message.includes("Cannot read properties of null")) {
-                console.log("Prevented null context error:", e.message);
-                e.preventDefault();
-            }
-        });
-    </script>
+
 </body>
 
 </html>
