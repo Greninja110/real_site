@@ -2,34 +2,32 @@
  * Hamburger Menu CSS for Abhijeet's Portfolio Website
  */
 
-/* Mobile toggle button */
 .mobile-toggle {
-    display: block;
-    position: relative;
-    z-index: 101;
+    position: relative; /* Changed from absolute for easier layout in header */
+    z-index: 101; /* Ensure it's above other elements */
     border-radius: 8px;
     cursor: pointer;
     border: none;
     outline: none;
     width: 40px;
     height: 40px;
-    display: flex;
+    display: flex; /* Will be controlled by responsive.css */
     flex-direction: column;
     justify-content: center;
     align-items: center;
     transition: background-color 0.3s ease;
-    margin-right: 10px;
     background: transparent;
+    padding: 0; /* Remove padding to rely on width/height */
 }
 
 /* The three lines */
 .mobile-toggle span {
     display: block;
-    width: 24px;
-    height: 3px;
-    margin: 3px 0;
+    width: 24px; /* Width of the lines */
+    height: 3px;  /* Thickness of the lines */
+    margin: 3px 0; /* Spacing between lines */
     border-radius: 1.5px;
-    transition: transform 0.3s ease, opacity 0.3s ease, background-color 0.3s ease;
+    transition: all 0.3s ease-in-out; /* Smooth transition for animation */
 }
 
 /* Color based on theme */
@@ -41,50 +39,34 @@
     background-color: var(--dark-accent);
 }
 
-/* Animation for mobile toggle when open */
+/* Subtle background change when menu is open or hovered */
+.light-theme .mobile-toggle.open,
+.light-theme .mobile-toggle:hover {
+    background-color: rgba(67, 97, 238, 0.1);
+}
+
+.dark-theme .mobile-toggle.open,
+.dark-theme .mobile-toggle:hover {
+    background-color: rgba(108, 139, 255, 0.15);
+}
+
+/* Animation to 'X' when open */
 .mobile-toggle.open span:nth-child(1) {
-    transform: rotate(-45deg) translate(-5px, 6px);
+    transform: translateY(6px) rotate(45deg);
 }
 
 .mobile-toggle.open span:nth-child(2) {
     opacity: 0;
+    transform: translateX(-100%);
 }
 
 .mobile-toggle.open span:nth-child(3) {
-    transform: rotate(45deg) translate(-5px, -6px);
+    transform: translateY(-6px) rotate(-45deg);
 }
 
-/* Subtle background change when open */
-.light-theme .mobile-toggle.open {
-    background-color: rgba(67, 97, 238, 0.1);
-}
-
-.dark-theme .mobile-toggle.open {
-    background-color: rgba(108, 139, 255, 0.15);
-}
-
-/* Mobile theme toggle position */
+/* Mobile theme toggle position (controlled by responsive.css if needed) */
 .mobile-theme-toggle {
-    position: absolute;
-    right: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
-    margin: 0;
+    /* Styles for this specific element are in modern-style.css and responsive.css */
 }
 
-/* Desktop styles - show hamburger button */
-@media (min-width: 768px) {
-    .mobile-toggle {
-        display: block;
-        position: absolute;
-        right: 1rem;
-        top: 1rem;
-    }
-    
-    body:not(.single-page-mode) .mobile-toggle {
-        display: block;
-        position: absolute;
-        right: 1rem;
-        top: 1rem;
-    }
-}
+/* Display logic for .mobile-toggle is handled in responsive.css */

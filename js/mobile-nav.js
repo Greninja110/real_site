@@ -65,6 +65,7 @@ function initMobileNav() {
     const sidebar = document.querySelector('.sidebar');
     const content = document.querySelector('.content');
     const body = document.body;
+    const sidebarFooter = document.querySelector('.sidebar-footer');
     
     // Initial setup based on device size
     handleDeviceLayout();
@@ -75,12 +76,12 @@ function initMobileNav() {
             // On mobile: Just toggle the sidebar open state
             if (window.innerWidth <= 767) {
                 sidebar.classList.toggle('open');
-                mobileToggle.classList.toggle('open');
+                // Don't toggle the mobileToggle class to keep it as 3 lines
                 console.log("Mobile view: Toggling menu visibility");
             } else {
                 // On desktop/tablet: Toggle between single-page and multi-page mode
                 sidebar.classList.toggle('open');
-                mobileToggle.classList.toggle('open');
+                // Don't toggle the mobileToggle class to keep it as 3 lines
                 
                 // Single page mode toggle
                 const wasInSinglePageMode = body.classList.contains('single-page-mode');
@@ -109,6 +110,23 @@ function initMobileNav() {
                     
                     // Show all sections
                     showAllSections();
+                    
+                    // Move footer to bottom
+                    if (sidebarFooter) {
+                        sidebarFooter.style.position = 'fixed';
+                        sidebarFooter.style.bottom = '0';
+                        sidebarFooter.style.left = '0';
+                        sidebarFooter.style.width = '100%';
+                        sidebarFooter.style.borderTop = '1px solid';
+                        sidebarFooter.style.borderColor = body.classList.contains('light-theme') ? 
+                            'var(--light-border)' : 'var(--dark-border)';
+                        sidebarFooter.style.textAlign = 'center';
+                        sidebarFooter.style.padding = '10px 0';
+                        sidebarFooter.style.zIndex = '50';
+                        sidebarFooter.style.backgroundColor = body.classList.contains('light-theme') ? 
+                            'var(--light-sidebar-bg)' : 'var(--dark-sidebar-bg)';
+                        sidebarFooter.style.boxShadow = '0 -2px 10px rgba(0, 0, 0, 0.1)';
+                    }
                     
                     // Scroll to the active section
                     const targetSection = document.getElementById(activeSectionId);
@@ -159,6 +177,19 @@ function initMobileNav() {
                     content.style.marginLeft = 'var(--sidebar-width, 280px)';
                     content.style.width = 'calc(100% - var(--sidebar-width, 280px))';
                     content.style.paddingTop = '0';
+                    
+                    // Reset footer to default
+                    if (sidebarFooter) {
+                        sidebarFooter.style.position = '';
+                        sidebarFooter.style.bottom = '';
+                        sidebarFooter.style.left = '';
+                        sidebarFooter.style.width = '';
+                        sidebarFooter.style.textAlign = '';
+                        sidebarFooter.style.padding = '1.5rem';
+                        sidebarFooter.style.zIndex = '';
+                        sidebarFooter.style.backgroundColor = '';
+                        sidebarFooter.style.boxShadow = '';
+                    }
                     
                     // Hide all sections first
                     hideAllSections();
@@ -220,9 +251,6 @@ function initMobileNav() {
                     // Close mobile menu in single page mode if it's open
                     if (sidebar.classList.contains('open') && window.innerWidth <= 767) {
                         sidebar.classList.remove('open');
-                        if (mobileToggle) {
-                            mobileToggle.classList.remove('open');
-                        }
                     }
                 }
             } else {
@@ -255,6 +283,22 @@ function initMobileNav() {
             }
         });
     });
+    
+    // Listen for screen size changes
+    window.addEventListener('resize', function() {
+        const newIsMobile = window.innerWidth <= 767;
+        const currentIsInSinglePageMode = body.classList.contains('single-page-mode');
+        
+        // If mobile but not in single page mode, add the class
+        if (newIsMobile && !currentIsInSinglePageMode) {
+            body.classList.add('single-page-mode');
+            console.log('Switched to single page mode on resize (mobile detected)');
+            // Call handleDeviceLayout to properly set up mobile view
+            handleDeviceLayout();
+        }
+    });
+    
+    console.log('Navigation initialized');
 }
 
 /**
@@ -264,6 +308,7 @@ function handleDeviceLayout() {
     const body = document.body;
     const sidebar = document.querySelector('.sidebar');
     const content = document.querySelector('.content');
+    const sidebarFooter = document.querySelector('.sidebar-footer');
     
     if (window.innerWidth <= 767) {
         // Mobile: Always single page mode
@@ -284,6 +329,20 @@ function handleDeviceLayout() {
         content.style.marginLeft = '0';
         content.style.width = '100%';
         content.style.paddingTop = 'calc(var(--header-height, 60px) + 10px)';
+        
+        // Set up footer for mobile
+        if (sidebarFooter) {
+            sidebarFooter.style.position = 'fixed';
+            sidebarFooter.style.bottom = '0';
+            sidebarFooter.style.left = '0';
+            sidebarFooter.style.width = '100%';
+            sidebarFooter.style.textAlign = 'center';
+            sidebarFooter.style.padding = '10px 0';
+            sidebarFooter.style.zIndex = '50';
+            sidebarFooter.style.backgroundColor = body.classList.contains('light-theme') ? 
+                'var(--light-sidebar-bg)' : 'var(--dark-sidebar-bg)';
+            sidebarFooter.style.boxShadow = '0 -2px 10px rgba(0, 0, 0, 0.1)';
+        }
         
         // Setup intersection observer for section highlighting
         setupIntersectionObserver();
@@ -306,6 +365,20 @@ function handleDeviceLayout() {
             content.style.marginLeft = '0';
             content.style.width = '100%';
             content.style.paddingTop = 'calc(var(--header-height, 60px) + 20px)';
+            
+            // Set up footer for single page mode
+            if (sidebarFooter) {
+                sidebarFooter.style.position = 'fixed';
+                sidebarFooter.style.bottom = '0';
+                sidebarFooter.style.left = '0';
+                sidebarFooter.style.width = '100%';
+                sidebarFooter.style.textAlign = 'center';
+                sidebarFooter.style.padding = '10px 0';
+                sidebarFooter.style.zIndex = '50';
+                sidebarFooter.style.backgroundColor = body.classList.contains('light-theme') ? 
+                    'var(--light-sidebar-bg)' : 'var(--dark-sidebar-bg)';
+                sidebarFooter.style.boxShadow = '0 -2px 10px rgba(0, 0, 0, 0.1)';
+            }
             
             // Center content
             content.classList.add('centered-content');
@@ -341,6 +414,19 @@ function handleDeviceLayout() {
             content.style.width = 'calc(100% - var(--sidebar-width, 280px))';
             content.style.paddingTop = '0';
             
+            // Reset footer to default
+            if (sidebarFooter) {
+                sidebarFooter.style.position = '';
+                sidebarFooter.style.bottom = '';
+                sidebarFooter.style.left = '';
+                sidebarFooter.style.width = '';
+                sidebarFooter.style.textAlign = '';
+                sidebarFooter.style.padding = '1.5rem';
+                sidebarFooter.style.zIndex = '';
+                sidebarFooter.style.backgroundColor = '';
+                sidebarFooter.style.boxShadow = '';
+            }
+            
             // Remove centered content
             content.classList.remove('centered-content');
             
@@ -357,6 +443,7 @@ function preserveLayoutAfterThemeChange(previousState) {
     const body = document.body;
     const sidebar = document.querySelector('.sidebar');
     const content = document.querySelector('.content');
+    const sidebarFooter = document.querySelector('.sidebar-footer');
     
     // If we're in single-page mode, ensure it stays that way
     if (previousState?.isSinglePageMode || body.classList.contains('single-page-mode')) {
@@ -382,6 +469,20 @@ function preserveLayoutAfterThemeChange(previousState) {
         content.style.width = '100%';
         content.style.paddingTop = 'calc(var(--header-height, 60px) + 20px)';
         
+        // Set up footer for single page mode
+        if (sidebarFooter) {
+            sidebarFooter.style.position = 'fixed';
+            sidebarFooter.style.bottom = '0';
+            sidebarFooter.style.left = '0';
+            sidebarFooter.style.width = '100%';
+            sidebarFooter.style.textAlign = 'center';
+            sidebarFooter.style.padding = '10px 0';
+            sidebarFooter.style.zIndex = '50';
+            sidebarFooter.style.backgroundColor = body.classList.contains('light-theme') ? 
+                'var(--light-sidebar-bg)' : 'var(--dark-sidebar-bg)';
+            sidebarFooter.style.boxShadow = '0 -2px 10px rgba(0, 0, 0, 0.1)';
+        }
+        
         // Keep content centered
         content.classList.add('centered-content');
     } 
@@ -398,6 +499,20 @@ function preserveLayoutAfterThemeChange(previousState) {
         content.style.marginLeft = '0';
         content.style.width = '100%';
         content.style.paddingTop = 'calc(var(--header-height, 60px) + 10px)';
+        
+        // Set up footer for mobile
+        if (sidebarFooter) {
+            sidebarFooter.style.position = 'fixed';
+            sidebarFooter.style.bottom = '0';
+            sidebarFooter.style.left = '0';
+            sidebarFooter.style.width = '100%';
+            sidebarFooter.style.textAlign = 'center';
+            sidebarFooter.style.padding = '10px 0';
+            sidebarFooter.style.zIndex = '50';
+            sidebarFooter.style.backgroundColor = body.classList.contains('light-theme') ? 
+                'var(--light-sidebar-bg)' : 'var(--dark-sidebar-bg)';
+            sidebarFooter.style.boxShadow = '0 -2px 10px rgba(0, 0, 0, 0.1)';
+        }
     }
     else {
         // Regular desktop mode - left sidebar
@@ -410,6 +525,19 @@ function preserveLayoutAfterThemeChange(previousState) {
         content.style.marginLeft = 'var(--sidebar-width, 280px)';
         content.style.width = 'calc(100% - var(--sidebar-width, 280px))';
         content.style.paddingTop = '0';
+        
+        // Reset footer to default
+        if (sidebarFooter) {
+            sidebarFooter.style.position = '';
+            sidebarFooter.style.bottom = '';
+            sidebarFooter.style.left = '';
+            sidebarFooter.style.width = '';
+            sidebarFooter.style.textAlign = '';
+            sidebarFooter.style.padding = '1.5rem';
+            sidebarFooter.style.zIndex = '';
+            sidebarFooter.style.backgroundColor = '';
+            sidebarFooter.style.boxShadow = '';
+        }
         
         content.classList.remove('centered-content');
     }
@@ -468,7 +596,8 @@ function setupIntersectionObserver() {
     
     observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting && entry.intersectionRatio > 0.3) {
+            // Only consider entries with high intersection ratio (more visible in viewport)
+            if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
                 const sectionId = entry.target.id;
                 
                 // Skip stats section (admin-only)
@@ -491,8 +620,8 @@ function setupIntersectionObserver() {
             }
         });
     }, {
-        threshold: 0.3,
-        rootMargin: '-20% 0px -20% 0px'
+        threshold: 0.5, // Increased threshold - section must be 50% visible
+        rootMargin: '-10% 0px -10% 0px' // Reduced margins for more accurate detection
     });
     
     // Observe all sections except stats

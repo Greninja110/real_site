@@ -133,56 +133,56 @@
 }
 
 /* ---------- Apply Animations to Elements ---------- */
-.section.active .section-title {
+/* Applied when section becomes active and NOT in single-page-mode */
+body:not(.single-page-mode) .section.active .section-title {
     animation: slideInFromLeft 0.5s forwards;
 }
 
-.section.active .profile-section {
+body:not(.single-page-mode) .section.active .profile-section {
     animation: fadeIn 1s forwards;
 }
 
-.section.active .about-content {
+body:not(.single-page-mode) .section.active .about-content {
     animation: slideInFromBottom 0.7s forwards;
 }
 
-.section.active .filter-buttons {
+body:not(.single-page-mode) .section.active .filter-buttons {
     animation: slideInFromTop 0.6s forwards;
 }
 
-.section.active .project-card {
+body:not(.single-page-mode) .section.active .project-card {
+    animation: pop 0.5s forwards;
+    animation-delay: calc(var(--animation-order) * 0.1s);
+    opacity: 0; /* Start hidden, animation will make it visible */
+}
+
+body:not(.single-page-mode) .section.active .game-card {
     animation: pop 0.5s forwards;
     animation-delay: calc(var(--animation-order) * 0.1s);
     opacity: 0;
 }
 
-.section.active .game-card {
-    animation: pop 0.5s forwards;
-    animation-delay: calc(var(--animation-order) * 0.1s);
-    opacity: 0;
-}
-
-.section.active .timeline-item {
+body:not(.single-page-mode) .section.active .timeline-item { /* Assuming .timeline-item exists, or .timeline-block */
     animation: fadeIn 0.8s forwards;
     animation-delay: calc(var(--animation-order) * 0.2s);
     opacity: 0;
 }
 
-.section.active .stat-card {
+body:not(.single-page-mode) .section.active .stat-card {
     animation: slideInFromBottom 0.5s forwards;
     animation-delay: calc(var(--animation-order) * 0.1s);
     opacity: 0;
 }
 
-.section.active .contact-info,
-.section.active .contact-form {
+body:not(.single-page-mode) .section.active .contact-info {
     animation: slideInFromLeft 0.7s forwards;
     opacity: 0;
 }
-
-.section.active .contact-form {
+body:not(.single-page-mode) .section.active .contact-form {
     animation: slideInFromRight 0.7s forwards;
     opacity: 0;
 }
+
 
 /* Preloader Fade Out */
 .preloader.fade-out {

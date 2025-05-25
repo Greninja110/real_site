@@ -3,82 +3,90 @@
  * Enhanced animations and smooth transitions
  */
 
-/* Base transitions for all elements */
-.transition-element {
-  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+/* Base transitions for common properties */
+* {
+    /* Avoid universal selector for performance; apply to specific elements */
 }
 
-/* Improved sidebar transitions */
+.sidebar,
+.content,
+.nav-link,
+.profile-pic-container,
+.sidebar-header,
+.sidebar-nav,
+.sidebar-nav ul,
+.sidebar-footer,
+.section,
+.theme-toggle,
+.mobile-toggle,
+.filter-btn, 
+.view-details-btn, 
+.view-resume-btn, 
+.download-resume-btn, 
+.email-direct-btn, 
+.timeline-btn,
+.submit-btn,
+.achievement-link,
+.project-card,
+.timeline-content {
+  transition: all var(--transition-speed) var(--transition-function-cubic);
+}
+
+
+/* Sidebar transitions for different properties */
 .sidebar {
-  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
-              width 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-              height 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-              left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-              top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-              background-color 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition-property: width, height, transform, left, top, background-color, border-color, box-shadow;
 }
 
-/* Smooth transitions for content area */
+/* Content area transitions */
 .content {
-  transition: margin-left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-              width 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-              padding-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition-property: margin-left, width, padding-top;
+}
+.content.centered-content .section,
+.single-page-mode .section { /* For centering sections */
+    transition-property: max-width, margin-left, margin-right;
 }
 
-/* Smooth transitions for sections */
+
+/* Section display/hide transitions (opacity and transform) */
 .section {
-  transition: opacity 0.5s ease, 
-              transform 0.5s ease,
-              padding 0.3s ease;
+  transition-property: opacity, transform, padding;
+}
+/* Animations for section content are in animations.css (e.g., slideInFromLeft) */
+
+
+/* Hamburger icon lines transition (handled in hamburger.css) */
+/* .mobile-toggle span {} */
+
+
+/* Specific transitions for single-page mode toggling */
+body.single-page-mode .sidebar,
+body:not(.single-page-mode) .sidebar {
+  /* Already covered by general .sidebar transition */
 }
 
-/* Enhanced hamburger animation */
-.mobile-toggle span {
-  transition: transform 0.3s ease, 
-              opacity 0.3s ease,
-              background-color 0.3s ease;
+body.single-page-mode .content,
+body:not(.single-page-mode) .content {
+ /* Already covered by general .content transition */
 }
 
-.mobile-toggle.open span:nth-child(1) {
-  transform: rotate(-45deg) translate(-5px, 6px);
+body.single-page-mode .sidebar-header,
+body:not(.single-page-mode) .sidebar-header,
+body.single-page-mode .sidebar-nav,
+body:not(.single-page-mode) .sidebar-nav {
+  /* Already covered */
 }
 
-.mobile-toggle.open span:nth-child(2) {
-  opacity: 0;
-}
 
-.mobile-toggle.open span:nth-child(3) {
-  transform: rotate(45deg) translate(-5px, -6px);
-}
-
-/* Single page transitions */
-.single-page-mode .sidebar {
-  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.single-page-mode .sidebar-header,
-.single-page-mode .sidebar-nav,
-.single-page-mode .sidebar-nav ul,
-.single-page-mode .sidebar-footer {
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-/* Smooth transitions for nav links */
-.nav-link {
-  transition: all 0.3s ease;
-}
-
-/* Profile container transitions */
+/* Profile picture container transitions (size, margin) */
 .profile-pic-container {
-  transition: width 0.4s ease,
-              height 0.4s ease,
-              margin 0.4s ease,
-              border-width 0.4s ease;
+  transition-property: width, height, margin, border-width;
 }
 
-/* Section animations */
-.section.active {
-  animation: fadeInUp 0.5s forwards;
+
+/* Section active animation (fade and slight move up) */
+body:not(.single-page-mode) .section.active {
+  animation: fadeInUp 0.6s var(--transition-function-cubic) forwards;
 }
 
 @keyframes fadeInUp {
@@ -92,109 +100,50 @@
   }
 }
 
-/* Enhanced fade in for single page mode sections */
+/* In single-page mode, sections are always visible, no fadeInUp needed */
 .single-page-mode .section {
   animation: none;
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Smooth scrolling for the whole page */
+
+/* Smooth scrolling (JS handles scroll, CSS provides base) */
 html {
   scroll-behavior: smooth;
 }
-
+/* .content in single-page mode might also need this if it's the scroll container */
 .single-page-mode .content {
-  scroll-behavior: smooth;
+  scroll-behavior: smooth; /* If content itself is scrollable */
 }
+
 
 /* Mobile-specific transitions */
 @media (max-width: 767px) {
   .sidebar.open {
-    transition: height 0.4s ease, 
-                backdrop-filter 0.4s ease,
-                background-color 0.4s ease;
+    /* height transition is on .sidebar already */
+    /* backdrop-filter might not transition smoothly, apply on .open state */
   }
-  
-  .sidebar-nav {
-    transition: opacity 0.3s ease, 
-                visibility 0.3s ease;
-  }
-  
   .sidebar.open .sidebar-nav {
-    animation: fadeIn 0.4s forwards;
+    animation: fadeInNav 0.4s var(--transition-function-cubic) forwards 0.2s; /* Delay nav appearance */
+    opacity: 0; /* Start hidden */
   }
   
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+  @keyframes fadeInNav {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 }
 
-/* Enhanced transition for single page mode on larger screens */
-@media (min-width: 768px) {
-  .single-page-mode .sidebar {
-    transition: width 0.5s ease,
-                height 0.5s ease,
-                position 0.5s ease,
-                flex-direction 0.5s ease;
-  }
-  
-  .single-page-mode .sidebar-header {
-    transition: flex-direction 0.4s ease,
-                width 0.4s ease,
-                margin 0.4s ease;
-  }
-  
-  .single-page-mode .sidebar-nav {
-    transition: display 0.4s ease,
-                flex 0.4s ease,
-                padding 0.4s ease;
-  }
-  
-  .single-page-mode .nav-link {
-    transition: padding 0.3s ease,
-                margin 0.3s ease;
-  }
-  
-  .single-page-mode .content {
-    transition: margin-left 0.5s ease,
-                padding-top 0.5s ease;
-  }
-  
-  /* When toggling between modes */
-  body.single-page-mode .sidebar,
-  body:not(.single-page-mode) .sidebar {
-    transition: width 0.5s ease,
-                height 0.5s ease,
-                position 0.5s ease,
-                flex-direction 0.5s ease;
-  }
-  
-  body.single-page-mode .content,
-  body:not(.single-page-mode) .content {
-    transition: margin-left 0.5s ease,
-                padding-top 0.5s ease,
-                width 0.5s ease;
-  }
-}
 
-/* Smooth entrance for theme toggle */
-.theme-toggle {
-  transition: margin 0.3s ease,
-              position 0.4s ease,
-              right 0.4s ease,
-              top 0.4s ease;
-}
-
-/* Transitions for nav links appearance when toggling sidebar */
+/* Transitions for nav links appearing in mobile open menu */
 .sidebar.open .nav-link {
-  animation: slideInRight 0.3s forwards;
-  animation-delay: calc(var(--nav-index, 0) * 0.05s);
-  opacity: 0;
+  animation: slideInFromLeftMobileNav 0.3s var(--transition-function-cubic) forwards;
+  animation-delay: calc(var(--nav-index, 0) * 0.07s + 0.2s); /* Staggered, starts after menu opens */
+  opacity: 0; /* Start hidden */
 }
 
-@keyframes slideInRight {
+@keyframes slideInFromLeftMobileNav {
   from {
     opacity: 0;
     transform: translateX(-20px);
@@ -203,4 +152,44 @@ html {
     opacity: 1;
     transform: translateX(0);
   }
+}
+
+
+/* Footer transitions for fixed positioning */
+.sidebar-footer {
+  transition-property: position, bottom, left, width, padding, border-top, box-shadow, background-color;
+}
+.last-updated {
+  transition-property: margin, padding, font-size;
+}
+
+/* Ripple effect for buttons (from transitions.css) - optional nice touch */
+.btn-ripple {
+  position: relative;
+  overflow: hidden;
+}
+.btn-ripple::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.7) 10%, transparent 10.01%);
+  background-repeat: no-repeat;
+  background-position: 50%;
+  transform: scale(10, 10);
+  opacity: 0;
+  transition: transform 0.6s, opacity 1s;
+}
+.btn-ripple:active::after {
+  transform: scale(0, 0);
+  opacity: 0.3;
+  transition: 0s;
+}
+/* Apply to buttons that should have ripple */
+.view-details-btn, .view-resume-btn, .download-resume-btn, .email-direct-btn, .submit-btn, .timeline-btn, .achievement-link {
+    /* Add .btn-ripple class in HTML if you want this effect */
 }

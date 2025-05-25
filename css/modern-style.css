@@ -7,7 +7,7 @@
   /* Enhanced color palette */
   --light-bg: #f8f9fa;
   --light-sidebar-bg: #ffffff;
-  --light-content-bg: #f8f9fa;
+  --light-content-bg: #f0f4f8; /* Slightly different from light-bg */
   --light-text: #333333;
   --light-title: #212529;
   --light-accent: #4361ee;
@@ -40,8 +40,26 @@
   --dark-shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.3);
   
   /* Refined spacing */
-  --section-spacing: 6rem;
-  --card-spacing: 2rem;
+  --section-spacing: 6rem; /* Used in modern-style, ensure consistency */
+  --card-spacing: 2rem; /* Used in modern-style */
+
+  /* Variables from style.css for consistency */
+  --sidebar-width: 280px;
+  --header-height: 60px; /* For top nav mode and mobile header */
+  --section-padding: 3rem 2rem; /* Default section padding */
+  --card-padding: 1.75rem; /* Default card padding */
+  --grid-gap: 1.5rem;
+
+  /* Border Radius */
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 16px;
+  --border-radius-xl: 20px; /* For modals etc. */
+
+  /* Transitions */
+  --transition-speed: 0.3s;
+  --transition-function: ease;
+  --transition-function-cubic: cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 /* Enhanced typography */
@@ -81,7 +99,7 @@ h1, h2, h3, h4, h5, h6 {
     radial-gradient(circle at 90% 80%, rgba(99, 102, 241, 0.05) 0%, transparent 20%);
 }
 
-/* Enhanced sidebar styling */
+/* Enhanced sidebar styling (applies to both left sidebar and top nav bar) */
 .sidebar {
   border-right: 1px solid;
   backdrop-filter: blur(10px);
@@ -95,52 +113,62 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .dark-theme .sidebar {
-  background-color: rgba(30, 41, 59, 0.9);
+  background-color: rgba(30, 41, 59, 0.9); /* from modern-style */
   border-right-color: var(--dark-border);
   box-shadow: var(--dark-shadow-md);
 }
+/* Ensure border is only on the right for left sidebar, and bottom for top nav */
+body:not(.single-page-mode) .sidebar {
+    border-right: 1px solid;
+    border-bottom: none;
+}
+.single-page-mode .sidebar {
+    border-right: none;
+    border-bottom: 1px solid;
+}
+.light-theme.single-page-mode .sidebar {
+    border-bottom-color: var(--light-border);
+}
+.dark-theme.single-page-mode .sidebar {
+    border-bottom-color: var(--dark-border);
+}
 
-/* Modern profile container */
+
+/* Modern profile container - general styles */
 .profile-pic-container {
   position: relative;
-  width: 120px;
-  height: 120px;
   border-radius: 50%;
   overflow: hidden;
-  margin-bottom: 1.5rem;
-  box-shadow: var(--dark-shadow-md);
+  /* Sizing and margin are controlled by responsive.css or specific context */
 }
 
 .light-theme .profile-pic-container {
   border: 4px solid transparent;
   background: var(--light-accent-gradient);
-  background-clip: padding-box;
 }
 
 .dark-theme .profile-pic-container {
   border: 4px solid transparent;
   background: var(--dark-accent-gradient);
-  background-clip: padding-box;
 }
 
+.profile-pic-container img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+/* Inner glow/border effect */
 .profile-pic-container::before {
   content: '';
   position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  z-index: -1;
+  top: -2px; left: -2px; right: -2px; bottom: -2px; /* Controls border thickness via background */
+  z-index: -1; /* Behind the image if image has transparent parts */
   border-radius: inherit;
 }
+.light-theme .profile-pic-container::before { background: var(--light-accent-gradient); }
+.dark-theme .profile-pic-container::before { background: var(--dark-accent-gradient); }
 
-.light-theme .profile-pic-container::before {
-  background: var(--light-accent-gradient);
-}
-
-.dark-theme .profile-pic-container::before {
-  background: var(--dark-accent-gradient);
-}
 
 /* Refined navigation styling */
 .nav-link {
@@ -187,12 +215,14 @@ h1, h2, h3, h4, h5, h6 {
 .nav-link i {
   margin-right: 1rem;
   font-size: 1.1rem;
+  width: 20px; /* Consistent icon width */
+  text-align: center;
 }
 
 /* Enhanced content area */
 .content {
   flex: 1;
-  padding: 2rem;
+  /* padding handled by responsive.css based on mode */
 }
 
 .light-theme .content {
@@ -205,10 +235,17 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Section styling */
 .section {
-  padding: 3rem 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
+  padding: var(--section-padding); /* Use root variable */
+  max-width: 1200px; /* Default max-width for content within sections */
+  margin: 0 auto; /* Centering sections */
 }
+.single-page-mode .section {
+    padding-top: var(--header-height); /* Add padding for fixed header in single page mode */
+}
+.single-page-mode section:first-of-type {
+    padding-top: calc(var(--header-height) + 2rem); /* Extra padding for the first section */
+}
+
 
 .section-title {
   margin-bottom: 3rem;
@@ -250,10 +287,10 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Enhanced project cards */
 .project-card {
-  border-radius: 16px;
+  border-radius: var(--border-radius-lg);
   overflow: hidden;
   transition: all 0.3s ease;
-  height: 100%;
+  height: 100%; /* For consistent card heights in a grid */
 }
 
 .light-theme .project-card {
@@ -268,10 +305,12 @@ h1, h2, h3, h4, h5, h6 {
 
 .light-theme .project-card:hover {
   box-shadow: var(--light-shadow-lg);
+  transform: translateY(-5px);
 }
 
 .dark-theme .project-card:hover {
   box-shadow: var(--dark-shadow-lg);
+  transform: translateY(-5px);
 }
 
 .project-image {
@@ -280,7 +319,7 @@ h1, h2, h3, h4, h5, h6 {
   overflow: hidden;
 }
 
-.project-image::after {
+.project-image::after { /* Gradient overlay on hover */
   content: '';
   position: absolute;
   bottom: 0;
@@ -308,7 +347,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .project-info {
-  padding: 1.75rem;
+  padding: var(--card-padding);
 }
 
 .project-info h3 {
@@ -326,7 +365,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .project-card:hover .project-info h3 {
-  color: var(--light-accent);
+  color: var(--light-accent); /* Or theme-specific accent */
 }
 
 .dark-theme .project-card:hover .project-info h3 {
@@ -343,20 +382,29 @@ h1, h2, h3, h4, h5, h6 {
 .view-details-btn,
 .view-resume-btn,
 .download-resume-btn,
-.email-direct-btn {
+.email-direct-btn,
+.submit-btn, /* Added submit-btn for consistency */
+.timeline-btn, /* Added timeline-btn */
+.achievement-link /* Added achievement-link */
+ {
   padding: 0.75rem 1.5rem;
   border: none;
-  border-radius: 8px;
+  border-radius: var(--border-radius-md);
   font-weight: 600;
   transition: all 0.3s ease;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
+  text-decoration: none; /* Ensure links look like buttons */
+  cursor: pointer;
 }
 
 .light-theme .view-details-btn,
 .light-theme .view-resume-btn,
-.light-theme .email-direct-btn {
+.light-theme .email-direct-btn,
+.light-theme .submit-btn,
+.light-theme .timeline-btn,
+.light-theme .achievement-link {
   background: var(--light-accent-gradient);
   color: white;
   box-shadow: 0 4px 12px rgba(67, 97, 238, 0.2);
@@ -364,7 +412,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .dark-theme .view-details-btn,
 .dark-theme .view-resume-btn,
-.dark-theme .email-direct-btn {
+.dark-theme .email-direct-btn,
+.dark-theme .submit-btn,
+.dark-theme .timeline-btn,
+.dark-theme .achievement-link {
   background: var(--dark-accent-gradient);
   color: white;
   box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
@@ -384,14 +435,20 @@ h1, h2, h3, h4, h5, h6 {
 
 .light-theme .view-details-btn:hover,
 .light-theme .view-resume-btn:hover,
-.light-theme .email-direct-btn:hover {
+.light-theme .email-direct-btn:hover,
+.light-theme .submit-btn:hover,
+.light-theme .timeline-btn:hover,
+.light-theme .achievement-link:hover {
   transform: translateY(-3px);
   box-shadow: 0 8px 15px rgba(67, 97, 238, 0.3);
 }
 
 .dark-theme .view-details-btn:hover,
 .dark-theme .view-resume-btn:hover,
-.dark-theme .email-direct-btn:hover {
+.dark-theme .email-direct-btn:hover,
+.dark-theme .submit-btn:hover,
+.dark-theme .timeline-btn:hover,
+.dark-theme .achievement-link:hover {
   transform: translateY(-3px);
   box-shadow: 0 8px 15px rgba(99, 102, 241, 0.3);
 }
@@ -412,16 +469,17 @@ h1, h2, h3, h4, h5, h6 {
 .timeline-wrapper {
   position: relative;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1200px; /* Consistent with section max-width */
   margin: 0 auto;
   padding: 2rem 0;
 }
 
+/* Timeline vertical line - styles from custom-timeline.css take precedence if more specific */
 .timeline::before {
   content: '';
   position: absolute;
   top: 0;
-  left: 18px;
+  left: 18px; /* Default for left-aligned, custom-timeline.css may override to 50% */
   height: 100%;
   width: 3px;
   border-radius: 1.5px;
@@ -435,9 +493,10 @@ h1, h2, h3, h4, h5, h6 {
   background: linear-gradient(to bottom, var(--dark-accent) 0%, var(--dark-secondary) 100%);
 }
 
-.timeline-date-marker {
+.timeline-date-marker { /* General styling for date marker */
   border-radius: 50%;
   box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1), 0 4px 8px rgba(0, 0, 0, 0.2);
+  /* Positioning from custom-timeline.css */
 }
 
 .light-theme .timeline-date-marker {
@@ -451,9 +510,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .timeline-content {
-  border-radius: 16px;
-  box-shadow: var(--dark-shadow-md);
+  border-radius: var(--border-radius-lg); /* More rounded */
+  box-shadow: var(--dark-shadow-md); /* Using var for consistency */
   transition: all 0.3s ease;
+  /* Positioning from custom-timeline.css */
 }
 
 .light-theme .timeline-content {
@@ -487,37 +547,7 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--dark-title);
 }
 
-.timeline-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.6rem 1.2rem;
-  border-radius: 8px;
-  font-weight: 600;
-  transition: all 0.3s ease;
-}
-
-.light-theme .timeline-btn {
-  background: var(--light-accent-gradient);
-  color: white;
-}
-
-.dark-theme .timeline-btn {
-  background: var(--dark-accent-gradient);
-  color: white;
-}
-
-.light-theme .timeline-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 4px 12px rgba(67, 97, 238, 0.2);
-}
-
-.dark-theme .timeline-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
-}
-
-/* Enhanced year markers */
+/* Enhanced year markers for timeline */
 .timeline-year-markers {
   display: flex;
   justify-content: center;
@@ -528,7 +558,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .timeline-year-marker {
   padding: 0.6rem 1.5rem;
-  border-radius: 50px;
+  border-radius: 50px; /* Pill shape */
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -563,14 +593,14 @@ h1, h2, h3, h4, h5, h6 {
 /* Enhanced contact section */
 .contact-container {
   display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 2rem;
+  grid-template-columns: 1fr 2fr; /* Default, responsive.css will override */
+  gap: var(--grid-gap);
 }
 
 .contact-info, .contact-form {
-  border-radius: 16px;
-  padding: 2rem;
-  height: 100%;
+  border-radius: var(--border-radius-lg);
+  padding: var(--card-spacing); /* Use variable */
+  height: 100%; /* For consistent height if in a grid */
 }
 
 .light-theme .contact-info, 
@@ -638,11 +668,11 @@ h1, h2, h3, h4, h5, h6 {
   opacity: 0.8;
 }
 
-/* Enhanced contact direct section */
+/* Enhanced contact direct section (from style.css, styled here for modernity) */
 .contact-direct {
   padding: 2.5rem;
   text-align: center;
-  border-radius: 16px;
+  border-radius: var(--border-radius-lg);
   margin-bottom: 2rem;
 }
 
@@ -669,14 +699,14 @@ h1, h2, h3, h4, h5, h6 {
   margin-right: auto;
 }
 
-.email-direct-btn {
+.email-direct-btn { /* Already styled above */
   padding: 1rem 2rem;
   font-size: 1.1rem;
 }
 
-/* Enhanced alternative contact */
+/* Enhanced alternative contact (from style.css, styled here) */
 .contact-alternative {
-  border-radius: 16px;
+  border-radius: var(--border-radius-lg);
   padding: 2.5rem;
 }
 
@@ -737,13 +767,13 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 8px 15px rgba(99, 102, 241, 0.2);
 }
 
-/* Enhanced resume section */
+/* Enhanced resume section container */
 .resume-container {
-  background-color: transparent;
+  background-color: transparent; /* Base style */
   border: none;
-  border-radius: 16px;
+  border-radius: var(--border-radius-lg);
   padding: 2.5rem;
-  margin-top: 0;
+  margin-top: 0; /* Reset from original */
   margin-bottom: 3rem;
   position: relative;
   overflow: hidden;
@@ -759,23 +789,23 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: var(--dark-shadow-md);
 }
 
+/* Decorative element for resume container */
 .resume-container::before {
   content: '';
   position: absolute;
   width: 200px;
   height: 200px;
   border-radius: 50%;
-  background: var(--light-accent);
   opacity: 0.05;
   top: -100px;
   right: -100px;
+  pointer-events: none; /* So it doesn't interfere with clicks */
 }
+.light-theme .resume-container::before { background: var(--light-accent); }
+.dark-theme .resume-container::before { background: var(--dark-accent); }
 
-.dark-theme .resume-container::before {
-  background: var(--dark-accent);
-}
 
-.resume-title {
+.resume-title { /* For a title within the resume section, if any */
   font-size: 2rem;
   margin-bottom: 2rem;
   display: flex;
@@ -802,18 +832,19 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--dark-accent);
 }
 
-.resume-buttons {
+.resume-buttons { /* Container for resume action buttons */
   display: flex;
   gap: 1.5rem;
   flex-wrap: wrap;
+  justify-content: center; /* Center buttons */
 }
 
 /* Skills section enhancement */
-.skills-container {
+.skills-container { /* From style.css, enhanced here */
   margin-top: 4rem;
 }
 
-.skills-container h3 {
+.skills-container h3 { /* For "My Skills" title */
   font-size: 1.8rem;
   margin-bottom: 2rem;
 }
@@ -826,10 +857,10 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--dark-title);
 }
 
-.skills-grid {
+.skills-grid { /* From style.css, enhanced here */
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 2rem;
+  gap: var(--grid-gap);
 }
 
 .skill-item {
@@ -845,7 +876,7 @@ h1, h2, h3, h4, h5, h6 {
   justify-content: space-between;
 }
 
-.skill-percentage {
+.skill-percentage { /* Optional percentage display */
   opacity: 0.8;
 }
 
@@ -867,7 +898,7 @@ h1, h2, h3, h4, h5, h6 {
   height: 100%;
   border-radius: 5px;
   position: relative;
-  overflow: hidden;
+  overflow: hidden; /* For shimmer effect */
 }
 
 .light-theme .skill-progress {
@@ -878,6 +909,7 @@ h1, h2, h3, h4, h5, h6 {
   background: var(--dark-accent-gradient);
 }
 
+/* Shimmer effect for skill bars */
 .skill-progress::after {
   content: '';
   position: absolute;
@@ -897,10 +929,11 @@ h1, h2, h3, h4, h5, h6 {
   100% { transform: translateX(100%); }
 }
 
-/* Social icons enhancement */
-.social-icons {
+/* Social icons enhancement (for general use, not just footer) */
+.social-icons { /* Can be used in contact section or elsewhere */
   display: flex;
   gap: 1rem;
+  justify-content: center; /* Example alignment */
 }
 
 .social-icons a {
@@ -912,6 +945,7 @@ h1, h2, h3, h4, h5, h6 {
   justify-content: center;
   font-size: 1.25rem;
   transition: all 0.3s ease;
+  text-decoration: none;
 }
 
 .light-theme .social-icons a {
@@ -940,9 +974,9 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Enhanced modals */
 .modal-content {
-  border-radius: 20px;
+  border-radius: var(--border-radius-xl); /* More rounded */
   overflow: hidden;
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2); /* Deeper shadow */
 }
 
 .light-theme .modal-content {
@@ -954,7 +988,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .modal-body {
-  padding: 2.5rem;
+  padding: 2.5rem; /* More padding */
 }
 
 .project-detail-header {
@@ -974,8 +1008,8 @@ h1, h2, h3, h4, h5, h6 {
 .project-detail-image {
   border-radius: 12px;
   overflow: hidden;
-  height: 350px;
-  box-shadow: var(--dark-shadow-md);
+  height: 350px; /* Taller image */
+  box-shadow: var(--dark-shadow-md); /* Use variable */
 }
 
 .close-modal {
@@ -985,60 +1019,37 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background-color: rgba(0, 0, 0, 0.1);
-  color: white;
+  background-color: rgba(0, 0, 0, 0.1); /* Semi-transparent background */
+  color: white; /* Ensure contrast */
   font-size: 1.5rem;
   transition: all 0.3s ease;
+  position: absolute; /* Already in style.css */
+  right: 20px; top: 15px; /* Already in style.css */
 }
+.light-theme .close-modal { color: var(--light-text); background-color: rgba(0,0,0,0.05); }
+.dark-theme .close-modal { color: var(--dark-text); background-color: rgba(255,255,255,0.1); }
+
 
 .close-modal:hover {
   background-color: rgba(0, 0, 0, 0.2);
   transform: rotate(90deg);
 }
+.light-theme .close-modal:hover { background-color: rgba(0,0,0,0.1); }
+.dark-theme .close-modal:hover { background-color: rgba(255,255,255,0.2); }
 
-/* Enhanced mobile menu */
-.mobile-toggle {
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 101;
-  transition: all 0.3s ease;
-}
 
-.light-theme .mobile-toggle {
-  background-color: rgba(67, 97, 238, 0.1);
-}
+/* Enhanced Mobile Toggle (visual part mostly in hamburger.css) */
+/* This .mobile-toggle refers to the one from modern-style.css, which is for the theme toggle.
+   The actual hamburger menu toggle is styled in hamburger.css and responsive.css.
+   We'll ensure consistency or remove this if it's conflicting.
+   The hamburger button itself is styled in hamburger.css.
+*/
 
-.dark-theme .mobile-toggle {
-  background-color: rgba(99, 102, 241, 0.1);
-}
-
-.mobile-toggle span {
-  display: block;
-  width: 20px;
-  height: 2px;
-  margin: 3px 0;
-  transition: all 0.3s ease;
-}
-
-.light-theme .mobile-toggle span {
-  background-color: var(--light-accent);
-}
-
-.dark-theme .mobile-toggle span {
-  background-color: var(--dark-accent);
-}
-
-/* Theme toggle enhancement */
-.theme-toggle {
+/* Theme toggle enhancement (sidebar footer and mobile header) */
+.theme-toggle { /* General container for theme switch */
   display: flex;
   align-items: center;
-  margin-bottom: 1.5rem;
+  /* margin-bottom for sidebar footer, positioning for mobile header in responsive.css */
 }
 
 .switch {
@@ -1063,7 +1074,7 @@ h1, h2, h3, h4, h5, h6 {
   right: 0;
   bottom: 0;
   transition: 0.4s;
-  border-radius: 34px;
+  border-radius: 34px; /* Pill shape */
 }
 
 .light-theme .slider {
@@ -1074,7 +1085,7 @@ h1, h2, h3, h4, h5, h6 {
   background-color: rgba(99, 102, 241, 0.3);
 }
 
-.slider:before {
+.slider:before { /* The toggle nub */
   position: absolute;
   content: "";
   height: 16px;
@@ -1098,71 +1109,43 @@ input:checked + .slider:before {
   transform: translateX(26px);
 }
 
-/* Responsive layout improvements */
+/* Responsive layout improvements (general fallbacks, responsive.css is primary) */
 @media (max-width: 767px) {
   .section-title h2 {
     font-size: 2rem;
   }
   
-  .resume-title {
+  .resume-title { /* If a title exists inside resume section */
     font-size: 1.6rem;
   }
   
-  .contact-container {
-    grid-template-columns: 1fr;
-  }
-  
-  .profile-section {
+  .profile-section { /* From style.css, adjusted here for modernity */
     flex-direction: column;
     text-align: center;
   }
   
-  .profile-image-container {
-    margin: 0 auto 1.5rem;
+  .profile-image-container { /* From style.css, ensure consistency */
+    margin: 0 auto 1.5rem; /* Center when column layout */
   }
   
   .timeline-year-marker {
     padding: 0.5rem 1rem;
     font-size: 0.9rem;
   }
-  
-  .alt-contact-grid {
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  }
 }
 
-@media (min-width: 768px) and (max-width: 1023px) {
-  .contact-container {
-    grid-template-columns: 1fr;
-  }
-  
-  .projects-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* Light theme color enhancement - alternatives to white background */
-:root {
-    /* Light theme with softer colors */
-    --light-bg: #f5f7fa;
-    --light-sidebar-bg: #ffffff;
-    --light-content-bg: #f0f4f8;
-    --light-card-bg: #ffffff;
-    --light-hover: #e6eef7;
-}
-
-/* Achievements section styling */
+/* Achievements section styling (from modern-style.css, already well-styled) */
 .achievements-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
+    gap: var(--grid-gap);
     margin-top: 2rem;
 }
 
 .achievement-card {
-    display: flex;
+    display: flex; /* Align icon and content nicely */
     padding: 1.5rem;
-    border-radius: 16px;
+    border-radius: var(--border-radius-lg);
     transition: all 0.3s ease;
     height: 100%;
 }
@@ -1190,13 +1173,13 @@ input:checked + .slider:before {
 }
 
 .achievement-icon {
-    flex: 0 0 60px;
+    flex: 0 0 60px; /* Fixed width for icon container */
     height: 60px;
     border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.5rem;
+    font-size: 1.5rem; /* Icon size */
     margin-right: 1.5rem;
 }
 
@@ -1220,46 +1203,16 @@ input:checked + .slider:before {
     opacity: 0.8;
 }
 
-.achievement-link {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-    font-weight: 500;
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
+/* achievement-link already styled with other buttons */
 
-.light-theme .achievement-link {
-    background: var(--light-accent-gradient);
-    color: white;
-    box-shadow: 0 4px 12px rgba(67, 97, 238, 0.2);
-}
-
-.dark-theme .achievement-link {
-    background: var(--dark-accent-gradient);
-    color: white;
-    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
-}
-
-.light-theme .achievement-link:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 15px rgba(67, 97, 238, 0.3);
-}
-
-.dark-theme .achievement-link:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 15px rgba(99, 102, 241, 0.3);
-}
-
-/* Resume tabs styling */
+/* Resume tabs styling (from modern-style.css, already good) */
 .resume-tabs {
     display: flex;
     margin-bottom: 2rem;
     border-bottom: 1px solid;
-    padding-bottom: 1px;
+    padding-bottom: 1px; /* To prevent border overlap with tab underline */
     gap: 0.5rem;
-    overflow-x: auto;
+    overflow-x: auto; /* For mobile if many tabs */
 }
 
 .light-theme .resume-tabs {
@@ -1278,7 +1231,7 @@ input:checked + .slider:before {
     cursor: pointer;
     transition: all 0.3s ease;
     position: relative;
-    white-space: nowrap;
+    white-space: nowrap; /* Prevent tab text wrapping */
 }
 
 .light-theme .resume-tab {
@@ -1289,10 +1242,10 @@ input:checked + .slider:before {
     color: var(--dark-text);
 }
 
-.resume-tab::after {
+.resume-tab::after { /* Underline effect */
     content: '';
     position: absolute;
-    bottom: -2px;
+    bottom: -2px; /* Align with border-bottom of .resume-tabs */
     left: 0;
     width: 0;
     height: 3px;
@@ -1313,35 +1266,37 @@ input:checked + .slider:before {
     width: 100%;
 }
 
-.resume-content {
-    display: none;
+.resume-content { /* Container for resume iframe/details */
+    display: none; /* Controlled by JS */
     margin-top: 2rem;
 }
 
 .resume-content.active {
     display: block;
-    animation: fadeIn 0.5s ease;
+    animation: fadeIn 0.5s ease; /* From animations.css */
 }
 
-.resume-preview {
+.resume-preview { /* From style.css and resume-fix.css, styled here */
     border-radius: 12px;
     overflow: hidden;
     margin-bottom: 2rem;
-    box-shadow: var(--dark-shadow-md);
+    box-shadow: var(--dark-shadow-md); /* Use var */
+    /* Height and width from resume-fix.css */
 }
 
-.resume-actions {
+.resume-actions { /* Container for view/download resume buttons */
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
+    justify-content: center; /* Center buttons */
 }
 
-/* Skills category styling */
+/* Skills category styling (from modern-style.css, good) */
 .skills-category {
     margin-bottom: 3rem;
 }
 
-.skills-category h4 {
+.skills-category h4 { /* Sub-headings like "AI/ML Skills" */
     font-size: 1.3rem;
     margin-bottom: 1.25rem;
     padding-bottom: 0.5rem;
@@ -1358,8 +1313,8 @@ input:checked + .slider:before {
     border-color: var(--dark-border);
 }
 
-/* Social media links styling */
-.social-media-links {
+/* Social media links styling (for contact page, general grid) */
+.social-media-links { /* Section in Contact page */
     margin-top: 3rem;
 }
 
@@ -1368,21 +1323,22 @@ input:checked + .slider:before {
     margin-bottom: 1.5rem;
 }
 
-.social-grid {
+.social-grid { /* Used for .alt-contact-grid as well */
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Smaller min for more items */
     gap: 1.5rem;
 }
 
-.social-link {
+.social-link { /* Individual social link item */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 2rem;
-    border-radius: 16px;
+    padding: 1.5rem; /* Adjusted padding */
+    border-radius: var(--border-radius-lg);
     text-decoration: none;
     transition: all 0.3s ease;
+    text-align: center;
 }
 
 .light-theme .social-link {
@@ -1396,278 +1352,12 @@ input:checked + .slider:before {
 }
 
 .social-link i {
-    font-size: 2.5rem;
+    font-size: 2rem; /* Adjusted icon size */
     margin-bottom: 1rem;
     transition: all 0.3s ease;
 }
 
-.social-link span {
-    font-weight: 500;
-}
-
-.light-theme .social-link:hover {
-    background: var(--light-accent-gradient);
-    color: white;
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(67, 97, 238, 0.2);
-}
-
-.dark-theme .social-link:hover {
-    background: var(--dark-accent-gradient);
-    color: white;
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(99, 102, 241, 0.2);
-}
-
-/* Achievements section styling */
-.achievements-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
-}
-
-.achievement-card {
-    display: flex;
-    padding: 1.5rem;
-    border-radius: 16px;
-    transition: all 0.3s ease;
-    height: 100%;
-}
-
-.light-theme .achievement-card {
-    background-color: var(--light-card-bg);
-    box-shadow: var(--light-shadow-md);
-}
-
-.dark-theme .achievement-card {
-    background-color: var(--dark-card-bg);
-    box-shadow: var(--dark-shadow-md);
-}
-
-.achievement-card:hover {
-    transform: translateY(-5px);
-}
-
-.light-theme .achievement-card:hover {
-    box-shadow: var(--light-shadow-lg);
-}
-
-.dark-theme .achievement-card:hover {
-    box-shadow: var(--dark-shadow-lg);
-}
-
-.achievement-icon {
-    flex: 0 0 60px;
-    height: 60px;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    margin-right: 1.5rem;
-}
-
-.light-theme .achievement-icon {
-    background: rgba(67, 97, 238, 0.1);
-    color: var(--light-accent);
-}
-
-.dark-theme .achievement-icon {
-    background: rgba(99, 102, 241, 0.1);
-    color: var(--dark-accent);
-}
-
-.achievement-content h3 {
-    font-size: 1.3rem;
-    margin-bottom: 0.75rem;
-}
-
-.achievement-content p {
-    margin-bottom: 1rem;
-    opacity: 0.8;
-}
-
-.achievement-link {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-    font-weight: 500;
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
-
-.light-theme .achievement-link {
-    background: var(--light-accent-gradient);
-    color: white;
-    box-shadow: 0 4px 12px rgba(67, 97, 238, 0.2);
-}
-
-.dark-theme .achievement-link {
-    background: var(--dark-accent-gradient);
-    color: white;
-    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
-}
-
-.light-theme .achievement-link:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 15px rgba(67, 97, 238, 0.3);
-}
-
-.dark-theme .achievement-link:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 15px rgba(99, 102, 241, 0.3);
-}
-
-/* Resume tabs styling */
-.resume-tabs {
-    display: flex;
-    margin-bottom: 2rem;
-    border-bottom: 1px solid;
-    padding-bottom: 1px;
-    gap: 0.5rem;
-}
-
-.light-theme .resume-tabs {
-    border-color: var(--light-border);
-}
-
-.dark-theme .resume-tabs {
-    border-color: var(--dark-border);
-}
-
-.resume-tab {
-    padding: 0.75rem 1.5rem;
-    background: none;
-    border: none;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
-}
-
-.light-theme .resume-tab {
-    color: var(--light-text);
-}
-
-.dark-theme .resume-tab {
-    color: var(--dark-text);
-}
-
-.resume-tab::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 0;
-    height: 3px;
-    transition: width 0.3s ease;
-    border-radius: 3px 3px 0 0;
-}
-
-.light-theme .resume-tab::after {
-    background: var(--light-accent-gradient);
-}
-
-.dark-theme .resume-tab::after {
-    background: var(--dark-accent-gradient);
-}
-
-.resume-tab.active::after,
-.resume-tab:hover::after {
-    width: 100%;
-}
-
-.resume-content {
-    display: none;
-    margin-top: 2rem;
-}
-
-.resume-content.active {
-    display: block;
-    animation: fadeIn 0.5s ease;
-}
-
-.resume-preview {
-    border-radius: 12px;
-    overflow: hidden;
-    margin-bottom: 2rem;
-    box-shadow: var(--dark-shadow-md);
-}
-
-.resume-actions {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-}
-
-/* Skills category styling */
-.skills-category {
-    margin-bottom: 3rem;
-}
-
-.skills-category h4 {
-    font-size: 1.3rem;
-    margin-bottom: 1.25rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid;
-}
-
-.light-theme .skills-category h4 {
-    color: var(--light-title);
-    border-color: var(--light-border);
-}
-
-.dark-theme .skills-category h4 {
-    color: var(--dark-title);
-    border-color: var(--dark-border);
-}
-
-/* Social media links styling */
-.social-media-links {
-    margin-top: 3rem;
-}
-
-.social-media-links h3 {
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
-}
-
-.social-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 1.5rem;
-}
-
-.social-link {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 1.5rem;
-    border-radius: 16px;
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
-
-.light-theme .social-link {
-    background-color: rgba(67, 97, 238, 0.05);
-    color: var(--light-text);
-}
-
-.dark-theme .social-link {
-    background-color: rgba(99, 102, 241, 0.08);
-    color: var(--dark-text);
-}
-
-.social-link i {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    transition: all 0.3s ease;
-}
-
-.social-link span {
+.social-link span { /* Text below icon */
     font-weight: 500;
 }
 
@@ -1691,17 +1381,20 @@ input:checked + .slider:before {
     padding: 1rem;
     font-size: 0.9rem;
     opacity: 0.7;
-    margin-top: 2rem;
+    margin-top: 2rem; /* Default margin */
+    display: flex; /* For icon alignment */
+    align-items: center;
+    justify-content: center;
 }
 
 .last-updated i {
     margin-right: 0.5rem;
 }
 
-/* Position differently based on device */
-@media (min-width: 768px) {
-    .sidebar-footer .last-updated {
-        margin-top: 1rem;
-        font-size: 0.8rem;
-    }
+/* Responsive adjustments for last-updated in sidebar footer vs main content */
+.sidebar-footer .last-updated {
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    padding: 0.5rem 0;
 }
+/* Other .last-updated instances (e.g., in single-page mode fixed footer) handled by responsive.css */
