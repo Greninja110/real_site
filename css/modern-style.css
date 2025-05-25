@@ -135,7 +135,7 @@ body:not(.single-page-mode) .sidebar {
 
 
 /* Modern profile container - general styles */
-.profile-pic-container {
+.profile-image-container {
   position: relative;
   border-radius: 50%;
   overflow: hidden;
@@ -143,17 +143,17 @@ body:not(.single-page-mode) .sidebar {
   /* Sizing and margin are controlled by responsive.css or specific context */
 }
 
-.light-theme .profile-pic-container {
+.light-theme .profile-image-container {
   border: 4px solid transparent;
   background: var(--light-accent-gradient);
 }
 
-.dark-theme .profile-pic-container {
+.dark-theme .profile-image-container {
   border: 4px solid transparent;
   background: var(--dark-accent-gradient);
 }
 
-.profile-pic-container img {
+.profile-image-container img {
     display: block;
     width: 100%;
     height: 100%;
@@ -161,15 +161,15 @@ body:not(.single-page-mode) .sidebar {
     border-radius: 50%;
 }
 /* Inner glow/border effect */
-.profile-pic-container::before {
+.profile-image-container::before {
   content: '';
   position: absolute;
   top: -2px; left: -2px; right: -2px; bottom: -2px; /* Controls border thickness via background */
   z-index: -1; /* Behind the image if image has transparent parts */
   border-radius: inherit;
 }
-.light-theme .profile-pic-container::before { background: var(--light-accent-gradient); }
-.dark-theme .profile-pic-container::before { background: var(--dark-accent-gradient); }
+.light-theme .profile-image-container::before { background: var(--light-accent-gradient); }
+.dark-theme .profile-image-container::before { background: var(--dark-accent-gradient); }
 
 
 /* Refined navigation styling */
@@ -1472,3 +1472,12 @@ input:checked + .slider:before {
 
 .light-theme .profile-image-container::before { background: var(--light-accent-gradient); }
 .dark-theme .profile-image-container::before { background: var(--dark-accent-gradient); }
+
+.profile-pic-container {
+    width: 220px;
+    height: 220px;
+    position: relative;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+}

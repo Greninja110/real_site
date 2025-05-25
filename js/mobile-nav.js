@@ -66,6 +66,7 @@ function initMobileNav() {
     const content = document.querySelector('.content');
     const body = document.body;
     const sidebarFooter = document.querySelector('.sidebar-footer');
+    
 
     // Initial setup based on device size
     handleDeviceLayout();
@@ -228,7 +229,8 @@ function initMobileNav() {
         link.addEventListener('click', function (e) {
             const sectionId = this.getAttribute('data-section');
 
-            if (body.classList.contains('single-page-mode') || window.innerWidth <= 767) {
+            if (body.classList.contains('single-page-mode') && window.innerWidth <= 767) {
+                sidebar.classList.add('open');
                 e.preventDefault();
                 const section = document.getElementById(sectionId);
 
