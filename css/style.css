@@ -178,6 +178,36 @@ body:not(.single-page-mode) .section.active {
 /* Color in themes.css */
 
 /* Skills container, personal info - styled in modern-style.css */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.25rem;
+  border-radius: var(--border-radius-md);
+  background-color: rgba(99, 102, 241, 0.05);
+  transition: all 0.3s ease;
+}
+
+.info-label {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--dark-title);
+}
+
+.light-theme .info-label {
+  color: var(--light-title);
+}
+
+.info-value {
+  font-size: 1.1rem;
+}
 .skills-container, .personal-info { /* ... */ }
 .skills-grid, .info-grid { /* ... */ }
 .skill-item, .skill-name, .skill-bar, .skill-progress { /* ... */ }

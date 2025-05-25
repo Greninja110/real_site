@@ -304,30 +304,34 @@ TABLET AND DESKTOP STYLES (min-width: 768px)
 
     /* Single Page Mode (Desktop/Tablet) */
     .single-page-mode .sidebar {
-        width: 100%;
-        height: var(--header-height);
-        position: fixed;
-        top: 0;
-        left: 0;
-        flex-direction: row; /* Horizontal layout for top nav */
-        align-items: center;
-        padding: 0 1.5rem; /* Padding for top nav */
-        z-index: 1000;
-        border-right: none !important; /* No right border for top nav */
-        border-bottom: 1px solid; /* Bottom border for top nav */
-    }
+  width: 100%;
+  height: var(--header-height);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between; /* Changed from default */
+  align-items: center;
+  padding: 0 1.5rem;
+  z-index: 1000;
+  border-right: none !important;
+  border-bottom: 1px solid;
+}
     .light-theme.single-page-mode .sidebar { border-bottom-color: var(--light-border); }
     .dark-theme.single-page-mode .sidebar { border-bottom-color: var(--dark-border); }
 
 
-    .single-page-mode .sidebar-header {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        padding: 0;
-        margin-bottom: 0;
-        height: 100%; /* Fill header height */
-    }
+    /* Update the logo/title area */
+.single-page-mode .sidebar-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0;
+  margin-bottom: 0;
+  height: 100%;
+  flex: 0 0 auto; /* Don't grow or shrink */
+  order: 1; /* First position */
+}
     .single-page-mode .mobile-toggle {
         display: flex !important;
         order: 1;
@@ -348,23 +352,26 @@ TABLET AND DESKTOP STYLES (min-width: 768px)
         margin: 0 2rem 0 0; /* Margin right for spacing */
         order: 3;
     }
-     .single-page-mode .sidebar-header .mobile-theme-toggle {
-        display: flex !important;
-        margin-left: auto; /* Push to far right of header items */
-        order: 5; /* After nav links */
-        position: static;
-    }
+    /* Update the mobile theme toggle position */
+.single-page-mode .sidebar-header .mobile-theme-toggle {
+  display: flex !important;
+  margin-left: auto;
+  order: 3; /* Move to the end */
+  position: static;
+}
 
-    .single-page-mode .sidebar-nav {
-        display: flex;
-        flex: 1; /* Allow nav to take space between title and theme toggle */
-        align-items: center;
-        height: 100%;
-        padding: 0;
-        margin-top: 0;
-        overflow: visible;
-        order: 4; /* Between title and mobile theme toggle */
-    }
+    /* Update the sidebar navigation section */
+.single-page-mode .sidebar-nav {
+  display: flex;
+  justify-content: center; /* Center the navigation */
+  align-items: center;
+  height: 100%;
+  padding: 0;
+  margin: 0 auto; /* Center in the available space */
+  overflow: visible;
+  flex: 0 1 auto; /* Don't grow, but can shrink */
+  order: 2; /* Middle position */
+}
     .single-page-mode .sidebar-nav ul {
         display: flex;
         align-items: center;
