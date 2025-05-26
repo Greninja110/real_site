@@ -462,3 +462,34 @@ p { /* General paragraph styling */
     0%, 100% { transform: scale(0.5); opacity: 0.5; }
     50% { transform: scale(1); opacity: 1; }
 }
+/* Sidebar Logo SVG specific styling */
+#sidebar-logo {
+    display: block; /* Good practice for images to remove extra space */
+    width: 100%;    /* Make the image element fill the .profile-pic-container */
+    height: 100%;   /* Make the image element fill the .profile-pic-container */
+    object-fit: contain; /* Scales the SVG content to fit *within* these 100% dimensions,
+                           maintaining aspect ratio and centering it. */
+    /* REMOVE any padding: 5%; from here */
+}
+
+/*
+   The .profile-pic-container CSS you provided earlier handles the circular shape,
+   border (via background gradient and ::before), and overflow: hidden.
+   Its dimensions (width/height) are set in responsive.css or other specific rules
+   for .sidebar-header .profile-pic-container.
+
+   For example, in responsive.css you have:
+   body:not(.single-page-mode) .profile-pic-container {
+        width: 120px;
+        height: 120px;
+        ...
+   }
+   And for mobile/single-page top nav:
+   .single-page-mode .profile-pic-container,
+   @media (max-width: 767px) .profile-pic-container {
+        width: 40px;
+        height: 40px;
+        ...
+   }
+   These container dimensions are what #sidebar-logo (the img tag) will fill 100%.
+*/

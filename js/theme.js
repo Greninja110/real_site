@@ -10,144 +10,106 @@ document.addEventListener('DOMContentLoaded', function () {
     // Initialize theme functionality
     initTheme();
 });
+// In js/theme.js
 
-/**
- * Initialize theme toggle functionality
- */
-function initTheme() {
-    const themeToggle = document.getElementById('theme-toggle');
-    const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+function applyTheme(theme) {
+    // Preserve single-page-mode class if it exists before clearing body.className
+    const isSinglePageModePreviously = document.body.classList.contains('single-page-mode');
+    
+    document.body.className = theme; // Clears other classes, then sets theme
+    
+    if (isSinglePageModePreviously) {
+        document.body.classList.add('single-page-mode');
+    }
+
+    const isLight = theme === 'light-theme';
+    const logoImg = document.getElementById('sidebar-logo'); // Get the logo image element
+
+    // --- START: Added code for logo change ---
+    if (logoImg) {
+        if (isLight) {
+            logoImg.src = 'assets/images/icons/light1.svg';
+            logoImg.alt = "Abhijeet Logo - Light Theme";
+        } else {
+            logoImg.src = 'assets/images/icons/dark1.svg';
+            logoImg.alt = "Abhijeet Logo - Dark Theme";
+        }
+    }
+    // --- END: Added code for logo change ---
+    
+    const mainThemeToggle = document.getElementById('theme-toggle');
+    const mobileHeaderThemeToggle = document.getElementById('mobile-theme-toggle');
     const themeLabel = document.getElementById('theme-label');
     
-    if (!themeToggle) {
-        console.error("Theme toggle element not found");
+    if (mainThemeToggle) mainThemeToggle.checked = isLight;
+    if (mobileHeaderThemeToggle) mobileHeaderThemeToggle.checked = isLight;
+    if (themeLabel) themeLabel.textContent = isLight ? 'Light Mode' : 'Dark Mode';
+    
+    localStorage.setItem('theme', theme);
+    // console.log(`Theme applied by applyTheme: ${theme}`);
+}
+
+// Ensure the initTheme function correctly calls applyTheme on load
+function initTheme() {
+    const mainThemeToggle = document.getElementById('theme-toggle');
+    const mobileHeaderThemeToggle = document.getElementById('mobile-theme-toggle');
+    // const themeLabel = document.getElementById('theme-label'); // Already handled in applyTheme
+    
+    if (!mainThemeToggle && !mobileHeaderThemeToggle) {
+        // console.error("Theme toggle element(s) not found for initTheme");
         return;
     }
-    
-    console.log("Setting up theme toggle");
 
-    // Check if user has previously selected a theme
+    // Load saved theme or set default
     const savedTheme = localStorage.getItem('theme');
-    
     if (savedTheme) {
-        // Apply saved theme
-        document.body.className = savedTheme;
-        console.log(`Applied saved theme: ${savedTheme}`);
-
-        // Update toggle button state
-        if (savedTheme === 'light-theme') {
-            themeToggle.checked = true;
-            if (mobileThemeToggle) mobileThemeToggle.checked = true;
-            if (themeLabel) themeLabel.textContent = 'Light Mode';
-        } else {
-            themeToggle.checked = false;
-            if (mobileThemeToggle) mobileThemeToggle.checked = false;
-            if (themeLabel) themeLabel.textContent = 'Dark Mode';
-        }
-    }
-    else {
-        // Set dark theme as default
-        document.body.className = 'dark-theme';
-        themeToggle.checked = false;
-        if (mobileThemeToggle) mobileThemeToggle.checked = false;
-        if (themeLabel) themeLabel.textContent = 'Dark Mode';
-        localStorage.setItem('theme', 'dark-theme');
-        console.log("Set dark theme as default");
+        applyTheme(savedTheme); // This will now also set the logo
+    } else {
+        applyTheme('dark-theme'); // Default to dark theme, also sets logo
     }
 
-    // Add event listener to main toggle button
-    themeToggle.addEventListener('change', function () {
-        console.log("Theme toggle clicked");
-        
-        // Store the current navigation state before theme change
-        const navigationState = {
-            isSinglePageMode: document.body.classList.contains('single-page-mode'),
-            sidebarOpen: document.querySelector('.sidebar')?.classList.contains('open'),
-            activeSection: document.querySelector('.section.active')?.id
-        };
-        
-        console.log(`Storing state: Single page mode: ${navigationState.isSinglePageMode}, Sidebar open: ${navigationState.sidebarOpen}, Active section: ${navigationState.activeSection}`);
-        
-        // Toggle theme
-        toggleTheme();
-        
-        // Sync mobile toggle if it exists
-        if (mobileThemeToggle) {
-            mobileThemeToggle.checked = themeToggle.checked;
-        }
-        
-        // Restore navigation state
-        setTimeout(() => {
-            if (typeof window.maintainNavState === 'function') {
-                window.maintainNavState(navigationState);
+    // Event listener for the main theme toggle
+    if (mainThemeToggle) {
+        mainThemeToggle.addEventListener('change', function() {
+            if (mobileHeaderThemeToggle) {
+                mobileHeaderThemeToggle.checked = this.checked;
             }
-        }, 50);
-    });
-    
-    // Add event listener to mobile toggle button if it exists
-    if (mobileThemeToggle) {
-        mobileThemeToggle.addEventListener('change', function () {
-            console.log("Mobile theme toggle clicked");
+            // The actual theme change is now based on the toggle's checked state
+            const newTheme = this.checked ? 'light-theme' : 'dark-theme';
             
-            // Store the current navigation state before theme change
-            const navigationState = {
-                isSinglePageMode: document.body.classList.contains('single-page-mode'),
-                sidebarOpen: document.querySelector('.sidebar')?.classList.contains('open'),
-                activeSection: document.querySelector('.section.active')?.id
-            };
+            // Store current layout mode before changing theme
+            window.currentLayoutMode = document.body.classList.contains('single-page-mode') ? 'single-page' : 'multi-page';
+            applyTheme(newTheme);
             
-            // Sync with main toggle
-            themeToggle.checked = mobileThemeToggle.checked;
-            
-            // Toggle theme
-            toggleTheme();
-            
-            // Restore navigation state
             setTimeout(() => {
-                if (typeof window.maintainNavState === 'function') {
-                    window.maintainNavState(navigationState);
+                if (typeof handleCurrentLayout === 'function') {
+                    // handleCurrentLayout(); 
                 }
             }, 50);
         });
     }
-    
-    console.log("Theme initialization complete");
-}
 
-/**
- * Toggle between light and dark themes
- */
-function toggleTheme() {
-    const themeToggle = document.getElementById('theme-toggle');
-    const themeLabel = document.getElementById('theme-label');
-    
-    console.log("Toggling theme");
+    // Event listener for the mobile header theme toggle
+    if (mobileHeaderThemeToggle) {
+        mobileHeaderThemeToggle.addEventListener('change', function() {
+            if (mainThemeToggle) {
+                mainThemeToggle.checked = this.checked;
+            }
+            const newTheme = this.checked ? 'light-theme' : 'dark-theme';
 
-    if (themeToggle.checked) {
-        // Switch to light theme
-        document.body.className = document.body.className.replace('dark-theme', 'light-theme');
-        if (!document.body.classList.contains('light-theme')) {
-            document.body.classList.add('light-theme');
-        }
-        if (themeLabel) themeLabel.textContent = 'Light Mode';
-        localStorage.setItem('theme', 'light-theme');
-        console.log("Switched to light theme");
-    } else {
-        // Switch to dark theme
-        document.body.className = document.body.className.replace('light-theme', 'dark-theme');
-        if (!document.body.classList.contains('dark-theme')) {
-            document.body.classList.add('dark-theme');
-        }
-        if (themeLabel) themeLabel.textContent = 'Dark Mode';
-        localStorage.setItem('theme', 'dark-theme');
-        console.log("Switched to dark theme");
-    }
-    
-    // Preserve single-page mode class if present
-    if (document.body.classList.contains('single-page-mode')) {
-        document.body.classList.add('single-page-mode');
+            window.currentLayoutMode = document.body.classList.contains('single-page-mode') ? 'single-page' : 'multi-page';
+            applyTheme(newTheme);
+
+            setTimeout(() => {
+                if (typeof handleCurrentLayout === 'function') {
+                    // handleCurrentLayout();
+                }
+            }, 50);
+        });
     }
 }
+// (The rest of your theme.js file, if any, e.g., global function exports)
+// window.initTheme = initTheme; // Ensure this is called
 
 // Export functions for use in other modules
 window.toggleTheme = toggleTheme;
