@@ -11,7 +11,7 @@
   --light-text: #333333;
   --light-title: #212529;
   --light-accent: #4361ee;
-  --light-accent-gradient: linear-gradient(135deg, #4361ee 0%, #3a0ca3 100%);
+  --light-accent-gradient: linear-gradient(135deg, #4361ee 0%, rgb(58, 12, 163) 100%);
   --light-secondary: #6c757d;
   --light-border: #dee2e6;
   --light-card-bg: #ffffff;

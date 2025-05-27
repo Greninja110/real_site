@@ -733,4 +733,4 @@ TABLET AND DESKTOP STYLES (min-width: 768px)
 /* General style for .centered-content if applied directly to .content */
 .content.centered-content {
     /* This class might not be needed if sections are centered directly */
-}
+}   
