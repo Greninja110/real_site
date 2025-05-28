@@ -358,7 +358,7 @@ function handleDeviceLayout() {
                 sidebarNav.style.visibility = 'visible';
                 sidebarNav.style.opacity = '1';
             }
-            
+
             // Update navigation elements ordering
             const sidebarHeader = document.querySelector('.sidebar-header');
             const mobileThemeToggle = document.querySelector('.mobile-theme-toggle');
@@ -367,10 +367,10 @@ function handleDeviceLayout() {
 
             if (sidebarNav) {
                 sidebarNav.style.position = 'static';
-        sidebarNav.style.marginTop = '0';
-        sidebarNav.style.marginLeft = '20px';
-        sidebarNav.style.width = 'auto';
-        sidebarNav.style.height = '100%';
+                sidebarNav.style.marginTop = '0';
+                sidebarNav.style.marginLeft = '20px';
+                sidebarNav.style.width = 'auto';
+                sidebarNav.style.height = '100%';
             }
 
             if (sidebarHeader) {
@@ -382,7 +382,7 @@ function handleDeviceLayout() {
                 mobileThemeToggle.style.order = '5'; // Last item
                 mobileThemeToggle.style.marginLeft = 'auto'; // Push to the right
             }
-            
+
             // Make all sections visible
             showAllSections();
 
@@ -510,8 +510,7 @@ function preserveLayoutAfterThemeChange(previousState) {
             sidebarFooter.style.textAlign = 'center';
             sidebarFooter.style.padding = '10px 0';
             sidebarFooter.style.zIndex = '50';
-            sidebarFooter.style.backgroundColor = body.classList.contains('light-theme') ?
-                'var(--light-sidebar-bg)' : 'var(--dark-sidebar-bg)';
+            sidebarFooter.style.backgroundColor = body.classList.contains('light-theme') ?'var(--light-sidebar-bg)' : 'var(--dark-sidebar-bg)';
             sidebarFooter.style.boxShadow = '0 -2px 10px rgba(0, 0, 0, 0.1)';
         }
 
@@ -521,17 +520,31 @@ function preserveLayoutAfterThemeChange(previousState) {
         // Update the navigation ordering
         const sidebarNav = document.querySelector('.sidebar-nav');
         const mobileThemeToggle = document.querySelector('.mobile-theme-toggle');
-        
+
         if (sidebarNav) {
-            sidebarNav.style.order = '3'; // Place after title
-            sidebarNav.style.flex = '0 1 auto';
-            sidebarNav.style.margin = '0';
+            sidebarNav.style.order = '4'; // Place after title
+            sidebarNav.style.flex = '1';
+            sidebarNav.style.margin = '0 0 0 20px';
             sidebarNav.style.justifyContent = 'flex-start'; // Align left
+            sidebarNav.style.visibility = 'visible';
+            sidebarNav.style.opacity = '1';
         }
-        
+
         if (mobileThemeToggle) {
             mobileThemeToggle.style.order = '5'; // Last item
             mobileThemeToggle.style.marginLeft = 'auto';
+        }
+        const sidebarHeader = document.querySelector('.sidebar-header');
+        if (sidebarHeader) {
+            sidebarHeader.style.display = 'flex';
+            sidebarHeader.style.flexDirection = 'row';
+            sidebarHeader.style.width = '100%';
+        }
+
+        if (mobileThemeToggle) {
+            mobileThemeToggle.style.order = '5';
+            mobileThemeToggle.style.marginLeft = 'auto';
+            mobileThemeToggle.style.display = 'flex';
         }
     }
     else if (window.innerWidth <= 767) {

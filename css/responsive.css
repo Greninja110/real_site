@@ -557,19 +557,18 @@ TABLET AND DESKTOP STYLES (min-width: 768px)
 
     /* Center Group: Navigation Links - change to appear inline with header */
     .single-page-mode .sidebar-nav {
-        display: flex !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        order: 2;
-        /* Place after title */
-        height: 100%;
-        align-items: center;
-        justify-content: center;
-        position: static;
-        padding: 0;
-        margin: 0;
-        flex: 1;
-    }
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    order: 4; /* Change from 2 to 4 to place after the title */
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    position: static;
+    padding: 0;
+    margin: 0;
+    flex: 1;
+}
 
     .single-page-mode .sidebar-header .mobile-theme-toggle {
         display: flex !important;
