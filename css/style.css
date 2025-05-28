@@ -82,9 +82,7 @@ body.dark-theme {
     /* Padding, alignment, direction handled by responsive.css per mode */
 }
 
-.profile-pic-container { /* Base, sizing in responsive.css, modern-style for border effect */
-    /* ... */
-}
+
 .profile-pic-small { /* This class might not be needed if .profile-pic-container img is styled */
     width: 100%;
     height: 100%;
@@ -110,9 +108,7 @@ body.dark-theme {
 
 
 /* Sidebar Footer */
-.sidebar-footer { /* Base, layout in responsive.css */
-    /* padding, border handled by responsive.css and modern-style.css */
-}
+
 /* theme-toggle styled in modern-style.css */
 /* social-links / social-icons styled in modern-style.css */
 /* last-updated styled in modern-style.css and responsive.css */
@@ -148,7 +144,6 @@ body:not(.single-page-mode) .section.active {
 }
 
 
-.section-title { /* Styled in modern-style.css */ }
 
 /* ---------- Home/About Section Specifics ---------- */
 .about-container {
@@ -162,7 +157,6 @@ body:not(.single-page-mode) .section.active {
     gap: 2rem;
     margin-bottom: 2rem; /* Spacing */
 }
-.profile-image-container { /* Styled in modern-style.css and responsive.css */ }
 .profile-pic { /* This is the <img> tag inside .profile-image-container */
     width: 100%;
     height: 100%;
@@ -208,10 +202,7 @@ body:not(.single-page-mode) .section.active {
 .info-value {
   font-size: 1.1rem;
 }
-.skills-container, .personal-info { /* ... */ }
-.skills-grid, .info-grid { /* ... */ }
-.skill-item, .skill-name, .skill-bar, .skill-progress { /* ... */ }
-.info-item, .info-label, .info-value { /* ... */ }
+
 .skill-tooltip { /* From modern-style.css or style.css */
     position: absolute;
     background-color: #333; /* Fallback, theme specific in modern-style */
@@ -264,11 +255,7 @@ body:not(.single-page-mode) .section.active {
     font-weight: 500;
 }
 /* Active/hover/theme styles for filter-btn in themes.css or modern-style.css */
-.projects-grid { /* Styled in modern-style.css */ }
-.project-card { /* Styled in modern-style.css */ }
-.project-image { /* Styled in modern-style.css */ }
-.project-info { /* Styled in modern-style.css */ }
-.view-details-btn { /* Styled in modern-style.css */ }
+
 
 /* Project Modal */
 .modal {
@@ -293,21 +280,12 @@ body:not(.single-page-mode) .section.active {
     from { opacity: 0; transform: translateY(-30px) scale(0.95); }
     to { opacity: 1; transform: translateY(0) scale(1); }
 }
-.close-modal { /* Styled in modern-style.css */ }
-.modal-body { /* Styled in modern-style.css */ }
-.project-detail-header, .project-detail-content, .project-detail-image,
-.project-description, .project-functionality, .project-links,
-.github-link, .demo-link { /* All styled in modern-style.css */ }
 
 
-/* ---------- Contact Section Specifics ---------- */
-.contact-container { /* Styled in modern-style.css */ }
-.contact-info { /* Styled in modern-style.css */ }
-.contact-item, .contact-text { /* Styled in modern-style.css */ }
-.social-media-links, .social-grid, .social-link { /* Styled in modern-style.css */ }
+
+
 
 /* Contact Form specific styles (form elements) */
-.contact-form { /* The container, styled in modern-style.css */ }
 .form-container { /* Wrapper for form groups */
     display: flex;
     flex-direction: column;
@@ -347,7 +325,6 @@ body:not(.single-page-mode) .section.active {
     border-color: var(--dark-accent);
     box-shadow: 0 0 0 3px rgba(var(--dark-accent-rgb, 99,102,241), 0.2);
 }
-.submit-btn { /* Styled as general button in modern-style.css */ }
 .form-status {
     font-size: 0.9rem;
     padding: 0.5rem 0;
@@ -373,9 +350,9 @@ body:not(.single-page-mode) .section.active {
     padding: 1.5rem;
     text-align: center;
 }
-.stat-card h3 { /* ... */ }
+
 .chart-container { height: 250px; width: 100%; }
-.stats-number { /* ... */ }
+
 
 
 /* Hidden Class Utility */
@@ -413,21 +390,15 @@ body:not(.single-page-mode) .section.active {
 }
 .thanks-container h1 { font-size: 3rem; margin-bottom: 1rem; }
 .thanks-container p { font-size: 1.2rem; max-width: 600px; margin-bottom: 2rem; }
-.back-btn { /* Styled as general button */ }
+
 
 
 /* Contact Direct / Alternative Contact (Styled in modern-style.css) */
-.contact-direct { /* ... */ }
-.email-direct-btn { /* ... */ }
-.contact-alternative { /* ... */ }
-.alt-contact-grid { /* ... */ }
-.alt-contact-item { /* ... */ }
+
 
 
 /* Typing animation cursor (already in animations.css, ensure no conflict) */
-#animated-text { /* ... */ }
-#text-content { /* ... */ }
-#cursor { /* ... */ }
+
 /* @keyframes blink already in animations.css */
 
 p { /* General paragraph styling */

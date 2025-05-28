@@ -359,7 +359,7 @@ button:focus, a:focus, input:focus, textarea:focus {
 }
 
 /* Desktop single page mode nav menu animation */
-@media (min-width: 768px) {
+/* @media (min-width: 768px) {
   .single-page-mode .sidebar.open .sidebar-nav {
     animation: slideDown 0.3s forwards;
   }
@@ -389,7 +389,7 @@ button:focus, a:focus, input:focus, textarea:focus {
       transform: translateY(-10px);
     }
   }
-}
+} */
 
 /* Ripple effect for navigation links */
 .ripple {

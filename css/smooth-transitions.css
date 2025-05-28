@@ -1,29 +1,28 @@
-/* 
+/* css/smooth-transitions.css */
+/*
  * Smooth Transitions CSS for Abhijeet's Portfolio Website
  * Enhanced animations and smooth transitions
  */
 
 /* Base transitions for common properties */
-* {
-    /* Avoid universal selector for performance; apply to specific elements */
-}
+/* Avoid universal selector for performance; apply to specific elements */
 
 .sidebar,
 .content,
 .nav-link,
-.profile-pic-container,
+.profile-pic-container, /* Corrected class name */
 .sidebar-header,
 .sidebar-nav,
 .sidebar-nav ul,
 .sidebar-footer,
 .section,
-.theme-toggle,
-.mobile-toggle,
-.filter-btn, 
-.view-details-btn, 
-.view-resume-btn, 
-.download-resume-btn, 
-.email-direct-btn, 
+.theme-toggle, /* main theme toggle class */
+.mobile-toggle, /* hamburger */
+.filter-btn,
+.view-details-btn,
+.view-resume-btn,
+.download-resume-btn,
+.email-direct-btn,
 .timeline-btn,
 .submit-btn,
 .achievement-link,
@@ -79,7 +78,7 @@ body:not(.single-page-mode) .sidebar-nav {
 
 
 /* Profile picture container transitions (size, margin) */
-.profile-pic-container {
+.profile-pic-container { /* Corrected class name */
   transition-property: width, height, margin, border-width;
 }
 
@@ -128,7 +127,7 @@ html {
     animation: fadeInNav 0.4s var(--transition-function-cubic) forwards 0.2s; /* Delay nav appearance */
     opacity: 0; /* Start hidden */
   }
-  
+
   @keyframes fadeInNav {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
@@ -163,7 +162,7 @@ html {
   transition-property: margin, padding, font-size;
 }
 
-/* Ripple effect for buttons (from transitions.css) - optional nice touch */
+/* Ripple effect for buttons - optional nice touch */
 .btn-ripple {
   position: relative;
   overflow: hidden;
@@ -193,3 +192,42 @@ html {
 .view-details-btn, .view-resume-btn, .download-resume-btn, .email-direct-btn, .submit-btn, .timeline-btn, .achievement-link {
     /* Add .btn-ripple class in HTML if you want this effect */
 }
+
+/*
+  IMPORTANT: The following desktop single-page mode nav menu animation
+  is COMMENTED OUT as it was identified as potentially hiding the navigation.
+  Ensure this or similar logic is not active in your file if nav links are invisible.
+*/
+/*
+@media (min-width: 768px) {
+  .single-page-mode .sidebar.open .sidebar-nav {
+    animation: slideDown 0.3s forwards;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .single-page-mode .sidebar:not(.open) .sidebar-nav {
+    animation: slideUp 0.3s forwards;
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+  }
+}
+*/

@@ -66,7 +66,7 @@ function initMobileNav() {
     const content = document.querySelector('.content');
     const body = document.body;
     const sidebarFooter = document.querySelector('.sidebar-footer');
-    
+
 
     // Initial setup based on device size
     handleDeviceLayout();
@@ -352,9 +352,13 @@ function handleDeviceLayout() {
         // Desktop/Tablet: Check if we're in single page mode
         if (body.classList.contains('single-page-mode')) {
             // We're in single page mode
-
-            // Update navigation elements ordering
             const sidebarNav = document.querySelector('.sidebar-nav');
+            if (sidebarNav) {
+                sidebarNav.style.display = 'flex';
+                sidebarNav.style.visibility = 'visible';
+                sidebarNav.style.opacity = '1';
+            }
+            // Update navigation elements ordering
             const sidebarHeader = document.querySelector('.sidebar-header');
             const mobileThemeToggle = document.querySelector('.mobile-theme-toggle');
 
