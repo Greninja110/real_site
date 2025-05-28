@@ -622,7 +622,7 @@ TABLET AND DESKTOP STYLES (min-width: 768px)
     /* Right Group: Theme Toggle */
     .single-page-mode .sidebar-header .mobile-theme-toggle {
         display: flex !important;
-        order: 4;
+        order: 5;
         /* Last item within its parent .sidebar-header */
         margin-left: auto;
         /* Key: Pushes it to the right */
