@@ -218,21 +218,6 @@ MOBILE STYLES (max-width: 767px)
         border-color: var(--dark-border);
     }
 
-    /* Last Updated Text - Mobile (Always single page mode) */
-    .single-page-mode .sidebar-footer .last-updated {
-        display: flex !important;
-        align-items: center;
-        justify-content: center;
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        padding: 8px 0;
-        font-size: 0.85rem;
-        text-align: center;
-        z-index: 999;
-        /* Above content, below open menu */
-    }
 
     .light-theme.single-page-mode .sidebar-footer .last-updated {
         background-color: var(--light-sidebar-bg);
@@ -582,8 +567,12 @@ TABLET AND DESKTOP STYLES (min-width: 768px)
         margin: 0;
         flex: 1;
     }
-    .single-page-mode .mobile-theme-toggle {
-    margin-left: auto; /* Push to the right */
+.single-page-mode .sidebar-header .mobile-theme-toggle {
+    display: flex !important;
+    order: 5 !important; /* Force this order value */
+    margin-left: auto;
+    position: static;
+    z-index: 10; /* Add z-index to ensure visibility */
 }
     .single-page-mode .sidebar-nav {
     width: auto;
@@ -650,22 +639,22 @@ TABLET AND DESKTOP STYLES (min-width: 768px)
 
     /* Desktop theme toggle from footer is not used here */
 
-    /* Last Updated Text - Desktop Single Page Mode (Fixed Bottom) */
     .single-page-mode .sidebar-footer .last-updated {
-        display: flex !important;
-        align-items: center;
-        justify-content: center;
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        padding: 8px 0;
-        font-size: 0.85rem;
-        text-align: center;
-        z-index: 999;
-        /* High z-index */
-        background-color: inherit;
-    }
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 8px 0;
+    font-size: 0.85rem;
+    text-align: center;
+    z-index: 999;
+    /* Above content, below open menu */
+}
 
     /* Backgrounds and borders for .last-updated already set for themes */
 

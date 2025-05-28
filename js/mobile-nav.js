@@ -479,7 +479,18 @@ function preserveLayoutAfterThemeChange(previousState) {
     const sidebar = document.querySelector('.sidebar');
     const content = document.querySelector('.content');
     const sidebarFooter = document.querySelector('.sidebar-footer');
-
+    const sidebarNav = document.querySelector('.sidebar-nav');
+    const sidebarHeader = document.querySelector('.sidebar-header');
+    const mobileThemeToggle = document.querySelector('.mobile-theme-toggle');
+    
+    // First reset all styles to prevent inheritance issues
+    if (sidebarNav) {
+        sidebarNav.removeAttribute('style');
+    }
+    if (sidebarHeader) {
+        sidebarHeader.removeAttribute('style');
+    }
+    
     // If we're in single-page mode, ensure it stays that way
     if (previousState?.isSinglePageMode || body.classList.contains('single-page-mode')) {
         console.log("Preserving single-page mode after theme change");
@@ -493,6 +504,8 @@ function preserveLayoutAfterThemeChange(previousState) {
         sidebar.style.position = 'fixed';
         sidebar.style.top = '0';
         sidebar.style.left = '0';
+        sidebar.style.flexDirection = 'row';
+        sidebar.style.flexWrap = 'nowrap';
 
         // Restore sidebar open state if needed
         if (previousState?.sidebarOpen) {
@@ -505,13 +518,6 @@ function preserveLayoutAfterThemeChange(previousState) {
         content.style.paddingTop = 'calc(var(--header-height, 60px) + 20px)';
 
         // Update the navigation ordering
-        sidebar.style.flexDirection = 'row';
-        sidebar.style.flexWrap = 'nowrap';
-        
-        const sidebarNav = document.querySelector('.sidebar-nav');
-        const sidebarHeader = document.querySelector('.sidebar-header');
-        const mobileThemeToggle = document.querySelector('.mobile-theme-toggle');
-        
         if (sidebarHeader) {
             sidebarHeader.style.order = '1';
             sidebarHeader.style.flex = '0 0 auto';
@@ -519,6 +525,9 @@ function preserveLayoutAfterThemeChange(previousState) {
         }
         
         if (sidebarNav) {
+            sidebarNav.style.display = 'flex !important';
+            sidebarNav.style.visibility = 'visible';
+            sidebarNav.style.opacity = '1';
             sidebarNav.style.order = '2';
             sidebarNav.style.flex = '1';
             sidebarNav.style.position = 'static';
@@ -529,7 +538,7 @@ function preserveLayoutAfterThemeChange(previousState) {
         }
         
         if (mobileThemeToggle) {
-            mobileThemeToggle.style.order = '3';
+            mobileThemeToggle.style.order = '5';
             mobileThemeToggle.style.marginLeft = 'auto';
         }
 
@@ -539,6 +548,7 @@ function preserveLayoutAfterThemeChange(previousState) {
             sidebarFooter.style.bottom = '0';
             sidebarFooter.style.left = '0';
             sidebarFooter.style.width = '100%';
+            sidebarFooter.style.display = 'block !important';
             sidebarFooter.style.textAlign = 'center';
             sidebarFooter.style.padding = '10px 0';
             sidebarFooter.style.zIndex = '50';
@@ -553,42 +563,42 @@ function preserveLayoutAfterThemeChange(previousState) {
     else if (window.innerWidth <= 767) {
         // On mobile, always maintain single page behavior
         body.classList.add('single-page-mode');
-
-        sidebar.style.width = '100%';
-        sidebar.style.height = 'var(--header-height, 60px)';
-        sidebar.style.position = 'fixed';
-        sidebar.style.top = '0';
-        sidebar.style.left = '0';
-
-        content.style.marginLeft = '0';
-        content.style.width = '100%';
-        content.style.paddingTop = 'calc(var(--header-height, 60px) + 10px)';
-
-        // Set up footer for mobile
-        if (sidebarFooter) {
-            sidebarFooter.style.position = 'fixed';
-            sidebarFooter.style.bottom = '0';
-            sidebarFooter.style.left = '0';
-            sidebarFooter.style.width = '100%';
-            sidebarFooter.style.textAlign = 'center';
-            sidebarFooter.style.padding = '10px 0';
-            sidebarFooter.style.zIndex = '50';
-            sidebarFooter.style.backgroundColor = body.classList.contains('light-theme') ?
-                'var(--light-sidebar-bg)' : 'var(--dark-sidebar-bg)';
-            sidebarFooter.style.boxShadow = '0 -2px 10px rgba(0, 0, 0, 0.1)';
-        }
+        handleDeviceLayout(); // Call this to properly set up mobile view
     }
     else {
         // Regular desktop mode - left sidebar
+        body.classList.remove('single-page-mode');
+        
         sidebar.style.width = 'var(--sidebar-width, 280px)';
         sidebar.style.height = '100vh';
         sidebar.style.position = 'fixed';
         sidebar.style.top = '0';
         sidebar.style.left = '0';
-
+        sidebar.style.flexDirection = 'column';
+        
         content.style.marginLeft = 'var(--sidebar-width, 280px)';
         content.style.width = 'calc(100% - var(--sidebar-width, 280px))';
         content.style.paddingTop = '0';
+        
+        // Reset sidebar header for multi-page mode
+        if (sidebarHeader) {
+            sidebarHeader.style.flexDirection = 'column';
+            sidebarHeader.style.alignItems = 'center';
+            sidebarHeader.style.padding = '2rem 1rem';
+            sidebarHeader.style.marginBottom = '0';
+            sidebarHeader.style.width = '100%';
+        }
+        
+        // Reset sidebar nav for multi-page mode
+        if (sidebarNav) {
+            sidebarNav.style.display = 'block';
+            sidebarNav.style.visibility = 'visible';
+            sidebarNav.style.opacity = '1';
+            sidebarNav.style.flex = '1';
+            sidebarNav.style.padding = '0 1.5rem';
+            sidebarNav.style.marginTop = '0';
+            sidebarNav.style.height = 'auto';
+        }
 
         // Reset footer to default
         if (sidebarFooter) {
@@ -596,6 +606,7 @@ function preserveLayoutAfterThemeChange(previousState) {
             sidebarFooter.style.bottom = '';
             sidebarFooter.style.left = '';
             sidebarFooter.style.width = '';
+            sidebarFooter.style.display = 'block';
             sidebarFooter.style.textAlign = '';
             sidebarFooter.style.padding = '1.5rem';
             sidebarFooter.style.zIndex = '';
@@ -631,8 +642,15 @@ function showAllSections() {
             section.classList.add('active'); // Mark all sections as active in single-page mode
         }
     });
+    
+    // Ensure last-updated is visible in single page mode
+    const lastUpdated = document.querySelector('.sidebar-footer .last-updated');
+    if (lastUpdated) {
+        lastUpdated.style.display = 'flex';
+        lastUpdated.style.visibility = 'visible';
+        lastUpdated.style.opacity = '1';
+    }
 }
-
 /**
  * Hide all sections for multi-page mode
  */
