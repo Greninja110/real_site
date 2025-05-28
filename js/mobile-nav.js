@@ -326,6 +326,8 @@ function handleDeviceLayout() {
         sidebar.style.top = '0';
         sidebar.style.left = '0';
         sidebar.style.zIndex = '100';
+        sidebar.style.flexDirection = 'row';
+        sidebar.style.flexWrap = 'nowrap';
 
         // Position content correctly
         content.style.marginLeft = '0';
@@ -353,31 +355,37 @@ function handleDeviceLayout() {
         if (body.classList.contains('single-page-mode')) {
             // We're in single page mode
             const sidebarNav = document.querySelector('.sidebar-nav');
+            const sidebarHeader = document.querySelector('.sidebar-header');
+            const mobileThemeToggle = document.querySelector('.mobile-theme-toggle');
+            
+            // Arrange sidebar as a row
+            sidebar.style.flexDirection = 'row';
+            sidebar.style.flexWrap = 'nowrap';
+            
+            if (sidebarHeader) {
+                sidebarHeader.style.order = '1';
+                sidebarHeader.style.flex = '0 0 auto';
+                sidebarHeader.style.width = 'auto';
+            }
+            
             if (sidebarNav) {
                 sidebarNav.style.display = 'flex';
                 sidebarNav.style.visibility = 'visible';
                 sidebarNav.style.opacity = '1';
-            }
-            // Update navigation elements ordering
-            const sidebarHeader = document.querySelector('.sidebar-header');
-            const mobileThemeToggle = document.querySelector('.mobile-theme-toggle');
-
-            if (sidebarNav) {
                 sidebarNav.style.order = '2';
-                sidebarNav.style.flex = '0 1 auto';
-                sidebarNav.style.margin = '0 auto';
+                sidebarNav.style.flex = '1';
+                sidebarNav.style.position = 'static';
+                sidebarNav.style.width = 'auto';
+                sidebarNav.style.height = '100%';
                 sidebarNav.style.justifyContent = 'center';
-            }
-
-            if (sidebarHeader) {
-                sidebarHeader.style.order = '1';
-                sidebarHeader.style.flex = '0 0 auto';
+                sidebarNav.style.marginTop = '0';
             }
 
             if (mobileThemeToggle) {
                 mobileThemeToggle.style.order = '3';
                 mobileThemeToggle.style.marginLeft = 'auto';
             }
+            
             // Make all sections visible
             showAllSections();
 
@@ -495,6 +503,35 @@ function preserveLayoutAfterThemeChange(previousState) {
         content.style.marginLeft = '0';
         content.style.width = '100%';
         content.style.paddingTop = 'calc(var(--header-height, 60px) + 20px)';
+
+        // Update the navigation ordering
+        sidebar.style.flexDirection = 'row';
+        sidebar.style.flexWrap = 'nowrap';
+        
+        const sidebarNav = document.querySelector('.sidebar-nav');
+        const sidebarHeader = document.querySelector('.sidebar-header');
+        const mobileThemeToggle = document.querySelector('.mobile-theme-toggle');
+        
+        if (sidebarHeader) {
+            sidebarHeader.style.order = '1';
+            sidebarHeader.style.flex = '0 0 auto';
+            sidebarHeader.style.width = 'auto';
+        }
+        
+        if (sidebarNav) {
+            sidebarNav.style.order = '2';
+            sidebarNav.style.flex = '1';
+            sidebarNav.style.position = 'static';
+            sidebarNav.style.width = 'auto';
+            sidebarNav.style.height = '100%';
+            sidebarNav.style.justifyContent = 'center';
+            sidebarNav.style.marginTop = '0';
+        }
+        
+        if (mobileThemeToggle) {
+            mobileThemeToggle.style.order = '3';
+            mobileThemeToggle.style.marginLeft = 'auto';
+        }
 
         // Set up footer for single page mode
         if (sidebarFooter) {
