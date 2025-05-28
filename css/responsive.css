@@ -504,23 +504,26 @@ TABLET AND DESKTOP STYLES (min-width: 768px)
     }
 
     /* Left Group: Hamburger, Logo, Title */
+    /* Ensure sidebar-header is properly set up as flex container */
     .single-page-mode .sidebar-header {
-        display: flex;
-        align-items: center;
-        height: 100%;
-        padding: 0;
-        margin: 0;
-        width: auto;
-        order: 1;
-        /* Remove flex-shrink: 0 to allow proper spacing */
+        display: flex !important;
+        align-items: center !important;
+        height: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        width: 100% !important;
+        order: 1 !important;
+        flex-direction: row !important;
+        justify-content: flex-start !important;
     }
+
     /* Mobile Toggle (3-line btn) */
-.single-page-mode .mobile-toggle { 
-    display: flex !important; 
-    order: 1; 
-    margin-right: 15px; 
-    position: static; 
-}
+    .single-page-mode .mobile-toggle {
+        display: flex !important;
+        order: 1;
+        margin-right: 15px;
+        position: static;
+    }
 
     .single-page-mode .mobile-toggle {
         display: flex !important;
@@ -567,22 +570,27 @@ TABLET AND DESKTOP STYLES (min-width: 768px)
         margin: 0;
         flex: 1;
     }
-.single-page-mode .sidebar-header .mobile-theme-toggle {
-    display: flex !important;
-    order: 5 !important; /* Force this order value */
-    margin-left: auto;
-    position: static;
-    z-index: 10; /* Add z-index to ensure visibility */
-}
+
+    .single-page-mode .sidebar-header .mobile-theme-toggle {
+        display: flex !important;
+        order: 5 !important;
+        /* Force this order value */
+        margin-left: auto;
+        position: static;
+        z-index: 10;
+        /* Add z-index to ensure visibility */
+    }
+
     .single-page-mode .sidebar-nav {
-    width: auto;
-    margin: 0 0 0 20px; /* Add left margin from the title */
-    position: static;
-    padding: 0;
-    display: flex !important;
-    height: 100%;
-    margin-top: 0 !important;
-}
+        width: auto;
+        margin: 0 0 0 20px;
+        /* Add left margin from the title */
+        position: static;
+        padding: 0;
+        display: flex !important;
+        height: 100%;
+        margin-top: 0 !important;
+    }
 
     .single-page-mode .sidebar-nav ul {
         display: flex;
@@ -608,38 +616,38 @@ TABLET AND DESKTOP STYLES (min-width: 768px)
         margin-right: 0.5rem;
     }
 
-    /* Right Group: Theme Toggle */
     .single-page-mode .sidebar-header .mobile-theme-toggle {
         display: flex !important;
-        order: 5;
-        /* Last item within its parent .sidebar-header */
-        margin-left: auto;
-        /* Key: Pushes it to the right */
-        position: static;
+        order: 5 !important;
+        margin-left: auto !important;
+        position: static !important;
+        flex-shrink: 0 !important;
+        z-index: 10 !important;
     }
+}
 
-    /* For tablet - adjust nav links spacing */
-    @media (min-width: 768px) and (max-width: 1023px) {
-        .single-page-mode .nav-link {
-            padding: 0.5rem 0.6rem;
-            font-size: 0.9rem;
-            margin: 0 0.2rem;
-        }
+/* For tablet - adjust nav links spacing */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .single-page-mode .nav-link {
+        padding: 0.5rem 0.6rem;
+        font-size: 0.9rem;
+        margin: 0 0.2rem;
     }
+}
 
-    /* Footer content in Single Page Mode (Desktop) */
-    .single-page-mode .sidebar-footer {
-        /* The container itself should not be visible in the top nav bar */
-        display: none !important;
-    }
+/* Footer content in Single Page Mode (Desktop) */
+.single-page-mode .sidebar-footer {
+    /* The container itself should not be visible in the top nav bar */
+    display: none !important;
+}
 
-    .single-page-mode .sidebar-footer .theme-toggle {
-        display: none !important;
-    }
+.single-page-mode .sidebar-footer .theme-toggle {
+    display: none !important;
+}
 
-    /* Desktop theme toggle from footer is not used here */
+/* Desktop theme toggle from footer is not used here */
 
-    .single-page-mode .sidebar-footer .last-updated {
+.single-page-mode .sidebar-footer .last-updated {
     display: flex !important;
     visibility: visible !important;
     opacity: 1 !important;
@@ -656,80 +664,80 @@ TABLET AND DESKTOP STYLES (min-width: 768px)
     /* Above content, below open menu */
 }
 
-    /* Backgrounds and borders for .last-updated already set for themes */
+/* Backgrounds and borders for .last-updated already set for themes */
 
 
-    .single-page-mode .content {
-        margin-left: 0;
-        width: 100%;
-        padding-top: calc(var(--header-height) + 2rem);
-        padding-bottom: calc(2rem + 35px);
-        /* Space for fixed footer */
+.single-page-mode .content {
+    margin-left: 0;
+    width: 100%;
+    padding-top: calc(var(--header-height) + 2rem);
+    padding-bottom: calc(2rem + 35px);
+    /* Space for fixed footer */
+}
+
+.single-page-mode .section {
+    min-height: auto;
+    display: block !important;
+    opacity: 1 !important;
+    /* padding-top/bottom handled per section or globally for content */
+}
+
+body.single-page-mode .section:first-of-type {
+    padding-top: calc(var(--header-height) + 2rem);
+    /* Space below header */
+}
+
+body.single-page-mode .section:last-of-type {
+    padding-bottom: calc(2rem + 35px);
+    /* Ensure space above fixed footer */
+}
+
+
+.single-page-mode .content.centered-content .section,
+.single-page-mode .section {
+    max-width: 1100px;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+/* Tablet specific adjustments */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 
-    .single-page-mode .section {
-        min-height: auto;
-        display: block !important;
-        opacity: 1 !important;
-        /* padding-top/bottom handled per section or globally for content */
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 
-    body.single-page-mode .section:first-of-type {
-        padding-top: calc(var(--header-height) + 2rem);
-        /* Space below header */
+    .social-grid,
+    .alt-contact-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     }
 
-    body.single-page-mode .section:last-of-type {
-        padding-bottom: calc(2rem + 35px);
-        /* Ensure space above fixed footer */
+    .contact-container {
+        grid-template-columns: 1fr;
     }
 
-
-    .single-page-mode .content.centered-content .section,
-    .single-page-mode .section {
-        max-width: 1100px;
-        margin-left: auto !important;
-        margin-right: auto !important;
+    .single-page-mode .sidebar-title {
+        font-size: 1.1rem;
     }
 
-    /* Tablet specific adjustments */
-    @media (min-width: 768px) and (max-width: 1023px) {
-        .projects-grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
-
-        .skills-grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
-
-        .social-grid,
-        .alt-contact-grid {
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        }
-
-        .contact-container {
-            grid-template-columns: 1fr;
-        }
-
-        .single-page-mode .sidebar-title {
-            font-size: 1.1rem;
-        }
-
-        .single-page-mode .nav-link {
-            padding: 0.5rem 0.6rem;
-            font-size: 0.9rem;
-        }
-    }
-
-    /* Desktop specific adjustments */
-    @media (min-width: 1024px) {
-
-        /* .projects-grid { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); } // Already default */
-        .contact-container {
-            grid-template-columns: 1fr 1.5fr;
-        }
+    .single-page-mode .nav-link {
+        padding: 0.5rem 0.6rem;
+        font-size: 0.9rem;
     }
 }
+
+/* Desktop specific adjustments */
+@media (min-width: 1024px) {
+
+    /* .projects-grid { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); } // Already default */
+    .contact-container {
+        grid-template-columns: 1fr 1.5fr;
+    }
+}
+
 
 .content.centered-content {
     /* For centering .section block if .content is the full width scroller */
