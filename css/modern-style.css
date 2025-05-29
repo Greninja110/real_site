@@ -40,37 +40,42 @@
   --dark-shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.3);
   
   /* Refined spacing */
-  --section-spacing: 6rem; /* Used in modern-style, ensure consistency */
-  --card-spacing: 2rem; /* Used in modern-style */
+  --section-spacing: 6rem; 
+  --card-spacing: 2rem; 
 
   /* Variables from style.css for consistency */
-  --sidebar-width: 280px;
-  --header-height: 60px; /* For top nav mode and mobile header */
-  --section-padding: 3rem 2rem; /* Default section padding */
-  --card-padding: 1.75rem; /* Default card padding */
+  --sidebar-width-default: 280px; /* Renamed from --sidebar-width */
+  --header-height: 60px; 
+  --section-padding: 3rem 2rem; 
+  --card-padding: 1.75rem; 
   --grid-gap: 1.5rem;
 
   /* Border Radius */
   --border-radius-sm: 4px;
   --border-radius-md: 8px;
   --border-radius-lg: 16px;
-  --border-radius-xl: 20px; /* For modals etc. */
+  --border-radius-xl: 20px; 
 
   /* Transitions */
   --transition-speed: 0.3s;
   --transition-function: ease;
   --transition-function-cubic: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  /* Primary and Heading Fonts */
+  --primary-font: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  --heading-font: 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
 }
 
 /* Enhanced typography */
 body {
-  font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: var(--primary-font);
   line-height: 1.7;
   letter-spacing: 0.01em;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: var(--heading-font);
   font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1.3;
@@ -85,21 +90,18 @@ h1, h2, h3, h4, h5, h6 {
   background-size: cover;
 }
 
-/* Light theme background pattern */
 .light-theme .container {
   background-image: 
     radial-gradient(circle at 10% 20%, rgba(67, 97, 238, 0.03) 0%, transparent 20%),
     radial-gradient(circle at 90% 80%, rgba(67, 97, 238, 0.03) 0%, transparent 20%);
 }
 
-/* Dark theme background pattern */
 .dark-theme .container {
   background-image: 
     radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.05) 0%, transparent 20%),
     radial-gradient(circle at 90% 80%, rgba(99, 102, 241, 0.05) 0%, transparent 20%);
 }
 
-/* Enhanced sidebar styling (applies to both left sidebar and top nav bar) */
 .sidebar {
   border-right: 1px solid;
   backdrop-filter: blur(10px);
@@ -113,11 +115,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .dark-theme .sidebar {
-  background-color: rgba(30, 41, 59, 0.9); /* from modern-style */
+  background-color: rgba(30, 41, 59, 0.9); 
   border-right-color: var(--dark-border);
   box-shadow: var(--dark-shadow-md);
 }
-/* Ensure border is only on the right for left sidebar, and bottom for top nav */
 body:not(.single-page-mode) .sidebar {
     border-right: 1px solid;
     border-bottom: none;
@@ -134,13 +135,11 @@ body:not(.single-page-mode) .sidebar {
 }
 
 
-/* Modern profile container - general styles */
 .profile-image-container {
   position: relative;
   border-radius: 50%;
   overflow: hidden;
   box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.3);
-  /* Sizing and margin are controlled by responsive.css or specific context */
 }
 
 .light-theme .profile-image-container {
@@ -160,19 +159,17 @@ body:not(.single-page-mode) .sidebar {
     object-fit: cover;
     border-radius: 50%;
 }
-/* Inner glow/border effect */
 .profile-image-container::before {
   content: '';
   position: absolute;
-  top: -2px; left: -2px; right: -2px; bottom: -2px; /* Controls border thickness via background */
-  z-index: -1; /* Behind the image if image has transparent parts */
+  top: -2px; left: -2px; right: -2px; bottom: -2px; 
+  z-index: -1; 
   border-radius: inherit;
 }
 .light-theme .profile-image-container::before { background: var(--light-accent-gradient); }
 .dark-theme .profile-image-container::before { background: var(--dark-accent-gradient); }
 
 
-/* Refined navigation styling */
 .nav-link {
   display: flex;
   align-items: center;
@@ -217,14 +214,12 @@ body:not(.single-page-mode) .sidebar {
 .nav-link i {
   margin-right: 1rem;
   font-size: 1.1rem;
-  width: 20px; /* Consistent icon width */
+  width: 20px; 
   text-align: center;
 }
 
-/* Enhanced content area */
 .content {
   flex: 1;
-  /* padding handled by responsive.css based on mode */
 }
 
 .light-theme .content {
@@ -235,17 +230,10 @@ body:not(.single-page-mode) .sidebar {
   background-color: var(--dark-content-bg);
 }
 
-/* Section styling */
 .section {
-  padding: var(--section-padding); /* Use root variable */
-  max-width: 1200px; /* Default max-width for content within sections */
-  margin: 0 auto; /* Centering sections */
-}
-.single-page-mode .section {
-    padding-top: var(--header-height); /* Add padding for fixed header in single page mode */
-}
-.single-page-mode section:first-of-type {
-    padding-top: calc(var(--header-height) + 2rem); /* Extra padding for the first section */
+  padding: var(--section-padding); 
+  max-width: 1200px; 
+  margin: 0 auto; 
 }
 
 
@@ -287,12 +275,31 @@ body:not(.single-page-mode) .sidebar {
   background: var(--dark-accent-gradient);
 }
 
-/* Enhanced project cards */
+.typing-animation h1 { 
+    font-size: 2.8rem; 
+    font-weight: 700;
+    margin-bottom: 0.3em; 
+    line-height: 1.2;
+}
+.light-theme .typing-animation h1 { color: var(--light-title); }
+.dark-theme .typing-animation h1 { color: var(--dark-title); }
+
+
+.animated-greeting { 
+    font-size: 1.8rem; 
+    font-weight: 500; 
+    line-height: 1.4;
+    min-height: 1.4em; 
+}
+.light-theme .animated-greeting { color: var(--light-title); } 
+.dark-theme .animated-greeting { color: var(--dark-title); }   
+
+
 .project-card {
   border-radius: var(--border-radius-lg);
   overflow: hidden;
   transition: all 0.3s ease;
-  height: 100%; /* For consistent card heights in a grid */
+  height: 100%; 
 }
 
 .light-theme .project-card {
@@ -321,7 +328,7 @@ body:not(.single-page-mode) .sidebar {
   overflow: hidden;
 }
 
-.project-image::after { /* Gradient overlay on hover */
+.project-image::after { 
   content: '';
   position: absolute;
   bottom: 0;
@@ -367,7 +374,7 @@ body:not(.single-page-mode) .sidebar {
 }
 
 .project-card:hover .project-info h3 {
-  color: var(--light-accent); /* Or theme-specific accent */
+  color: var(--light-accent); 
 }
 
 .dark-theme .project-card:hover .project-info h3 {
@@ -380,14 +387,13 @@ body:not(.single-page-mode) .sidebar {
   line-height: 1.6;
 }
 
-/* Modern buttons */
 .view-details-btn,
 .view-resume-btn,
 .download-resume-btn,
 .email-direct-btn,
-.submit-btn, /* Added submit-btn for consistency */
-.timeline-btn, /* Added timeline-btn */
-.achievement-link /* Added achievement-link */
+.submit-btn, 
+.timeline-btn, 
+.achievement-link
  {
   padding: 0.75rem 1.5rem;
   border: none;
@@ -397,7 +403,7 @@ body:not(.single-page-mode) .sidebar {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  text-decoration: none; /* Ensure links look like buttons */
+  text-decoration: none; 
   cursor: pointer;
 }
 
@@ -467,21 +473,19 @@ body:not(.single-page-mode) .sidebar {
   color: var(--dark-accent);
 }
 
-/* Enhanced timeline */
 .timeline-wrapper {
   position: relative;
   width: 100%;
-  max-width: 1200px; /* Consistent with section max-width */
+  max-width: 1200px; 
   margin: 0 auto;
   padding: 2rem 0;
 }
 
-/* Timeline vertical line - styles from custom-timeline.css take precedence if more specific */
 .timeline::before {
   content: '';
   position: absolute;
   top: 0;
-  left: 18px; /* Default for left-aligned, custom-timeline.css may override to 50% */
+  left: 18px; 
   height: 100%;
   width: 3px;
   border-radius: 1.5px;
@@ -495,10 +499,9 @@ body:not(.single-page-mode) .sidebar {
   background: linear-gradient(to bottom, var(--dark-accent) 0%, var(--dark-secondary) 100%);
 }
 
-.timeline-date-marker { /* General styling for date marker */
+.timeline-date-marker { 
   border-radius: 50%;
   box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1), 0 4px 8px rgba(0, 0, 0, 0.2);
-  /* Positioning from custom-timeline.css */
 }
 
 .light-theme .timeline-date-marker {
@@ -512,10 +515,9 @@ body:not(.single-page-mode) .sidebar {
 }
 
 .timeline-content {
-  border-radius: var(--border-radius-lg); /* More rounded */
-  box-shadow: var(--dark-shadow-md); /* Using var for consistency */
+  border-radius: var(--border-radius-lg); 
+  box-shadow: var(--dark-shadow-md); 
   transition: all 0.3s ease;
-  /* Positioning from custom-timeline.css */
 }
 
 .light-theme .timeline-content {
@@ -549,7 +551,6 @@ body:not(.single-page-mode) .sidebar {
   color: var(--dark-title);
 }
 
-/* Enhanced year markers for timeline */
 .timeline-year-markers {
   display: flex;
   justify-content: center;
@@ -560,7 +561,7 @@ body:not(.single-page-mode) .sidebar {
 
 .timeline-year-marker {
   padding: 0.6rem 1.5rem;
-  border-radius: 50px; /* Pill shape */
+  border-radius: 50px; 
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -592,17 +593,16 @@ body:not(.single-page-mode) .sidebar {
   box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
 }
 
-/* Enhanced contact section */
 .contact-container {
   display: grid;
-  grid-template-columns: 1fr 2fr; /* Default, responsive.css will override */
+  grid-template-columns: 1fr 2fr; 
   gap: var(--grid-gap);
 }
 
 .contact-info, .contact-form {
   border-radius: var(--border-radius-lg);
-  padding: var(--card-spacing); /* Use variable */
-  height: 100%; /* For consistent height if in a grid */
+  padding: var(--card-spacing); 
+  height: 100%; 
 }
 
 .light-theme .contact-info, 
@@ -670,7 +670,6 @@ body:not(.single-page-mode) .sidebar {
   opacity: 0.8;
 }
 
-/* Enhanced contact direct section (from style.css, styled here for modernity) */
 .contact-direct {
   padding: 2.5rem;
   text-align: center;
@@ -701,12 +700,11 @@ body:not(.single-page-mode) .sidebar {
   margin-right: auto;
 }
 
-.email-direct-btn { /* Already styled above */
+.email-direct-btn { 
   padding: 1rem 2rem;
   font-size: 1.1rem;
 }
 
-/* Enhanced alternative contact (from style.css, styled here) */
 .contact-alternative {
   border-radius: var(--border-radius-lg);
   padding: 2.5rem;
@@ -769,13 +767,12 @@ body:not(.single-page-mode) .sidebar {
   box-shadow: 0 8px 15px rgba(99, 102, 241, 0.2);
 }
 
-/* Enhanced resume section container */
 .resume-container {
-  background-color: transparent; /* Base style */
+  background-color: transparent; 
   border: none;
   border-radius: var(--border-radius-lg);
   padding: 2.5rem;
-  margin-top: 0; /* Reset from original */
+  margin-top: 0; 
   margin-bottom: 3rem;
   position: relative;
   overflow: hidden;
@@ -791,7 +788,6 @@ body:not(.single-page-mode) .sidebar {
   box-shadow: var(--dark-shadow-md);
 }
 
-/* Decorative element for resume container */
 .resume-container::before {
   content: '';
   position: absolute;
@@ -801,13 +797,13 @@ body:not(.single-page-mode) .sidebar {
   opacity: 0.05;
   top: -100px;
   right: -100px;
-  pointer-events: none; /* So it doesn't interfere with clicks */
+  pointer-events: none; 
 }
 .light-theme .resume-container::before { background: var(--light-accent); }
 .dark-theme .resume-container::before { background: var(--dark-accent); }
 
 
-.resume-title { /* For a title within the resume section, if any */
+.resume-title { 
   font-size: 2rem;
   margin-bottom: 2rem;
   display: flex;
@@ -834,19 +830,18 @@ body:not(.single-page-mode) .sidebar {
   color: var(--dark-accent);
 }
 
-.resume-buttons { /* Container for resume action buttons */
+.resume-buttons { 
   display: flex;
   gap: 1.5rem;
   flex-wrap: wrap;
-  justify-content: center; /* Center buttons */
+  justify-content: center; 
 }
 
-/* Skills section enhancement */
-.skills-container { /* From style.css, enhanced here */
+.skills-container { 
   margin-top: 4rem;
 }
 
-.skills-container h3 { /* For "My Skills" title */
+.skills-container h3 { 
   font-size: 1.8rem;
   margin-bottom: 2rem;
 }
@@ -859,7 +854,7 @@ body:not(.single-page-mode) .sidebar {
   color: var(--dark-title);
 }
 
-.skills-grid { /* From style.css, enhanced here */
+.skills-grid { 
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: var(--grid-gap);
@@ -878,7 +873,7 @@ body:not(.single-page-mode) .sidebar {
   justify-content: space-between;
 }
 
-.skill-percentage { /* Optional percentage display */
+.skill-percentage { 
   opacity: 0.8;
 }
 
@@ -900,7 +895,7 @@ body:not(.single-page-mode) .sidebar {
   height: 100%;
   border-radius: 5px;
   position: relative;
-  overflow: hidden; /* For shimmer effect */
+  overflow: hidden; 
 }
 
 .light-theme .skill-progress {
@@ -911,7 +906,6 @@ body:not(.single-page-mode) .sidebar {
   background: var(--dark-accent-gradient);
 }
 
-/* Shimmer effect for skill bars */
 .skill-progress::after {
   content: '';
   position: absolute;
@@ -931,11 +925,10 @@ body:not(.single-page-mode) .sidebar {
   100% { transform: translateX(100%); }
 }
 
-/* Social icons enhancement (for general use, not just footer) */
-.social-icons { /* Can be used in contact section or elsewhere */
+.social-icons { 
   display: flex;
   gap: 1rem;
-  justify-content: center; /* Example alignment */
+  justify-content: center; 
 }
 
 .social-icons a {
@@ -974,11 +967,10 @@ body:not(.single-page-mode) .sidebar {
   box-shadow: 0 5px 15px rgba(99, 102, 241, 0.2);
 }
 
-/* Enhanced modals */
 .modal-content {
-  border-radius: var(--border-radius-xl); /* More rounded */
+  border-radius: var(--border-radius-xl); 
   overflow: hidden;
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2); /* Deeper shadow */
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2); 
 }
 
 .light-theme .modal-content {
@@ -990,7 +982,7 @@ body:not(.single-page-mode) .sidebar {
 }
 
 .modal-body {
-  padding: 2.5rem; /* More padding */
+  padding: 2.5rem; 
 }
 
 .project-detail-header {
@@ -1010,8 +1002,8 @@ body:not(.single-page-mode) .sidebar {
 .project-detail-image {
   border-radius: 12px;
   overflow: hidden;
-  height: 350px; /* Taller image */
-  box-shadow: var(--dark-shadow-md); /* Use variable */
+  height: 350px; 
+  box-shadow: var(--dark-shadow-md); 
 }
 
 .close-modal {
@@ -1021,12 +1013,12 @@ body:not(.single-page-mode) .sidebar {
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background-color: rgba(0, 0, 0, 0.1); /* Semi-transparent background */
-  color: white; /* Ensure contrast */
+  background-color: rgba(0, 0, 0, 0.1); 
+  color: white; 
   font-size: 1.5rem;
   transition: all 0.3s ease;
-  position: absolute; /* Already in style.css */
-  right: 20px; top: 15px; /* Already in style.css */
+  position: absolute; 
+  right: 20px; top: 15px; 
 }
 .light-theme .close-modal { color: var(--light-text); background-color: rgba(0,0,0,0.05); }
 .dark-theme .close-modal { color: var(--dark-text); background-color: rgba(255,255,255,0.1); }
@@ -1040,18 +1032,9 @@ body:not(.single-page-mode) .sidebar {
 .dark-theme .close-modal:hover { background-color: rgba(255,255,255,0.2); }
 
 
-/* Enhanced Mobile Toggle (visual part mostly in hamburger.css) */
-/* This .mobile-toggle refers to the one from modern-style.css, which is for the theme toggle.
-   The actual hamburger menu toggle is styled in hamburger.css and responsive.css.
-   We'll ensure consistency or remove this if it's conflicting.
-   The hamburger button itself is styled in hamburger.css.
-*/
-
-/* Theme toggle enhancement (sidebar footer and mobile header) */
-.theme-toggle { /* General container for theme switch */
+.theme-toggle { 
   display: flex;
   align-items: center;
-  /* margin-bottom for sidebar footer, positioning for mobile header in responsive.css */
 }
 
 .switch {
@@ -1076,7 +1059,7 @@ body:not(.single-page-mode) .sidebar {
   right: 0;
   bottom: 0;
   transition: 0.4s;
-  border-radius: 34px; /* Pill shape */
+  border-radius: 34px; 
 }
 
 .light-theme .slider {
@@ -1087,7 +1070,7 @@ body:not(.single-page-mode) .sidebar {
   background-color: rgba(99, 102, 241, 0.3);
 }
 
-.slider:before { /* The toggle nub */
+.slider:before { 
   position: absolute;
   content: "";
   height: 16px;
@@ -1111,23 +1094,22 @@ input:checked + .slider:before {
   transform: translateX(26px);
 }
 
-/* Responsive layout improvements (general fallbacks, responsive.css is primary) */
 @media (max-width: 767px) {
   .section-title h2 {
     font-size: 2rem;
   }
   
-  .resume-title { /* If a title exists inside resume section */
+  .resume-title { 
     font-size: 1.6rem;
   }
   
-  .profile-section { /* From style.css, adjusted here for modernity */
+  .profile-section { 
     flex-direction: column;
     text-align: center;
   }
   
-  .profile-image-container { /* From style.css, ensure consistency */
-    margin: 0 auto 1.5rem; /* Center when column layout */
+  .profile-image-container { 
+    margin: 0 auto 1.5rem; 
   }
   
   .timeline-year-marker {
@@ -1136,7 +1118,6 @@ input:checked + .slider:before {
   }
 }
 
-/* Achievements section styling (from modern-style.css, already well-styled) */
 .achievements-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -1145,7 +1126,7 @@ input:checked + .slider:before {
 }
 
 .achievement-card {
-    display: flex; /* Align icon and content nicely */
+    display: flex; 
     padding: 1.5rem;
     border-radius: var(--border-radius-lg);
     transition: all 0.3s ease;
@@ -1175,13 +1156,13 @@ input:checked + .slider:before {
 }
 
 .achievement-icon {
-    flex: 0 0 60px; /* Fixed width for icon container */
+    flex: 0 0 60px; 
     height: 60px;
     border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.5rem; /* Icon size */
+    font-size: 1.5rem; 
     margin-right: 1.5rem;
 }
 
@@ -1205,16 +1186,14 @@ input:checked + .slider:before {
     opacity: 0.8;
 }
 
-/* achievement-link already styled with other buttons */
 
-/* Resume tabs styling (from modern-style.css, already good) */
 .resume-tabs {
     display: flex;
     margin-bottom: 2rem;
     border-bottom: 1px solid;
-    padding-bottom: 1px; /* To prevent border overlap with tab underline */
+    padding-bottom: 1px; 
     gap: 0.5rem;
-    overflow-x: auto; /* For mobile if many tabs */
+    overflow-x: auto; 
 }
 
 .light-theme .resume-tabs {
@@ -1233,7 +1212,7 @@ input:checked + .slider:before {
     cursor: pointer;
     transition: all 0.3s ease;
     position: relative;
-    white-space: nowrap; /* Prevent tab text wrapping */
+    white-space: nowrap; 
 }
 
 .light-theme .resume-tab {
@@ -1244,10 +1223,10 @@ input:checked + .slider:before {
     color: var(--dark-text);
 }
 
-.resume-tab::after { /* Underline effect */
+.resume-tab::after { 
     content: '';
     position: absolute;
-    bottom: -2px; /* Align with border-bottom of .resume-tabs */
+    bottom: -2px; 
     left: 0;
     width: 0;
     height: 3px;
@@ -1268,37 +1247,36 @@ input:checked + .slider:before {
     width: 100%;
 }
 
-.resume-content { /* Container for resume iframe/details */
-    display: none; /* Controlled by JS */
+.resume-content { 
+    display: none; 
     margin-top: 2rem;
 }
 
 .resume-content.active {
     display: block;
-    animation: fadeIn 0.5s ease; /* From animations.css */
+    animation: fadeIn 0.5s ease; 
 }
 
-.resume-preview { /* From style.css and resume-fix.css, styled here */
+.resume-preview { 
     border-radius: 12px;
     overflow: hidden;
     margin-bottom: 2rem;
-    box-shadow: var(--dark-shadow-md); /* Use var */
-    /* Height and width from resume-fix.css */
+    box-shadow: var(--dark-shadow-md); 
 }
 
-.resume-actions { /* Container for view/download resume buttons */
+.resume-actions { 
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
-    justify-content: center; /* Center buttons */
+    justify-content: center; 
 }
 
-/* Skills category styling (from modern-style.css, good) */
+
 .skills-category {
     margin-bottom: 3rem;
 }
 
-.skills-category h4 { /* Sub-headings like "AI/ML Skills" */
+.skills-category h4 { 
     font-size: 1.3rem;
     margin-bottom: 1.25rem;
     padding-bottom: 0.5rem;
@@ -1315,8 +1293,8 @@ input:checked + .slider:before {
     border-color: var(--dark-border);
 }
 
-/* Social media links styling (for contact page, general grid) */
-.social-media-links { /* Section in Contact page */
+
+.social-media-links { 
     margin-top: 3rem;
 }
 
@@ -1325,18 +1303,18 @@ input:checked + .slider:before {
     margin-bottom: 1.5rem;
 }
 
-.social-grid { /* Used for .alt-contact-grid as well */
+.social-grid { 
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Smaller min for more items */
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); 
     gap: 1.5rem;
 }
 
-.social-link { /* Individual social link item */
+.social-link { 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 1.5rem; /* Adjusted padding */
+    padding: 1.5rem; 
     border-radius: var(--border-radius-lg);
     text-decoration: none;
     transition: all 0.3s ease;
@@ -1354,12 +1332,12 @@ input:checked + .slider:before {
 }
 
 .social-link i {
-    font-size: 2rem; /* Adjusted icon size */
+    font-size: 2rem; 
     margin-bottom: 1rem;
     transition: all 0.3s ease;
 }
 
-.social-link span { /* Text below icon */
+.social-link span { 
     font-weight: 500;
 }
 
@@ -1377,30 +1355,11 @@ input:checked + .slider:before {
     box-shadow: 0 8px 15px rgba(99, 102, 241, 0.2);
 }
 
-/* Last updated info */
 .last-updated {
-    text-align: center;
-    padding: 1rem;
-    font-size: 0.9rem;
-    opacity: 0.7;
-    margin-top: 2rem; /* Default margin */
-    display: flex; /* For icon alignment */
-    align-items: center;
-    justify-content: center;
+    /* Styling is now primarily handled by JS in mobile-nav.js */
 }
 
-.last-updated i {
-    margin-right: 0.5rem;
-}
 
-/* Responsive adjustments for last-updated in sidebar footer vs main content */
-.sidebar-footer .last-updated {
-    margin-top: 1rem;
-    font-size: 0.8rem;
-    padding: 0.5rem 0;
-}
-/* Other .last-updated instances (e.g., in single-page mode fixed footer) handled by responsive.css */
-/* Update around line 290 */
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -1408,7 +1367,6 @@ input:checked + .slider:before {
   margin-top: 2rem;
 }
 
-/* Update around line 305 */
 .project-card {
   border-radius: var(--border-radius-lg);
   overflow: hidden;
@@ -1418,31 +1376,29 @@ input:checked + .slider:before {
   box-shadow: var(--dark-shadow-md);
 }
 
-/* Update around line 338 */
 .project-image {
-  height: 180px; /* Reduced from 220px */
+  height: 180px; 
   position: relative;
   overflow: hidden;
 }
 
-/* Update around line 370 */
 .project-info {
-  padding: 1.25rem; /* Reduced padding */
+  padding: 1.25rem; 
 }
 
 .project-info h3 {
-  font-size: 1.2rem; /* Smaller font size */
+  font-size: 1.2rem; 
   margin-bottom: 0.5rem;
   transition: color 0.3s ease;
 }
 
 .project-info p {
-  margin-bottom: 1rem; /* Reduced margin */
-  font-size: 0.9rem; /* Smaller font */
+  margin-bottom: 1rem; 
+  font-size: 0.9rem; 
   line-height: 1.5;
 }
-/* Update this section */
-.profile-image-container {
+
+.profile-image-container { /* For the main profile image on home page */
     width: 220px;
     height: 220px;
     position: relative;
@@ -1461,7 +1417,6 @@ input:checked + .slider:before {
     background: var(--dark-accent-gradient);
 }
 
-/* Add this if not already present */
 .profile-image-container::before {
     content: '';
     position: absolute;
@@ -1473,11 +1428,9 @@ input:checked + .slider:before {
 .light-theme .profile-image-container::before { background: var(--light-accent-gradient); }
 .dark-theme .profile-image-container::before { background: var(--dark-accent-gradient); }
 
-.profile-pic-container {
-    width: 220px;
-    height: 220px;
+.profile-pic-container { /* This is for the small logo in sidebar header */
+    /* Dimensions set by JS/responsive.css */
     position: relative;
     border-radius: 50%;
     overflow: hidden;
-    margin-bottom: 1.5rem;
 }

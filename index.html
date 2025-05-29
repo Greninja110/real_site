@@ -89,6 +89,7 @@
                     <span id="theme-label">Dark Mode</span>
                 </div>
 
+                <!-- "Last updated" div will be moved by JS to the end of main content -->
                 <div class="last-updated">
                     <i class="fas fa-edit"></i> Last updated on May 24, 2025
                 </div>
@@ -105,8 +106,11 @@
                             <img src="assets/images/profile.png" alt="Abhijeet" class="profile-pic">
                         </div>
                         <div class="typing-animation">
-                            <h1>Abhijeet <span id="animated-text"><span id="text-content"></span><span
-                                        id="cursor"></span></span></h1>
+                            <h1>Abhijeet</h1>
+                            <div class="animated-greeting"> <!-- New wrapper for animated text -->
+                                <span id="animated-text"><span id="text-content"></span><span
+                                        id="cursor"></span></span>
+                            </div>
                         </div>
                     </div>
 
@@ -758,6 +762,7 @@
                     </div>
                 </div>
             </section>
+            <!-- "Last updated" div will be appended here by JS -->
         </main>
     </div>
     <!-- Custom JavaScript -->

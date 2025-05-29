@@ -483,12 +483,11 @@ TABLET AND DESKTOP STYLES (min-width: 768px)
         left: 0;
         display: flex;
         align-items: center;
-        padding: 0 1.5rem;
-        /* Padding for the ends of the bar */
+        padding: 0 1.5rem; /* Padding for the ends of the bar */
         z-index: 1000;
         border-right: none !important;
         border-bottom: 1px solid;
-        overflow: visible;
+        overflow: visible; /* Allow dropdowns or tooltips if any */
         flex-direction: row;
         flex-wrap: nowrap;
     }
@@ -503,109 +502,81 @@ TABLET AND DESKTOP STYLES (min-width: 768px)
         background-color: rgba(30, 41, 59, 0.95);
     }
 
-    /* Left Group: Hamburger, Logo, Title */
-    /* Ensure sidebar-header is properly set up as flex container */
+    /*
+     * CRITICAL CHANGE: In single-page-mode desktop, .sidebar-header's children
+     * should act as direct children of .sidebar for flex ordering.
+     * This is achieved by JS setting .sidebar-header to display: contents.
+     * The CSS for .sidebar-header itself should be minimal here, or absent
+     * if JS handles display: contents.
+    */
     .single-page-mode .sidebar-header {
-        display: flex !important;
-        align-items: center !important;
-        height: 100% !important;
-        padding: 0 !important;
-        margin: 0 !important;
-        width: 100% !important;
-        order: 1 !important;
-        flex-direction: row !important;
-        justify-content: flex-start !important;
+        /* display: flex !important; <-- REMOVED to allow JS display:contents to work */
+        /* Other styles like width:100%, order:1 etc. are removed as they conflict */
+        /* This element now effectively doesn't participate in layout itself, its children do. */
+        /* Styles like padding, margin if needed for this specific container can be here,
+           but display, width, order will be controlled by JS or inherited. */
     }
 
-    /* Mobile Toggle (3-line btn) */
+
+    /* Styles for the items that are children of .sidebar-header but act as direct flex items of .sidebar */
     .single-page-mode .mobile-toggle {
-        display: flex !important;
-        order: 1;
-        margin-right: 15px;
-        position: static;
+        display: flex !important; /* Ensure it's visible and flex */
+        order: 1; /* As per JS */
+        margin-right: 15px; /* As per JS */
+        position: static; /* Ensure it's in flow */
     }
 
-    .single-page-mode .mobile-toggle {
-        display: flex !important;
-        order: 1;
-        margin-right: 15px;
-        position: static;
-    }
-
-    .single-page-mode .profile-pic-container {
-        width: 40px;
-        height: 40px;
-        margin: 0 10px 0 0;
-        order: 2;
+    .single-page-mode .profile-pic-container { /* Assuming this targets the one inside .sidebar-header */
+        display: flex !important; /* Ensure it's visible and flex */
+        order: 2; /* As per JS */
+        width: 40px; /* As per JS */
+        height: 40px; /* As per JS */
+        margin: 0 10px 0 0; /* As per JS */
         border-width: 2px !important;
     }
-
     .single-page-mode .profile-pic-container::before {
-        top: -1px;
-        left: -1px;
-        right: -1px;
-        bottom: -1px;
+        top: -1px; left: -1px; right: -1px; bottom: -1px;
     }
 
     .single-page-mode .sidebar-title {
-        font-size: 1.3rem;
-        margin: 0;
-        order: 3;
-        margin-right: 20px;
-        /* Add spacing between name and nav */
+        display: block !important; /* Ensure it's visible */
+        order: 3; /* As per JS */
+        font-size: 1.3rem; /* As per JS */
+        margin: 0 20px 0 0; /* As per JS, space after title */
+        white-space: nowrap;
     }
 
-    /* Center Group: Navigation Links - change to appear inline with header */
+    /* Navigation Links container */
     .single-page-mode .sidebar-nav {
-    display: flex !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    order: 4; /* Change from 2 to 4 to place after the title */
-    height: 100%;
-    align-items: center;
-    justify-content: center;
-    position: static;
-    padding: 0;
-    margin: 0;
-    flex: 1;
-}
-
-    .single-page-mode .sidebar-header .mobile-theme-toggle {
-        display: flex !important;
-        order: 5 !important;
-        /* Force this order value */
-        margin-left: auto;
-        position: static;
-        z-index: 10;
-        /* Add z-index to ensure visibility */
-    }
-
-    .single-page-mode .sidebar-nav {
-        width: auto;
-        margin: 0 0 0 20px;
-        /* Add left margin from the title */
+        display: flex !important; /* Ensure visible and flex */
+        visibility: visible !important;
+        opacity: 1 !important;
+        order: 4; /* As per JS */
+        flex-grow: 1; /* As per JS - allows it to take middle space */
+        height: 100%;
+        align-items: center;
+        /* justify-content: center;  */
         position: static;
         padding: 0;
-        display: flex !important;
-        height: 100%;
-        margin-top: 0 !important;
+        margin: 0; /* Reset margin for the nav container itself */
     }
 
     .single-page-mode .sidebar-nav ul {
         display: flex;
         flex-direction: row;
         align-items: center;
-        justify-content: center;
+        justify-content: center; /* Centers nav items if ul doesn't fill sidebar-nav */
         list-style: none;
         padding: 0;
         margin: 0;
         height: 100%;
+        gap: 10px; /* Space between nav items, adjust as needed */
     }
 
     .single-page-mode .nav-link {
         padding: 0.5rem 0.8rem;
-        margin: 0 0.3rem;
-        display: flex !important;
+        margin: 0; /* Margin handled by ul gap */
+        display: flex !important; /* Make sure nav-links are shown */
         align-items: center;
         opacity: 1 !important;
         visibility: visible !important;
@@ -615,22 +586,35 @@ TABLET AND DESKTOP STYLES (min-width: 768px)
         margin-right: 0.5rem;
     }
 
+    /* Theme Toggle (this is #mobile-theme-toggle, child of .sidebar-header) */
     .single-page-mode .sidebar-header .mobile-theme-toggle {
-        display: flex !important;
-        order: 5 !important;
-        margin-left: auto !important;
-        position: static !important;
-        flex-shrink: 0 !important;
-        z-index: 10 !important;
+        display: flex !important; /* Ensure visible */
+        order: 5 !important; /* As per JS, and CSS !important to be sure */
+        margin-left: auto !important; /* As per JS/CSS - Pushes it to the far right */
+        position: static; /* Ensure it's in flow */
+        flex-shrink: 0 !important; /* Prevent shrinking */
+        z-index: 10;
     }
 }
 
 /* For tablet - adjust nav links spacing */
 @media (min-width: 768px) and (max-width: 1023px) {
+    .single-page-mode .sidebar-nav ul {
+        gap: 5px; /* Slightly less gap for tablets */
+    }
     .single-page-mode .nav-link {
         padding: 0.5rem 0.6rem;
         font-size: 0.9rem;
-        margin: 0 0.2rem;
+    }
+     .single-page-mode .sidebar-title {
+        font-size: 1.1rem; /* Smaller title on tablet */
+        margin-right: 10px; /* Less space after title */
+    }
+    .single-page-mode .mobile-toggle {
+        margin-right: 10px; /* Less space after hamburger */
+    }
+    .single-page-mode .profile-pic-container {
+        margin-right: 8px;
     }
 }
 
@@ -718,14 +702,7 @@ body.single-page-mode .section:last-of-type {
         grid-template-columns: 1fr;
     }
 
-    .single-page-mode .sidebar-title {
-        font-size: 1.1rem;
-    }
-
-    .single-page-mode .nav-link {
-        padding: 0.5rem 0.6rem;
-        font-size: 0.9rem;
-    }
+    /* .single-page-mode .sidebar-title, .nav-link already adjusted above */
 }
 
 /* Desktop specific adjustments */
