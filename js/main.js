@@ -43,169 +43,131 @@ function initPortfolio() {
 /**
  * Initialize navigation functionality
  */
+// START OF: js/main.js - REPLACE initNavigation function
 function initNavigation() {
     const navLinks = document.querySelectorAll('.nav-link');
     const body = document.body;
     const sections = document.querySelectorAll('.section');
     
-    // Debugging - Check what sections exist
-    console.log(`Found ${sections.length} sections on the page`);
-    sections.forEach(section => {
-        console.log(`Section found: ${section.id}`);
-    });
+    console.log(`[MainJS] Found ${sections.length} sections.`);
     
-    // Check if we should be in single page mode based on device width
-    const isMobile = window.innerWidth <= 767;
-    const isInSinglePageMode = body.classList.contains('single-page-mode');
-    
-    // If mobile but not in single page mode, add the class
-    if (isMobile && !isInSinglePageMode) {
-        body.classList.add('single-page-mode');
-        console.log('Mobile device detected - Setting single page mode');
+    let sectionToActivateId = 'home'; // Default
+    const hash = window.location.hash.substring(1);
+    const storedSectionId = localStorage.getItem('activeSectionId');
+
+    if (hash && document.getElementById(hash)) {
+        sectionToActivateId = hash;
+        console.log(`[MainJS] Activating section from URL hash: ${sectionToActivateId}`);
+    } else if (storedSectionId && document.getElementById(storedSectionId)) {
+        sectionToActivateId = storedSectionId;
+        console.log(`[MainJS] Activating section from localStorage: ${sectionToActivateId}`);
+    } else {
+        console.log(`[MainJS] Defaulting to home section.`);
     }
     
-    // Show the first section by default if no hash in URL
-    if (!window.location.hash) {
-        // First hide all sections to ensure clean state
-        sections.forEach(section => {
-            section.classList.remove('active');
-        });
-        
-        // Then activate home section
+    // Deactivate all sections and nav links first
+    sections.forEach(section => section.classList.remove('active'));
+    navLinks.forEach(link => link.classList.remove('active'));
+
+    const targetSectionToActivate = document.getElementById(sectionToActivateId);
+
+    if (targetSectionToActivate) {
+        targetSectionToActivate.classList.add('active');
+        const correspondingNavLink = document.querySelector(`.nav-link[data-section="${sectionToActivateId}"]`);
+        if (correspondingNavLink) {
+            correspondingNavLink.classList.add('active');
+        }
+        localStorage.setItem('activeSectionId', sectionToActivateId); // Update storage
+
+        // If in single-page mode, scroll to the section (especially on page load)
+        // The timeout ensures that the layout (especially after theme/mode changes) is stable.
+        if (body.classList.contains('single-page-mode')) {
+            setTimeout(() => {
+                const headerHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-height')) || 60;
+                // Ensure the section is visible before trying to get its position
+                if (targetSectionToActivate.style.display !== 'none') {
+                    const sectionTop = targetSectionToActivate.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                    window.scrollTo({ top: sectionTop, behavior: 'auto' });
+                    console.log(`[MainJS] Scrolled to section ${sectionToActivateId} in single-page mode on load.`);
+                }
+            }, 150); // Increased delay slightly
+        }
+    } else {
+        console.warn(`[MainJS] Target section '${sectionToActivateId}' not found. Activating 'home'.`);
         const homeSection = document.getElementById('home');
         if (homeSection) {
             homeSection.classList.add('active');
-            console.log('Home section activated by default');
-            
-            // Also make home nav link active
-            navLinks.forEach(link => {
-                if (link.getAttribute('data-section') === 'home') {
-                    link.classList.add('active');
-                } else {
-                    link.classList.remove('active');
-                }
-            });
-        } else {
-            console.log('WARNING: Home section not found!');
+            const homeLink = document.querySelector('.nav-link[data-section="home"]');
+            if (homeLink) homeLink.classList.add('active');
+            localStorage.setItem('activeSectionId', 'home');
         }
     }
     
-    // Process URL hash if present
-    if (window.location.hash) {
-        const hash = window.location.hash.substring(1);
-        console.log(`URL has hash: ${hash}, processing...`);
-        
-        // Find the section with this ID
-        const targetSection = document.getElementById(hash);
-        if (targetSection) {
-            // First hide all sections
-            sections.forEach(section => {
-                section.classList.remove('active');
-            });
-            
-            // Then activate target section
-            targetSection.classList.add('active');
-            console.log(`Activated section from hash: ${hash}`);
-            
-            // Update nav link active status
-            navLinks.forEach(link => {
-                if (link.getAttribute('data-section') === hash) {
-                    link.classList.add('active');
-                } else {
-                    link.classList.remove('active');
-                }
-            });
-        } else {
-            console.log(`WARNING: Section with ID ${hash} not found!`);
-        }
-    }
-    
-    // Add click event listeners to navigation links
     navLinks.forEach((link, index) => {
-        // Add nav index for staggered animation
         link.style.setProperty('--nav-index', index);
-        
         link.addEventListener('click', function(e) {
+            e.preventDefault();
             const sectionId = this.getAttribute('data-section');
-            console.log(`Nav link clicked for section: ${sectionId}`);
-            
-            // Check if section exists
-            const targetSection = document.getElementById(sectionId);
-            if (!targetSection) {
-                console.log(`ERROR: Section with ID ${sectionId} does not exist!`);
+            const clickedTargetSection = document.getElementById(sectionId);
+
+            if (!clickedTargetSection) {
+                console.error(`[MainJS] Clicked section ${sectionId} not found!`);
                 return;
             }
-            
-            // Check if we're in single page mode
+
+            navLinks.forEach(navLink => navLink.classList.remove('active'));
+            this.classList.add('active');
+            localStorage.setItem('activeSectionId', sectionId);
+
             if (body.classList.contains('single-page-mode')) {
-                // In single page mode, scroll to the section
-                e.preventDefault();
-                
-                targetSection.scrollIntoView({ behavior: 'smooth' });
-                
-                // Update nav link active status
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                });
-                this.classList.add('active');
-                
-                console.log(`Scrolled to section ${sectionId} in single page mode`);
+                const headerHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-height')) || 60;
+                const sectionTop = clickedTargetSection.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                window.scrollTo({ top: sectionTop, behavior: 'smooth' });
             } else {
-                // In multi-page mode, traditional navigation
-                e.preventDefault();
-                
-                // Update nav link active status
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                });
-                this.classList.add('active');
-                
-                // Hide all sections
-                sections.forEach(section => {
-                    section.classList.remove('active');
-                });
-                
-                // Show the target section
-                targetSection.classList.add('active');
-                
-                // Update URL hash
-                window.location.hash = sectionId;
-                
-                // Set animation order for elements
-                setAnimationOrder();
-                
-                console.log(`Section ${sectionId} activated in multi-page mode`);
+                sections.forEach(s => s.classList.remove('active'));
+                clickedTargetSection.classList.add('active');
+                if (window.location.hash !== `#${sectionId}`) {
+                     history.pushState(null, null, `#${sectionId}`);
+                }
             }
             
-            // Close mobile menu if open
-            const sidebar = document.querySelector('.sidebar');
-            const mobileToggle = document.getElementById('mobile-toggle');
-            if (sidebar.classList.contains('open')) {
+            setAnimationOrder(); // Ensure animations are set for the newly active section content
+
+            const sidebar = document.querySelector('.sidebar');S
+            if (sidebar && sidebar.classList.contains('open') && window.innerWidth <= 767) {
                 sidebar.classList.remove('open');
-                mobileToggle.classList.remove('open');
-                console.log('Mobile menu closed after navigation');
+                document.getElementById('mobile-toggle')?.classList.remove('open');
             }
+            console.log(`[MainJS] Navigated to section: ${sectionId}`);
         });
     });
-    
-    // Listen for screen size changes
+
+    // Handle window resize for single-page mode logic if not already handled by mobile-nav.js
+    // This ensures `handleDeviceLayout` is called if `mobile-nav.js` didn't attach its own listener or was overridden.
+    // Note: mobile-nav.js already has a resize listener that calls handleDeviceLayout.
+    // This is more of a failsafe or if main.js loads differently.
+    let resizeTimer;
     window.addEventListener('resize', function() {
-        const newIsMobile = window.innerWidth <= 767;
-        const currentIsInSinglePageMode = body.classList.contains('single-page-mode');
-        
-        // If mobile but not in single page mode, add the class
-        if (newIsMobile && !currentIsInSinglePageMode) {
-            body.classList.add('single-page-mode');
-            console.log('Switched to single page mode on resize (mobile detected)');
-            // Call handleDeviceLayout to properly set up mobile view
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function() {
             if (typeof handleDeviceLayout === 'function') {
-                handleDeviceLayout();
+                // handleDeviceLayout(); // mobile-nav.js should be primary for this
+            } else {
+                // Basic fallback if handleDeviceLayout isn't global
+                const newIsMobile = window.innerWidth <= 767;
+                if (newIsMobile && !body.classList.contains('single-page-mode')) {
+                    body.classList.add('single-page-mode');
+                } else if (!newIsMobile && body.classList.contains('single-page-mode') && localStorage.getItem('navigationMode') !== 'singlePage') {
+                    // Only remove if not explicitly set to singlePage on desktop
+                    // body.classList.remove('single-page-mode');
+                }
             }
-        }
+        }, 250);
     });
     
-    console.log('Navigation initialized');
+    console.log('[MainJS] Navigation initialized.');
 }
+// END OF: js/main.js - REPLACE initNavigation function
 
 /**
  * Initialize projects filtering and modal

@@ -47,21 +47,39 @@ function applyTheme(theme) {
     console.log(`Theme applied: ${theme}. Single page mode preserved: ${isSinglePageModePreviously}`);
 }
 
+// START OF: js/theme.js - REPLACE initTheme function
 function initTheme() {
     const mainThemeToggle = document.getElementById('theme-toggle');
     const mobileHeaderThemeToggle = document.getElementById('mobile-theme-toggle');
     
     if (!mainThemeToggle && !mobileHeaderThemeToggle) {
         console.error("Theme toggle element(s) not found for initTheme");
+        // Attempt to apply a theme anyway if one is saved or based on system pref
+        const savedTheme = localStorage.getItem('theme');
+        let initialTheme = 'dark-theme'; // Default fallback
+        if (savedTheme) {
+            initialTheme = savedTheme;
+        } else {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+                initialTheme = 'light-theme';
+            }
+            localStorage.setItem('theme', initialTheme); // Save the determined default
+        }
+        applyTheme(initialTheme); // Apply even if toggles are missing for basic functionality
         return;
     }
 
-    // Load saved theme or set default
+    // Load saved theme or set default based on system preference
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme) {
         applyTheme(savedTheme);
     } else {
-        applyTheme('dark-theme'); // Default to dark theme
+        let defaultTheme = 'dark-theme'; // Fallback default
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+            defaultTheme = 'light-theme';
+        }
+        applyTheme(defaultTheme);
+        localStorage.setItem('theme', defaultTheme); // Save the determined default
     }
 
     function handleThemeToggleChange(isChecked) {
@@ -71,18 +89,20 @@ function initTheme() {
         const currentState = {
             isSinglePageMode: document.body.classList.contains('single-page-mode'),
             sidebarOpen: document.querySelector('.sidebar')?.classList.contains('open'),
-            activeSection: document.querySelector('.section.active')?.id
+            activeSection: document.querySelector('.section.active')?.id || 
+                           (document.body.classList.contains('single-page-mode') ? 
+                            (document.querySelector('.nav-link.active')?.getAttribute('data-section') || 'home') : 'home')
         };
 
         applyTheme(newTheme);
 
         // Call layout preservation/restoration function from mobile-nav.js
         if (typeof window.preserveLayoutAfterThemeChange === 'function') {
-            window.preserveLayoutAfterThemeChange(currentState);
+            // A short delay might be needed for CSS variables to fully apply before layout adjustments
+            setTimeout(() => window.preserveLayoutAfterThemeChange(currentState), 50);
         } else {
-            // Fallback or direct call if mobile-nav.js hasn't exposed it yet
             if(typeof window.handleDeviceLayout === 'function') {
-                window.handleDeviceLayout();
+                 setTimeout(() => window.handleDeviceLayout(), 50);
             }
             console.warn("preserveLayoutAfterThemeChange not found, layout might need manual refresh or check mobile-nav.js load order.");
         }
@@ -107,6 +127,7 @@ function initTheme() {
     }
     console.log("Theme system initialized.");
 }
+// END OF: js/theme.js - REPLACE initTheme function
 
 // Export functions for use in other modules if needed (though called internally)
 window.applyTheme = applyTheme;

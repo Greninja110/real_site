@@ -451,7 +451,7 @@ p { /* General paragraph styling */
 
    For example, in responsive.css you have:
    body:not(.single-page-mode) .profile-pic-container {
-        width: 120px;
+        width: 120px;   
         height: 120px;
         ...
    }
@@ -464,3 +464,7 @@ p { /* General paragraph styling */
    }
    These container dimensions are what #sidebar-logo (the img tag) will fill 100%.
 */
+/* Add this rule to modern-style.css or your main style sheet */
+.last-updated i.fas.fa-edit {
+    margin-right: 0.5em; /* Adjust the value (e.g., 5px, 0.3em) as needed for desired spacing */
+}

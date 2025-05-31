@@ -94,7 +94,7 @@ function initContactForm() {
  */
 function sendWithEmailJS(formData, submitBtn, formStatus) {
     // EmailJS configuration - replace with your actual IDs
-    const serviceID = "service_portfolio";
+    const serviceID = "service_id";
     const templateID = "template_contact";
     const userID = "user_your_emailjs_user_id";
     

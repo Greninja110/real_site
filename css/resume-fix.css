@@ -105,3 +105,17 @@
 iframe {
     max-width: 100%;
 }
+
+/* ADD THESE STYLES TO resume-fix.css */
+.resume-tabs::-webkit-scrollbar {
+    display: none !important; /* For WebKit browsers like Chrome, Safari, Edge */
+    height: 0 !important; /* Ensure no space is taken */
+    width: 0 !important; /* Ensure no space is taken */
+    background: transparent !important;
+}
+
+.resume-tabs {
+    -ms-overflow-style: none !important;  /* For Internet Explorer and Edge (older versions) */
+    scrollbar-width: none !important;  /* For Firefox */
+    /* overflow-x: auto;  */
+}

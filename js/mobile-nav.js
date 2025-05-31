@@ -5,15 +5,44 @@
 
 // Global references for the .last-updated element and its original context
 let lastUpdatedElement = null;
-let originalLastUpdatedParent = null; 
+let originalLastUpdatedParent = null;
 let mainContentElement = null;
 
+// START OF: js/mobile-nav.js - ADD this function near the top
+function determineInitialLayoutMode() {
+    const body = document.body;
+    const isMobile = window.innerWidth <= 767;
+    let navigationMode = localStorage.getItem('navigationMode');
+
+    if (isMobile) {
+        if (!body.classList.contains('single-page-mode')) {
+            body.classList.add('single-page-mode');
+        }
+        // For mobile, it effectively behaves as single-page for layout.
+        // We don't strictly need to store 'singlePage' for mobile if it's always forced by width.
+    } else { // Desktop
+        if (navigationMode === 'singlePage') {
+            body.classList.add('single-page-mode');
+        } else if (navigationMode === 'multiPage') {
+            body.classList.remove('single-page-mode');
+        } else { // Default for desktop: multiPage (left-nav)
+            body.classList.remove('single-page-mode');
+            localStorage.setItem('navigationMode', 'multiPage');
+        }
+    }
+    console.log(`[MobileNav] Initial layout mode determined. Mobile: ${isMobile}, SinglePage: ${body.classList.contains('single-page-mode')}`);
+}
+// END OF: js/mobile-nav.js - ADD this function
+
 document.addEventListener('DOMContentLoaded', function () {
+
+    determineInitialLayoutMode(); // Call the new function here
+
     lastUpdatedElement = document.querySelector('.last-updated');
     if (lastUpdatedElement) {
-        originalLastUpdatedParent = lastUpdatedElement.parentElement; 
+        originalLastUpdatedParent = lastUpdatedElement.parentElement;
     }
-    mainContentElement = document.querySelector('main.content'); 
+    mainContentElement = document.querySelector('main.content');
 
     initMobileNav();
     window.addEventListener('resize', handleDeviceLayout);
@@ -26,9 +55,9 @@ document.addEventListener('DOMContentLoaded', function () {
             const currentState = {
                 isSinglePageMode: document.body.classList.contains('single-page-mode'),
                 sidebarOpen: document.querySelector('.sidebar')?.classList.contains('open'),
-                activeSection: document.querySelector('.section.active')?.id || 
-                               (document.body.classList.contains('single-page-mode') ? 
-                                (document.querySelector('.nav-link.active')?.getAttribute('data-section') || 'home') : 'home')
+                activeSection: document.querySelector('.section.active')?.id ||
+                    (document.body.classList.contains('single-page-mode') ?
+                        (document.querySelector('.nav-link.active')?.getAttribute('data-section') || 'home') : 'home')
             };
             if (mobileThemeToggle) mobileThemeToggle.checked = themeToggle.checked;
             // applyTheme is called by theme.js, which calls preserveLayoutAfterThemeChange
@@ -40,9 +69,9 @@ document.addEventListener('DOMContentLoaded', function () {
             const currentState = {
                 isSinglePageMode: document.body.classList.contains('single-page-mode'),
                 sidebarOpen: document.querySelector('.sidebar')?.classList.contains('open'),
-                activeSection: document.querySelector('.section.active')?.id || 
-                               (document.body.classList.contains('single-page-mode') ? 
-                                (document.querySelector('.nav-link.active')?.getAttribute('data-section') || 'home') : 'home')
+                activeSection: document.querySelector('.section.active')?.id ||
+                    (document.body.classList.contains('single-page-mode') ?
+                        (document.querySelector('.nav-link.active')?.getAttribute('data-section') || 'home') : 'home')
             };
             if (themeToggle) {
                 themeToggle.checked = mobileThemeToggle.checked;
@@ -51,14 +80,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 const newTheme = this.checked ? 'light-theme' : 'dark-theme';
                 if (typeof window.applyTheme === 'function') window.applyTheme(newTheme);
                 if (typeof window.preserveLayoutAfterThemeChange === 'function') {
-                     setTimeout(() => window.preserveLayoutAfterThemeChange(currentState), 50);
+                    setTimeout(() => window.preserveLayoutAfterThemeChange(currentState), 50);
                 }
             }
         });
     }
 });
 
-window.preserveLayoutAfterThemeChange = function(previousState) {
+window.preserveLayoutAfterThemeChange = function (previousState) {
     console.log("Preserving layout after theme change. Previous state:", previousState);
     const body = document.body;
 
@@ -68,29 +97,29 @@ window.preserveLayoutAfterThemeChange = function(previousState) {
         body.classList.remove('single-page-mode');
     }
 
-    handleDeviceLayout(); 
-    
+    handleDeviceLayout();
+
     if (previousState?.activeSection) {
         document.querySelectorAll('.nav-link').forEach(link => {
             link.classList.toggle('active', link.getAttribute('data-section') === previousState.activeSection);
         });
 
-        if (!body.classList.contains('single-page-mode')) { 
+        if (!body.classList.contains('single-page-mode')) {
             document.querySelectorAll('.section').forEach(s => {
                 const isActive = s.id === previousState.activeSection;
                 s.classList.toggle('active', isActive);
                 s.style.display = isActive ? 'block' : 'none';
                 s.style.opacity = isActive ? '1' : '0';
             });
-        } else { 
-             const targetSection = document.getElementById(previousState.activeSection);
-             if (targetSection) {
-                setTimeout(() => { 
+        } else {
+            const targetSection = document.getElementById(previousState.activeSection);
+            if (targetSection) {
+                setTimeout(() => {
                     const headerHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-height')) || 60;
                     const sectionTop = targetSection.getBoundingClientRect().top + window.pageYOffset - headerHeight;
-                    window.scrollTo({ top: sectionTop, behavior: 'auto' }); 
+                    window.scrollTo({ top: sectionTop, behavior: 'auto' });
                 }, 0);
-             }
+            }
         }
     }
     console.log("Layout preserved/re-applied after theme change.");
@@ -107,16 +136,21 @@ function initMobileNav() {
         return;
     }
 
-    handleDeviceLayout(); 
+    handleDeviceLayout();
 
     mobileToggle.addEventListener('click', function () {
-        if (window.innerWidth <= 767) { 
+        if (window.innerWidth <= 767) {
             sidebar.classList.toggle('open');
-        } else { 
+        } else {
             const wasInSinglePageMode = body.classList.contains('single-page-mode');
             body.classList.toggle('single-page-mode');
             console.log(`Toggled single-page mode via hamburger. Now: ${body.classList.contains('single-page-mode')}`);
-            
+            // Save the new mode to localStorage
+            const newMode = body.classList.contains('single-page-mode') ? 'singlePage' : 'multiPage';
+            localStorage.setItem('navigationMode', newMode);
+            console.log(`[MobileNav] Toggled single-page mode via hamburger. Now: ${newMode}. Saved to localStorage.`);
+
+
             if (wasInSinglePageMode && !body.classList.contains('single-page-mode')) {
                 const sections = document.querySelectorAll('.section:not(#stats)');
                 let maxVisibleSection = null;
@@ -134,17 +168,17 @@ function initMobileNav() {
                         maxVisibleSection = section;
                     }
                 });
-                
+
                 document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
                 if (maxVisibleSection) {
                     maxVisibleSection.classList.add('active');
-                } else { 
+                } else {
                     const homeSection = document.getElementById('home');
                     if (homeSection) homeSection.classList.add('active');
                 }
             }
-            
-            handleDeviceLayout(); 
+
+            handleDeviceLayout();
 
             if (body.classList.contains('single-page-mode')) {
                 const activeNavLink = document.querySelector('.nav-link.active');
@@ -158,10 +192,10 @@ function initMobileNav() {
                     }, 100);
                 }
                 setupIntersectionObserver();
-            } else { 
+            } else {
                 removeIntersectionObserver();
                 const activeSection = document.querySelector('.section.active');
-                if(activeSection) history.replaceState(null, null, `#${activeSection.id}`);
+                if (activeSection) history.replaceState(null, null, `#${activeSection.id}`);
             }
         }
     });
@@ -183,9 +217,9 @@ function initMobileNav() {
                 const sectionTop = targetSection.getBoundingClientRect().top + window.pageYOffset - headerHeight;
                 window.scrollTo({ top: sectionTop, behavior: 'smooth' });
                 if (window.innerWidth <= 767 && sidebar && sidebar.classList.contains('open')) {
-                    sidebar.classList.remove('open'); 
+                    sidebar.classList.remove('open');
                 }
-            } else { 
+            } else {
                 document.querySelectorAll('.section').forEach(s => {
                     s.classList.remove('active');
                     s.style.display = 'none';
@@ -194,7 +228,7 @@ function initMobileNav() {
                 targetSection.classList.add('active');
                 targetSection.style.display = 'block';
                 targetSection.style.opacity = '1';
-                history.pushState(null, null, `#${sectionId}`); 
+                history.pushState(null, null, `#${sectionId}`);
             }
         });
     });
@@ -204,7 +238,7 @@ function initMobileNav() {
 function handleDeviceLayout() {
     const body = document.body;
     const sidebar = document.querySelector('.sidebar');
-    const content = document.querySelector('.content'); 
+    const content = document.querySelector('.content');
     const sidebarFooter = document.querySelector('.sidebar-footer');
     const sidebarHeader = document.querySelector('.sidebar-header');
     const sidebarNav = document.querySelector('.sidebar-nav');
@@ -215,17 +249,17 @@ function handleDeviceLayout() {
     const hamburgerButton = document.getElementById('mobile-toggle');
 
     if (!sidebar || !content || !sidebarFooter || !sidebarHeader || !sidebarNav || !hamburgerButton ||
-        !lastUpdatedElement || !mainContentElement ) {
+        !lastUpdatedElement || !mainContentElement) {
         console.error("One or more critical layout elements are missing. Aborting handleDeviceLayout.");
         return;
     }
-    
+
     [sidebar, content, sidebarFooter, sidebarHeader, sidebarNav, mainProfilePicContainer, mainSidebarTitle, hamburgerButton, lastUpdatedElement].forEach(el => {
         if (el) el.style.cssText = '';
     });
-    if(mobileThemeToggleInHeader) mobileThemeToggleInHeader.style.cssText = '';
-    if(desktopThemeToggleInFooter) desktopThemeToggleInFooter.style.cssText = '';
-    if(sidebarNav.querySelector('ul')) sidebarNav.querySelector('ul').style.cssText = '';
+    if (mobileThemeToggleInHeader) mobileThemeToggleInHeader.style.cssText = '';
+    if (desktopThemeToggleInFooter) desktopThemeToggleInFooter.style.cssText = '';
+    if (sidebarNav.querySelector('ul')) sidebarNav.querySelector('ul').style.cssText = '';
 
     const isMobile = window.innerWidth <= 767;
     const headerHeightVar = getComputedStyle(document.documentElement).getPropertyValue('--header-height').trim() || '60px';
@@ -242,17 +276,17 @@ function handleDeviceLayout() {
 
     if (isMobile) {
         if (!body.classList.contains('single-page-mode')) {
-            body.classList.add('single-page-mode'); 
+            body.classList.add('single-page-mode');
         }
-        sidebar.classList.remove('open'); 
+        sidebar.classList.remove('open');
 
         sidebar.style.width = '100%';
         sidebar.style.height = headerHeightVar;
         sidebar.style.position = 'fixed';
         sidebar.style.top = '0';
         sidebar.style.left = '0';
-        sidebar.style.flexDirection = 'column'; 
-        sidebar.style.overflow = 'hidden'; 
+        sidebar.style.flexDirection = 'column';
+        sidebar.style.overflow = 'hidden';
         sidebar.style.borderRight = 'none';
         sidebar.style.borderBottom = `1px solid ${body.classList.contains('light-theme') ? lightBorderVar : darkBorderVar}`;
 
@@ -265,56 +299,56 @@ function handleDeviceLayout() {
 
         if (hamburgerButton) {
             hamburgerButton.style.display = 'flex';
-            hamburgerButton.style.order = '1'; 
+            hamburgerButton.style.order = '1';
             hamburgerButton.style.marginRight = '10px';
         }
         if (mainProfilePicContainer) {
             mainProfilePicContainer.style.display = 'flex';
             mainProfilePicContainer.style.width = '40px';
             mainProfilePicContainer.style.height = '40px';
-            mainProfilePicContainer.style.margin = '0 10px 0 0'; 
+            mainProfilePicContainer.style.margin = '0 10px 0 0';
             mainProfilePicContainer.style.order = '2';
         }
         if (mainSidebarTitle) {
             mainSidebarTitle.style.display = 'block';
             mainSidebarTitle.style.fontSize = '1.2rem';
-            mainSidebarTitle.style.margin = '0'; 
+            mainSidebarTitle.style.margin = '0';
             mainSidebarTitle.style.order = '3';
-            mainSidebarTitle.style.flexGrow = '1'; 
-            mainSidebarTitle.style.marginRight = 'auto'; 
+            mainSidebarTitle.style.flexGrow = '1';
+            mainSidebarTitle.style.marginRight = 'auto';
         }
         if (mobileThemeToggleInHeader) {
             mobileThemeToggleInHeader.style.display = 'flex';
-            mobileThemeToggleInHeader.style.order = '4'; 
-            mobileThemeToggleInHeader.style.marginLeft = '10px'; 
+            mobileThemeToggleInHeader.style.order = '4';
+            mobileThemeToggleInHeader.style.marginLeft = '10px';
             mobileThemeToggleInHeader.style.flexShrink = '0';
         }
-        if (desktopThemeToggleInFooter) desktopThemeToggleInFooter.style.display = 'none'; 
+        if (desktopThemeToggleInFooter) desktopThemeToggleInFooter.style.display = 'none';
 
-        sidebarNav.style.display = 'none'; 
+        sidebarNav.style.display = 'none';
         sidebarNav.style.width = '100%';
         sidebarNav.style.padding = '1rem';
-        sidebarNav.style.marginTop = headerHeightVar; 
-        sidebarNav.style.height = `calc(100vh - ${headerHeightVar})`; 
+        sidebarNav.style.marginTop = headerHeightVar;
+        sidebarNav.style.height = `calc(100vh - ${headerHeightVar})`;
         sidebarNav.style.overflowY = 'auto';
-        if(sidebarNav.querySelector('ul')) sidebarNav.querySelector('ul').style.flexDirection = 'column';
+        if (sidebarNav.querySelector('ul')) sidebarNav.querySelector('ul').style.flexDirection = 'column';
 
         content.style.marginLeft = '0';
         content.style.width = '100%';
         content.style.paddingTop = `calc(${headerHeightVar} + 1rem)`;
-        content.style.paddingBottom = `1rem`; 
+        content.style.paddingBottom = `1rem`;
 
-        sidebarFooter.style.display = 'block'; 
-        sidebarFooter.style.padding = '0'; 
+        sidebarFooter.style.display = 'block';
+        sidebarFooter.style.padding = '0';
         sidebarFooter.style.borderTop = 'none';
         sidebarFooter.style.marginTop = '0';
-        
+
         showAllSections();
         setupIntersectionObserver();
-        content.classList.remove('centered-content'); 
+        content.classList.remove('centered-content');
 
     } else { // Desktop / Tablet
-        sidebar.classList.remove('open'); 
+        sidebar.classList.remove('open');
 
         if (body.classList.contains('single-page-mode')) { // Desktop Top Nav
             sidebar.style.width = '100%';
@@ -325,12 +359,12 @@ function handleDeviceLayout() {
             sidebar.style.display = 'flex';
             sidebar.style.flexDirection = 'row';
             sidebar.style.alignItems = 'center';
-            sidebar.style.padding = `0 ${sectionContentPaddingLeft}`; 
+            sidebar.style.padding = `0 ${sectionContentPaddingLeft}`;
             sidebar.style.borderRight = 'none';
             sidebar.style.borderBottom = `1px solid ${body.classList.contains('light-theme') ? lightBorderVar : darkBorderVar}`;
-            sidebar.style.overflow = 'visible'; 
+            sidebar.style.overflow = 'visible';
 
-            sidebarHeader.style.display = 'contents'; 
+            sidebarHeader.style.display = 'contents';
 
             if (hamburgerButton) {
                 hamburgerButton.style.display = 'flex';
@@ -345,51 +379,55 @@ function handleDeviceLayout() {
                 mainProfilePicContainer.style.order = '2';
             }
             if (mainSidebarTitle) {
-                mainSidebarTitle.style.display = 'block'; 
+                mainSidebarTitle.style.display = 'block';
                 mainSidebarTitle.style.fontSize = '1.3rem';
                 mainSidebarTitle.style.marginRight = '1.5rem'; // Gap after title
                 mainSidebarTitle.style.order = '3';
                 mainSidebarTitle.style.whiteSpace = 'nowrap';
+                // mainSidebarTitle.style.marginLeft = '100px';
             }
-            
+
             sidebarNav.style.display = 'flex';
             sidebarNav.style.visibility = 'visible';
             sidebarNav.style.opacity = '1';
-            sidebarNav.style.flexGrow = '1'; 
+            sidebarNav.style.flexGrow = '1';
             sidebarNav.style.height = '100%';
             sidebarNav.style.alignItems = 'center';
-            sidebarNav.style.justifyContent = 'flex-start'; 
-            sidebarNav.style.padding = '0';
-            sidebarNav.style.margin = '0'; 
+            sidebarNav.style.justifyContent = 'flex-start';
+            sidebarNav.style.paddingTop = '0';
+            sidebarNav.style.paddingBottom = '0';
+            sidebarNav.style.paddingRight = '0'; // Or some value if needed at the end
+            sidebarNav.style.paddingLeft = '5rem'; // << ADD THIS (Adjust '3rem' as needed)
+            sidebarNav.style.margin = '0';
             sidebarNav.style.order = '4';
-            if(sidebarNav.querySelector('ul')) {
+            if (sidebarNav.querySelector('ul')) {
                 const ul = sidebarNav.querySelector('ul');
                 ul.style.display = 'flex';
                 ul.style.flexDirection = 'row';
                 ul.style.alignItems = 'center';
-                ul.style.justifyContent = 'flex-start'; 
+                ul.style.justifyContent = 'flex-start';
                 ul.style.paddingLeft = '0'; // No extra padding for the ul itself
-                ul.style.margin = '0'; 
+                ul.style.margin = '0';
                 ul.style.listStyle = 'none';
-                ul.style.gap = '15px'; 
+                ul.style.gap = '15px';
             }
 
-            if (mobileThemeToggleInHeader) { 
+            if (mobileThemeToggleInHeader) {
                 mobileThemeToggleInHeader.style.display = 'flex';
-                mobileThemeToggleInHeader.style.order = '5'; 
-                mobileThemeToggleInHeader.style.marginLeft = 'auto'; 
-                mobileThemeToggleInHeader.style.flexShrink = '0'; 
+                mobileThemeToggleInHeader.style.order = '5';
+                mobileThemeToggleInHeader.style.marginLeft = 'auto';
+                mobileThemeToggleInHeader.style.flexShrink = '0';
             }
-            
+
             if (desktopThemeToggleInFooter) desktopThemeToggleInFooter.style.display = 'none';
-            sidebarFooter.style.display = 'none'; 
+            sidebarFooter.style.display = 'none';
 
             content.style.marginLeft = '0';
             content.style.width = '100%';
             content.style.paddingTop = `calc(${headerHeightVar} + 2rem)`;
-            content.style.paddingBottom = `1rem`; 
-            content.classList.add('centered-content'); 
-            
+            content.style.paddingBottom = `0.1rem`;
+            content.classList.add('centered-content');
+
             showAllSections();
             setupIntersectionObserver();
 
@@ -399,7 +437,7 @@ function handleDeviceLayout() {
             sidebar.style.position = 'fixed';
             sidebar.style.top = '0';
             sidebar.style.left = '0';
-            sidebar.style.display = 'flex'; 
+            sidebar.style.display = 'flex';
             sidebar.style.flexDirection = 'column';
             sidebar.style.padding = '0';
             sidebar.style.borderRight = `1px solid ${body.classList.contains('light-theme') ? lightBorderVar : darkBorderVar}`;
@@ -410,12 +448,12 @@ function handleDeviceLayout() {
             sidebarHeader.style.flexDirection = 'column';
             sidebarHeader.style.alignItems = 'center';
             sidebarHeader.style.padding = '2rem 1rem';
-            
+
             if (hamburgerButton) {
-                 hamburgerButton.style.display = 'flex'; 
-                 hamburgerButton.style.position = 'absolute';
-                 hamburgerButton.style.top = '1rem';
-                 hamburgerButton.style.right = '1rem';
+                hamburgerButton.style.display = 'flex';
+                hamburgerButton.style.position = 'absolute';
+                hamburgerButton.style.top = '1rem';
+                hamburgerButton.style.right = '1rem';
             }
             if (mainProfilePicContainer) {
                 mainProfilePicContainer.style.display = 'flex';
@@ -427,32 +465,32 @@ function handleDeviceLayout() {
             if (mobileThemeToggleInHeader) mobileThemeToggleInHeader.style.display = 'none';
 
             sidebarNav.style.display = 'block';
-            sidebarNav.style.flex = '1'; 
+            sidebarNav.style.flex = '1';
             sidebarNav.style.padding = '0 1.5rem';
-            if(sidebarNav.querySelector('ul')) sidebarNav.querySelector('ul').style.flexDirection = 'column';
+            if (sidebarNav.querySelector('ul')) sidebarNav.querySelector('ul').style.flexDirection = 'column';
 
             content.style.marginLeft = sidebarWidthVar;
             content.style.width = `calc(100% - ${sidebarWidthVar})`;
-            content.style.paddingTop = '2rem'; 
-            content.style.paddingBottom = '2rem'; 
+            content.style.paddingTop = '2rem';
+            content.style.paddingBottom = '2rem';
             content.classList.remove('centered-content');
 
-            sidebarFooter.style.display = 'block'; 
+            sidebarFooter.style.display = 'block';
             sidebarFooter.style.padding = '1.5rem';
-            sidebarFooter.style.marginTop = 'auto'; 
+            sidebarFooter.style.marginTop = 'auto';
             sidebarFooter.style.borderTop = `1px solid ${body.classList.contains('light-theme') ? lightBorderVar : darkBorderVar}`;
-            
+
             if (desktopThemeToggleInFooter) desktopThemeToggleInFooter.style.display = 'flex';
-            
+
             if (lastUpdatedElement.parentElement !== sidebarFooter) {
-                sidebarFooter.appendChild(lastUpdatedElement); 
+                sidebarFooter.appendChild(lastUpdatedElement);
             }
             lastUpdatedElement.style.cssText = `
                 display: flex; align-items: center; justify-content: flex-start; 
                 font-size: 0.8rem; padding: 0; opacity: 0.7; /* Removed top padding */
                 background-color: transparent; border-top: none; margin-top: 1rem; /* Added margin-top */
                 color: ${body.classList.contains('light-theme') ? lightTextVar : darkTextVar};
-            `; 
+            `;
 
             const activeSection = document.querySelector('.section.active') || document.getElementById('home');
             document.querySelectorAll('.section').forEach(section => {
@@ -473,7 +511,7 @@ function handleDeviceLayout() {
             }
             lastUpdatedElement.style.cssText = `
                 display: flex; align-items: center; justify-content: center;
-                width: 100%; padding: 20px 15px; font-size: 0.9rem; text-align: center;
+                width: 100%; padding: 10px 15px; font-size: 0.9rem; text-align: center;
                 margin-top: 3rem; 
                 border-top: 1px solid ${body.classList.contains('light-theme') ? lightBorderVar : darkBorderVar};
                 background-color: ${body.classList.contains('light-theme') ? lightSidebarBgVar : darkSidebarBgVar};
@@ -490,14 +528,14 @@ function handleDeviceLayout() {
 
 function showAllSections() {
     document.querySelectorAll('.section').forEach(section => {
-        if (section.id !== 'stats') { 
+        if (section.id !== 'stats') {
             section.style.display = 'block';
             section.style.opacity = '1';
         }
     });
 }
 
-function hideAllSections() { 
+function hideAllSections() {
     document.querySelectorAll('.section').forEach(section => {
         section.classList.remove('active');
         section.style.display = 'none';
@@ -507,17 +545,17 @@ function hideAllSections() {
 
 let observer;
 function setupIntersectionObserver() {
-    if (observer) removeIntersectionObserver(); 
+    if (observer) removeIntersectionObserver();
     const body = document.body;
-    if (!body.classList.contains('single-page-mode')) return; 
+    if (!body.classList.contains('single-page-mode')) return;
 
     const headerHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-height')) || 60;
 
     observer = new IntersectionObserver((entries) => {
-        if (!body.classList.contains('single-page-mode')) return; 
-        
+        if (!body.classList.contains('single-page-mode')) return;
+
         let mostVisibleEntry = null;
-        let maxRatio = -1; 
+        let maxRatio = -1;
 
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -527,11 +565,11 @@ function setupIntersectionObserver() {
                 }
             }
         });
-        
+
         if (!mostVisibleEntry) {
             mostVisibleEntry = entries.find(entry => entry.isIntersecting);
         }
-        
+
         if (!mostVisibleEntry) {
             let closestEntry = null;
             let minDistance = Infinity;
@@ -547,18 +585,18 @@ function setupIntersectionObserver() {
 
         if (mostVisibleEntry) {
             const sectionId = mostVisibleEntry.target.id;
-            if (sectionId === 'stats') return; 
-            
+            if (sectionId === 'stats') return;
+
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.classList.toggle('active', link.getAttribute('data-section') === sectionId);
             });
             if (history.replaceState && !document.body.classList.contains('scrolling-to-section')) {
-                 history.replaceState(null, null, `#${sectionId}`);
+                history.replaceState(null, null, `#${sectionId}`);
             }
         }
     }, {
-        threshold: [0.01, 0.1, 0.25, 0.5, 0.75, 0.99], 
-        rootMargin: `-${headerHeight + 5}px 0px -45% 0px` 
+        threshold: [0.01, 0.1, 0.25, 0.5, 0.75, 0.99],
+        rootMargin: `-${headerHeight + 5}px 0px -45% 0px`
     });
     document.querySelectorAll('.section:not(#stats)').forEach(section => observer.observe(section));
     console.log("Intersection observer set up for single-page mode.");
@@ -567,7 +605,7 @@ function setupIntersectionObserver() {
 function removeIntersectionObserver() {
     if (observer) {
         document.querySelectorAll('.section').forEach(section => observer.unobserve(section));
-        observer.disconnect(); 
+        observer.disconnect();
         observer = null;
         console.log("Intersection observer removed.");
     }
