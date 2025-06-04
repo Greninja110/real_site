@@ -15,7 +15,8 @@ document.addEventListener('DOMContentLoaded', function() {
 function initImageOverlay() {
     // Elements to make clickable - using more robust selectors
     const sidebarLogo = document.getElementById('sidebar-logo');
-    const profilePic = document.querySelector('.profile-image-container img');
+    const profilePic = document.querySelector('.profile-image-container img')|| 
+                       document.querySelector('.profile-pic')
     
     // Overlay elements
     const imageOverlay = document.getElementById('image-overlay');
