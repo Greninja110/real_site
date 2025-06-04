@@ -13,7 +13,7 @@
     background-color: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
-    z-index: 10000;
+    z-index: 10000; /* Very high z-index to ensure it's on top */
     overflow: hidden;
     opacity: 0;
     transition: opacity 0.3s ease;
@@ -21,7 +21,7 @@
 
 .image-overlay.active {
     opacity: 1;
-    display: flex;
+    display: flex !important; /* Force flex display when active */
     justify-content: center;
     align-items: center;
 }
@@ -83,11 +83,15 @@
     }
 }
 
-/* Pulse animation for clickable images */
+/* Improved clickable image styling */
 .clickable-image {
-    cursor: pointer;
+    cursor: pointer !important;
     position: relative;
     overflow: hidden;
+}
+
+.clickable-image img {
+    cursor: pointer !important; /* Ensure cursor is pointer */
 }
 
 .clickable-image::after {
@@ -109,7 +113,32 @@
     opacity: 1;
 }
 
-/* Responsive adjustments */
+/* Special handling for both desktop and mobile */
+@media (min-width: 768px) {
+    /* Desktop specific adjustments */
+    .overlay-content {
+        max-width: 80%;
+        max-height: 85vh;
+    }
+    
+    #overlay-image {
+        max-height: 85vh;
+    }
+    
+    .close-overlay {
+        width: 50px;
+        height: 50px;
+        font-size: 28px;
+    }
+    
+    /* Additional visibility for desktop */
+    .profile-pic-container, 
+    .profile-image-container {
+        cursor: pointer !important;
+    }
+}
+
+/* Mobile adjustments */
 @media (max-width: 767px) {
     .overlay-content {
         max-width: 95%;
