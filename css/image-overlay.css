@@ -168,3 +168,87 @@
 .profile-pic-container:hover {
     animation: subtle-pulse 1.5s infinite;
 }
+/* Add to image-overlay.css */
+/* Ensure clickable elements have highest priority */
+.profile-pic-container, 
+.profile-image-container,
+#sidebar-logo,
+.profile-pic,
+.profile-pic-small {
+    z-index: 5 !important;
+    position: relative !important;
+    cursor: pointer !important;
+    pointer-events: auto !important;
+}
+
+/* Disable pointer events on pseudo-elements during transition */
+.profile-pic-container::before,
+.profile-pic-container::after,
+.profile-image-container::before,
+.profile-image-container::after {
+    pointer-events: none !important;
+}
+
+/* Replace the &times; with a symmetric CSS-based X */
+.close-icon {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.close-icon::before,
+.close-icon::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 2px;
+    background-color: white;
+    border-radius: 1px;
+}
+
+.close-icon::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.close-icon::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+/* Improved hover effect for the close button */
+.close-overlay:hover .close-icon::before,
+.close-overlay:hover .close-icon::after {
+    width: 22px; /* Slightly larger on hover */
+    transition: width 0.3s ease, transform 0.3s ease;
+}
+
+/* Add to image-overlay.css */
+/* Prevent layout shift during overlay open/close */
+body {
+    transition: padding-right 0.3s ease;
+}
+
+/* Ensure overlay position is fixed correctly */
+.image-overlay {
+    transition: opacity 0.3s ease;
+    will-change: opacity;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+/* Improve animation performance */
+.overlay-content {
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+/* Make close button animation smoother */
+.close-overlay {
+    transform-origin: center center;
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
