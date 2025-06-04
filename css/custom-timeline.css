@@ -1,0 +1,288 @@
+/* 
+ * Custom Timeline CSS for Abhijeet's Portfolio
+ * Centered timeline design with responsive adjustments
+ */
+
+.timeline-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1200px; /* Matches modern-style.css general content width */
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+/* Timeline vertical line - ALWAYS CENTERED */
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50% !important; 
+  transform: translateX(-50%) !important; 
+  height: 100%;
+  width: 4px; /* Slightly thicker line */
+  border-radius: 2px;
+}
+
+.dark-theme .timeline::before {
+  background: linear-gradient(to bottom, var(--dark-accent), var(--dark-secondary));
+}
+
+.light-theme .timeline::before {
+  background: linear-gradient(to bottom, var(--light-accent), var(--light-secondary));
+}
+
+/* Timeline block */
+.timeline-block {
+  position: relative;
+  margin-bottom: 2.5rem; /* Spacing between blocks */
+  opacity: 0; /* Start hidden for animation */
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  display: flex; /* Added for easier alignment control if needed */
+  flex-direction: column; /* Default stacking for date and content */
+  align-items: center; /* Center items initially for mobile */
+}
+
+/* Animation for when block becomes visible */
+.timeline-block.visible {
+  opacity: 1;
+  transform: translateY(0); /* Default, can be translateX for side entries */
+}
+.timeline-block:nth-child(odd).visible {
+  transform: translateX(0);
+}
+.timeline-block:nth-child(even).visible {
+  transform: translateX(0);
+}
+
+/* Timeline date circle - CENTER vertically aligned with content */
+.timeline-date-marker {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    /* Change top positioning from 0 to 50% and add translateY */
+    top: 50% !important; /* Center vertically with the content */
+    transform: translate(-50%, -50%) !important; /* Center both horizontally and vertically */
+    border-radius: 50%;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.85rem;
+    text-align: center;
+    box-shadow: 0 0 0 4px rgba(var(--dark-bg-rgb, 15, 23, 42), 0.8),
+                inset 0 2px 0px rgba(0,0,0,0.08), 0 3px 0 4px rgba(0,0,0,0.05);
+}
+.light-theme .timeline-date-marker {
+  box-shadow: 0 0 0 4px rgba(var(--light-bg-rgb, 240, 244, 248), 0.8),
+              inset 0 2px 0px rgba(0,0,0,0.08), 0 3px 0 4px rgba(0,0,0,0.05);
+}
+
+
+.timeline-date-marker .month {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  margin-bottom: -2px;
+  font-weight: 600;
+}
+
+.timeline-date-marker .year {
+  font-size: 0.9rem; /* Slightly larger year */
+  font-weight: 700;
+}
+
+.dark-theme .timeline-date-marker {
+  background: var(--dark-accent-gradient, var(--dark-accent));
+  color: white;
+}
+
+.light-theme .timeline-date-marker {
+  background: var(--light-accent-gradient, var(--light-accent));
+  color: white;
+}
+
+/* Special date circles based on icon type (if using data-icon attribute) */
+.timeline-block[data-icon="picture"] .timeline-date-marker.icon-only,
+.timeline-block[data-icon="movie"] .timeline-date-marker.icon-only,
+.timeline-block[data-icon="location"] .timeline-date-marker.icon-only {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 28px; /* Slightly smaller icon */
+    text-indent: -9999px; /* Hide text if icon-only */
+}
+.timeline-block[data-icon="picture"] .timeline-date-marker.icon-only {
+  background-image: url('../assets/img/cd-icon-picture.svg'); /* Ensure path is correct */
+  background-color: var(--dark-accent); /* Fallback color */
+}
+.timeline-block[data-icon="movie"] .timeline-date-marker.icon-only {
+  background-image: url('../assets/img/cd-icon-movie.svg');
+  background-color: #f54251; 
+}
+.timeline-block[data-icon="location"] .timeline-date-marker.icon-only {
+  background-image: url('../assets/img/cd-icon-location.svg');
+  background-color: #ffd138;
+}
+
+
+/* Timeline content positioning - alternate sides for desktop */
+.timeline-content {
+  position: relative;
+  width: 45%; /* Each content block takes up less than half */
+  padding: 1.5rem;
+  margin-top: 30px; /* Space below the date marker */
+  border-radius: var(--border-radius-lg); /* from modern-style */
+  box-shadow: var(--dark-shadow-md); /* from modern-style */
+  transition: all 0.3s ease; /* from modern-style */
+}
+
+.dark-theme .timeline-content {
+  background-color: var(--dark-card-bg);
+  /* border-left removed, arrows will indicate side */
+}
+
+.light-theme .timeline-content {
+  background-color: var(--light-card-bg);
+}
+
+/* Desktop: Alternate content left and right */
+@media (min-width: 768px) {
+  .timeline-block:nth-child(odd) .timeline-content {
+    margin-left: 55%; /* Pushes to the right */
+    align-self: flex-start; /* Aligns the block itself (not needed with margin) */
+  }
+
+  .timeline-block:nth-child(even) .timeline-content {
+    margin-right: 55%; /* Pushes to the left */
+    align-self: flex-end; /* Aligns the block itself (not needed with margin) */
+  }
+
+  /* Arrows pointing to timeline for desktop */
+  .timeline-content::before {
+    content: '';
+    position: absolute;
+    top: 20px; /* Align with content, adjust as needed */
+    width: 0;
+    height: 0;
+    border: 10px solid transparent; /* Size of the arrow */
+  }
+
+  .timeline-block:nth-child(odd) .timeline-content::before { /* Right side content, arrow on left */
+    left: -20px; /* (border-width * 2) */
+  }
+  .dark-theme .timeline-block:nth-child(odd) .timeline-content::before {
+    border-right-color: var(--dark-card-bg);
+  }
+  .light-theme .timeline-block:nth-child(odd) .timeline-content::before {
+    border-right-color: var(--light-card-bg);
+  }
+
+  .timeline-block:nth-child(even) .timeline-content::before { /* Left side content, arrow on right */
+    right: -20px;
+  }
+  .dark-theme .timeline-block:nth-child(even) .timeline-content::before {
+    border-left-color: var(--dark-card-bg);
+  }
+  .light-theme .timeline-block:nth-child(even) .timeline-content::before {
+    border-left-color: var(--light-card-bg);
+  }
+}
+
+
+/* Mobile responsive layout: Single column */
+@media (max-width: 767px) {
+  .timeline-content {
+    width: 90%; /* Wider content on mobile */
+    margin-left: auto !important; /* Center content */
+    margin-right: auto !important;
+    margin-top: 80px; /* Extra space for the date marker above content */
+  }
+  
+  .timeline-block:nth-child(odd) .timeline-content,
+  .timeline-block:nth-child(even) .timeline-content {
+    align-self: center; /* Ensure content block is centered */
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  
+  /* Adjust arrows to always point upward to the date marker on mobile */
+  .timeline-content::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: -20px; /* (border-width * 2) above content */
+    transform: translateX(-50%);
+    border: 10px solid transparent; /* Size of the arrow */
+    right: auto; /* Reset desktop side-specifics */
+  }
+  
+  .dark-theme .timeline-content::before {
+    border-bottom-color: var(--dark-card-bg);
+    border-right-color: transparent !important; /* Override desktop styles */
+    border-left-color: transparent !important;
+  }
+  
+  .light-theme .timeline-content::before {
+    border-bottom-color: var(--light-card-bg);
+    border-right-color: transparent !important;
+    border-left-color: transparent !important;
+  }
+}
+
+/* Timeline content text styling from modern-style.css */
+.timeline-title { /* Already styled in modern-style.css */ }
+.timeline-description {
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+.dark-theme .timeline-description { color: var(--dark-text); }
+.light-theme .timeline-description { color: var(--light-text); }
+
+.timeline-btn { /* Already styled in modern-style.css */ }
+
+/* Year markers for grouping - styled in modern-style.css */
+.timeline-year-markers { /* ... */ }
+.timeline-year-marker { /* ... */ }
+
+/* Year sections for structure */
+.timeline-year-section {
+  padding-top: 1.5rem; /* Space above a new year's items */
+  margin-bottom: 2rem;
+}
+.timeline-year-section:first-child {
+    padding-top: 0;
+}
+
+/* In css/custom-timeline.css - ADD this rule to hide all timeline content arrows */
+.timeline-content::before {
+    display: none !important; /* This completely hides all timeline arrows */
+}
+
+@media (max-width: 767px) {
+    /* Fix timeline layout for mobile */
+    .timeline-block {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        padding-top: 30px !important;
+    }
+    
+    .timeline-date-marker {
+        position: relative !important;
+        top: 0 !important;
+        left: 0 !important;
+        transform: none !important;
+        margin-bottom: 15px !important;
+    }
+    
+    .timeline-content {
+        width: 90% !important;
+        margin-top: 0 !important;
+    }
+    
+    /* Remove arrows as they don't make sense in this layout */
+    .timeline-content::before {
+        display: none !important;
+    }
+}

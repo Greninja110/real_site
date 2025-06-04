@@ -1,0 +1,1047 @@
+/* 
+ * Main CSS Styles for Abhijeet's Portfolio Website
+ * Custom CSS (No Bootstrap)
+ */
+
+/* ---------- CSS Variables defined in modern-style.css :root ---------- */
+
+/* ---------- Base Styles ---------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--primary-font);
+    /* from modern-style */
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background-color var(--transition-speed) var(--transition-function),
+        color var(--transition-speed) var(--transition-function);
+}
+
+/* Theme styles are applied via .light-theme / .dark-theme classes by JS */
+body.light-theme {
+    background-color: var(--light-bg);
+    color: var(--light-text);
+}
+
+body.dark-theme {
+    background-color: var(--dark-bg);
+    color: var(--dark-text);
+}
+
+/* Skip Navigation Link (Accessibility) */
+.skip-link {
+    position: absolute;
+    top: -50px;
+    /* Further hidden */
+    left: 0;
+    background: var(--light-accent);
+    /* Example, use theme variable */
+    color: white;
+    padding: 10px 15px;
+    z-index: 99999;
+    /* Very high z-index */
+    transition: top 0.3s;
+    border-bottom-right-radius: var(--border-radius-md);
+}
+
+.dark-theme .skip-link {
+    background: var(--dark-accent);
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+/* ---------- Layout Structure (Basic structure, responsive.css handles modes) ---------- */
+.container {
+    /* Styles in modern-style.css */
+    display: flex;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* Sidebar (default left sidebar, transforms to top nav in single-page mode) */
+.sidebar {
+    /* Base styles, specific mode styles in responsive.css */
+    width: var(--sidebar-width-default);
+    /* From responsive.css var */
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+    /* Ensure sidebar/header is above content */
+    overflow-y: auto;
+    /* Transitions in smooth-transitions.css */
+    /* Background, border, shadow in modern-style.css and themes.css */
+}
+
+.sidebar-header {
+    /* General structure, layout in responsive.css */
+    display: flex;
+    position: relative;
+    /* For absolute positioning of mobile-toggle if needed */
+    /* Padding, alignment, direction handled by responsive.css per mode */
+}
+
+
+.profile-pic-small {
+    /* This class might not be needed if .profile-pic-container img is styled */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.sidebar-title {
+    font-family: var(--heading-font);
+    font-weight: 700;
+    /* Sizing and margin in responsive.css per mode */
+}
+
+/* mobile-toggle styled in hamburger.css and responsive.css */
+
+
+/* Sidebar Navigation */
+.sidebar-nav {
+    /* Base structure, layout in responsive.css */
+    flex: 1;
+    /* Takes remaining space in column layout */
+}
+
+.sidebar-nav ul {
+    list-style: none;
+}
+
+/* .nav-link styled in modern-style.css */
+
+
+/* Sidebar Footer */
+
+/* theme-toggle styled in modern-style.css */
+/* social-links / social-icons styled in modern-style.css */
+/* last-updated styled in modern-style.css and responsive.css */
+
+
+/* Main Content */
+.content {
+    /* Base, layout in responsive.css */
+    flex: 1;
+    /* Takes remaining space if container is flex */
+    min-height: 100vh;
+    /* Margin, width, padding handled by responsive.css */
+    /* Background in modern-style.css */
+}
+
+.section {
+    /* Base section styles */
+    padding: var(--section-padding);
+    /* from modern-style */
+    /* display, opacity controlled by JS and responsive.css (single-page vs multi-page) */
+    /* min-height varies by mode (responsive.css) */
+}
+
+/* .section.active handled by JS adding class, animations.css for effects */
+body:not(.single-page-mode) .section {
+    display: none;
+    opacity: 0;
+}
+
+body:not(.single-page-mode) .section.active {
+    display: block;
+    opacity: 1;
+    /* animation from animations.css */
+}
+
+.single-page-mode .section {
+    /* In single-page, all are "active" for display */
+    display: block !important;
+    opacity: 1 !important;
+    min-height: auto;
+    /* No need for full viewport height */
+}
+
+
+
+/* ---------- Home/About Section Specifics ---------- */
+.about-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--grid-gap);
+}
+
+.profile-section {
+    /* Styled in modern-style.css and responsive.css */
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    /* Spacing */
+}
+
+.profile-pic {
+    /* This is the <img> tag inside .profile-image-container */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.typing-animation {
+    flex: 1;
+}
+
+.typing-animation h1 {
+    /* Styled in modern-style.css or directly */
+    font-family: var(--heading-font);
+    font-size: 2.5rem;
+    /* Base, responsive might change */
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+/* Color in themes.css */
+
+/* Skills container, personal info - styled in modern-style.css */
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1.25rem;
+    border-radius: var(--border-radius-md);
+    background-color: rgba(99, 102, 241, 0.05);
+    transition: all 0.3s ease;
+}
+
+.info-label {
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--dark-title);
+}
+
+.light-theme .info-label {
+    color: var(--light-title);
+}
+
+.info-value {
+    font-size: 1.1rem;
+}
+
+.skill-tooltip {
+    /* From modern-style.css or style.css */
+    position: absolute;
+    background-color: #333;
+    /* Fallback, theme specific in modern-style */
+    color: white;
+    padding: 5px 10px;
+    border-radius: var(--border-radius-sm);
+    font-size: 0.85rem;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+    bottom: 100%;
+    /* Position above the bar */
+    left: 50%;
+    transform: translateX(-50%) translateY(-8px);
+    /* Adjust vertical spacing */
+    z-index: 10;
+    pointer-events: none;
+}
+
+.skill-tooltip::after {
+    /* Arrow */
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #333 transparent transparent transparent;
+    /* Fallback */
+}
+
+.skill-item:hover .skill-tooltip {
+    /* Show on hover of item, not just bar */
+    opacity: 1;
+    visibility: visible;
+}
+
+.light-theme .skill-tooltip {
+    background-color: var(--light-accent);
+}
+
+.light-theme .skill-tooltip::after {
+    border-top-color: var(--light-accent);
+}
+
+.dark-theme .skill-tooltip {
+    background-color: var(--dark-accent);
+}
+
+.dark-theme .skill-tooltip::after {
+    border-top-color: var(--dark-accent);
+}
+
+
+/* ---------- Projects Section Specifics ---------- */
+.filter-buttons {
+    /* Styled in modern-style.css or here */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    /* Slightly more gap */
+    margin-bottom: 2rem;
+}
+
+.filter-btn {
+    /* Styled in modern-style.css (as a generic button) or here */
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: var(--border-radius-md);
+    cursor: pointer;
+    font-weight: 500;
+}
+
+/* Active/hover/theme styles for filter-btn in themes.css or modern-style.css */
+
+
+
+@keyframes modalFadeIn {
+
+    /* From style.css, keep if not in animations.css */
+    from {
+        opacity: 0;
+        transform: translateY(-30px) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+
+
+
+/* Contact Form specific styles (form elements) */
+.form-container {
+    /* Wrapper for form groups */
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    /* Spacing between form groups */
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    /* Space between label and input */
+}
+
+.form-group label {
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.form-group input,
+.form-group textarea {
+    padding: 0.8rem 1rem;
+    /* Comfortable padding */
+    border-radius: var(--border-radius-md);
+    border: 1px solid;
+    /* Base border */
+    font-family: var(--primary-font);
+    font-size: 1rem;
+    width: 100%;
+    /* Full width */
+}
+
+/* Theme specific input/textarea styles in themes.css or modern-style.css */
+.light-theme .form-group input,
+.light-theme .form-group textarea {
+    border-color: var(--light-border);
+    background-color: #fff;
+    /* Ensure bg for light */
+    color: var(--light-text);
+}
+
+.dark-theme .form-group input,
+.dark-theme .form-group textarea {
+    border-color: var(--dark-border);
+    background-color: var(--dark-card-bg);
+    color: var(--dark-text);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--light-accent);
+    /* Example, theme specific */
+    box-shadow: 0 0 0 3px rgba(var(--light-accent-rgb, 67, 97, 238), 0.2);
+    /* Example */
+}
+
+.dark-theme .form-group input:focus,
+.dark-theme .form-group textarea:focus {
+    border-color: var(--dark-accent);
+    box-shadow: 0 0 0 3px rgba(var(--dark-accent-rgb, 99, 102, 241), 0.2);
+}
+
+.form-status {
+    font-size: 0.9rem;
+    padding: 0.5rem 0;
+    min-height: 24px;
+    /* Prevent layout shift */
+    text-align: center;
+}
+
+.form-status.success {
+    color: #28a745;
+}
+
+.form-status.error {
+    color: #dc3545;
+}
+
+.submit-loader {
+    display: none;
+}
+
+/* JS controls visibility */
+.submit-btn.loading .submit-text {
+    display: none;
+}
+
+.submit-btn.loading .submit-loader {
+    display: inline-block;
+}
+
+
+/* ---------- Stats Section (Hidden by default in transitions.css) ---------- */
+/* Styling can remain, but visibility controlled by JS/CSS in transitions.css */
+.stats-container {
+    padding: 1rem 0;
+}
+
+.stats-grid {
+    /* styled in modern-style.css or here */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--grid-gap);
+}
+
+.stat-card {
+    /* Styled in modern-style.css or themes.css */
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.chart-container {
+    height: 250px;
+    width: 100%;
+}
+
+
+
+/* Hidden Class Utility */
+.hidden {
+    display: none !important;
+}
+
+
+/* Project status indicators (from style.css, ensure consistency) */
+.project-status {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px 10px;
+    border-radius: 15px;
+    /* Pill shape */
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    z-index: 2;
+    /* Above image gradient */
+    color: white;
+    /* Default text color for status */
+}
+
+.project-status.completed {
+    background-color: #28a745;
+}
+
+.project-status.ongoing {
+    background-color: #007bff;
+}
+
+.project-status.planned {
+    background-color: #6c757d;
+}
+
+#modal-project-status {
+    /* Badge in modal */
+    display: inline-block;
+    margin-left: 1rem;
+    vertical-align: middle;
+    /* Inherits .project-status styles */
+}
+
+/* Status in footer */
+#modal-project-status {
+    position: static;
+    /* Remove absolute positioning */
+    top: auto;
+    right: auto;
+    margin: 0;
+}
+
+
+/* Thank you page styles (if used) */
+.thanks-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    text-align: center;
+    padding: 2rem;
+}
+
+.thanks-container h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.thanks-container p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin-bottom: 2rem;
+}
+
+
+
+/* Contact Direct / Alternative Contact (Styled in modern-style.css) */
+
+
+
+/* Typing animation cursor (already in animations.css, ensure no conflict) */
+
+/* @keyframes blink already in animations.css */
+
+p {
+    /* General paragraph styling */
+    text-align: justify;
+    /* Or left, depending on design preference */
+    margin-bottom: 1rem;
+    /* Default spacing */
+}
+
+/* Resume Section Styles (Tabs, Preview, Actions) */
+/* resume-container, resume-tabs, resume-tab, resume-content-container, 
+   resume-content, resume-preview, resume-actions, view-resume-btn, download-resume-btn
+   are primarily styled in modern-style.css and resume-fix.css */
+
+.resume-loading {
+    /* From style.css, for loading state in resume iframe */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.resume-loading span {
+    /* Dots for loading */
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin: 0 5px;
+    animation: loadingDots 1.5s infinite ease-in-out;
+    /* Changed animation name */
+}
+
+/* Theme for loading dots in themes.css or modern-style.css */
+.light-theme .resume-loading span {
+    background-color: var(--light-accent);
+}
+
+.dark-theme .resume-loading span {
+    background-color: var(--dark-accent);
+}
+
+.resume-loading span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.resume-loading span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes loadingDots {
+
+    /* Renamed from 'loading' to avoid conflict */
+    0%,
+    100% {
+        transform: scale(0.5);
+        opacity: 0.5;
+    }
+
+    50% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Sidebar Logo SVG specific styling */
+#sidebar-logo {
+    display: block;
+    /* Good practice for images to remove extra space */
+    width: 100%;
+    /* Make the image element fill the .profile-pic-container */
+    height: 100%;
+    /* Make the image element fill the .profile-pic-container */
+    object-fit: contain;
+    /* Scales the SVG content to fit *within* these 100% dimensions,
+                           maintaining aspect ratio and centering it. */
+    /* REMOVE any padding: 5%; from here */
+}
+
+/*
+   The .profile-pic-container CSS you provided earlier handles the circular shape,
+   border (via background gradient and ::before), and overflow: hidden.
+   Its dimensions (width/height) are set in responsive.css or other specific rules
+   for .sidebar-header .profile-pic-container.
+
+   For example, in responsive.css you have:
+   body:not(.single-page-mode) .profile-pic-container {
+        width: 120px;   
+        height: 120px;
+        ...
+   }
+   And for mobile/single-page top nav:
+   .single-page-mode .profile-pic-container,
+   @media (max-width: 767px) .profile-pic-container {
+        width: 40px;
+        height: 40px;
+        ...
+   }
+   These container dimensions are what #sidebar-logo (the img tag) will fill 100%.
+*/
+/* Add this rule to modern-style.css or your main style sheet */
+.last-updated i.fas.fa-edit {
+    margin-right: 0.5em;
+    /* Adjust the value (e.g., 5px, 0.3em) as needed for desired spacing */
+}
+
+/* ADD to css/style.css */
+.info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1.25rem;
+    border-radius: var(--border-radius-md);
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.light-theme .info-item {
+    background-color: rgba(67, 97, 238, 0.05);
+    color: var(--light-text);
+}
+
+.dark-theme .info-item {
+    background-color: rgba(99, 102, 241, 0.08);
+    color: var(--dark-text);
+}
+
+.info-item:hover {
+    transform: translateY(-5px);
+}
+
+.light-theme .info-item:hover {
+    background: var(--light-accent-gradient);
+    color: white;
+    box-shadow: 0 8px 15px rgba(67, 97, 238, 0.2);
+}
+
+.dark-theme .info-item:hover {
+    background: var(--dark-accent-gradient);
+    color: white;
+    box-shadow: 0 8px 15px rgba(99, 102, 241, 0.2);
+}
+
+.light-theme .info-item:hover .info-label,
+.light-theme .info-item:hover .info-value {
+    color: white;
+}
+
+.dark-theme .info-item:hover .info-label,
+.dark-theme .info-item:hover .info-value {
+    color: white;
+}
+
+/* ADD to css/style.css */
+.submit-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+}
+
+.submit-text {
+    margin: 0 auto;
+    /* Center the text */
+}
+
+
+
+
+.light-theme .github-link,
+.light-theme .demo-link {
+    background: var(--light-accent-gradient);
+    color: white;
+    box-shadow: 0 4px 12px rgba(67, 97, 238, 0.2);
+}
+
+.dark-theme .github-link,
+.dark-theme .demo-link {
+    background: var(--dark-accent-gradient);
+    color: white;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
+}
+
+.light-theme .github-link:hover,
+.light-theme .demo-link:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(67, 97, 238, 0.3);
+}
+
+.dark-theme .github-link:hover,
+.dark-theme .demo-link:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(99, 102, 241, 0.3);
+}
+
+/* Ensure the project status keeps its original styling */
+.project-status {
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: white;
+}
+
+/* Project Modal - Complete fix */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    overflow: hidden;
+    /* Debug: Modal backdrop blur */
+    align-items: center;
+    justify-content: center;
+    animation: modalBackdropFade 0.3s ease;
+}
+
+@keyframes modalBackdropFade {
+    from {
+        backdrop-filter: blur(0px);
+        background-color: rgba(0, 0, 0, 0);
+    }
+
+    to {
+        backdrop-filter: blur(10px);
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+}
+
+.modal-content {
+    position: relative;
+    /* Changed from fixed */
+    width: 90%;
+    max-width: 900px;
+    height: auto;
+    max-height: 90vh;
+    background-color: var(--dark-card-bg);
+    border-radius: var(--border-radius-xl);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transform: scale(0.95);
+    animation: modalContentSlide 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    margin: auto;
+    /* Ensure centering */
+}
+
+@keyframes modalContentSlide {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.light-theme .modal-content {
+    background-color: var(--light-card-bg);
+}
+
+.close-modal {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: white;
+    font-size: 1.8rem;
+    transition: all 0.3s ease;
+    z-index: 20;
+    cursor: pointer;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    font-size: 1.4rem;
+    /* Adjust from 1.8rem for better proportion */
+
+    /* Debug: Close button positioning */
+}
+
+.close-modal:hover {
+    background-color: rgba(0, 0, 0, 0.4);
+    transform: rotate(90deg) scale(1.1);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Ensure modal body scrolls properly */
+.modal-body {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 2.5rem;
+    padding-top: 3.5rem;
+    padding-bottom: 2.5rem;
+    max-height: calc(90vh - 120px);
+    /* Account for footer height */
+    /* Debug: Modal body scroll area */
+    -webkit-overflow-scrolling: touch;
+    /* Smooth scrolling on iOS */
+    scrollbar-gutter: stable;
+    overscroll-behavior: contain;
+}
+
+/* Add custom scrollbar for modal */
+.modal-body::-webkit-scrollbar {
+    width: 8px;
+}
+
+.modal-body::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+    background-color: rgba(108, 139, 255, 0.5);
+    border-radius: 4px;
+}
+
+.light-theme .modal-body::-webkit-scrollbar-thumb {
+    background-color: rgba(67, 97, 238, 0.5);
+}
+
+.project-detail-header h3 {
+    font-size: 2rem;
+    margin: 0;
+    padding-right: 60px;
+    /* Space for close button */
+}
+
+/* Header without status */
+.project-detail-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid;
+}
+
+
+.project-detail-footer {
+    position: relative;
+    background-color: inherit;
+    padding: 1.5rem 2.5rem;
+    border-top: 1px solid;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-top: auto;
+    min-height: 80px;
+    /* Debug: Footer positioning fixed */
+}
+
+.light-theme .project-detail-footer {
+    background-color: var(--light-card-bg);
+    border-color: var(--light-border);
+}
+
+.dark-theme .project-detail-footer {
+    background-color: var(--dark-card-bg);
+    border-color: var(--dark-border);
+}
+
+.project-links {
+    display: flex;
+    gap: 1rem;
+    flex: 1;
+    justify-content: flex-start;
+    /* Align to left */
+}
+
+.github-link,
+.demo-link {
+    display: inline-flex !important;
+    /* Override any display:none */
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    border-radius: var(--border-radius-md);
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    /* Prevent text wrap */
+}
+
+
+.light-theme .github-link,
+.light-theme .demo-link {
+    background: var(--light-accent-gradient);
+    color: white;
+    box-shadow: 0 4px 12px rgba(67, 97, 238, 0.2);
+}
+
+.dark-theme .github-link,
+.dark-theme .demo-link {
+    background: var(--dark-accent-gradient);
+    color: white;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
+}
+
+.light-theme .github-link:hover,
+.light-theme .demo-link:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(67, 97, 238, 0.3);
+}
+
+.dark-theme .github-link:hover,
+.dark-theme .demo-link:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(99, 102, 241, 0.3);
+}
+
+.project-status-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    /* Align to right */
+}
+
+/* Ensure the project status keeps its original styling */
+.project-status {
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: white;
+}
+@media (max-width: 767px) {
+    .modal-content {
+        width: 90% !important;
+        max-width: 400px !important;
+        max-height: 85vh !important;
+        margin: auto !important;
+        position: fixed !important;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+    }
+    
+    .modal-body {
+        padding: 1.5rem !important;
+        max-height: calc(85vh - 100px) !important;
+    }
+    
+    .project-detail-header h3 {
+        font-size: 1.5rem !important;
+        padding-right: 50px !important;
+    }
+    
+    .project-detail-footer {
+        flex-direction: column !important;
+        gap: 0.8rem !important;
+        padding: 1rem !important;
+    }
+    
+    .project-links {
+        width: 100% !important;
+        justify-content: center !important;
+        flex-wrap: wrap !important;
+    }
+    
+    .github-link, .demo-link {
+        padding: 0.6rem 1rem !important;
+        font-size: 0.9rem !important;
+        flex: 1 !important;
+        min-width: 120px !important;
+    }
+    
+    .project-status-container {
+        width: 100% !important;
+        justify-content: center !important;
+    }
+    
+    .close-modal {
+        width: 40px !important;
+        height: 40px !important;
+        right: 10px !important;
+        top: 10px !important;
+    }
+}

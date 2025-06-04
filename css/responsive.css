@@ -1,0 +1,1001 @@
+/* css/responsive.css */
+/*
+ * Responsive CSS for Abhijeet's Portfolio Website
+ * Mobile-first approach with breakpoint-specific styles
+ */
+
+/* Base variables (can be overridden or augmented from modern-style.css) */
+:root {
+    --sidebar-width-default: 280px;
+    /* Default for desktop multi-page */
+    --header-height: 60px;
+    /* For mobile header and single-page top nav */
+}
+
+/*
+==============================================
+MOBILE STYLES (max-width: 767px)
+==============================================
+*/
+@media (max-width: 767px) {
+    body {
+        /* Mobile typically defaults to single-page-mode via JS */
+    }
+
+    .container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        /* Mobile Header */
+        width: 100%;
+        height: var(--header-height);
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        padding: 0 1rem;
+        overflow: hidden;
+        /* Hidden when menu closed */
+        border-right: none !important;
+        border-bottom: 1px solid;
+    }
+
+    .light-theme .sidebar {
+        border-bottom-color: var(--light-border);
+        background-color: rgba(255, 255, 255, 0.95);
+    }
+
+    .dark-theme .sidebar {
+        border-bottom-color: var(--dark-border);
+        background-color: rgba(30, 41, 59, 0.95);
+    }
+
+    .sidebar.open {
+        /* Mobile Menu Open State */
+        height: 100vh;
+        overflow-y: auto;
+        align-items: flex-start;
+    }
+
+    .sidebar.open .sidebar-header {
+        /* Keep header part fixed when menu open */
+        height: var(--header-height);
+        align-items: center;
+    }
+
+    .sidebar-header {
+        /* Items within the mobile header */
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
+        height: var(--header-height);
+        padding: 0;
+        margin-bottom: 0;
+    }
+
+    .mobile-toggle {
+        /* Hamburger icon */
+        display: flex !important;
+        order: 1;
+        margin-right: 10px;
+    }
+
+    .profile-pic-container {
+        /* Logo container */
+        width: 40px;
+        height: 40px;
+        margin: 0 10px 0 0;
+        order: 2;
+        border-width: 2px !important;
+    }
+
+    .profile-pic-container::before {
+        top: -1px;
+        left: -1px;
+        right: -1px;
+        bottom: -1px;
+    }
+
+    .sidebar-title {
+        /* "Abhijeet" text */
+        font-size: 1.2rem;
+        margin-bottom: 0;
+        order: 3;
+        white-space: nowrap;
+        margin-right: auto;
+        /* Pushes theme toggle to the right */
+    }
+
+    .sidebar-header .mobile-theme-toggle {
+        /* Theme toggle in mobile header */
+        display: flex !important;
+        order: 4;
+        /* Last item in header line */
+        position: relative;
+        top: auto;
+        right: auto;
+        transform: none;
+        margin-left: 10px;
+        /* Space from title if title is short */
+    }
+
+    .sidebar-footer .theme-toggle {
+        /* Hide desktop theme toggle in footer on mobile */
+        display: none;
+    }
+
+    #theme-label {
+        /* Hide "Light/Dark Mode" text on mobile */
+        display: none;
+    }
+
+    .content {
+        margin-left: 0;
+        width: 100%;
+        padding-top: calc(var(--header-height) + 1rem);
+        padding-bottom: calc(1rem + 35px);
+        /* Space for fixed footer */
+    }
+
+    .section {
+        padding: 2rem 1rem;
+        min-height: auto;
+        display: block !important;
+        /* All sections visible for scrolling on mobile */
+        opacity: 1 !important;
+    }
+
+    /* Adjust padding for fixed header and footer */
+    body.single-page-mode .section:first-of-type {
+        padding-top: calc(var(--header-height) + 1.5rem);
+        /* Space below header for first section */
+    }
+
+    body.single-page-mode .section:last-of-type {
+        padding-bottom: calc(2rem + 35px);
+        /* Ensure space above fixed footer for last section's content */
+    }
+
+
+    .sidebar-nav {
+        /* Mobile navigation panel (slides out) */
+        display: none;
+        width: 100%;
+        padding: 1rem;
+        margin-top: var(--header-height);
+        /* Below fixed header part */
+        height: calc(100vh - var(--header-height) - 50px);
+        /* Adjust for footer if visible in open menu */
+        overflow-y: auto;
+    }
+
+    .sidebar.open .sidebar-nav {
+        display: block;
+    }
+
+    .sidebar-nav ul {
+        padding: 0;
+        list-style: none;
+        flex-direction: column;
+    }
+
+    .nav-link {
+        padding: 0.8rem 1rem;
+        margin-bottom: 0.25rem;
+    }
+
+    .nav-link i {
+        margin-right: 0.75rem;
+    }
+
+    /* Footer on Mobile (fixed at bottom) */
+    .sidebar-footer {
+        /* This container itself isn't fixed, but its .last-updated child is */
+        display: block;
+        /* Allow its children to be positioned */
+        /* The .sidebar.open .sidebar-footer handles menu context */
+    }
+
+    .sidebar.open .sidebar-footer {
+        /* Footer inside open mobile menu */
+        padding: 1rem;
+        margin-top: auto;
+        /* Pushes to bottom of scrollable menu */
+        border-top: 1px solid;
+        text-align: center;
+    }
+
+    .light-theme .sidebar.open .sidebar-footer {
+        border-color: var(--light-border);
+    }
+
+    .dark-theme .sidebar.open .sidebar-footer {
+        border-color: var(--dark-border);
+    }
+
+
+    .light-theme.single-page-mode .sidebar-footer .last-updated {
+        background-color: var(--light-sidebar-bg);
+        border-top: 1px solid var(--light-border);
+        color: var(--light-text);
+    }
+
+    .dark-theme.single-page-mode .sidebar-footer .last-updated {
+        background-color: var(--dark-sidebar-bg);
+        border-top: 1px solid var(--dark-border);
+        color: var(--dark-text);
+    }
+
+
+    /* Other mobile adjustments */
+    .typing-animation h1 {
+        font-size: 1.8rem;
+    }
+
+    #animated-text,
+    #text-content {
+        display: inline;
+        white-space: normal;
+        word-wrap: break-word;
+        max-width: 100%;
+    }
+
+    .profile-section {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+
+    .profile-image-container {
+        width: 150px;
+        height: 150px;
+        margin: 0 auto 1rem;
+        border-width: 4px !important;
+    }
+
+    .profile-image-container::before {
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+    }
+
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .filter-buttons {
+        justify-content: flex-start;
+        overflow-x: auto;
+        white-space: nowrap;
+        padding-bottom: 0.5rem;
+        gap: 0.5rem;
+        flex-wrap: nowrap;
+    }
+
+    .filter-btn {
+        flex: 0 0 auto;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .modal-content {
+        width: 95%;
+        margin: 5% auto;
+    }
+
+    .project-detail-content {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .contact-container {
+        grid-template-columns: 1fr;
+    }
+
+    .social-grid,
+    .alt-contact-grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    }
+
+    .resume-tabs {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+    }
+
+    .resume-tab {
+        flex: 0 0 auto;
+        white-space: nowrap;
+    }
+
+    .resume-actions {
+        flex-direction: column;
+    }
+
+    .resume-actions a {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+
+/*
+==============================================
+TABLET AND DESKTOP STYLES (min-width: 768px)
+==============================================
+*/
+@media (min-width: 768px) {
+
+    /* Default: Multi-page layout with left sidebar */
+    body:not(.single-page-mode) .sidebar {
+        width: var(--sidebar-width-default);
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        flex-direction: column;
+        padding: 0;
+        border-bottom: none;
+        border-right: 1px solid;
+        overflow-y: auto;
+    }
+
+    .light-theme:not(.single-page-mode) .sidebar {
+        border-right-color: var(--light-border);
+    }
+
+    .dark-theme:not(.single-page-mode) .sidebar {
+        border-right-color: var(--dark-border);
+    }
+
+    body:not(.single-page-mode) .sidebar-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem 1rem;
+        margin-bottom: 0;
+    }
+
+    body:not(.single-page-mode) .mobile-toggle {
+        display: flex !important;
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        order: 0;
+        margin-right: 0;
+    }
+
+    body:not(.single-page-mode) .profile-pic-container {
+        width: 120px;
+        height: 120px;
+        margin: 1rem 0 1.5rem 0;
+        order: 0;
+        border-width: 4px !important;
+    }
+
+    body:not(.single-page-mode) .profile-pic-container::before {
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+    }
+
+    body:not(.single-page-mode) .sidebar-title {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+        order: 0;
+        margin-right: 0;
+    }
+
+    /* Reset margin-right */
+    body:not(.single-page-mode) .sidebar-header .mobile-theme-toggle {
+        display: none !important;
+    }
+
+    /* Hide mobile toggle in this mode */
+
+    body:not(.single-page-mode) .sidebar-nav {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        flex: 1;
+        padding: 0 1.5rem;
+        margin-top: 0;
+        height: auto;
+        overflow-y: auto;
+    }
+
+    body:not(.single-page-mode) .sidebar-nav ul {
+        flex-direction: column;
+    }
+
+    body:not(.single-page-mode) .sidebar-footer {
+        display: block;
+        padding: 1.5rem;
+        border-top: 1px solid;
+        position: static;
+        width: auto;
+        height: auto;
+        text-align: left;
+        background-color: transparent;
+        box-shadow: none;
+    }
+
+    .light-theme:not(.single-page-mode) .sidebar-footer {
+        border-color: var(--light-border);
+    }
+
+    .dark-theme:not(.single-page-mode) .sidebar-footer {
+        border-color: var(--dark-border);
+    }
+
+    body:not(.single-page-mode) .sidebar-footer .theme-toggle {
+        display: flex !important;
+    }
+
+    body:not(.single-page-mode) .sidebar-footer .last-updated {
+        display: flex;
+        /* Keep flex for icon alignment */
+        align-items: center;
+        /* Reset fixed positioning */
+        position: static;
+        width: auto;
+        padding: 0.5rem 0;
+        font-size: 0.8rem;
+        text-align: left;
+        /* Align to left in sidebar footer */
+    }
+
+
+    body:not(.single-page-mode) .content {
+        margin-left: var(--sidebar-width-default);
+        width: calc(100% - var(--sidebar-width-default));
+        padding-top: 0;
+    }
+
+    body:not(.single-page-mode) .section {
+        min-height: 100vh;
+        display: none;
+        opacity: 0;
+    }
+
+    body:not(.single-page-mode) .section.active {
+        display: block !important;
+        opacity: 1 !important;
+    }
+
+
+    /* Single Page Mode (Desktop/Tablet) - TOP NAVIGATION BAR */
+    .single-page-mode .sidebar {
+        /* This is the top nav bar */
+        width: 100%;
+        height: var(--header-height);
+        position: fixed;
+        top: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        padding: 0 1.5rem; /* Padding for the ends of the bar */
+        z-index: 1000;
+        border-right: none !important;
+        border-bottom: 1px solid;
+        overflow: visible; /* Allow dropdowns or tooltips if any */
+        flex-direction: row;
+        flex-wrap: nowrap;
+    }
+
+    .light-theme.single-page-mode .sidebar {
+        border-bottom-color: var(--light-border);
+        background-color: rgba(255, 255, 255, 0.95);
+    }
+
+    .dark-theme.single-page-mode .sidebar {
+        border-bottom-color: var(--dark-border);
+        background-color: rgba(30, 41, 59, 0.95);
+    }
+
+    /*
+     * CRITICAL CHANGE: In single-page-mode desktop, .sidebar-header's children
+     * should act as direct children of .sidebar for flex ordering.
+     * This is achieved by JS setting .sidebar-header to display: contents.
+     * The CSS for .sidebar-header itself should be minimal here, or absent
+     * if JS handles display: contents.
+    */
+    .single-page-mode .sidebar-header {
+        /* display: flex !important; <-- REMOVED to allow JS display:contents to work */
+        /* Other styles like width:100%, order:1 etc. are removed as they conflict */
+        /* This element now effectively doesn't participate in layout itself, its children do. */
+        /* Styles like padding, margin if needed for this specific container can be here,
+           but display, width, order will be controlled by JS or inherited. */
+    }
+
+
+    /* Styles for the items that are children of .sidebar-header but act as direct flex items of .sidebar */
+    .single-page-mode .mobile-toggle {
+        display: flex !important; /* Ensure it's visible and flex */
+        order: 1; /* As per JS */
+        margin-right: 15px; /* As per JS */
+        position: static; /* Ensure it's in flow */
+    }
+
+    .single-page-mode .profile-pic-container { /* Assuming this targets the one inside .sidebar-header */
+        display: flex !important; /* Ensure it's visible and flex */
+        order: 2; /* As per JS */
+        width: 40px; /* As per JS */
+        height: 40px; /* As per JS */
+        margin: 0 10px 0 0; /* As per JS */
+        border-width: 2px !important;
+    }
+    .single-page-mode .profile-pic-container::before {
+        top: -1px; left: -1px; right: -1px; bottom: -1px;
+    }
+
+    .single-page-mode .sidebar-title {
+        display: block !important; /* Ensure it's visible */
+        order: 3; /* As per JS */
+        font-size: 1.3rem; /* As per JS */
+        margin: 0 20px 0 0; /* As per JS, space after title */
+        white-space: nowrap;
+    }
+
+    /* Navigation Links container */
+    .single-page-mode .sidebar-nav {
+        display: flex !important; /* Ensure visible and flex */
+        visibility: visible !important;
+        opacity: 1 !important;
+        order: 4; /* As per JS */
+        flex-grow: 1; /* As per JS - allows it to take middle space */
+        height: 100%;
+        align-items: center;
+        /* justify-content: center;  */
+        position: static;
+        padding: 0;
+        margin: 0; /* Reset margin for the nav container itself */
+    }
+
+    .single-page-mode .sidebar-nav ul {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center; /* Centers nav items if ul doesn't fill sidebar-nav */
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        gap: 10px; /* Space between nav items, adjust as needed */
+    }
+
+    .single-page-mode .nav-link {
+        padding: 0.5rem 0.8rem;
+        margin: 0; /* Margin handled by ul gap */
+        display: flex !important; /* Make sure nav-links are shown */
+        align-items: center;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+
+    .single-page-mode .nav-link i {
+        margin-right: 0.5rem;
+    }
+
+    /* Theme Toggle (this is #mobile-theme-toggle, child of .sidebar-header) */
+    .single-page-mode .sidebar-header .mobile-theme-toggle {
+        display: flex !important; /* Ensure visible */
+        order: 5 !important; /* As per JS, and CSS !important to be sure */
+        margin-left: auto !important; /* As per JS/CSS - Pushes it to the far right */
+        position: static; /* Ensure it's in flow */
+        flex-shrink: 0 !important; /* Prevent shrinking */
+        z-index: 10;
+    }
+}
+
+/* For tablet - adjust nav links spacing */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .single-page-mode .sidebar-nav ul {
+        gap: 5px; /* Slightly less gap for tablets */
+    }
+    .single-page-mode .nav-link {
+        padding: 0.5rem 0.6rem;
+        font-size: 0.9rem;
+    }
+     .single-page-mode .sidebar-title {
+        font-size: 1.1rem; /* Smaller title on tablet */
+        margin-right: 10px; /* Less space after title */
+    }
+    .single-page-mode .mobile-toggle {
+        margin-right: 10px; /* Less space after hamburger */
+    }
+    .single-page-mode .profile-pic-container {
+        margin-right: 8px;
+    }
+}
+
+/* Footer content in Single Page Mode (Desktop) */
+.single-page-mode .sidebar-footer {
+    /* The container itself should not be visible in the top nav bar */
+    display: none !important;
+}
+
+.single-page-mode .sidebar-footer .theme-toggle {
+    display: none !important;
+}
+
+/* Desktop theme toggle from footer is not used here */
+
+.single-page-mode .sidebar-footer .last-updated {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 8px 0;
+    font-size: 0.85rem;
+    text-align: center;
+    z-index: 999;
+    /* Above content, below open menu */
+}
+
+/* Backgrounds and borders for .last-updated already set for themes */
+
+
+.single-page-mode .content {
+    margin-left: 0;
+    width: 100%;
+    padding-top: calc(var(--header-height) + 2rem);
+    padding-bottom: calc(2rem + 35px);
+    /* Space for fixed footer */
+}
+
+.single-page-mode .section {
+    min-height: auto;
+    display: block !important;
+    opacity: 1 !important;
+    /* padding-top/bottom handled per section or globally for content */
+}
+
+body.single-page-mode .section:first-of-type {
+    padding-top: calc(var(--header-height) + 2rem);
+    /* Space below header */
+}
+
+body.single-page-mode .section:last-of-type {
+    padding-bottom: calc(2rem + 35px);
+    /* Ensure space above fixed footer */
+}
+
+
+.single-page-mode .content.centered-content .section,
+.single-page-mode .section {
+    max-width: 1100px;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+/* Tablet specific adjustments */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .social-grid,
+    .alt-contact-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+
+    .contact-container {
+        grid-template-columns: 1fr;
+    }
+
+    /* .single-page-mode .sidebar-title, .nav-link already adjusted above */
+}
+
+/* Desktop specific adjustments */
+@media (min-width: 1024px) {
+
+    /* .projects-grid { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); } // Already default */
+    .contact-container {
+        grid-template-columns: 1fr 1.5fr;
+    }
+}
+
+
+.content.centered-content {
+    /* For centering .section block if .content is the full width scroller */
+}
+
+
+@media (max-width: 767px) {
+
+    .sidebar-header {
+        justify-content: space-between !important;
+        padding: 0 10px !important;
+    }
+
+
+    .sidebar-title {
+        text-align: center;
+        margin: 0 auto !important;
+    }
+}
+
+@media (max-width: 767px) {
+
+    /* Single column personal info */
+    .info-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+    }
+}
+
+@media (max-width: 767px) {
+
+    /* Contact section - vertical layout */
+    .contact-container {
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+    }
+
+    .contact-info,
+    .contact-form {
+        width: 100% !important;
+    }
+
+    /* Social links in contact section - 2 rows x 1 column */
+    .social-grid {
+        grid-template-columns: 1fr !important;
+        /* Single column */
+        gap: 1rem !important;
+    }
+
+    /* Contact information items - 2 rows x 1 column */
+    .contact-info .social-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 1rem !important;
+    }
+
+    .social-link {
+        width: 100% !important;
+        justify-content: center !important;
+    }
+}
+
+
+/* Fix modal positioning on mobile */
+@media (max-width: 767px) {
+
+    /* Fix modal for mobile */
+    .modal {
+        align-items: center !important;
+        justify-content: center !important;
+        padding: 10px !important;
+    }
+
+    .modal-content {
+        position: relative !important;
+        width: 100% !important;
+        max-width: 350px !important;
+        max-height: 90vh !important;
+        margin: auto !important;
+        display: flex !important;
+        flex-direction: column !important;
+        transform: none !important;
+        top: auto !important;
+        left: auto !important;
+    }
+
+    .modal-body {
+        flex: 1 !important;
+        overflow-y: auto !important;
+        padding: 1rem !important;
+        max-height: 60vh !important;
+    }
+
+    .project-detail-header {
+        padding: 1rem !important;
+        margin-bottom: 0 !important;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+    }
+
+    .project-detail-header h3 {
+        font-size: 1.25rem !important;
+        margin: 0 !important;
+        padding-right: 40px !important;
+    }
+
+    .project-detail-footer {
+        padding: 0.75rem !important;
+        border-top: 1px solid rgba(0, 0, 0, 0.1) !important;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 0.5rem !important;
+        margin-top: 0 !important;
+        position: relative !important;
+        bottom: auto !important;
+    }
+
+    .project-links {
+        display: flex !important;
+        gap: 0.5rem !important;
+        width: 100% !important;
+    }
+
+    .github-link,
+    .demo-link {
+        flex: 1 !important;
+        padding: 0.5rem !important;
+        font-size: 0.85rem !important;
+        text-align: center !important;
+        min-width: 0 !important;
+    }
+
+    .project-status-container {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+    }
+
+    .project-status {
+        font-size: 0.7rem !important;
+        padding: 4px 10px !important;
+    }
+
+    .close-modal {
+        width: 35px !important;
+        height: 35px !important;
+        right: 10px !important;
+        top: 10px !important;
+        font-size: 1.2rem !important;
+    }
+
+    .project-detail-image {
+        margin: 1rem 0 !important;
+        height: 200px !important;
+    }
+
+    .project-detail-image img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        border-radius: 8px !important;
+    }
+
+    .project-description,
+    .project-functionality {
+        margin-bottom: 1rem !important;
+    }
+
+    .project-description h4,
+    .project-functionality h4 {
+        font-size: 1rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+
+    .project-description p,
+    .project-functionality p {
+        font-size: 0.9rem !important;
+        line-height: 1.5 !important;
+    }
+}
+
+.project-links {
+    width: 100% !important;
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+    gap: 0.5rem !important;
+}
+
+.github-link,
+.demo-link {
+    padding: 0.6rem 1rem !important;
+    font-size: 0.9rem !important;
+    flex: 1 !important;
+    min-width: 120px !important;
+}
+
+/* In responsive.css */
+
+@media (min-width: 768px) { /* Apply these styles for screens 768px and wider */
+
+    /* --- Styles for #mobile-toggle to look like the desired hamburger button --- */
+    aside.sidebar .sidebar-header .mobile-toggle {
+        padding: 0 !important; /* Reset padding, we'll use flex to center lines */
+        width: 44px !important;
+        height: 40px !important; /* Slightly less tall than wide for a common aspect ratio */
+        cursor: pointer;
+        display: flex !important;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center; /* Center the group of lines vertically */
+        box-sizing: border-box;
+        border-radius: 10px !important; /* Rounded rectangle */
+        transition: background-color 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease !important;
+        border: 1px solid transparent !important; /* Start with a transparent border */
+    }
+
+    /* Style the spans (hamburger lines) within the button */
+    aside.sidebar .sidebar-header .mobile-toggle span {
+        display: block !important;
+        width: 20px !important;  /* Shorter lines for this button style */
+        height: 2.5px !important; /* Slightly thinner lines */
+        border-radius: 2px !important;
+        transition: background-color 0.3s ease !important;
+        margin: 2px 0 !important; /* Space between lines */
+    }
+
+    /* --- Light Theme Styles for #mobile-toggle --- */
+    .light-theme aside.sidebar .sidebar-header .mobile-toggle {
+        background-color: #e9eaf7 !important; /* Light grayish-blue background */
+        border-color: #d8d9e8 !important;     /* Subtle border */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+    .light-theme aside.sidebar .sidebar-header .mobile-toggle span {
+        background-color: var(--light-accent, #4361ee) !important; /* Accent color for lines */
+    }
+    .light-theme aside.sidebar .sidebar-header .mobile-toggle:hover {
+        background-color: #d8d9e8 !important; /* Darker on hover */
+        border-color: #c7c8d9 !important;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08);
+    }
+    /* Line color on hover for light theme could remain accent, or change if desired */
+    /* .light-theme aside.sidebar .sidebar-header .mobile-toggle:hover span {
+        background-color: #ffffff !important; /* Example: white lines on hover */
+    /* } */
+
+
+    /* --- Dark Theme Styles for #mobile-toggle --- */
+    .dark-theme aside.sidebar .sidebar-header .mobile-toggle {
+        background-color: #2c3246 !important; /* Darker blue-gray background */
+        border-color: #3a4058 !important;      /* Subtle border */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+    }
+    .dark-theme aside.sidebar .sidebar-header .mobile-toggle span {
+        background-color: var(--dark-accent, #6366f1) !important; /* Accent color for lines */
+    }
+    .dark-theme aside.sidebar .sidebar-header .mobile-toggle:hover {
+        background-color: #3a4058 !important; /* Slightly lighter/different on hover */
+        border-color: #484e68 !important;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+    }
+    /* Line color on hover for dark theme could remain accent, or change */
+    /* .dark-theme aside.sidebar .sidebar-header .mobile-toggle:hover span {
+        background-color: #ffffff !important; /* Example: white lines on hover */
+    /* } */
+
+
+    /* --- Positioning for #mobile-toggle (remains the same) --- */
+    /* When in LEFT-NAVBAR (Multi-Page) Mode */
+    body:not(.single-page-mode) aside.sidebar .sidebar-header .mobile-toggle {
+        position: absolute !important;
+        top: 1rem !important;
+        right: 1rem !important;
+    }
+
+    /* When in TOP-NAVBAR (Single-Page) Mode */
+    body.single-page-mode aside.sidebar .sidebar-header .mobile-toggle {
+        position: static !important;
+        order: 1 !important;
+        margin-right: 15px !important;
+    }
+
+    /* --- Hide the FLOATING ACTION BUTTON (#floating-hamburger) on desktop --- */
+    #floating-hamburger {
+        display: none !important;
+    }
+}

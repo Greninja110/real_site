@@ -1,0 +1,262 @@
+/* 
+ * Theme CSS for Abhijeet's Portfolio Website
+ * Light and Dark Theme Implementations
+ */
+
+/* Default Theme Variables Defined in modern-style.css :root */
+
+/* ---------- Light Theme Styles ---------- */
+body.light-theme {
+    background-color: var(--light-bg);
+    color: var(--light-text);
+}
+
+/* Light Theme - Sidebar (also applies to top nav in single-page mode) */
+.light-theme .sidebar {
+    background-color: var(--light-sidebar-bg); /* modern-style uses rgba */
+    /* border-color set in modern-style.css or responsive.css */
+    box-shadow: var(--light-shadow-md); /* from modern-style */
+}
+.light-theme .sidebar-title { color: var(--light-title); }
+.light-theme .nav-link { color: var(--light-text); }
+.light-theme .nav-link:hover { background-color: rgba(67, 97, 238, 0.08); color: var(--light-accent); } /* from modern-style */
+.light-theme .nav-link.active { background: var(--light-accent-gradient); color: white; } /* from modern-style */
+.light-theme .sidebar-footer { border-color: var(--light-border); }
+.light-theme .mobile-toggle span { background-color: var(--light-accent); } /* from hamburger.css */
+.light-theme .mobile-toggle.open, .light-theme .mobile-toggle:hover { background-color: rgba(67, 97, 238, 0.1); } /* from hamburger.css */
+
+
+/* Light Theme - Content Area */
+.light-theme .content { background-color: var(--light-content-bg); } /* from modern-style */
+.light-theme .section-title h2 { color: var(--light-title); }
+.light-theme .section-title::after { background: var(--light-accent-gradient); } /* from modern-style */
+
+/* Light Theme - Cards & Elements */
+.light-theme .project-card, 
+.light-theme .contact-form,
+.light-theme .contact-info,
+.light-theme .timeline-content,
+.light-theme .achievement-card,
+.light-theme .stat-card /* if used */ {
+    background-color: var(--light-card-bg);
+    box-shadow: var(--light-shadow-md); /* from modern-style */
+}
+.light-theme .project-info h3,
+.light-theme .contact-text h3,
+.light-theme .timeline-title, /* from modern-style */
+.light-theme .achievement-content h3,
+.light-theme .stat-card h3,
+.light-theme .form-group label,
+.light-theme .skills-container h3, 
+.light-theme .personal-info h3,
+.light-theme .skills-category h4, /* from modern-style */
+.light-theme .social-media-links h3 {
+    color: var(--light-title);
+}
+.light-theme .project-card:hover { box-shadow: var(--light-shadow-lg); }
+.light-theme .timeline-content:hover { box-shadow: var(--light-shadow-lg); }
+.light-theme .achievement-card:hover { box-shadow: var(--light-shadow-lg); }
+
+
+/* Light Theme - Buttons (primary styling in modern-style.css) */
+.light-theme .filter-btn { background-color: var(--light-hover); color: var(--light-text); }
+.light-theme .filter-btn.active, .light-theme .filter-btn:hover { background: var(--light-accent-gradient); color: white; } /* modern-style behavior */
+
+/* Other buttons (view-details, submit, resume, etc.) are covered by modern-style.css button rules */
+
+
+/* Light Theme - Form Elements */
+.light-theme .form-group input, 
+.light-theme .form-group textarea {
+    border-color: var(--light-border);
+    background-color: var(--light-bg); /* Match content bg or card bg */
+    color: var(--light-text);
+}
+.light-theme .form-group input:focus, 
+.light-theme .form-group textarea:focus {
+    outline: none;
+    border-color: var(--light-accent);
+    box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2); /* modern-style */
+}
+
+/* Light Theme - Skills */
+.light-theme .skill-bar { background-color: rgba(67, 97, 238, 0.1); } /* modern-style */
+.light-theme .skill-progress { background: var(--light-accent-gradient); } /* modern-style */
+.light-theme .skill-tooltip { background-color: var(--light-accent); } /* from style.css */
+.light-theme .skill-tooltip::after { border-top-color: var(--light-accent); } /* from style.css */
+
+
+/* Light Theme - Timeline */
+.light-theme .timeline::before { background: linear-gradient(to bottom, var(--light-accent), var(--light-secondary)); } /* modern-style */
+.light-theme .timeline-date-marker { background: var(--light-accent-gradient); color: white; } /* modern-style */
+.light-theme .timeline-year-marker { background-color: var(--light-hover); color: var(--light-text); } /* modern-style */
+.light-theme .timeline-year-marker.active, .light-theme .timeline-year-marker:hover { background: var(--light-accent-gradient); color: white; } /* modern-style */
+
+
+/* Light Theme - Icon Backgrounds & Social */
+.light-theme .contact-item i { background: rgba(67, 97, 238, 0.1); color: var(--light-accent); } /* modern-style */
+.light-theme .contact-item:hover i { background: var(--light-accent-gradient); color: white; } /* modern-style */
+.light-theme .social-icons a { background-color: rgba(67, 97, 238, 0.1); color: var(--light-accent); } /* modern-style */
+.light-theme .social-icons a:hover { background: var(--light-accent-gradient); color: white; } /* modern-style */
+.light-theme .social-link { background-color: rgba(67, 97, 238, 0.05); color: var(--light-text); } /* modern-style for contact page */
+.light-theme .social-link:hover { background: var(--light-accent-gradient); color: white; } /* modern-style */
+.light-theme .alt-contact-item { background-color: rgba(67, 97, 238, 0.05); color: var(--light-text); } /* modern-style */
+.light-theme .alt-contact-item:hover { background: var(--light-accent-gradient); color: white; } /* modern-style */
+
+
+/* Light Theme - Theme Toggle */
+.light-theme .slider { background-color: rgba(67, 97, 238, 0.3); } /* modern-style */
+.light-theme input[type="checkbox"]:checked + .slider { background: var(--light-accent-gradient); } /* modern-style */
+
+/* Light Theme - Modal */
+.light-theme .modal-content { background-color: var(--light-card-bg); } /* modern-style */
+.light-theme .close-modal { color: var(--light-text); background-color: rgba(0,0,0,0.05); } /* modern-style update */
+.light-theme .close-modal:hover { background-color: rgba(0,0,0,0.1); } /* modern-style update */
+.light-theme .project-detail-header { border-color: var(--light-border); } /* modern-style */
+.light-theme .project-detail-header h3,
+.light-theme .project-description h4, 
+.light-theme .project-functionality h4 {
+    color: var(--light-title);
+}
+
+/* Light Theme - Preloader */
+.light-theme .preloader { background-color: var(--light-bg); }
+.light-theme .preloader-content h1 { color: var(--light-title); }
+.light-theme .typing-container { color: var(--light-text); } /* For preloader typing */
+
+/* Light Theme - Resume Specific */
+.light-theme .resume-tabs { border-color: var(--light-border); }
+.light-theme .resume-tab { color: var(--light-text); }
+.light-theme .resume-tab::after { background: var(--light-accent-gradient); }
+.light-theme .resume-preview { border-color: var(--light-border); box-shadow: var(--light-shadow-md); }
+.light-theme .resume-loading span { background-color: var(--light-accent); }
+
+
+/* ---------- Dark Theme Styles ---------- */
+body.dark-theme {
+    background-color: var(--dark-bg);
+    color: var(--dark-text);
+}
+
+/* Dark Theme - Sidebar (also applies to top nav in single-page mode) */
+.dark-theme .sidebar {
+    background-color: var(--dark-sidebar-bg); /* modern-style uses rgba */
+    box-shadow: var(--dark-shadow-md); /* from modern-style */
+}
+.dark-theme .sidebar-title { color: var(--dark-title); }
+.dark-theme .nav-link { color: var(--dark-text); }
+.dark-theme .nav-link:hover { background-color: rgba(99, 102, 241, 0.1); color: var(--dark-accent); } /* from modern-style */
+.dark-theme .nav-link.active { background: var(--dark-accent-gradient); color: white; } /* from modern-style */
+.dark-theme .sidebar-footer { border-color: var(--dark-border); }
+.dark-theme .mobile-toggle span { background-color: var(--dark-accent); } /* from hamburger.css */
+.dark-theme .mobile-toggle.open, .dark-theme .mobile-toggle:hover { background-color: rgba(108, 139, 255, 0.15); } /* from hamburger.css */
+
+/* Dark Theme - Content Area */
+.dark-theme .content { background-color: var(--dark-content-bg); } /* from modern-style */
+.dark-theme .section-title h2 { color: var(--dark-title); }
+.dark-theme .section-title::after { background: var(--dark-accent-gradient); } /* from modern-style */
+
+/* Dark Theme - Cards & Elements */
+.dark-theme .project-card,
+.dark-theme .contact-form,
+.dark-theme .contact-info,
+.dark-theme .timeline-content,
+.dark-theme .achievement-card,
+.dark-theme .stat-card {
+    background-color: var(--dark-card-bg);
+    box-shadow: var(--dark-shadow-md); /* from modern-style */
+}
+.dark-theme .project-info h3,
+.dark-theme .contact-text h3,
+.dark-theme .timeline-title, /* from modern-style */
+.dark-theme .achievement-content h3,
+.dark-theme .stat-card h3,
+.dark-theme .form-group label,
+.dark-theme .skills-container h3, 
+.dark-theme .personal-info h3,
+.dark-theme .skills-category h4, /* from modern-style */
+.dark-theme .social-media-links h3 {
+    color: var(--dark-title);
+}
+.dark-theme .project-card:hover { box-shadow: var(--dark-shadow-lg); }
+.dark-theme .timeline-content:hover { box-shadow: var(--dark-shadow-lg); }
+.dark-theme .achievement-card:hover { box-shadow: var(--dark-shadow-lg); }
+
+
+/* Dark Theme - Buttons (primary styling in modern-style.css) */
+.dark-theme .filter-btn { background-color: var(--dark-hover); color: var(--dark-text); }
+.dark-theme .filter-btn.active, .dark-theme .filter-btn:hover { background: var(--dark-accent-gradient); color: white; } /* modern-style behavior */
+
+/* Dark Theme - Form Elements */
+.dark-theme .form-group input, 
+.dark-theme .form-group textarea {
+    border-color: var(--dark-border);
+    background-color: var(--dark-bg); /* Match content bg or card bg */
+    color: var(--dark-text);
+}
+.dark-theme .form-group input:focus, 
+.dark-theme .form-group textarea:focus {
+    outline: none;
+    border-color: var(--dark-accent);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2); /* modern-style */
+}
+
+/* Dark Theme - Skills */
+.dark-theme .skill-bar { background-color: rgba(99, 102, 241, 0.1); } /* modern-style */
+.dark-theme .skill-progress { background: var(--dark-accent-gradient); } /* modern-style */
+.dark-theme .skill-tooltip { background-color: var(--dark-accent); } /* from style.css */
+.dark-theme .skill-tooltip::after { border-top-color: var(--dark-accent); } /* from style.css */
+
+/* Dark Theme - Timeline */
+.dark-theme .timeline::before { background: linear-gradient(to bottom, var(--dark-accent), var(--dark-secondary)); } /* modern-style */
+.dark-theme .timeline-date-marker { background: var(--dark-accent-gradient); color: white; } /* modern-style */
+.dark-theme .timeline-year-marker { background-color: var(--dark-hover); color: var(--dark-text); } /* modern-style */
+.dark-theme .timeline-year-marker.active, .dark-theme .timeline-year-marker:hover { background: var(--dark-accent-gradient); color: white; } /* modern-style */
+
+/* Dark Theme - Icon Backgrounds & Social */
+.dark-theme .contact-item i { background: rgba(99, 102, 241, 0.15); color: var(--dark-accent); } /* modern-style */
+.dark-theme .contact-item:hover i { background: var(--dark-accent-gradient); color: white; } /* modern-style */
+.dark-theme .social-icons a { background-color: rgba(99, 102, 241, 0.1); color: var(--dark-accent); } /* modern-style */
+.dark-theme .social-icons a:hover { background: var(--dark-accent-gradient); color: white; } /* modern-style */
+.dark-theme .social-link { background-color: rgba(99, 102, 241, 0.08); color: var(--dark-text); } /* modern-style */
+.dark-theme .social-link:hover { background: var(--dark-accent-gradient); color: white; } /* modern-style */
+.dark-theme .alt-contact-item { background-color: rgba(99, 102, 241, 0.08); color: var(--dark-text); } /* modern-style */
+.dark-theme .alt-contact-item:hover { background: var(--dark-accent-gradient); color: white; } /* modern-style */
+
+/* Dark Theme - Theme Toggle */
+.dark-theme .slider { background-color: rgba(99, 102, 241, 0.3); } /* modern-style */
+.dark-theme input[type="checkbox"]:checked + .slider { background: var(--dark-accent-gradient); } /* This is for light mode selected, should be dark-accent if toggle indicates dark */
+/* The :checked state of the toggle means "Light Mode ON". So if toggle is NOT checked, it's dark mode. */
+/* So, the above rule for input:checked + .slider applies when light theme is selected. */
+/* If you want the slider itself to use dark-accent when it's in "dark mode is selected" state (i.e., toggle is OFF):
+   This is tricky with pure CSS for the "unchecked" state's gradient. Usually the .slider base color is for unchecked.
+   The current modern-style.css logic is fine: checked = light theme active, slider uses light theme gradient.
+*/
+
+
+/* Dark Theme - Modal */
+.dark-theme .modal-content { background-color: var(--dark-card-bg); } /* modern-style */
+.dark-theme .close-modal { color: var(--dark-text); background-color: rgba(255,255,255,0.1); } /* modern-style update */
+.dark-theme .close-modal:hover { background-color: rgba(255,255,255,0.2); } /* modern-style update */
+.dark-theme .project-detail-header { border-color: var(--dark-border); } /* modern-style */
+.dark-theme .project-detail-header h3,
+.dark-theme .project-description h4, 
+.dark-theme .project-functionality h4 {
+    color: var(--dark-title);
+}
+
+/* Dark Theme - Preloader */
+.dark-theme .preloader { background-color: var(--dark-bg); }
+.dark-theme .preloader-content h1 { color: var(--dark-title); }
+.dark-theme .typing-container { color: var(--dark-text); } /* For preloader typing */
+
+/* Dark Theme - Resume Specific */
+.dark-theme .resume-tabs { border-color: var(--dark-border); }
+.dark-theme .resume-tab { color: var(--dark-text); }
+.dark-theme .resume-tab::after { background: var(--dark-accent-gradient); }
+.dark-theme .resume-preview { border-color: var(--dark-border); box-shadow: var(--dark-shadow-md); }
+.dark-theme .resume-loading span { background-color: var(--dark-accent); }
+
+
+/* ---------- Theme Transition (Ensure elements transition smoothly) ---------- */
+/* Covered by smooth-transitions.css and general element transitions */

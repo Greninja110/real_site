@@ -1,0 +1,38 @@
+/* Add as new file: css/theme-transitions.css */
+/* Radial theme transition effects */
+
+.theme-transition-overlay {
+    position: fixed;
+    pointer-events: none;
+    z-index: 10000;
+    transform: scale(0);
+    border-radius: 50%;
+    width: 300vh; /* Large enough to cover the entire viewport */
+    height: 300vh; /* Large enough to cover the entire viewport */
+    transition: transform 0.8s cubic-bezier(0.15, 0.85, 0.35, 1);
+}
+
+.light-theme .theme-transition-overlay {
+    background: var(--light-bg);
+}
+
+.dark-theme .theme-transition-overlay {
+    background: var(--dark-bg);
+}
+
+.theme-transition-active .theme-transition-overlay {
+    transform: scale(1);
+}
+
+/* Position the overlay differently based on toggle button location */
+.theme-transition-from-top-right .theme-transition-overlay {
+    top: -150vh;
+    right: -150vh;
+    transform-origin: top right;
+}
+
+.theme-transition-from-bottom-left .theme-transition-overlay {
+    bottom: -150vh;
+    left: -150vh;
+    transform-origin: bottom left;
+}

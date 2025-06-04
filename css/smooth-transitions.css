@@ -1,0 +1,354 @@
+/* css/smooth-transitions.css */
+/*
+ * Smooth Transitions CSS for Abhijeet's Portfolio Website
+ * Enhanced animations and smooth transitions
+ */
+
+/* Base transitions for common properties */
+/* Avoid universal selector for performance; apply to specific elements */
+
+.sidebar,
+.content,
+.nav-link,
+.profile-pic-container, /* Corrected class name */
+.sidebar-header,
+.sidebar-nav,
+.sidebar-nav ul,
+.sidebar-footer,
+.section,
+.theme-toggle, /* main theme toggle class */
+.mobile-toggle, /* hamburger */
+.filter-btn,
+.view-details-btn,
+.view-resume-btn,
+.download-resume-btn,
+.email-direct-btn,
+.timeline-btn,
+.submit-btn,
+.achievement-link,
+.project-card,
+.timeline-content {
+  transition: all var(--transition-speed) var(--transition-function-cubic);
+}
+
+/* ADD to css/smooth-transitions.css */
+.sidebar,
+.content,
+.sidebar-header,
+.sidebar-nav,
+.sidebar-footer,
+.nav-link,  
+.mobile-toggle,
+.profile-pic-container,
+.sidebar-title {
+  transition-duration: 0.5s !important; /* Slightly longer for smoother effect */
+  transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+
+/* Improve transition properties */
+.sidebar {
+  transition-property: width, height, transform, left, top, background-color, border-color, box-shadow, padding, flex-direction, align-items, border-bottom, border-right, overflow;
+}
+
+/* Improve transition properties */
+.sidebar {
+  transition-property: width, height, transform, left, top, background-color, border-color, box-shadow, padding, flex-direction, align-items, border-bottom, border-right, overflow;
+}
+
+.sidebar-header {
+  /* For sidebar-header, display: contents is a jump. Transitions apply to its children. */
+  /* However, if it ever has its own layout before 'contents', those can transition. */
+  transition-property: display, flex-direction, align-items, width, height, padding, margin-bottom, order;
+}
+
+.sidebar-title {
+  transition-property: font-size, margin, order, display, flex-grow, white-space; /* Ensure display and order are here */
+}
+
+.sidebar-nav {
+  transition-property: display, visibility, opacity, flex-grow, height, align-items, justify-content, padding, margin, order, margin-top, width, overflow-y;
+}
+.sidebar-nav ul {
+  transition-property: flex-direction, align-items, justify-content, gap, padding, margin, list-style, height;
+}
+
+.nav-link { /* Ensure transitions for properties changed in different nav modes */
+  transition-property: padding, margin, display, align-items, opacity, visibility, background, color, box-shadow, transform;
+  /* Inherits 'all' from general rule but being specific can be good */
+}
+
+/* Content area transitions */
+/* Main content area adjustments */
+.content {
+  transition-property: margin-left, width, padding-top, padding-bottom;
+}
+/* Theme toggles if their position/display changes */
+.theme-toggle.mobile-theme-toggle {
+    transition-property: display, order, margin-left, flex-shrink;
+}
+#theme-toggle { /* The one in the footer */
+    transition-property: display;
+}
+
+.content.centered-content .section,
+.single-page-mode .section {
+    transition-property: max-width, margin-left, margin-right, display, opacity; /* Added display, opacity */
+}
+
+
+
+/* Section display/hide transitions (opacity and transform) */
+.section {
+  transition-property: opacity, transform, padding;
+}
+/* Animations for section content are in animations.css (e.g., slideInFromLeft) */
+
+
+/* Hamburger icon lines transition (handled in hamburger.css) */
+/* .mobile-toggle span {} */
+
+
+/* Specific transitions for single-page mode toggling */
+body.single-page-mode .sidebar,
+body:not(.single-page-mode) .sidebar {
+  /* Already covered by general .sidebar transition */
+}
+
+body.single-page-mode .content,
+body:not(.single-page-mode) .content {
+ /* Already covered by general .content transition */
+}
+
+body.single-page-mode .sidebar-header,
+body:not(.single-page-mode) .sidebar-header,
+body.single-page-mode .sidebar-nav,
+body:not(.single-page-mode) .sidebar-nav {
+  /* Already covered */
+}
+
+
+/* Profile picture container transitions (size, margin) */
+.profile-pic-container {
+  transition-property: width, height, margin, order, display; /* Ensure display and order are here */
+}
+
+
+/* Section active animation (fade and slight move up) */
+body:not(.single-page-mode) .section.active {
+  animation: fadeInUp 0.6s var(--transition-function-cubic) forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* In single-page mode, sections are always visible, no fadeInUp needed */
+.single-page-mode .section {
+  animation: none;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* Smooth scrolling (JS handles scroll, CSS provides base) */
+html {
+  scroll-behavior: smooth;
+}
+/* .content in single-page mode might also need this if it's the scroll container */
+.single-page-mode .content {
+  scroll-behavior: smooth; /* If content itself is scrollable */
+}
+
+
+/* Mobile-specific transitions */
+@media (max-width: 767px) {
+  .sidebar.open {
+    /* height transition is on .sidebar already */
+    /* backdrop-filter might not transition smoothly, apply on .open state */
+  }
+  .sidebar.open .sidebar-nav {
+    animation: fadeInNav 0.4s var(--transition-function-cubic) forwards 0.2s; /* Delay nav appearance */
+    opacity: 0; /* Start hidden */
+  }
+
+  @keyframes fadeInNav {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
+
+/* Transitions for nav links appearing in mobile open menu */
+.sidebar.open .nav-link {
+  animation: slideInFromLeftMobileNav 0.3s var(--transition-function-cubic) forwards;
+  animation-delay: calc(var(--nav-index, 0) * 0.07s + 0.2s); /* Staggered, starts after menu opens */
+  opacity: 0; /* Start hidden */
+}
+
+.nav-link {
+    position: relative;
+    transition: none !important; /* Disable transitions on the link itself */
+}
+.nav-link.active {
+    transition: background-color 0.4s ease, color 0.4s ease, box-shadow 0.4s ease !important;
+}
+/* This will create a smoother indicator transition */
+/* .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: currentColor;
+    transition: width 0.3s ease;
+    opacity: 0;
+}
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+    opacity: 1;
+} */
+
+@keyframes slideInFromLeftMobileNav {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+
+.sidebar-footer {
+    transition-property: display, padding, margin-top, border-top, position, width, height, text-align, background-color, box-shadow;
+}
+.last-updated {
+    transition-property: display, align-items, justify-content, width, padding, font-size, text-align, margin-top, border-top, background-color, color, opacity, position, bottom, left;
+}
+
+
+/* Hamburger toggle - already handled well in hamburger.css and smooth-transitions.css for its own animation */
+.mobile-toggle {
+    transition-property: display, order, margin-right, position, top, right;
+}
+
+/* Ripple effect for buttons - optional nice touch */
+.btn-ripple {
+  position: relative;
+  overflow: hidden;
+}
+.btn-ripple::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.7) 10%, transparent 10.01%);
+  background-repeat: no-repeat;
+  background-position: 50%;
+  transform: scale(10, 10);
+  opacity: 0;
+  transition: transform 0.6s, opacity 1s;
+}
+.btn-ripple:active::after {
+  transform: scale(0, 0);
+  opacity: 0.3;
+  transition: 0s;
+}
+/* Apply to buttons that should have ripple */
+.view-details-btn, .view-resume-btn, .download-resume-btn, .email-direct-btn, .submit-btn, .timeline-btn, .achievement-link {
+    /* Add .btn-ripple class in HTML if you want this effect */
+}
+
+/* In css/smooth-transitions.css - ADD these rules */
+.nav-link {
+    transition: background-color 0.4s ease, color 0.4s ease, box-shadow 0.4s ease !important;
+}
+.nav-link.active {
+    transition: background-color 0.4s ease, color 0.4s ease, box-shadow 0.4s ease !important;
+}
+
+/* In css/smooth-transitions.css - Add or update these rules */
+.nav-link {
+    transition: background-color 0.5s cubic-bezier(0.19, 1, 0.22, 1), 
+                color 0.5s cubic-bezier(0.19, 1, 0.22, 1), 
+                box-shadow 0.5s cubic-bezier(0.19, 1, 0.22, 1), 
+                transform 0.5s cubic-bezier(0.19, 1, 0.22, 1) !important;
+}
+
+.nav-link.active {
+    transition: background-color 0.5s cubic-bezier(0.19, 1, 0.22, 1), 
+                color 0.5s cubic-bezier(0.19, 1, 0.22, 1), 
+                box-shadow 0.5s cubic-bezier(0.19, 1, 0.22, 1), 
+                transform 0.5s cubic-bezier(0.19, 1, 0.22, 1) !important;
+}
+
+
+/* Create a pseudo-element for the background animation */
+.nav-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 12px;
+    background: transparent;
+    z-index: -1;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    transform: scale(0.95);
+    opacity: 0;
+}
+
+/* Hover state */
+.light-theme .nav-link:hover::before {
+    background-color: rgba(67, 97, 238, 0.08);
+    transform: scale(1);
+    opacity: 1;
+}
+
+.dark-theme .nav-link:hover::before {
+    background-color: rgba(99, 102, 241, 0.1);
+    transform: scale(1);
+    opacity: 1;
+}
+
+/* Active state - smooth background */
+.nav-link.active::before {
+    transform: scale(1) !important;
+    opacity: 1 !important;
+}
+
+.light-theme .nav-link.active::before {
+    background: var(--light-accent-gradient) !important;
+}
+
+.dark-theme .nav-link.active::before {
+    background: var(--dark-accent-gradient) !important;
+}
+
+/* Text color transitions */
+.nav-link {
+    transition: color 0.3s ease !important;
+}
+
+.light-theme .nav-link.active {
+    color: white !important;
+}
+
+.dark-theme .nav-link.active {
+    color: white !important;
+}

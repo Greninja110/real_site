@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Abhijeet's Portfolio - Developer, Designer and Technology Enthusiast">
+    <meta name="keywords"
+        content="portfolio, developer, AIML, web development, app development, cybersecurity, docker, blockchain">
+    <title>Abhijeet's Portfolio</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="assets/images/icons/dark1.svg" type="image/x-icon">
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/themes.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/custom-timeline.css">
+    <link rel="stylesheet" href="css/modern-style.css">
+    <link rel="stylesheet" href="css/smooth-transitions.css">
+    <link rel="stylesheet" href="css/hamburger.css">
+    <link rel="stylesheet" href="css/resume-fix.css">
+    <link rel="stylesheet" href="css/theme-transitions.css">
+    <link rel="stylesheet" href="css/floating-hamburger.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+</head>
+
+<body class="dark-theme">
+    <!-- Preloader -->
+    <div id="preloader" class="preloader">
+        <div class="preloader-content">
+            <h1>Loading</h1>
+            <div class="typing-container">
+                <span id="preloader-text"></span>
+                <span class="cursor"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <!-- Replace the existing sidebar-header section in index.html with this -->
+            <div class="sidebar-header">
+                <button id="mobile-toggle" class="mobile-toggle" aria-label="Toggle Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <div class="profile-pic-container">
+                    <img src="assets/images/icons/light2.svg" alt="Abhijeet Logo" class="profile-pic-small"
+                        id="sidebar-logo">
+                </div>
+                <h2 class="sidebar-title">Abhijeet Sahoo</h2>
+
+                <!-- Theme toggle for mobile -->
+                <div class="theme-toggle mobile-theme-toggle">
+                    <label class="switch">
+                        <input type="checkbox" id="mobile-theme-toggle" class="theme-toggle-input">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+
+
+            <!-- Navigation section update -->
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="#home" class="nav-link active" data-section="home"><i class="fas fa-home"></i> Home</a>
+                    </li>
+                    <li><a href="#projects" class="nav-link" data-section="projects"><i class="fas fa-code-branch"></i>
+                            Projects</a></li>
+                    <li><a href="#timeline" class="nav-link" data-section="timeline"><i class="fas fa-history"></i>
+                            Timeline</a></li>
+                    <li><a href="#achievements" class="nav-link" data-section="achievements"><i
+                                class="fas fa-trophy"></i> Achievements</a></li>
+                    <li><a href="#resume" class="nav-link" data-section="resume"><i class="fas fa-file-alt"></i>
+                            Resume</a></li>
+                    <li><a href="#contact" class="nav-link" data-section="contact"><i class="fas fa-envelope"></i>
+                            Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="theme-toggle">
+                    <label class="switch">
+                        <input type="checkbox" id="theme-toggle">
+                        <span class="slider round"></span>
+                    </label>
+                    <span id="theme-label">Dark Mode</span>
+                </div>
+
+                <!-- "Last updated" div will be moved by JS to the end of main content -->
+                <div class="last-updated">
+                    <i class="fas fa-edit"> </i>Last updated on May 24, 2025
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="content">
+            <!-- Home/About Section -->
+            <section id="home" class="section active">
+                <div class="about-container">
+                    <div class="profile-section">
+                        <div class="profile-image-container">
+                            <img src="assets/images/profile.png" alt="Abhijeet" class="profile-pic">
+                        </div>
+                        <div class="typing-animation">
+                            <h1>Abhijeet</h1>
+                            <div class="animated-greeting"> <!-- New wrapper for animated text -->
+                                <span id="animated-text"><span id="text-content"></span><span id="cursor"></span></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="about-content">
+                        <div class="section-title">
+                            <h2>About Me</h2>
+                        </div>
+                        <p>Hello! I'm Abhijeet, Python/AIML developer with a passion for problem-solving. I combine deep
+                            analytical thinking with Django expertise to create innovative web solutions. I'm a flexible
+                            team
+                            player exploring cybersecurity and IoT frontiers. My calm, patient approach and technical
+                            curiosity drive me to transform complex challenges into elegant solutions. I'm a computer
+                            enthusiast who brings quiet dedication and continuous learning to every project.</p>
+
+                        <!-- Skills section update for Home -->
+                        <div class="skills-container">
+                            <h3>My Skills</h3>
+
+                            <!-- AIML Skills -->
+                            <div class="skills-category">
+                                <h4>AI/ML Skills</h4>
+                                <div class="skills-grid">
+                                    <div class="skill-item">
+                                        <div class="skill-name">Python</div>
+                                        <div class="skill-bar">
+                                            <div class="skill-progress" style="width: 80%"></div>
+                                        </div>
+                                        <div class="skill-tooltip">80% - Advanced</div>
+                                    </div>
+                                    <div class="skill-item">
+                                        <div class="skill-name">Machine Learning</div>
+                                        <div class="skill-bar">
+                                            <div class="skill-progress" style="width: 70%"></div>
+                                        </div>
+                                        <div class="skill-tooltip">70% - Advanced</div>
+                                    </div>
+                                    <div class="skill-item">
+                                        <div class="skill-name">Deep Learning</div>
+                                        <div class="skill-bar">
+                                            <div class="skill-progress" style="width: 60%"></div>
+                                        </div>
+                                        <div class="skill-tooltip">60% - Intermediate</div>
+                                    </div>
+                                    <div class="skill-item">
+                                        <div class="skill-name">NLP</div>
+                                        <div class="skill-bar">
+                                            <div class="skill-progress" style="width: 50%"></div>
+                                        </div>
+                                        <div class="skill-tooltip">50% - Intermediate</div>
+                                    </div>
+                                    <div class="skill-item">
+                                        <div class="skill-name">Computer Vision</div>
+                                        <div class="skill-bar">
+                                            <div class="skill-progress" style="width: 65%"></div>
+                                        </div>
+                                        <div class="skill-tooltip">65% - Advanced</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Cybersecurity Skills -->
+                            <div class="skills-category">
+                                <h4>Cybersecurity Skills</h4>
+                                <div class="skills-grid">
+                                    <div class="skill-item">
+                                        <div class="skill-name">Network Security</div>
+                                        <div class="skill-bar">
+                                            <div class="skill-progress" style="width: 65%"></div>
+                                        </div>
+                                        <div class="skill-tooltip">65% - Advanced</div>
+                                    </div>
+                                    <div class="skill-item">
+                                        <div class="skill-name">Penetration Testing</div>
+                                        <div class="skill-bar">
+                                            <div class="skill-progress" style="width: 40%"></div>
+                                        </div>
+                                        <div class="skill-tooltip">40% - Intermediate</div>
+                                    </div>
+                                    <div class="skill-item">
+                                        <div class="skill-name">Security Tools</div>
+                                        <div class="skill-bar">
+                                            <div class="skill-progress" style="width: 55%"></div>
+                                        </div>
+                                        <div class="skill-tooltip">55% - Intermediate</div>
+                                    </div>
+                                    <div class="skill-item">
+                                        <div class="skill-name">OWASP Top 10</div>
+                                        <div class="skill-bar">
+                                            <div class="skill-progress" style="width: 60%"></div>
+                                        </div>
+                                        <div class="skill-tooltip">60% - Intermediate</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Web Dev Skills -->
+                            <div class="skills-category">
+                                <h4>Web Development Skills</h4>
+                                <div class="skills-grid">
+                                    <div class="skill-item">
+                                        <div class="skill-name">HTML/CSS</div>
+                                        <div class="skill-bar">
+                                            <div class="skill-progress" style="width: 85%"></div>
+                                        </div>
+                                        <div class="skill-tooltip">85% - Advanced</div>
+                                    </div>
+                                    <div class="skill-item">
+                                        <div class="skill-name">JavaScript</div>
+                                        <div class="skill-bar">
+                                            <div class="skill-progress" style="width: 70%"></div>
+                                        </div>
+                                        <div class="skill-tooltip">70% - Advanced</div>
+                                    </div>
+                                    <div class="skill-item">
+                                        <div class="skill-name">Django</div>
+                                        <div class="skill-bar">
+                                            <div class="skill-progress" style="width: 75%"></div>
+                                        </div>
+                                        <div class="skill-tooltip">75% - Advanced</div>
+                                    </div>
+                                    <div class="skill-item">
+                                        <div class="skill-name">Flask</div>
+                                        <div class="skill-bar">
+                                            <div class="skill-progress" style="width: 65%"></div>
+                                        </div>
+                                        <div class="skill-tooltip">65% - Advanced</div>
+                                    </div>
+                                    <div class="skill-item">
+                                        <div class="skill-name">MongoDB</div>
+                                        <div class="skill-bar">
+                                            <div class="skill-progress" style="width: 60%"></div>
+                                        </div>
+                                        <div class="skill-tooltip">60% - Intermediate</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Soft Skills -->
+                            <div class="skills-category">
+                                <h4>Soft Skills</h4>
+                                <div class="skills-grid">
+                                    <div class="skill-item">
+                                        <div class="skill-name">Problem Solving</div>
+                                        <div class="skill-bar">
+                                            <div class="skill-progress" style="width: 90%"></div>
+                                        </div>
+                                        <div class="skill-tooltip">90% - Advanced</div>
+                                    </div>
+                                    <div class="skill-item">
+                                        <div class="skill-name">Analytical Thinking</div>
+                                        <div class="skill-bar">
+                                            <div class="skill-progress" style="width: 85%"></div>
+                                        </div>
+                                        <div class="skill-tooltip">85% - Advanced</div>
+                                    </div>
+                                    <div class="skill-item">
+                                        <div class="skill-name">Team Player</div>
+                                        <div class="skill-bar">
+                                            <div class="skill-progress" style="width: 80%"></div>
+                                        </div>
+                                        <div class="skill-tooltip">80% - Advanced</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="personal-info">
+                            <h3>Personal Information</h3>
+                            <div class="info-grid">
+                                <div class="info-item">
+                                    <span class="info-label">Email:</span>
+                                    <span class="info-value">abhijeet@example.com</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Location:</span>
+                                    <span class="info-value">Anand, India</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Languages:</span>
+                                    <span class="info-value">English, Hindi</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Availability:</span>
+                                    <span class="info-value">Full-time</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects Section -->
+            <section id="projects" class="section">
+                <div class="section-title">
+                    <h2>My Projects</h2>
+                </div>
+
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="aiml">AIML</button>
+                    <button class="filter-btn" data-filter="webdev">Web Dev</button>
+                    <button class="filter-btn" data-filter="appdev">App Dev</button>
+                    <button class="filter-btn" data-filter="cybersecurity">Cybersecurity</button>
+                </div>
+
+                <div class="projects-grid">
+                    <!-- Project 1 - Completed -->
+                    <div class="project-card" data-category="aiml">
+                        <div class="project-image">
+                            <img src="assets/images/projects/object.png" alt="AI Image Recognition">
+                            <div class="project-status completed">Completed</div>
+                        </div>
+                        <div class="project-info">
+                            <h3>Object Detection and Recognition</h3>
+                            <p>A machine learning model for image recognition with high accuracy.</p>
+                            <button class="view-details-btn">View Details</button>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 - Ongoing -->
+                    <div class="project-card" data-category="webdev">
+                        <div class="project-image">
+                            <img src="assets/images/projects/attend.png" alt="E-commerce Platform">
+                            <div class="project-status ongoing">Ongoing</div>
+                        </div>
+                        <div class="project-info">
+                            <h3>Attendance Management System For a College</h3>
+                            <p>A fully responsive e-commerce website with cart functionality.</p>
+                            <button class="view-details-btn">View Details</button>
+                        </div>
+                    </div>
+
+                    <!-- Project 3 - Planned -->
+                    <div class="project-card" data-category="appdev">
+                        <div class="project-image">
+                            <img src="assets/images/projects/ar.png" alt="Fitness Tracker App">
+                            <div class="project-status ongoing">Ongoing</div>
+                        </div>
+                        <div class="project-info">
+                            <h3>ARCam</h3>
+                            <p>Mobile app for tracking fitness activities and health metrics.</p>
+                            <button class="view-details-btn">View Details</button>
+                        </div>
+                    </div>
+
+                    <!-- Project 4  - Planned -->
+                    <div class="project-card" data-category="cybersecurity aiml">
+                        <div class="project-image">
+                            <img src="assets/images/projects/nids.png" alt="Fitness Tracker App">
+                            <div class="project-status ongoing">Ongoing</div>
+                        </div>
+                        <div class="project-info">
+                            <h3>AI-Powered Network Intrusion Detection System</h3>
+                            <p>Mobile app for tracking fitness activities and health metrics.</p>
+                            <button class="view-details-btn">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Details Modal -->
+                <!-- Project Details Modal -->
+                <div id="project-modal" class="modal">
+                    <div class="modal-content">
+                        <span class="close-modal">
+                            <i class="fas fa-times"></i>
+                        </span>
+                        <div class="modal-body"> <!-- This div will be scrollable -->
+                            <div class="project-detail-header">
+                                <h3 id="modal-project-title">Project Title</h3>
+                            </div>
+                            <div class="project-detail-content">
+                                <div class="project-detail-image">
+                                    <img id="modal-project-image" src="" alt="Project Image">
+                                </div>
+                                <div class="project-description">
+                                    <h4>Description</h4>
+                                    <p id="modal-project-description">Project description goes here.</p>
+                                </div>
+                                <div class="project-functionality">
+                                    <h4>Functionality</h4>
+                                    <p id="modal-project-functionality">Project functionality explanation goes here.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Footer is now OUTSIDE modal-body, but INSIDE modal-content -->
+                        <div class="project-detail-footer">
+                            <div class="project-links">
+                                <a id="modal-project-github" href="#" target="_blank" class="github-link">
+                                    <i class="fab fa-github"></i> GitHub Repository
+                                </a>
+                                <a id="modal-project-demo" href="#" target="_blank" class="demo-link">
+                                    <i class="fas fa-external-link-alt"></i> Live Demo
+                                </a>
+                            </div>
+                            <div class="project-status-container">
+                                <span id="modal-project-status" class="project-status">Status</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Timeline Section with proper structure -->
+            <section id="timeline" class="section">
+                <div class="section-title">
+                    <h2>My Journey</h2>
+                </div>
+
+                <!-- Year navigation markers -->
+                <div class="timeline-year-markers">
+                    <div class="timeline-year-marker" data-year="2020">2020</div>
+                    <div class="timeline-year-marker" data-year="2022">2022</div>
+                    <div class="timeline-year-marker active" data-year="2025">2025</div>
+                    <div class="timeline-year-marker" data-year="2026">2026</div>
+                </div>
+
+                <div class="timeline-wrapper">
+                    <div class="timeline">
+                        <!-- Year 2020 Section -->
+                        <div id="timeline-year-2020" class="timeline-year-section">
+                            <!-- March 2020 - 10th class -->
+                            <div class="timeline-block" data-icon="picture" data-month="Mar" data-year="2020">
+                                <div class="timeline-date-marker">
+                                    <span class="month">Mar</span>
+                                    <span class="year">2020</span>
+                                </div>
+                                <div class="timeline-content">
+                                    <h3 class="timeline-title">Passed Out 10th Class</h3>
+                                    <p class="timeline-description">Completed my Secondary Education from Bright Day
+                                        School, CBSE, Vadodara.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Year 2022 Section -->
+                        <div id="timeline-year-2022" class="timeline-year-section">
+                            <!-- June 2022 - 12th class -->
+                            <div class="timeline-block" data-icon="picture" data-month="Jun" data-year="2022">
+                                <div class="timeline-date-marker">
+                                    <span class="month">Jun</span>
+                                    <span class="year">2022</span>
+                                </div>
+                                <div class="timeline-content">
+                                    <h3 class="timeline-title">Passed Out 12th Class</h3>
+                                    <p class="timeline-description">Completed my Higher Secondary Education from Green
+                                        Valley High School, CBSE, Vadodara.</p>
+                                </div>
+                            </div>
+
+                            <!-- September 2022 - Joined MBIT -->
+                            <div class="timeline-block" data-icon="picture" data-month="Sep" data-year="2022">
+                                <div class="timeline-date-marker">
+                                    <span class="month">Sep</span>
+                                    <span class="year">2022</span>
+                                </div>
+                                <div class="timeline-content">
+                                    <h3 class="timeline-title">Joined MBIT</h3>
+                                    <p class="timeline-description">Started my journey in Computer Science at MBIT.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Year 2025 Section -->
+                        <div id="timeline-year-2025" class="timeline-year-section">
+                            <!-- February 2025 - Django Attendance System -->
+                            <div class="timeline-block" data-icon="movie" data-month="Feb" data-year="2025">
+                                <div class="timeline-date-marker">
+                                    <span class="month">Feb</span>
+                                    <span class="year">2025</span>
+                                </div>
+                                <div class="timeline-content">
+                                    <h3 class="timeline-title">Django Based College Attendance System</h3>
+                                    <p class="timeline-description">Developed a comprehensive attendance management
+                                        system using Django for college.</p>
+                                    <a href="#" class="timeline-btn">View Project</a>
+                                </div>
+                            </div>
+
+                            <!-- February 2025 - IEEE Ideathon Winner -->
+                            <div class="timeline-block" data-icon="location" data-month="Feb" data-year="2025">
+                                <div class="timeline-date-marker">
+                                    <span class="month">Feb</span>
+                                    <span class="year">2025</span>
+                                </div>
+                                <div class="timeline-content">
+                                    <h3 class="timeline-title">IEEE Ideathon Winner</h3>
+                                    <p class="timeline-description">Won the IEEE Ideathon competition with an innovative
+                                        technological solution.</p>
+                                    <a href="https://drive.google.com/file/d/1BmrIX761PlFf_DfQPqQARqE5hmuvk-pm/view?usp=drive_link"
+                                        target="_blank" class="timeline-btn">View Certificate</a>
+                                </div>
+                            </div>
+
+                            <!-- February 2025 - Object Detection -->
+                            <div class="timeline-block" data-icon="picture" data-month="Feb" data-year="2025">
+                                <div class="timeline-date-marker">
+                                    <span class="month">Feb</span>
+                                    <span class="year">2025</span>
+                                </div>
+                                <div class="timeline-content">
+                                    <h3 class="timeline-title">Object Detection and Recognition</h3>
+                                    <p class="timeline-description">Completed a project on object detection and
+                                        recognition using deep learning techniques.</p>
+                                    <a href="#" class="timeline-btn">View Project</a>
+                                </div>
+                            </div>
+
+                            <!-- March 2025 - AI Based NIDS -->
+                            <div class="timeline-block" data-icon="movie" data-month="Mar" data-year="2025">
+                                <div class="timeline-date-marker">
+                                    <span class="month">Mar</span>
+                                    <span class="year">2025</span>
+                                </div>
+                                <div class="timeline-content">
+                                    <h3 class="timeline-title">AI Based NIDS</h3>
+                                    <p class="timeline-description">Developed a Network Intrusion Detection System using
+                                        AI and machine learning algorithms.</p>
+                                    <a href="#" class="timeline-btn">View Project</a>
+                                </div>
+                            </div>
+
+                            <!-- March 2025 - ARCam App -->
+                            <div class="timeline-block" data-icon="location" data-month="Mar" data-year="2025">
+                                <div class="timeline-date-marker">
+                                    <span class="month">Mar</span>
+                                    <span class="year">2025</span>
+                                </div>
+                                <div class="timeline-content">
+                                    <h3 class="timeline-title">ARCam</h3>
+                                    <p class="timeline-description">Developed a Kotlin-based app for object detection
+                                        with augmented reality capabilities.</p>
+                                    <a href="#" class="timeline-btn">View App</a>
+                                </div>
+                            </div>
+
+                            <!-- March 2025 - HackWithIndia -->
+                            <div class="timeline-block" data-icon="movie" data-month="Mar" data-year="2025">
+                                <div class="timeline-date-marker">
+                                    <span class="month">Mar</span>
+                                    <span class="year">2025</span>
+                                </div>
+                                <div class="timeline-content">
+                                    <h3 class="timeline-title">HackWithIndia Hackathon</h3>
+                                    <p class="timeline-description">Participated in the prestigious HackWithIndia
+                                        hackathon, showcasing innovative solutions.</p>
+                                    <a href="https://drive.google.com/file/d/1DsB1CKtlzOIPeaY4YKXQzpEvhFvaNAV4/view?usp=drive_link"
+                                        target="_blank" class="timeline-btn">View Certificate</a>
+                                </div>
+                            </div>
+
+                            <!-- April 2025 - Portfolio Launch -->
+                            <div class="timeline-block" data-icon="picture" data-month="Apr" data-year="2025">
+                                <div class="timeline-date-marker">
+                                    <span class="month">Apr</span>
+                                    <span class="year">2025</span>
+                                </div>
+                                <div class="timeline-content">
+                                    <h3 class="timeline-title">Portfolio Website Launch</h3>
+                                    <p class="timeline-description">Launched my personal portfolio website on April
+                                        10th, showcasing my projects and skills.</p>
+                                    <a href="#" class="timeline-btn">View Website</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Year 2026 Section -->
+                        <div id="timeline-year-2026" class="timeline-year-section">
+                            <!-- Expected future achievements -->
+                            <div class="timeline-block" data-icon="location" data-month="Jun" data-year="2026">
+                                <div class="timeline-date-marker">
+                                    <span class="month">Jun</span>
+                                    <span class="year">2026</span>
+                                </div>
+                                <div class="timeline-content">
+                                    <h3 class="timeline-title">Expected Graduation</h3>
+                                    <p class="timeline-description">Anticipated completion of B.Tech in Computer Science
+                                        from MBIT.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Achievements Section (New) -->
+            <section id="achievements" class="section">
+                <div class="section-title">
+                    <h2>Achievements</h2>
+                </div>
+                <div class="achievements-container">
+                    <div class="achievement-card">
+                        <div class="achievement-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="achievement-content">
+                            <h3>IEEE Ideathon Winner 2025</h3>
+                            <p>Recognized for innovative solution development</p>
+                            <a href="https://drive.google.com/file/d/1BmrIX761PlFf_DfQPqQARqE5hmuvk-pm/view?usp=drive_link"
+                                target="_blank" class="achievement-link">View Certificate</a>
+                        </div>
+                    </div>
+
+                    <div class="achievement-card">
+                        <div class="achievement-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div class="achievement-content">
+                            <h3>HackWithIndia Hackathon</h3>
+                            <p>Certificate of Participation</p>
+                            <a href="https://drive.google.com/file/d/1DsB1CKtlzOIPeaY4YKXQzpEvhFvaNAV4/view?usp=drive_link"
+                                target="_blank" class="achievement-link">View Certificate</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Resume section update in index.html -->
+            <section id="resume" class="section">
+                <div class="section-title">
+                    <h2>Resume</h2>
+                </div>
+                <div class="resume-tabs">
+                    <button class="resume-tab active" data-resume="aiml">AI/ML</button>
+                    <button class="resume-tab" data-resume="cybersecurity">Cybersecurity</button>
+                    <button class="resume-tab" data-resume="webdev">Web Development</button>
+                </div>
+
+                <div class="resume-content-container">
+                    <!-- AIML Resume -->
+                    <div class="resume-content active" id="aiml-resume">
+                        <div class="resume-preview">
+                            <iframe src="https://drive.google.com/file/d/1v1ufKIbYrmDD5AKqc0I2xe_tgbvkGAY4/preview"
+                                width="100%" height="600px"
+                                style="max-width: 800px; margin: 0 auto; display: block;"></iframe>
+                        </div>
+                        <div class="resume-actions">
+                            <a href="https://drive.google.com/file/d/1v1ufKIbYrmDD5AKqc0I2xe_tgbvkGAY4/view"
+                                target="_blank" class="view-resume-btn">
+                                <i class="fas fa-eye"></i> View Resume
+                            </a>
+                            <a href="https://drive.google.com/uc?export=download&id=1v1ufKIbYrmDD5AKqc0I2xe_tgbvkGAY4"
+                                class="download-resume-btn">
+                                <i class="fas fa-download"></i> Download Resume
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Cybersecurity Resume -->
+                    <div class="resume-content" id="cybersecurity-resume">
+                        <div class="resume-preview">
+                            <iframe
+                                src="https://drive.google.com/file/d/1fGKRbdPGASITAVuZmxvRLsbHx6nrC3N-/preview?embedded=true"
+                                width="100%" height="600px"
+                                style="max-width: 800px; margin: 0 auto; display: block;"></iframe>
+                        </div>
+                        <div class="resume-actions">
+                            <a href="https://drive.google.com/file/d/1fGKRbdPGASITAVuZmxvRLsbHx6nrC3N-/view"
+                                target="_blank" class="view-resume-btn">
+                                <i class="fas fa-eye"></i> View Resume
+                            </a>
+                            <a href="https://drive.google.com/uc?export=download&id=1fGKRbdPGASITAVuZmxvRLsbHx6nrC3N-"
+                                class="download-resume-btn">
+                                <i class="fas fa-download"></i> Download Resume
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Web Dev Resume -->
+                    <div class="resume-content" id="webdev-resume">
+                        <div class="resume-preview">
+                            <iframe
+                                src="https://drive.google.com/file/d/1D_27JzwtoLxy8qrcCFrhrlvpTt9y64G-/preview?embedded=true"
+                                width="100%" height="600px"
+                                style="max-width: 800px; margin: 0 auto; display: block;"></iframe>
+                        </div>
+                        <div class="resume-actions">
+                            <a href="https://drive.google.com/file/d/1D_27JzwtoLxy8qrcCFrhrlvpTt9y64G-/view"
+                                target="_blank" class="view-resume-btn">
+                                <i class="fas fa-eye"></i> View Resume
+                            </a>
+                            <a href="https://drive.google.com/uc?export=download&id=1D_27JzwtoLxy8qrcCFrhrlvpTt9y64G-"
+                                class="download-resume-btn">
+                                <i class="fas fa-download"></i> Download Resume
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Contact Section -->
+            <section id="contact" class="section">
+                <div class="section-title">
+                    <h2>Contact</h2>
+                </div>
+                <div class="contact-container">
+                    <div class="contact-info">
+                        <!-- Contact info styled like social links -->
+                        <div class="social-media-links">
+                            <h3>Contact Information</h3>
+                            <div class="social-grid">
+                                <a class="social-link">
+                                    <i class="fas fa-envelope"></i>
+                                    <span>example@gmail.com</span>
+                                </a>
+                                <a class="social-link">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>Anand, India</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Social Media Links -->
+                        <div class="social-media-links">
+                            <h3>Connect With Me</h3>
+                            <div class="social-grid">
+                                <a href="https://linkedin.com/in/" target="_blank" class="social-link">
+                                    <i class="fab fa-linkedin"></i>
+                                    <span>LinkedIn</span>
+                                </a>
+                                <!-- <a href="https://x.com/abhi__253__162" target="_blank" class="social-link">
+                                    <i class="fab fa-twitter"></i>
+                                    <span>Twitter</span>
+                                </a> -->
+                                <a href="https://github.com/Greninja110" target="_blank" class="social-link">
+                                    <i class="fab fa-github"></i>
+                                    <span>GitHub</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-form">
+                        <h3>Send me a message</h3>
+                        <p>Feel free to reach out with any questions or inquiries:</p>
+                        <form id="contact-form" class="form-container">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" name="name" placeholder="Your name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" placeholder="Your email address" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" name="message" rows="5" placeholder="Your message"
+                                    required></textarea>
+                            </div>
+
+                            <div class="form-status" id="form-status"></div>
+
+                            <button type="submit" class="submit-btn">
+                                <span class="submit-text">Send Message</span>
+                                <span class="submit-loader" style="display: none;">
+                                    <i class="fas fa-spinner fa-spin"></i>
+                                </span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+            <!-- "Last updated" div will be appended here by JS -->
+        </main>
+    </div>
+    <!-- Floating hamburger button for mobile -->
+    <button id="floating-hamburger" class="floating-hamburger" aria-label="Toggle Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    <!-- Backdrop overlay for mobile menu -->
+    <div id="mobile-backdrop" class="mobile-backdrop"></div>
+
+    <!-- NEW MOBILE DRAWER MENU ELEMENT -->
+    <div id="mobile-drawer-menu" class="mobile-drawer">
+        <div class="drawer-grab-handle"></div>
+        <div class="drawer-header">
+            <h3 class="drawer-title">Navigation</h3>
+        </div>
+        <nav class="drawer-nav">
+            <!-- Manually list your navigation items here.
+                 The JS will attempt to sync their 'active' state. -->
+            <ul>
+                <li><a href="#home" class="nav-link" data-section="home"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#projects" class="nav-link" data-section="projects"><i class="fas fa-code-branch"></i> Projects</a></li>
+                <li><a href="#timeline" class="nav-link" data-section="timeline"><i class="fas fa-history"></i> Timeline</a></li>
+                <li><a href="#achievements" class="nav-link" data-section="achievements"><i class="fas fa-trophy"></i> Achievements</a></li>
+                <li><a href="#resume" class="nav-link" data-section="resume"><i class="fas fa-file-alt"></i> Resume</a></li>
+                <li><a href="#contact" class="nav-link" data-section="contact"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+    
+    <!-- Custom JavaScript -->
+    <script src="js/preloader.js"></script>
+    <script src="js/animation.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/mobile-nav.js"></script>
+    <script src="js/timeline.js"></script>
+    <script src="js/custom-timeline.js"></script>
+    <script src="js/resume.js"></script>
+    <script src="js/contact.js"></script>
+    <!-- <script src="production/bundle.js"></script> -->
+    <script src="js/floating-hamburger.js"></script>
+
+</body>
+
+</html>

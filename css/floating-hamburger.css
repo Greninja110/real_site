@@ -1,0 +1,219 @@
+
+/* Floating Hamburger Button and Mobile Drawer Navigation */
+
+/* ===== Floating Hamburger Button (styles largely unchanged) ===== */
+#floating-hamburger {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    z-index: 2000; /* Highest z-index */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s ease;
+    display: none; /* Hidden by default, shown by JS on mobile */
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0;
+}
+
+.light-theme #floating-hamburger {
+    background-color: var(--light-accent);
+}
+
+.dark-theme #floating-hamburger {
+    background-color: var(--dark-accent);
+}
+
+#floating-hamburger:hover {
+    transform: scale(1.05);
+}
+/* ... (other :hover, :active, span animation styles for FAB are the same as before) ... */
+.light-theme #floating-hamburger:hover { box-shadow: 0 6px 16px rgba(67, 97, 238, 0.4); }
+.dark-theme #floating-hamburger:hover { box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4); }
+#floating-hamburger:active { transform: scale(0.95); }
+#floating-hamburger span {
+    display: block; width: 22px; height: 3px; background-color: white;
+    border-radius: 2px; transition: transform 0.3s ease, opacity 0.3s ease; margin: 2px 0;
+}
+#floating-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+#floating-hamburger.open span:nth-child(2) { opacity: 0; transform: translateX(-10px); }
+#floating-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+
+/* ===== Mobile Backdrop (styles unchanged) ===== */
+#mobile-backdrop {
+    display: none; /* Managed by JS */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* Dimming effect */
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    z-index: 1800; /* Below drawer but above content */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+#mobile-backdrop.active {
+    opacity: 1;
+}
+
+/* ===== NEW: Styles for the Separate Mobile Drawer (#mobile-drawer-menu) ===== */
+.mobile-drawer { /* This targets #mobile-drawer-menu */
+    position: fixed !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    top: auto !important;
+    height: auto !important;
+    max-height: 70vh !important; /* Can be adjusted */
+    width: 100% !important;
+    background-color: var(--light-card-bg) !important; /* Default, themed below */
+    transform: translateY(100%) !important; /* Initially hidden below screen */
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+    border-top-left-radius: 20px !important;
+    border-top-right-radius: 20px !important;
+    box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.2) !important;
+    z-index: 1900 !important; /* Between backdrop and FAB */
+    overflow: hidden !important; /* Main drawer overflow hidden, inner nav scrolls */
+    display: flex !important;
+    flex-direction: column !important;
+    visibility: hidden; /* Hidden until .open is added by JS */
+}
+
+.dark-theme .mobile-drawer {
+    background-color: var(--dark-card-bg) !important;
+}
+
+.mobile-drawer.open { /* Class added by JS when FAB is clicked */
+    transform: translateY(0) !important;
+    visibility: visible !important;
+}
+
+/* Grab Handle for the new Drawer */
+.mobile-drawer .drawer-grab-handle {
+    display: block;
+    width: 40px;
+    height: 5px;
+    border-radius: 2.5px;
+    margin: 10px auto 5px; /* top, horizontal-auto, bottom */
+    background-color: rgba(128, 128, 128, 0.3);
+    flex-shrink: 0; /* Prevent shrinking if content is too much */
+}
+.dark-theme .mobile-drawer .drawer-grab-handle {
+    background-color: rgba(200, 200, 200, 0.3);
+}
+
+/* Header inside the new Drawer */
+.mobile-drawer .drawer-header {
+    padding: 10px 20px !important;
+    margin-bottom: 0 !important;
+    border-bottom: 1px solid;
+    text-align: center;
+    flex-shrink: 0;
+}
+.light-theme .mobile-drawer .drawer-header {
+    border-bottom-color: var(--light-border, #e0e0e0) !important;
+}
+.dark-theme .mobile-drawer .drawer-header {
+    border-bottom-color: var(--dark-border, #334155) !important;
+}
+
+.mobile-drawer .drawer-title {
+    font-size: 1.2rem !important;
+    font-weight: 600 !important;
+    margin: 0 !important;
+}
+.light-theme .mobile-drawer .drawer-title { color: var(--light-title); }
+.dark-theme .mobile-drawer .drawer-title { color: var(--dark-title); }
+
+/* Navigation list inside the new Drawer */
+.mobile-drawer .drawer-nav {
+    padding: 5px 15px 20px 15px !important; /* top, sides, bottom */
+    overflow-y: auto !important;
+    flex-grow: 1 !important; /* Takes remaining scrollable space */
+    width: 100% !important;
+}
+
+.mobile-drawer .drawer-nav ul {
+    padding: 0 !important;
+    list-style: none !important;
+    flex-direction: column !important; /* Should already be default for ul > li */
+}
+
+.mobile-drawer .drawer-nav .nav-link {
+    display: flex !important;
+    align-items: center !important;
+    padding: 12px 15px !important;
+    margin-bottom: 8px !important;
+    border-radius: 8px !important;
+    font-size: 1rem !important;
+    font-weight: 500 !important;
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease !important;
+    opacity: 0; /* For staggered animation */
+    transform: translateY(15px); /* For staggered animation */
+    animation: drawerLinkFadeInSeparate 0.3s ease-out forwards; /* Unique name */
+    animation-delay: calc(0.1s + var(--nav-index, 0) * 0.04s);
+}
+
+@keyframes drawerLinkFadeInSeparate {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.light-theme .mobile-drawer .drawer-nav .nav-link { color: var(--light-text); }
+.dark-theme .mobile-drawer .drawer-nav .nav-link { color: var(--dark-text); }
+
+.light-theme .mobile-drawer .drawer-nav .nav-link:hover {
+    background-color: rgba(67, 97, 238, 0.1);
+    color: var(--light-accent);
+}
+.dark-theme .mobile-drawer .drawer-nav .nav-link:hover {
+    background-color: rgba(99, 102, 241, 0.15);
+    color: var(--dark-accent);
+}
+
+/* Active state for links inside the new drawer */
+.light-theme .mobile-drawer .drawer-nav .nav-link.active {
+    background-color: var(--light-accent) !important;
+    color: white !important;
+}
+.dark-theme .mobile-drawer .drawer-nav .nav-link.active {
+    background-color: var(--dark-accent) !important;
+    color: white !important;
+}
+
+.mobile-drawer .drawer-nav .nav-link i {
+    margin-right: 15px !important;
+    font-size: 1.2em !important;
+    width: 24px !important;
+    text-align: center !important;
+}
+
+/* Hide floating hamburger and the new drawer on desktop */
+@media (min-width: 768px) {
+    #floating-hamburger,
+    #mobile-backdrop,
+    .mobile-drawer { /* Targets #mobile-drawer-menu */
+        display: none !important;
+    }
+}
+
+/* Ensure the original TOP HEADER's hamburger (#mobile-toggle) is hidden on mobile,
+   as the FAB is now the trigger. Your existing aside.sidebar will still function as the top bar. */
+@media (max-width: 767px) {
+    aside.sidebar .sidebar-header #mobile-toggle { /* If #mobile-toggle is inside original sidebar header */
+        display: none !important;
+    }
+}
