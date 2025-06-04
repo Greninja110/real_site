@@ -1045,3 +1045,18 @@ p {
         top: 10px !important;
     }
 }
+/* Add to css/style.css */
+.sidebar-title a {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.light-theme .sidebar-title a:hover {
+    color: var(--light-accent);
+}
+
+.dark-theme .sidebar-title a:hover {
+    color: var(--dark-accent);
+}

@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="css/resume-fix.css">
     <link rel="stylesheet" href="css/theme-transitions.css">
     <link rel="stylesheet" href="css/floating-hamburger.css">
+    <link rel="stylesheet" href="css/image-overlay.css">
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
@@ -54,7 +55,7 @@
                     <img src="assets/images/icons/light2.svg" alt="Abhijeet Logo" class="profile-pic-small"
                         id="sidebar-logo">
                 </div>
-                <h2 class="sidebar-title">Abhijeet Sahoo</h2>
+                <h2 class="sidebar-title"><a href="#home" id="title-home-link">Abhijeet Sahoo</a></h2>
 
                 <!-- Theme toggle for mobile -->
                 <div class="theme-toggle mobile-theme-toggle">
@@ -799,15 +800,28 @@
                  The JS will attempt to sync their 'active' state. -->
             <ul>
                 <li><a href="#home" class="nav-link" data-section="home"><i class="fas fa-home"></i> Home</a></li>
-                <li><a href="#projects" class="nav-link" data-section="projects"><i class="fas fa-code-branch"></i> Projects</a></li>
-                <li><a href="#timeline" class="nav-link" data-section="timeline"><i class="fas fa-history"></i> Timeline</a></li>
-                <li><a href="#achievements" class="nav-link" data-section="achievements"><i class="fas fa-trophy"></i> Achievements</a></li>
-                <li><a href="#resume" class="nav-link" data-section="resume"><i class="fas fa-file-alt"></i> Resume</a></li>
-                <li><a href="#contact" class="nav-link" data-section="contact"><i class="fas fa-envelope"></i> Contact</a></li>
+                <li><a href="#projects" class="nav-link" data-section="projects"><i class="fas fa-code-branch"></i>
+                        Projects</a></li>
+                <li><a href="#timeline" class="nav-link" data-section="timeline"><i class="fas fa-history"></i>
+                        Timeline</a></li>
+                <li><a href="#achievements" class="nav-link" data-section="achievements"><i class="fas fa-trophy"></i>
+                        Achievements</a></li>
+                <li><a href="#resume" class="nav-link" data-section="resume"><i class="fas fa-file-alt"></i> Resume</a>
+                </li>
+                <li><a href="#contact" class="nav-link" data-section="contact"><i class="fas fa-envelope"></i>
+                        Contact</a></li>
             </ul>
         </nav>
     </div>
-    
+    <!-- Add this before the script tags in index.html -->
+<!-- Image Overlay for Logo and Profile -->
+<div id="image-overlay" class="image-overlay">
+    <div class="overlay-content">
+        <span class="close-overlay">&times;</span>
+        <img id="overlay-image" src="" alt="Enlarged Image">
+    </div>
+</div>
+
     <!-- Custom JavaScript -->
     <script src="js/preloader.js"></script>
     <script src="js/animation.js"></script>
@@ -820,6 +834,7 @@
     <script src="js/contact.js"></script>
     <!-- <script src="production/bundle.js"></script> -->
     <script src="js/floating-hamburger.js"></script>
+    <script src="js/image-overlay.js"></script>
 
 </body>
 

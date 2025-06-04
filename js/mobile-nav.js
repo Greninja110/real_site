@@ -246,6 +246,23 @@ function initMobileNav() {
         console.error("Mobile toggle or sidebar not found. Navigation not initialized.");
         return;
     }
+    const sidebarTitle = document.querySelector('.sidebar-title a');
+    if (sidebarTitle) {
+        sidebarTitle.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            // Find the home nav link and trigger its click
+            const homeLink = document.querySelector('.nav-link[data-section="home"]');
+            if (homeLink) {
+                homeLink.click();
+            }
+
+            // Close mobile menu if open
+            if (sidebar && sidebar.classList.contains('open')) {
+                sidebar.classList.remove('open');
+            }
+        });
+    }
 
     handleDeviceLayout();
 
@@ -379,13 +396,13 @@ function initMobileNav() {
                 e.stopPropagation();
                 return;
             }
-            
+
             // Also check if modal is currently open
             const modal = document.getElementById('project-modal');
             if (modal && modal.style.display === 'flex') {
                 return; // Don't navigate if modal is open
             }
-            
+
             e.preventDefault();
             const sectionId = this.getAttribute('data-section');
             const targetSection = document.getElementById(sectionId);

@@ -23,6 +23,8 @@ document.addEventListener('DOMContentLoaded', function () {
 function initPortfolio() {
     // Navigation - This must run first to set up sections correctly
     initNavigation();
+    // Add this line inside initPortfolio() function
+    initTitleLink();
 
     // Projects filtering and modal
     initProjects();
@@ -39,6 +41,33 @@ function initPortfolio() {
     // Set animation order for elements
     setAnimationOrder();
 }
+
+// Add to js/main.js - inside the initPortfolio() function
+function initTitleLink() {
+    const titleLink = document.getElementById('title-home-link');
+    if (titleLink) {
+        titleLink.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            // Get home section
+            const homeSection = document.getElementById('home');
+            if (!homeSection) return;
+
+            // Get all nav links and find the home link
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                if (link.getAttribute('data-section') === 'home') {
+                    // Simulate a click on the home nav link
+                    link.click();
+                    console.log('[Navigation] Title clicked, navigated to home section');
+                }
+            });
+        });
+        console.log('[Main] Title link initialized');
+    }
+}
+
+
 
 /**
  * Function to ensure URL matches visible section

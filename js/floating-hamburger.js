@@ -4,7 +4,7 @@
  * Handles the floating hamburger button and a SEPARATE drawer navigation
  */
 
-(function() {
+(function () {
     'use strict';
 
     let isInitialized = false;
@@ -32,6 +32,17 @@
             console.error('[FloatingHamburger] Essential elements (FAB, backdrop, or mobile-drawer-menu) not found.');
             return;
         }
+        // Add in js/floating-hamburger.js - inside init() function
+        // Handle interaction with image overlay
+        const imageOverlay = document.getElementById('image-overlay');
+        if (imageOverlay) {
+            // If image overlay is open, close the mobile drawer
+            imageOverlay.addEventListener('click', function () {
+                if (mobileDrawerMenuElement && mobileDrawerMenuElement.classList.contains('open')) {
+                    closeMenu();
+                }
+            });
+        }
 
         if (isInitialized) return;
 
@@ -42,7 +53,7 @@
 
         // Close drawer when a nav link inside the NEW drawer is clicked
         mobileDrawerMenuElement.querySelectorAll('.drawer-nav .nav-link').forEach(link => {
-            link.addEventListener('click', function() { // Use 'function' to preserve 'this'
+            link.addEventListener('click', function () { // Use 'function' to preserve 'this'
                 if (mobileDrawerMenuElement.classList.contains('open')) {
                     closeMenu();
                     // Update active state for drawer links
@@ -111,7 +122,7 @@
         mobileBackdrop.classList.remove('active');
         setTimeout(() => {
             if (!mobileDrawerMenuElement.classList.contains('open')) {
-                 mobileBackdrop.style.display = 'none';
+                mobileBackdrop.style.display = 'none';
             }
         }, 300); // Match CSS transition duration for backdrop
 
@@ -132,8 +143,8 @@
                 closeMenu(); // Gracefully close if open
             }
             if (mobileBackdrop) {
-                 mobileBackdrop.style.display = 'none';
-                 mobileBackdrop.classList.remove('active');
+                mobileBackdrop.style.display = 'none';
+                mobileBackdrop.classList.remove('active');
             }
             if (body) {
                 body.style.overflow = '';
@@ -160,7 +171,7 @@
                 activeSectionFound = true;
             }
         }
-        
+
         // Fallback to URL hash if main sidebar link isn't immediately active (e.g., page load)
         if (!activeSectionFound) {
             const currentHash = window.location.hash.substring(1) || 'home'; // Default to 'home'
@@ -170,7 +181,7 @@
             }
         }
     }
-    
+
     // Function to update active state for drawer links when one is clicked directly
     function updateDrawerLinkActiveState(clickedLinkElement) {
         if (!mobileDrawerMenuElement) return;
@@ -190,11 +201,11 @@
     }
 
     // Expose for potential external calls or debugging
-    window.MobileDrawerMenu = { 
-        open: openMenu, 
-        close: closeMenu, 
-        toggle: toggleMenu, 
-        syncLinks: syncDrawerLinksWithMainNavigation 
+    window.MobileDrawerMenu = {
+        open: openMenu,
+        close: closeMenu,
+        toggle: toggleMenu,
+        syncLinks: syncDrawerLinksWithMainNavigation
     };
 
 })();
