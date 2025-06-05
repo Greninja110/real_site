@@ -1,0 +1,174 @@
+/* 
+ * Tablet CSS for Abhijeet's Portfolio Website
+ * Handles specific tablet-related styling (both portrait and landscape)
+ */
+
+/* Common tablet styles (both orientations) */
+@media (min-width: 768px) and (max-width: 1024px) {
+    /* Smaller font size for navbar links to prevent overflow */
+    .nav-link {
+        font-size: 0.85rem !important;
+        padding: 0.5rem 0.6rem !important;
+        white-space: nowrap !important;
+    }
+    
+    /* Center navbar elements in top nav mode */
+    .single-page-mode .sidebar {
+        display: flex !important;
+        justify-content: space-between !important;
+    }
+    
+    .single-page-mode .sidebar-nav {
+        flex-grow: 2 !important;
+        display: flex !important;
+        justify-content: center !important;
+    }
+    
+    /* Email overflow fix */
+    .social-link, .social-grid a {
+        word-break: break-word !important;
+        font-size: 0.85rem !important;
+        padding: 1.25rem !important;
+    }
+    
+    /* Project cards same size */
+    .project-card {
+        height: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+    }
+    
+    .project-image {
+        height: 11rem !important;
+    }
+    
+    .project-info {
+        flex: 1 !important;
+        display: flex !important;
+        flex-direction: column !important;
+    }
+    
+    .project-info p {
+        flex: 1 !important;
+    }
+    
+    .projects-grid {
+        display: grid !important;
+        grid-template-columns: repeat(auto-fill, minmax(18.75rem, 1fr)) !important;
+        gap: 1.5rem !important;
+    }
+    
+    /* Timeline mobile-like style for ALL tablet views */
+    .timeline::before {
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+    }
+    
+    .timeline-block {
+        flex-direction: column !important;
+        align-items: center !important;
+        padding-top: 1.875rem !important;
+        margin-bottom: 2.5rem !important;
+    }
+    
+    .timeline-date-marker {
+        position: relative !important;
+        top: 0 !important;
+        left: 0 !important;
+        transform: none !important;
+        margin-bottom: 1rem !important;
+    }
+    
+    .timeline-content {
+        width: 90% !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        margin-top: 0 !important;
+    }
+    
+    .timeline-content::before {
+        display: none !important;
+    }
+    
+    /* Fix for hamburger button */
+    #mobile-toggle, .mobile-toggle {
+        width: 3rem !important;
+        height: 2.75rem !important;
+        padding: 0.625rem !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+    
+    #mobile-toggle span, .mobile-toggle span {
+        width: 1.5rem !important;
+        height: 0.1875rem !important;
+        margin: 0.1875rem 0 !important;
+    }
+}
+
+/* Tablet portrait specific styles */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+    /* Personal information box 1x4 matrix */
+    .info-grid {
+        grid-template-columns: 1fr !important;
+        grid-template-rows: repeat(4, auto) !important;
+    }
+    
+    /* Contact section 2 rows x 1 column */
+    .contact-container {
+        grid-template-columns: 1fr !important;
+        grid-template-rows: auto auto !important;
+        gap: 2rem !important;
+    }
+}
+
+/* Tablet landscape specific styles */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    /* Contact section 2 rows x 1 column for LEFT NAV mode too */
+    body:not(.single-page-mode) .contact-container {
+        grid-template-columns: 1fr !important;
+        grid-template-rows: auto auto !important;
+        gap: 2rem !important;
+    }
+    
+    /* Fix email overflow in contact section */
+    .contact-container {
+        gap: 1.5rem !important;
+    }
+    
+    /* Even out project cards */
+    .project-card {
+        min-height: 25rem !important;
+    }
+}
+
+/* Smaller tablets (768px - 900px) */
+@media (min-width: 768px) and (max-width: 900px) {
+    .nav-link {
+        font-size: 0.75rem !important;
+        padding: 0.4rem 0.5rem !important;
+    }
+    
+    .single-page-mode .sidebar-title {
+        font-size: 1rem !important;
+        margin-right: 0.5rem !important;
+    }
+}
+
+/* Medium tablets (901px - 1000px) */
+@media (min-width: 901px) and (max-width: 1000px) {
+    .nav-link {
+        font-size: 0.8rem !important;
+        padding: 0.45rem 0.55rem !important;
+    }
+}
+
+/* Larger tablets (1001px - 1024px) */
+@media (min-width: 1001px) and (max-width: 1024px) {
+    .nav-link {
+        font-size: 0.85rem !important;
+        padding: 0.5rem 0.6rem !important;
+    }
+}

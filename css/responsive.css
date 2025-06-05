@@ -597,24 +597,29 @@ TABLET AND DESKTOP STYLES (min-width: 768px)
     }
 }
 
-/* For tablet - adjust nav links spacing */
+/* Tablet specific adjustments */
 @media (min-width: 768px) and (max-width: 1023px) {
     .single-page-mode .sidebar-nav ul {
-        gap: 5px; /* Slightly less gap for tablets */
+        gap: 0.3125rem; /* Slightly less gap for tablets, using rem */
     }
     .single-page-mode .nav-link {
         padding: 0.5rem 0.6rem;
         font-size: 0.9rem;
     }
-     .single-page-mode .sidebar-title {
+    .single-page-mode .sidebar-title {
         font-size: 1.1rem; /* Smaller title on tablet */
-        margin-right: 10px; /* Less space after title */
+        margin-right: 0.625rem; /* Less space after title */
     }
     .single-page-mode .mobile-toggle {
-        margin-right: 10px; /* Less space after hamburger */
+        margin-right: 0.625rem; /* Less space after hamburger */
     }
     .single-page-mode .profile-pic-container {
-        margin-right: 8px;
+        margin-right: 0.5rem;
+    }
+    
+    /* Center navbar elements */
+    .single-page-mode .sidebar-nav {
+        justify-content: center;
     }
 }
 
@@ -997,5 +1002,19 @@ body.single-page-mode .section:last-of-type {
     /* --- Hide the FLOATING ACTION BUTTON (#floating-hamburger) on desktop --- */
     #floating-hamburger {
         display: none !important;
+    }
+}
+/* Better hamburger button for tablets */
+@media (min-width: 768px) and (max-width: 1024px) {
+    #mobile-toggle, .mobile-toggle {
+        width: 3rem !important;
+        height: 2.75rem !important;
+        padding: 0.625rem !important;
+    }
+    
+    #mobile-toggle span, .mobile-toggle span {
+        width: 1.5rem !important;
+        height: 0.1875rem !important;
+        margin: 0.1875rem 0 !important;
     }
 }

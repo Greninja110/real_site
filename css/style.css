@@ -1060,3 +1060,9 @@ p {
 .dark-theme .sidebar-title a:hover {
     color: var(--dark-accent);
 }
+/* Add better word-break for emails */
+.social-link span,
+.info-value,
+.contact-text p {
+    word-break: break-word;
+}

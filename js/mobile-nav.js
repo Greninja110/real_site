@@ -454,6 +454,13 @@ function handleDeviceLayout() {
         console.error("One or more critical layout elements are missing. Aborting handleDeviceLayout.");
         return;
     }
+    // Check if we're on a tablet
+    if (window.innerWidth >= 768 && window.innerWidth <= 1024) {
+        // Call tablet-specific initialization if available
+        if (typeof window.tabletJS !== 'undefined' && typeof window.tabletJS.init === 'function') {
+            window.tabletJS.init();
+        }
+    }
 
     [sidebar, content, sidebarFooter, sidebarHeader, sidebarNav, mainProfilePicContainer, mainSidebarTitle, hamburgerButton, lastUpdatedElement].forEach(el => {
         if (el) el.style.cssText = '';
