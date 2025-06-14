@@ -351,8 +351,8 @@ function initProjects() {
             demo: '#',
             status: 'completed'
         },
-        'Attendance Management System For a College': {
-            title: 'Attendance Management System For a College',
+        'Django Based College Attendance System': {
+            title: 'Django Based College Attendance System',
             description: 'A fully-featured attendance management system built with Django, JavaScript, and MySQL. This project includes user authentication, student and faculty management, attendance tracking, and reporting.',
             functionality: 'Faculty can mark attendance, generate reports, and track student performance. Students can view their attendance records and get notifications for low attendance. Administrators can manage courses, faculty, and student data through a dashboard.',
             image: 'assets/images/projects/attend.png',
@@ -369,12 +369,48 @@ function initProjects() {
             demo: '#',
             status: 'ongoing'
         },
-        'AI-Powered Network Intrusion Detection System': {
-            title: 'AI-Powered Network Intrusion Detection System',
-            description: 'A network security system that uses machine learning to detect and prevent intrusions. Built with Python, TensorFlow, and network monitoring tools.',
-            functionality: 'The system analyzes network traffic in real-time to identify suspicious patterns and potential attacks. It uses a combination of rule-based detection and machine learning models trained on network traffic datasets to identify and flag anomalies.',
-            image: 'assets/images/projects/nids.png',
-            github: 'https://github.com/Greninja110/ai-nids',
+        // 'AI-Powered Network Intrusion Detection System': {
+        //     title: 'AI-Powered Network Intrusion Detection System',
+        //     description: 'A network security system that uses machine learning to detect and prevent intrusions. Built with Python, TensorFlow, and network monitoring tools.',
+        //     functionality: 'The system analyzes network traffic in real-time to identify suspicious patterns and potential attacks. It uses a combination of rule-based detection and machine learning models trained on network traffic datasets to identify and flag anomalies.',
+        //     image: 'assets/images/projects/nids.png',
+        //     github: 'https://github.com/Greninja110/ai-nids',
+        //     demo: '#',
+        //     status: 'ongoing'
+        // },
+        'StoryGuard': {
+            title: 'StoryGuard',
+            description: 'A mobile application for augmented reality camera experiences. Built using Kotlin and ARCore, this app overlays digital information onto the real world through the camera view.',
+            functionality: 'The app allows users to identify objects in real-time, place virtual objects in the real world, and interact with AR elements. It uses machine learning for object recognition and ARCore for spatial tracking and rendering.',
+            image: 'assets/images/projects/ar.png',
+            github: 'https://github.com/Greninja110/arcam',
+            demo: '#',
+            status: 'ongoing'
+        },
+        'Predict Calorie Expenditure': {
+            title: 'Predict Calorie Expenditure',
+            description: 'A mobile application for augmented reality camera experiences. Built using Kotlin and ARCore, this app overlays digital information onto the real world through the camera view.',
+            functionality: 'The app allows users to identify objects in real-time, place virtual objects in the real world, and interact with AR elements. It uses machine learning for object recognition and ARCore for spatial tracking and rendering.',
+            image: 'assets/images/projects/ar.png',
+            github: 'https://github.com/Greninja110/arcam',
+            demo: '#',
+            status: 'ongoing'
+        },
+        'Portfolio Website': {
+            title: 'Portfolio Website',
+            description: 'A mobile application for augmented reality camera experiences. Built using Kotlin and ARCore, this app overlays digital information onto the real world through the camera view.',
+            functionality: 'The app allows users to identify objects in real-time, place virtual objects in the real world, and interact with AR elements. It uses machine learning for object recognition and ARCore for spatial tracking and rendering.',
+            image: 'assets/images/projects/ar.png',
+            github: 'https://github.com/Greninja110/arcam',
+            demo: '#',
+            status: 'ongoing'
+        },
+        'Predicting Optimal Fertilizers': {
+            title: 'Predicting Optimal Fertilizers',
+            description: 'A mobile application for augmented reality camera experiences. Built using Kotlin and ARCore, this app overlays digital information onto the real world through the camera view.',
+            functionality: 'The app allows users to identify objects in real-time, place virtual objects in the real world, and interact with AR elements. It uses machine learning for object recognition and ARCore for spatial tracking and rendering.',
+            image: 'assets/images/projects/ar.png',
+            github: 'https://github.com/Greninja110/arcam',
             demo: '#',
             status: 'ongoing'
         }
