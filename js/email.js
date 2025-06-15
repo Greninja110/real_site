@@ -187,126 +187,126 @@ function showError(submitBtn, formStatus, message) {
 /**
  * Setup logger for debugging
  */
-function setupLogger() {
-    // Create a log array for contact form events
-    const contactFormLogs = [];
+// function setupLogger() {
+//     // Create a log array for contact form events
+//     const contactFormLogs = [];
     
-    // Store original console methods if not already overridden
-    if (!window.originalConsoleLog) {
-        window.originalConsoleLog = console.log;
-        window.originalConsoleError = console.error;
-        window.originalConsoleWarn = console.warn;
-    }
+//     // Store original console methods if not already overridden
+//     if (!window.originalConsoleLog) {
+//         window.originalConsoleLog = console.log;
+//         window.originalConsoleError = console.error;
+//         window.originalConsoleWarn = console.warn;
+//     }
     
-    // Override console.log to also save to our log array
-    console.log = function() {
-        const args = Array.from(arguments);
-        let message;
+//     // Override console.log to also save to our log array
+//     console.log = function() {
+//         const args = Array.from(arguments);
+//         let message;
         
-        // Try to format objects as JSON
-        try {
-            message = args.map(arg => {
-                if (typeof arg === 'object' && arg !== null) {
-                    return JSON.stringify(arg);
-                }
-                return String(arg);
-            }).join(' ');
-        } catch (e) {
-            message = args.join(' ');
-        }
+//         // Try to format objects as JSON
+//         try {
+//             message = args.map(arg => {
+//                 if (typeof arg === 'object' && arg !== null) {
+//                     return JSON.stringify(arg);
+//                 }
+//                 return String(arg);
+//             }).join(' ');
+//         } catch (e) {
+//             message = args.join(' ');
+//         }
         
-        const timestamp = new Date().toISOString();
+//         const timestamp = new Date().toISOString();
         
-        // Add to contact form logs with timestamp
-        contactFormLogs.push(`[${timestamp}] [LOG] ${message}`);
+//         // Add to contact form logs with timestamp
+//         contactFormLogs.push(`[${timestamp}] [LOG] ${message}`);
         
-        // Trim logs if too long
-        if (contactFormLogs.length > 1000) {
-            contactFormLogs.splice(0, contactFormLogs.length - 500);
-        }
+//         // Trim logs if too long
+//         if (contactFormLogs.length > 1000) {
+//             contactFormLogs.splice(0, contactFormLogs.length - 500);
+//         }
         
-        // Call original console.log
-        window.originalConsoleLog.apply(console, arguments);
-    };
+//         // Call original console.log
+//         window.originalConsoleLog.apply(console, arguments);
+//     };
     
-    // Override console.error
-    console.error = function() {
-        const args = Array.from(arguments);
-        const message = args.join(' ');
-        const timestamp = new Date().toISOString();
+//     // Override console.error
+//     console.error = function() {
+//         const args = Array.from(arguments);
+//         const message = args.join(' ');
+//         const timestamp = new Date().toISOString();
         
-        // Add to contact form logs with timestamp
-        contactFormLogs.push(`[${timestamp}] [ERROR] ${message}`);
+//         // Add to contact form logs with timestamp
+//         contactFormLogs.push(`[${timestamp}] [ERROR] ${message}`);
         
-        // Call original console.error
-        window.originalConsoleError.apply(console, arguments);
-    };
+//         // Call original console.error
+//         window.originalConsoleError.apply(console, arguments);
+//     };
     
-    // Override console.warn
-    console.warn = function() {
-        const args = Array.from(arguments);
-        const message = args.join(' ');
-        const timestamp = new Date().toISOString();
+//     // Override console.warn
+//     console.warn = function() {
+//         const args = Array.from(arguments);
+//         const message = args.join(' ');
+//         const timestamp = new Date().toISOString();
         
-        // Add to contact form logs with timestamp
-        contactFormLogs.push(`[${timestamp}] [WARN] ${message}`);
+//         // Add to contact form logs with timestamp
+//         contactFormLogs.push(`[${timestamp}] [WARN] ${message}`);
         
-        // Call original console.warn
-        window.originalConsoleWarn.apply(console, arguments);
-    };
+//         // Call original console.warn
+//         window.originalConsoleWarn.apply(console, arguments);
+//     };
     
-    // Add function to download logs
-    window.downloadContactFormLogs = function() {
-        const logText = contactFormLogs.join('\n');
-        const blob = new Blob([logText], { type: 'text/plain' });
-        const url = URL.createObjectURL(blob);
+//     // Add function to download logs
+//     window.downloadContactFormLogs = function() {
+//         const logText = contactFormLogs.join('\n');
+//         const blob = new Blob([logText], { type: 'text/plain' });
+//         const url = URL.createObjectURL(blob);
         
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'contact-form-logs.txt';
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
+//         const a = document.createElement('a');
+//         a.href = url;
+//         a.download = 'contact-form-logs.txt';
+//         document.body.appendChild(a);
+//         a.click();
+//         document.body.removeChild(a);
+//         URL.revokeObjectURL(url);
         
-        console.log("Contact form logs downloaded");
-    };
+//         console.log("Contact form logs downloaded");
+//     };
     
-    // Add debug button if in development environment
-    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-        const debugBtn = document.createElement('button');
-        debugBtn.textContent = 'Download Form Logs';
-        debugBtn.style.position = 'fixed';
-        debugBtn.style.bottom = '10px';
-        debugBtn.style.left = '10px';
-        debugBtn.style.zIndex = '9999';
-        debugBtn.style.fontSize = '12px';
-        debugBtn.style.padding = '5px 10px';
-        debugBtn.style.background = '#333';
-        debugBtn.style.color = '#fff';
-        debugBtn.style.border = 'none';
-        debugBtn.style.borderRadius = '4px';
-        debugBtn.style.cursor = 'pointer';
-        debugBtn.style.opacity = '0.6';
+//     // Add debug button if in development environment
+//     if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+//         const debugBtn = document.createElement('button');
+//         debugBtn.textContent = 'Download Form Logs';
+//         debugBtn.style.position = 'fixed';
+//         debugBtn.style.bottom = '10px';
+//         debugBtn.style.left = '10px';
+//         debugBtn.style.zIndex = '9999';
+//         debugBtn.style.fontSize = '12px';
+//         debugBtn.style.padding = '5px 10px';
+//         debugBtn.style.background = '#333';
+//         debugBtn.style.color = '#fff';
+//         debugBtn.style.border = 'none';
+//         debugBtn.style.borderRadius = '4px';
+//         debugBtn.style.cursor = 'pointer';
+//         debugBtn.style.opacity = '0.6';
         
-        debugBtn.addEventListener('mouseenter', () => {
-            debugBtn.style.opacity = '1';
-        });
+//         debugBtn.addEventListener('mouseenter', () => {
+//             debugBtn.style.opacity = '1';
+//         });
         
-        debugBtn.addEventListener('mouseleave', () => {
-            debugBtn.style.opacity = '0.6';
-        });
+//         debugBtn.addEventListener('mouseleave', () => {
+//             debugBtn.style.opacity = '0.6';
+//         });
         
-        debugBtn.addEventListener('click', window.downloadContactFormLogs);
+//         debugBtn.addEventListener('click', window.downloadContactFormLogs);
         
-        // Append to body after a short delay to ensure DOM is ready
-        setTimeout(() => {
-            document.body.appendChild(debugBtn);
-        }, 1000);
-    }
+//         // Append to body after a short delay to ensure DOM is ready
+//         setTimeout(() => {
+//             document.body.appendChild(debugBtn);
+//         }, 1000);
+//     }
     
-    console.log("Contact form logger initialized");
-}
+//     console.log("Contact form logger initialized");
+// }
 
 // Make functions globally accessible
 window.initContactForm = initContactForm;

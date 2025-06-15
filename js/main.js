@@ -344,8 +344,8 @@ function initProjects() {
     const projectData = {
         'Object Detection and Recognition': {
             title: 'Object Detection and Recognition',
-            description: 'A machine learning model that can recognize and classify objects in images with high accuracy. Built using TensorFlow and Keras, this project demonstrates deep learning techniques including convolutional neural networks (CNNs).',
-            functionality: 'The system can identify over 1,000 different object categories with 95% accuracy. It includes a user-friendly web interface for uploading images and receiving real-time classification results. The model was trained on a dataset of over 100,000 images and fine-tuned for optimal performance.',
+            description: 'An advanced computer vision application that performs real-time object detection using YOLOv8 on video streams from your Nothing Phone 2 (via IP webcam/ArcCam). The system leverages your RTX 3050 GPU for accelerated inference and features a modern web interface with 3D AR object placement capabilities using Three.js. Includes comprehensive system monitoring, multi-threaded processing, and detailed logging for performance optimization.',
+            functionality: 'This real-time computer vision system streams live video from a smartphone to a desktop application that performs intelligent object detection using YOLOv8 neural networks with GPU acceleration for optimal performance. The system features an interactive web interface where users can view detected objects with confidence scores and virtually place 3D furniture models directly onto the video feed through augmented reality capabilities. Advanced multi-threading ensures smooth processing while comprehensive system monitoring displays real-time statistics including CPU, memory, and GPU usage with detailed logging for performance analysis. The application automatically optimizes processing based on available hardware resources and provides intuitive controls for managing detection settings, AR object placement, and viewing different system panels through a modern responsive web interface.',
             image: 'assets/images/projects/object.png',
             github: 'https://github.com/Greninja110/object-detection',
             demo: '#',
@@ -353,7 +353,7 @@ function initProjects() {
         },
         'Django Based College Attendance System': {
             title: 'Django Based College Attendance System',
-            description: 'A fully-featured attendance management system built with Django, JavaScript, and MySQL. This project includes user authentication, student and faculty management, attendance tracking, and reporting.',
+            description: 'A fully-featured attendance management system built with Django, JavaScript, and PostgreSQL. This project includes user authentication, student and faculty management, attendance tracking, and reporting.',
             functionality: 'Faculty can mark attendance, generate reports, and track student performance. Students can view their attendance records and get notifications for low attendance. Administrators can manage courses, faculty, and student data through a dashboard.',
             image: 'assets/images/projects/attend.png',
             github: 'https://github.com/Greninja110/attendance-system',
@@ -362,11 +362,11 @@ function initProjects() {
         },
         'ARCam': {
             title: 'ARCam',
-            description: 'A mobile application for augmented reality camera experiences. Built using Kotlin and ARCore, this app overlays digital information onto the real world through the camera view.',
-            functionality: 'The app allows users to identify objects in real-time, place virtual objects in the real world, and interact with AR elements. It uses machine learning for object recognition and ARCore for spatial tracking and rendering.',
+            description: 'Phase 1: Android app for streaming camera feed to a Python server with real-time object detection using YOLOv8 and 3D model visualization, setting the foundation for future AR features',
+            functionality: 'Android app captures and streams camera/audio in multiple modes (Image/Audio/Video) and quality settings (480p/720p/1080p) to a Python Flask server that processes streams with GPU-accelerated YOLOv8 for real-time object detection, displaying results through a web interface with 3D model overlay capabilities. Features include network optimization, comprehensive logging, and a foundation for future AR implementation.',
             image: 'assets/images/projects/ar.png',
             github: 'https://github.com/Greninja110/arcam',
-            demo: '#',
+            demo: 'https://github.com/Greninja110/arcam.launch/releases/download/v1.0.0/app-debug.apk',
             status: 'ongoing'
         },
         // 'AI-Powered Network Intrusion Detection System': {
@@ -380,38 +380,38 @@ function initProjects() {
         // },
         'StoryGuard': {
             title: 'StoryGuard',
-            description: 'A mobile application for augmented reality camera experiences. Built using Kotlin and ARCore, this app overlays digital information onto the real world through the camera view.',
-            functionality: 'The app allows users to identify objects in real-time, place virtual objects in the real world, and interact with AR elements. It uses machine learning for object recognition and ARCore for spatial tracking and rendering.',
-            image: 'assets/images/projects/ar.png',
+            description: "StoryGuard is a research project that develops a BERT-based machine learning model to identify and classify potentially harmful content in children's narratives. It analyzes both AI-generated and human-authored stories to detect safety violations like violence or mature themes, as well as problematic stereotypes and biases, ensuring age-appropriate content for young readers.",
+            functionality: 'The StoryGuard model functions as a multi-label classifier that processes story text and predicts two key aspects: safety violations (violence, scary content, mature themes) and stereotypes/biases (gender, cultural, racial). Trained on a balanced dataset of 2,000 stories across different age categories (3-5, 6-8, 9-12, and 15+), the system determines if content is appropriate for specific age groups, with optimized thresholds to maximize detection accuracy for both AI-generated and human-written content.',
+            image: 'assets/images/projects/StoryGuard.png',
             github: 'https://github.com/Greninja110/arcam',
             demo: '#',
             status: 'ongoing'
         },
         'Predict Calorie Expenditure': {
             title: 'Predict Calorie Expenditure',
-            description: 'A mobile application for augmented reality camera experiences. Built using Kotlin and ARCore, this app overlays digital information onto the real world through the camera view.',
-            functionality: 'The app allows users to identify objects in real-time, place virtual objects in the real world, and interact with AR elements. It uses machine learning for object recognition and ARCore for spatial tracking and rendering.',
-            image: 'assets/images/projects/ar.png',
+            description: 'This project leverages machine learning to build predictive models that estimate calorie burn during physical activities based on various exercise and biometric parameters. It implements and compares multiple regression algorithms from simple linear regression to advanced ensemble methods like Random Forest and Gradient Boosting, with the goal of achieving the lowest possible prediction error (RMSE).',
+            functionality: 'The functionality includes preprocessing fitness data with one-hot encoding for categorical variables (like Sex), training various regression models with increasing complexity, and evaluating performance using metrics like RMSE and R² score. The implementation features comprehensive logging to track model performance, visualizations of actual vs. predicted calorie values.',
+            image: 'assets/images/projects/Calorie.png',
             github: 'https://github.com/Greninja110/arcam',
             demo: '#',
             status: 'ongoing'
         },
         'Portfolio Website': {
             title: 'Portfolio Website',
-            description: 'A mobile application for augmented reality camera experiences. Built using Kotlin and ARCore, this app overlays digital information onto the real world through the camera view.',
-            functionality: 'The app allows users to identify objects in real-time, place virtual objects in the real world, and interact with AR elements. It uses machine learning for object recognition and ARCore for spatial tracking and rendering.',
-            image: 'assets/images/projects/ar.png',
+            description: 'A modern, fully responsive portfolio website built with custom vanilla JavaScript and CSS, featuring dual light/dark themes and adaptive navigation that seamlessly switches between single-page scrolling and multi-page layouts. The site incorporates contemporary design trends including glassmorphism effects, smooth animations, and interactive elements to create an engaging user experience across desktop, tablet, and mobile devices. It serves as a comprehensive digital showcase for technical skills while demonstrating advanced frontend development capabilities through its sophisticated architecture and performance optimization.',
+            functionality: 'The website features intelligent theme switching with system preference detection, project filtering capabilities across multiple categories, interactive timeline visualization with scroll-based navigation, and multi-version resume presentation (AI/ML and Web Development focused). Advanced functionality includes intersection observer-based section detection for navigation highlighting, floating mobile navigation with gesture-friendly interactions, image overlay system for enhanced media viewing, and integrated contact form with EmailJS automation. The site automatically adapts its layout and navigation style based on screen size and user interaction patterns, ensuring optimal usability across all devices.',
+            image: 'assets/images/projects/portfolio.png',
             github: 'https://github.com/Greninja110/arcam',
             demo: '#',
             status: 'ongoing'
         },
         'Predicting Optimal Fertilizers': {
             title: 'Predicting Optimal Fertilizers',
-            description: 'A mobile application for augmented reality camera experiences. Built using Kotlin and ARCore, this app overlays digital information onto the real world through the camera view.',
-            functionality: 'The app allows users to identify objects in real-time, place virtual objects in the real world, and interact with AR elements. It uses machine learning for object recognition and ARCore for spatial tracking and rendering.',
-            image: 'assets/images/projects/ar.png',
+            description: 'The fertilizer prediction challenge involved predicting the type of fertilizer to be used depending on crop type and soil conditions, particularly focusing on NPK (Nitrogen, Phosphorus, Potassium) content analysis. Participants worked with datasets containing soil chemical properties, crop types, and environmental factors to recommend the most suitable fertilizer for maximizing agricultural yield. The goal was to maximize agricultural yield by recommending appropriate fertilizers based on various input parameters.',
+            functionality: 'The functionality involved analyzing 7 key variables including N (Nitrogen content for plant growth and chlorophyll creation), P (Phosphorus for energy storage and transfer in photosynthesis), and K (Potassium content in soil) to predict optimal fertilizer recommendations. The system processes soil composition data, crop requirements, and environmental conditions through machine learning models to output specific fertilizer types that would best support crop growth and maximize yield for given agricultural scenarios.',
+            image: 'assets/images/projects/fertilizer.png',
             github: 'https://github.com/Greninja110/arcam',
-            demo: '#',
+            demo: '',
             status: 'ongoing'
         }
     };
